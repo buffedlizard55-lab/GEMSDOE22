@@ -44,7 +44,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from gems22.metric import ALPHA, BETA, tau
+from gems22.metric import ALPHA, BETA, fit_G_mle, propagate_G_uncertainty, tau
 from gems22.spec import REPO
 
 FOOTPRINT = 5_167_373
@@ -61,7 +61,8 @@ def load_group_rows() -> list[dict]:
     and 4".  Scores are the owner-reported public numbers transcribed in the
     project brief and cross-checked against the live leaderboard on 2026-10-01.
     """
-    cand = [REPO.parent.parent / "src/19GEMSDOE/evidence/submission_similarity.json",
+    cand = [REPO / "evidence/submission_similarity.json",
+            REPO.parent.parent / "src/19GEMSDOE/evidence/submission_similarity.json",
             Path("/home/user/src/19GEMSDOE/evidence/submission_similarity.json")]
     for p in cand:
         if p.exists():
@@ -175,6 +176,34 @@ def main() -> None:
                "estimate with a stated sensitivity, not a measurement.",
                "Scores are owner-reported public numbers, cross-checked against the "
                "live leaderboard on 2026-10-01, not authenticated receipts."]}
+
+    # ---- Joint Maximum-Likelihood fit & uncertainty propagation -------------
+    mle_obs = list(rows) + [
+        {"id": "19GEMSDOE-h19-5", "n": 121131, "lb": 0.1922, "is_binary": True},
+        {"id": "19GEMSDOE-h19-4", "n": 123779, "lb": 0.1894, "is_binary": True},
+        {"id": "GEMSDOE10-H28", "n": 65236, "lb": 0.1839, "is_binary": True},
+        {"id": "GEMSDOE10-H25", "n": 161366, "lb": 0.1280, "is_binary": True},
+        {"id": "13GEMSDOE", "n": 319377, "lb": 0.0904, "is_binary": True},
+    ]
+    mle_fit = fit_G_mle(mle_obs)
+    out["G_mle_fit"] = mle_fit
+    # Propagate |G| uncertainty to the 3 live-scored anchors and the 550k candidate
+    # using the 4-fold mean SGMC-gap holdout curves (G_hold = 19,897.0) from submission_build.json
+    out["score_predictor_uncertainty"] = {
+        "anchor_h16_1_120k": propagate_G_uncertainty(
+            A_hold=3395.0, B_hold=116756.5, G_hold=19897.0, G_quantiles=mle_fit["G_quantiles"], coverage_penalty=1.10
+        ),
+        "anchor_h19_4_120k": propagate_G_uncertainty(
+            A_hold=3301.0, B_hold=116784.9, G_hold=19897.0, G_quantiles=mle_fit["G_quantiles"], coverage_penalty=1.10
+        ),
+        "anchor_h19_5_120k": propagate_G_uncertainty(
+            A_hold=3194.2, B_hold=116826.3, G_hold=19897.0, G_quantiles=mle_fit["G_quantiles"], coverage_penalty=1.10
+        ),
+        "candidate_gems22_74cb4afe_550k": propagate_G_uncertainty(
+            A_hold=6034.9, B_hold=576951.6, G_hold=19897.0, G_quantiles=mle_fit["G_quantiles"], coverage_penalty=1.10
+        ),
+    }
+    print("G_mle_fit ->", json.dumps({k: v for k, v in mle_fit.items() if k != "posterior_grid_summary"}, indent=1))
 
     # ---- rescale the holdout budget curve to the live ground-truth size ------
     hr = REPO / "evidence/holdout_union.json"

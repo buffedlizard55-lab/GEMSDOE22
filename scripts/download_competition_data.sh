@@ -9,16 +9,15 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 if [[ -z "${GEMS_DATA_DIR:-}" ]]; then
     CACHE_BACKING="${ROOT}/.cache/gems_data"
-    mkdir -p "${CACHE_BACKING}"
-    if [[ ! -e "${ROOT}/data" ]]; then
-        ln -s ".cache/gems_data" "${ROOT}/data"
-    fi
-    DATA_DIR="${ROOT}/data"
+    mkdir -p "${CACHE_BACKING}" "${ROOT}/data" "${ROOT}/data/derived"
+    DATA_DIR="${CACHE_BACKING}"
+    SYNC_SYMLINKS=1
 else
     DATA_DIR="${GEMS_DATA_DIR}"
+    SYNC_SYMLINKS=0
 fi
 export GEMS_DATA_DIR="${DATA_DIR}"
-mkdir -p "${DATA_DIR}/external" "${DATA_DIR}/dem10" "${DATA_DIR}/derived" "${DATA_DIR}/scored" "${DATA_DIR}/ingenious"
+mkdir -p "${DATA_DIR}/external" "${DATA_DIR}/dem10" "${DATA_DIR}/derived" "${DATA_DIR}/scored" "${DATA_DIR}/ingenious" "${DATA_DIR}/group_subs" "${DATA_DIR}/cache"
 
 EXPECTED_FEAT_SHA="4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
 EXPECTED_LAB_SHA="7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
@@ -120,6 +119,32 @@ PYTHON_BIN="${ROOT}/.venv/bin/python"
 if [[ ! -x "$PYTHON_BIN" ]]; then
     PYTHON_BIN="python3"
 fi
-"$PYTHON_BIN" "${ROOT}/scripts/fetch_dem10.py"
+GEMS_DATA_DIR="${DATA_DIR}" "$PYTHON_BIN" "${ROOT}/scripts/fetch_dem10.py"
+
+if [[ "${SYNC_SYMLINKS}" -eq 1 ]]; then
+    for item in training_features.tif labels.tif sample_submission.tif existing_faults.tif example_submission.tif external dem10 scored ingenious group_subs cache; do
+        if [[ -e "${DATA_DIR}/${item}" && ! -e "${ROOT}/data/${item}" ]]; then
+            ln -s "../.cache/gems_data/${item}" "${ROOT}/data/${item}"
+        fi
+    done
+    for df in "${DATA_DIR}/derived"/*; do
+        if [[ -e "${df}" ]]; then
+            base="$(basename "${df}")"
+            if [[ ! -e "${ROOT}/data/derived/${base}" ]]; then
+                ln -s "../../.cache/gems_data/derived/${base}" "${ROOT}/data/derived/${base}"
+            fi
+        fi
+    done
+    for ef in lidar_scarp_features_u8.tif geodawn_rad_u8.tif geodawn_extensions_u8.tif; do
+        if [[ -e "${DATA_DIR}/external/${ef}" && ! -e "${ROOT}/assets/external/${ef}" ]]; then
+            ln -s "../../.cache/gems_data/external/${ef}" "${ROOT}/assets/external/${ef}"
+        fi
+    done
+    for cf in context_detector_prob_4fold_base.tif context_detector_prob_topo.tif context_detector_prob_topo_rad.tif ens12_7f00890a.tif; do
+        if [[ -e "${DATA_DIR}/derived/${cf}" && ! -e "${ROOT}/assets/external/${cf}" ]]; then
+            ln -s "../../.cache/gems_data/derived/${cf}" "${ROOT}/assets/external/${cf}"
+        fi
+    done
+fi
 
 echo "[6/6] All competition and official external datasets placed and SHA-256 verified."

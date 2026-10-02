@@ -77,23 +77,23 @@ class ClusteringFit:
 
 def _trace_centroids_and_lengths(binary_mask: np.ndarray, pixel_size_m: float = 100.0) -> tuple[np.ndarray, np.ndarray]:
     """Skeletonize ``binary_mask`` and return centroids (y,x) and lengths (m) per connected trace."""
-    skel = skeletonize(binary_mask > 0)
-    comp, n = ndi_label(binary_mask > 0, structure=np.ones((3, 3), dtype=int))
+    fg = binary_mask > 0
+    skel = skeletonize(fg)
+    comp, n = ndi_label(fg, structure=np.ones((3, 3), dtype=int))
     if n == 0:
         return np.zeros((0, 2)), np.zeros(0)
-    centroids = []
-    lengths = []
-    for cid in range(1, n + 1):
-        mask = comp == cid
-        # length = skeleton pixel count * pixel_size (approx; diagonal correction would be ~ sqrt2)
-        length_m = float((mask & skel).sum() * pixel_size_m)
-        if length_m < 108.0:  # sub-pixel noise still counted but with minimum length
-            length_m = float(mask.sum() * pixel_size_m)
-        # centroid in pixel coordinates (row, col)
-        ys, xs = np.nonzero(mask)
-        centroids.append([float(ys.mean()), float(xs.mean())])
-        lengths.append(max(length_m, pixel_size_m))
-    return np.asarray(centroids, dtype=np.float64), np.asarray(lengths, dtype=np.float64)
+    comp_px = np.bincount(comp.ravel(), minlength=n + 1)[1:].astype(np.float64)
+    skel_px = np.bincount(np.where(skel, comp, 0).ravel(), minlength=n + 1)[1:].astype(np.float64)
+    lengths = skel_px * float(pixel_size_m)
+    short = lengths < 108.0
+    lengths[short] = comp_px[short] * float(pixel_size_m)
+    lengths = np.maximum(lengths, float(pixel_size_m))
+    rr, cc = np.nonzero(fg)
+    cids = comp[rr, cc]
+    sum_r = np.bincount(cids, weights=rr.astype(np.float64), minlength=n + 1)[1:]
+    sum_c = np.bincount(cids, weights=cc.astype(np.float64), minlength=n + 1)[1:]
+    centroids = np.column_stack([sum_r / np.maximum(comp_px, 1.0), sum_c / np.maximum(comp_px, 1.0)])
+    return centroids.astype(np.float64), lengths.astype(np.float64)
 
 
 def _nearest_larger_distances(centroids: np.ndarray, lengths: np.ndarray, pixel_size_m: float = 100.0) -> np.ndarray:

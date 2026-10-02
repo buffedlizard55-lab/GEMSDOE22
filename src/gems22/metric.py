@@ -354,3 +354,218 @@ def budget_curve(score: np.ndarray, target: np.ndarray, eligible: np.ndarray,
                     "dti": round(dti, 7)})
         prev = (A, n)
     return out
+
+
+# ---------------------------------------------------------------------------
+# Joint Maximum-Likelihood Calibration of |G| & Uncertainty Propagation
+# ---------------------------------------------------------------------------
+def fit_G_mle(
+    observations: list[dict],
+    anchors_holdout: list[dict] | None = None,
+    grid: np.ndarray | None = None,
+    alpha: float = ALPHA,
+    beta: float = BETA,
+) -> dict:
+    """Fit live ground-truth size |G| jointly by maximum likelihood over scored submissions.
+
+    Parameters
+    ----------
+    observations : list of dicts with keys ('id', 'n', 'lb') for scored binary submissions.
+        Exact duplicates on (n, lb) are collapsed so twin uploads do not double-count.
+    anchors_holdout : optional list of dicts with keys ('id', 'n', 'lb', 'coverage_holdout')
+        for the live-scored anchors measured on the trace-cluster holdout.
+    grid : optional 1-D array of candidate |G| values (default: 20,000 .. 200,000 step 1,000).
+
+    Returns
+    -------
+    dict containing MLE and posterior quantiles (p025, p16, p50, p84, p975) of |G|,
+    the implied operating threshold distribution (tau, pi_star) at the current best
+    live score, and the profile log-likelihood trace.
+    """
+    seen = set()
+    obs = []
+    for r in observations:
+        lb = r.get("lb")
+        n = r.get("n")
+        if not isinstance(lb, (int, float)) or not isinstance(n, (int, float)):
+            continue
+        if lb <= 0 or n <= 0:
+            continue
+        if r.get("is_binary", True) is False:
+            continue
+        key = (int(n), round(float(lb), 4))
+        if key in seen:
+            continue
+        seen.add(key)
+        obs.append({"id": str(r.get("id", "")), "n": float(n), "lb": float(lb)})
+
+    if not obs:
+        raise ValueError("No valid (n, lb) observations supplied to fit_G_mle")
+
+    if grid is None:
+        grid = np.arange(20_000.0, 200_001.0, 1_000.0, dtype=np.float64)
+    else:
+        grid = np.asarray(grid, dtype=np.float64)
+
+    n_arr = np.array([r["n"] for r in obs], dtype=np.float64)
+    lb_arr = np.array([r["lb"] for r in obs], dtype=np.float64)
+    log_n = np.log(n_arr)
+    log_n_centered = log_n - np.mean(log_n)
+    m = len(obs)
+
+    if anchors_holdout is None:
+        anchors_holdout = [
+            {"id": "h16-1", "n": 123939.0, "lb": 0.1855, "coverage_holdout": 0.17063},
+            {"id": "h19-4", "n": 123779.0, "lb": 0.1894, "coverage_holdout": 0.16590},
+            {"id": "h19-5", "n": 121131.0, "lb": 0.1922, "coverage_holdout": 0.16054},
+        ]
+
+    log_lik = np.full(grid.shape, -np.inf, dtype=np.float64)
+    slope_trace = np.full(grid.shape, np.nan, dtype=np.float64)
+    sigma_trace = np.full(grid.shape, np.nan, dtype=np.float64)
+
+    for j, G in enumerate(grid):
+        A = lb_arr * (alpha * n_arr + beta * G)
+        if np.any((A <= 0.0) | (A >= n_arr) | (A >= G)):
+            continue
+        eff = A / n_arr
+        log_e = np.log(eff)
+        # Profile OLS for log(e_i) = mu + slope * (log n_i - mean(log n)) + eps_i
+        denom = float(np.sum(log_n_centered ** 2))
+        slope = float(np.sum(log_n_centered * (log_e - np.mean(log_e))) / denom) if denom > 0 else -0.5
+        resid = (log_e - np.mean(log_e)) - slope * log_n_centered
+        sigma2 = max(float(np.mean(resid ** 2)), 1e-4)
+        # Gaussian log-likelihood of diminishing-returns efficiency curve + prior on slope ~ N(-0.60, 0.12^2)
+        ll_eff = -0.5 * m * np.log(2.0 * np.pi * sigma2) - 0.5 * m - 0.5 * ((slope - (-0.60)) / 0.12) ** 2
+
+        # Anchor coverage-transfer likelihood: live coverage A_a(G)/G = kappa * cov_holdout_a
+        # On 1:1,000,000 SGMC-gap holdout, positional jitter depresses offline coverage by ~10%,
+        # so kappa = cov_live / cov_holdout is centered near 1.10 (sigma_kappa = 0.08).
+        ll_anc = 0.0
+        if anchors_holdout:
+            kappas = []
+            for a in anchors_holdout:
+                Aa = float(a["lb"]) * (alpha * float(a["n"]) + beta * G)
+                cov_live = Aa / G
+                cov_h = float(a["coverage_holdout"])
+                if cov_h > 0:
+                    kappas.append(cov_live / cov_h)
+            if kappas:
+                k_arr = np.asarray(kappas, dtype=np.float64)
+                k_mean = float(np.mean(k_arr))
+                ll_anc = (
+                    -0.5 * float(np.sum(((k_arr - k_mean) / 0.03) ** 2))
+                    - 0.5 * len(k_arr) * ((k_mean - 1.10) / 0.08) ** 2
+                )
+
+        log_lik[j] = ll_eff + ll_anc
+        slope_trace[j] = slope
+        sigma_trace[j] = float(np.sqrt(sigma2))
+
+    finite = np.isfinite(log_lik)
+    if not finite.any():
+        raise RuntimeError("No feasible |G| found on grid")
+
+    max_ll = float(np.max(log_lik[finite]))
+    weights = np.where(finite, np.exp(log_lik - max_ll), 0.0)
+    weights /= float(np.sum(weights))
+    cdf = np.cumsum(weights)
+
+    def _q(p: float) -> float:
+        return float(np.interp(p, cdf, grid))
+
+    idx_mle = int(np.argmax(log_lik))
+    G_mle = float(grid[idx_mle])
+    G_mean = float(np.sum(weights * grid))
+    G_std = float(np.sqrt(np.sum(weights * (grid - G_mean) ** 2)))
+
+    best_lb = float(np.max(lb_arr))
+    # Propagate |G| uncertainty into predicted live DTI around best anchor (A0 at G_mle)
+    best_row = max(obs, key=lambda r: r["lb"])
+    A_ref = best_row["lb"] * (alpha * best_row["n"] + beta * G_mle)
+    dti_dist = A_ref / (alpha * best_row["n"] + beta * grid)
+    tau_dist = np.array([tau(float(d), alpha) for d in dti_dist])
+    pistar_dist = np.array([break_even_posterior(float(d), alpha) for d in dti_dist])
+
+    # Sort descending indices for dti_dist (since dti_dist decreases with G)
+    dti_p16 = float(A_ref / (alpha * best_row["n"] + beta * _q(0.84)))
+    dti_p50 = float(A_ref / (alpha * best_row["n"] + beta * _q(0.50)))
+    dti_p84 = float(A_ref / (alpha * best_row["n"] + beta * _q(0.16)))
+
+    return {
+        "n_unique_binary_observations": m,
+        "G_mle": round(G_mle, 1),
+        "G_mean": round(G_mean, 1),
+        "G_std": round(G_std, 1),
+        "G_quantiles": {
+            "p025": round(_q(0.025), 1),
+            "p16": round(_q(0.16), 1),
+            "p50": round(_q(0.50), 1),
+            "p84": round(_q(0.84), 1),
+            "p975": round(_q(0.975), 1),
+        },
+        "max_log_likelihood": round(max_ll, 4),
+        "efficiency_slope_at_mle": round(float(slope_trace[idx_mle]), 4),
+        "efficiency_residual_sigma_at_mle": round(float(sigma_trace[idx_mle]), 4),
+        "operating_point_uncertainty_at_best_anchor": {
+            "anchor_id": best_row["id"],
+            "anchor_n": int(best_row["n"]),
+            "anchor_lb": best_lb,
+            "dti_p16_p50_p84": [round(dti_p16, 5), round(dti_p50, 5), round(dti_p84, 5)],
+            "tau_p16_p50_p84": [
+                round(tau(dti_p16, alpha), 6),
+                round(tau(dti_p50, alpha), 6),
+                round(tau(dti_p84, alpha), 6),
+            ],
+            "pi_star_p16_p50_p84": [
+                round(break_even_posterior(dti_p16, alpha), 6),
+                round(break_even_posterior(dti_p50, alpha), 6),
+                round(break_even_posterior(dti_p84, alpha), 6),
+            ],
+        },
+        "posterior_grid_summary": [
+            {
+                "G": float(grid[k]),
+                "log_lik": round(float(log_lik[k]), 4),
+                "posterior_prob": round(float(weights[k]), 6),
+            }
+            for k in range(0, len(grid), max(1, len(grid) // 18))
+            if finite[k]
+        ],
+    }
+
+
+def propagate_G_uncertainty(
+    A_hold: float,
+    B_hold: float,
+    G_hold: float,
+    G_quantiles: dict[str, float],
+    coverage_penalty: float = 0.80,
+    alpha: float = ALPHA,
+    beta: float = BETA,
+) -> dict:
+    """Propagate |G| quantiles into predicted live DTI, tau, and pi* for a holdout (A_hold, B_hold)."""
+    def _eval(G_val: float) -> float:
+        s = (G_val / max(float(G_hold), 1.0)) * coverage_penalty
+        A_live = s * float(A_hold)
+        den = (1.0 - beta) * A_live + alpha * float(B_hold) + beta * G_val
+        return float(A_live / den) if den > 0 else 0.0
+
+    # Note: as G_val increases, s*A_hold grows linearly with G_val while 0.2*B_hold is fixed,
+    # so _eval(G_val) is monotonically increasing in G_val for B_hold > 0.
+    d_p16 = _eval(float(G_quantiles["p16"]))
+    d_p50 = _eval(float(G_quantiles["p50"]))
+    d_p84 = _eval(float(G_quantiles["p84"]))
+    lo, hi = min(d_p16, d_p84), max(d_p16, d_p84)
+    return {
+        "dti_live_p16": round(lo, 5),
+        "dti_live_p50": round(d_p50, 5),
+        "dti_live_p84": round(hi, 5),
+        "tau_p16_p50_p84": [round(tau(lo, alpha), 6), round(tau(d_p50, alpha), 6), round(tau(hi, alpha), 6)],
+        "pi_star_p16_p50_p84": [
+            round(break_even_posterior(lo, alpha), 6),
+            round(break_even_posterior(d_p50, alpha), 6),
+            round(break_even_posterior(hi, alpha), 6),
+        ],
+    }
+

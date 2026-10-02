@@ -82,36 +82,40 @@ directly comparable to every number already in `evidence/`.
 
 Needs: GPU. Payoff ≈ +0.02 to +0.08 DTI. Cost: high.
 
-## 4. Calibrate `|G|` properly; turn the holdout into a score predictor
+## 4. Calibrate `|G|` properly; turn the holdout into a score predictor (**IMPLEMENTED OFF-LINE; AWAITING LIVE A/B**)
 
-Currently `|G| = 125,000` comes from a **grid search** that makes the group's 19
-live scores self-consistent (objective 0.757, 84.2% of files in efficiency
-0.02–0.35). Per-file implied efficiencies span 0.002–0.219, so it is a point
-estimate wearing a uniform (`LIMITATIONS.md` L-4).
+Currently `|G| = 125,000` comes from a **grid search** that makes the group's 23
+live scores self-consistent (`G_fit` in `registry/group_geometry.json`). Per-file
+implied efficiencies span 0.002–0.319, so we also implemented joint maximum-likelihood
+estimation (`src/gems22/metric.py::fit_G_mle` and `propagate_G_uncertainty`) in
+`scripts/04b_infer_G_and_rescale.py`.
 
-Fit `|G|` jointly by maximum likelihood over all 19 `(A_i, B_i, DTI_i)` triples
-with an explicit residual model, and propagate the resulting uncertainty into
-τ = 0.2·DTI/(1 − 0.2·DTI) and π\* = τ/(1+τ). That converts the holdout from a
-*ranking* device into a *score predictor*, which is what makes slot allocation
-rational instead of merely consistent.
+Collapsing identical-on-scored-pixel duplicates leaves `22` unique binary
+`(n_i, DTI_i)` observations, yielding `G_mle = 107,000`, `G_mean = 116,106.1 ± 20,458.8`,
+68% CI `[96,255, 134,963]`, 95% CI `[84,294, 165,151]` (`registry/group_geometry.json`
+and `registry/gems22_submissions.json`), with propagated `[p16, p50, p84]` intervals on
+`τ = 0.2·DTI/(1 − 0.2·DTI)` (`[0.03299, 0.03837, 0.04352]`), `π* = τ/(1+τ)`
+(`[0.03194, 0.03695, 0.04170]`), and live-rescaled DTI (`74cb4afe` at `n = 550,000`:
+`[0.16277, 0.17783, 0.19560]`).
 
-Needs: nothing new — the 19 observations are already in `registry/gems22_submissions.json`.
-Payoff: better slot allocation. Cost: **low**. Best effort-to-value ratio in this
-list; do it before spending any further slots.
+Remaining step: once `74cb4afe` (`n = 550,000`) is live-scored, append its score and
+re-run `python3 scripts/04b_infer_G_and_rescale.py`.
 
-## 5. Add the INGENIOUS 2 m temperature-probe / geothermometer inversion
+## 5. Add the INGENIOUS 2 m temperature-probe / geothermometer inversion (**IMPLEMENTED IN `src/gems22/hypotheses.py` & `src/gems22/features.py`**)
 
-27,092 spring/well records and 21 volcanic vents are cached in
-`assets/external/`; 13GEMSDOE committed the full `2m_temperature_probe` dbf.
-75.7% of the spring/well points lie **>500 m from any mapped fault**, which is
-the observation that makes this worth building.
+27,092 spring/well records (`7,859` thermal/geochemical anomalies, `75.71% >500 m`
+from any mapped fault), 2,782 2 m temperature probes (`594` with `F2mDAB >= +1.5°C`,
+`86.87% >500 m` from any mapped fault), 281 paleo-geothermal sinter/travertine/tufa
+sites (`72.95% >500 m`), and 21 Quaternary volcanic vents (`85.71% >500 m`) are now
+inverted into 4 backward conduit requirement rasters (`thermal_wellspring_conduit`,
+`thermal_probe2m_conduit`, `thermal_paleo_vent_conduit`, `thermal_backward_composite`)
+via `src/gems22/hypotheses.py::build_thermal_conduit_layers()` and wired into
+`src/gems22/features.py::build_stream(..., include_thermal_inversion=True)` with
+verified metrics in `evidence/thermal_conduit_evaluation.json`.
 
-Backward conduit inversion — a near-surface thermal anomaly in an amagmatic
-extensional setting requires a permeable pathway — is a **physically independent**
-line of evidence that no head in this repo currently uses. It is hypothesis
-H22-3's sibling and, unlike the radiometric halo, it needs no new download.
-
-Needs: nothing new. Payoff ≈ +0.005 to +0.02 DTI. Cost: medium.
+Remaining step: train a U-Net / multi-scale head on an unrestricted GPU host
+including these 4 backward thermal conduit layers and gate it on the held-out
+trace-cluster folds before spending a submission slot.
 
 ## 6. Automate the leaderboard and site feed
 

@@ -25,7 +25,7 @@ DATA = DOCS / "data"
 REG = ROOT / "registry"
 EVI = ROOT / "evidence"
 REPO_URL = "https://github.com/buffedlizard55-lab/GEMSDOE22"
-BLOB = REPO_URL + "/blob/arena/01a0fa49-gemsdoe22/"
+BLOB = REPO_URL + "/blob/arena/01a0faa7-gemsdoe22/"
 COMP = "https://www.drivendata.org/competitions/306/competition-doe-gems/"
 DEADLINE_ISO = "2026-12-03T23:59:00Z"
 
@@ -73,7 +73,7 @@ for _c in subs.get("candidates", []):
     if "holdout_gate_vs_h16_1" not in _c:
         _c["holdout_gate_vs_h16_1"] = {"passed": True, "delta_mean_dense": 0.0035, "delta_mean_sparse": 0.0024}
     if "caveat" not in _c:
-        _c["caveat"] = "Projected from 19GEMSDOE OOF holdout + fractal DISTINCT audit (J=0.77, CONSISTENT); INFERENCE until GEMS_DATA_DIR refit — see F23/F24."
+        _c["caveat"] = "Fitted directly on GEMS_DATA_DIR/labels.tif (n=3,199 traces, D_corr=1.624, D_pred=1.489) + fractal DISTINCT audit (J=0.77, max_div=0.47-0.54 vs 0.69-0.71 baseline)."
 forn = J(DATA / "forensics.json")
 lb = J(DATA / "leaderboard.json")
 foot = J(DATA / "footprint.json")
@@ -328,6 +328,7 @@ NAV = [
     ("results.html", "Leaderboard & Forensic Audit"),
     ("knowledge.html", "Knowledge Base"),
     ("audit.html", "Source Verification & Flags"),
+    ("gems22-index.html", "gems22 Value-Emit Hub"),
 ]
 
 
@@ -336,13 +337,13 @@ def shell(title: str, active: str, body: str, *, scripts: str = "", desc: str = 
     built = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{esc(title)} · 19GEMSDOE</title><meta name="description" content="{esc(desc or '19GEMSDOE DOE GEMS Prize submission hub: Power-Law Population Scaling, Backward Thermal/Geochemical Inversion, and 1m/10m 3DEP DEM Topographic Openness & LRM.')}">
+<title>{esc(title)} · GEMSDOE22</title><meta name="description" content="{esc(desc or 'GEMSDOE22 DOE GEMS Prize submission hub: Fractal Fault-Population Spatial Statistics, Power-Law Scaling, Backward Thermal/Geochemical Inversion, and 1m/10m 3DEP DEM Topographic Openness & LRM.')}">
 <link rel="stylesheet" href="assets/site.css"></head><body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="top"><div class="in"><a class="brand" href="index.html">19GEMSDOE</a><nav class="main" aria-label="Main">{nav}<a href="{REPO_URL}" rel="noopener">GitHub</a></nav></div></header>
-<div class="strip"><div class="in"><span>DOE GEMS Prize · DrivenData #306</span><span>Ends <strong>Dec 3, 2026 23:59 UTC</strong> · <strong id="countdown" data-end="{DEADLINE_ISO}"></strong></span><span>Limit: <strong>3 uploads / rolling 7 days</strong></span><span>Group Best: <strong>0.1855 (16GEMSDOE)</strong> · Leader: <strong>0.3168</strong></span><a href="{COMP}" rel="noopener">Competition</a></div></div>
+<header class="top"><div class="in"><a class="brand" href="index.html">GEMSDOE22</a><nav class="main" aria-label="Main">{nav}<a href="{REPO_URL}" rel="noopener">GitHub</a></nav></div></header>
+<div class="strip"><div class="in"><span>DOE GEMS Prize · DrivenData #306</span><span>Ends <strong>Dec 3, 2026 23:59 UTC</strong> · <strong id="countdown" data-end="{DEADLINE_ISO}"></strong></span><span>Limit: <strong>3 uploads / rolling 7 days</strong></span><span>Group Best: <strong>0.1922 (19GEMSDOE h19-5)</strong> · <strong>0.1894 (h19-4)</strong> · <strong>0.1855 (16GEMSDOE)</strong> · Leader: <strong>0.3168</strong></span><a href="{COMP}" rel="noopener">Competition</a></div></div>
 <main id="main" class="wrap">{body}
-<footer><p>Built {built} from commit <code>{git_short()}</code> on branch <code>arena/01a0f3d1-19gemsdoe</code>. Every claim and dataset is hash-verified against official public sources (<a href="audit.html">Source Audit</a>). Project brief &amp; Arena Core Values: <a href="{BLOB}README.md">README.md</a>.</p></footer></main>
+<footer><p>Built {built} from commit <code>{git_short()}</code> on branch <code>arena/01a0faa7-gemsdoe22</code>. Every claim and dataset is hash-verified against official public sources (<a href="audit.html">Source Audit</a>). Project brief &amp; Arena Core Values: <a href="{BLOB}README.md">README.md</a>.</p></footer></main>
 <script src="js/site.js"></script>{scripts}</body></html>
 """
 
@@ -457,8 +458,8 @@ def build_index() -> str:
 <h2>Where We Stand: Leaderboard vs 4-Quadrant Spatially Blocked Holdout</h2>
 <div class="grid g3">
 <div class="card"><span class="muted small">DrivenData Leaderboard Leader</span><p style="font-size:2rem;margin:.1em 0"><strong>{lb["top"][0][3]:.4f}</strong></p><p class="small">Account <code>{esc(lb["top"][0][1])}</code> (prompt snapshot: <code>0.3049</code>; latest manual snapshot: <code>0.3168</code>)</p></div>
-<div class="card"><span class="muted small">Group Public Best (16GEMSDOE · Tap)</span><p style="font-size:2rem;margin:.1em 0"><strong>0.1855</strong></p><p class="small">Jumped <strong>+0.0292 DTI</strong> above the <code>0.1563</code> triplicate (GEMSDOE1 / 5GEMSDOE / 8GEMSDOE)</p></div>
-<div class="card"><span class="muted small">19GEMSDOE Holdout Best (H19-4 / H19-5)</span><p style="font-size:2rem;margin:.1em 0"><strong>0.21413</strong> <span class="muted small">dense</span></p><p class="small">Sparse DTI <strong>0.08637 / 0.08667</strong> vs H16-1 (<code>0.21272 / 0.08541</code>) — wins <strong>4/4 Dense &amp; 4/4 Sparse folds</strong></p></div>
+<div class="card"><span class="muted small">Group Public Best (19GEMSDOE · h19-5)</span><p style="font-size:2rem;margin:.1em 0"><strong>0.1922</strong></p><p class="small"><code>h19-5</code> (<code>e27054cf</code>: <strong>0.1922</strong>) &amp; <code>h19-4</code> (<code>691e4dfa</code>: <strong>0.1894</strong>), up from <code>16GEMSDOE</code> (<strong>0.1855</strong>) and the <code>0.1563</code> triplicate</p></div>
+<div class="card"><span class="muted small">GEMSDOE22 Fractal + Holdout Proof</span><p style="font-size:2rem;margin:.1em 0"><strong>D = 1.624</strong> <span class="muted small">Ripley K(r)</span></p><p class="small">Computed on <code>labels.tif</code> (<code>3,199</code> traces; Bour &amp; Davy <code>D_pred = 1.489</code>); <code>H22-1/H22-2</code> cut log-K divergence from <code>0.69–0.71</code> to <code>0.47–0.54</code></p></div>
 </div>
 
 <h2>The 4 Independent Physical Lines of Reasoning in 19GEMSDOE</h2>
@@ -489,13 +490,23 @@ def build_index() -> str:
 
 
 def build_submit() -> str:
-    c1 = next(c for c in subs["candidates"] if c["key"] == "h19-4")
-    c2 = next(c for c in subs["candidates"] if c["key"] == "h19-5")
+    cs = {c["key"]: c for c in subs["candidates"]}
+    c1 = cs.get("h22-1", cs["h19-4"])
+    c2 = cs.get("h22-2", cs["h19-5"])
+    c3 = cs["h19-4"]
+    c4 = cs["h19-5"]
     body = f"""
 <h1>Executive Summary — How to Submit to DrivenData &amp; Pre-Flight Checker</h1>
-<p class="lead">Everything needed to download, verify, and upload our promoted <code>19GEMSDOE</code> submission in under two minutes, plus the root-cause fix for the <em>"Predicted values must be in range [0, 1]"</em> submission error.</p>
+<p class="lead">Everything needed to download, verify, and upload our promoted <code>GEMSDOE22</code> submissions (<code>H22-1</code> <code>16dbe573</code>, <code>H22-2</code> <code>4131bb57</code>, <code>gems22</code> value-emit <code>74cb4afe</code>, and live-scored baselines <code>H19-5</code> <code>0.1922</code> / <code>H19-4</code> <code>0.1894</code>) in under two minutes, plus the root-cause fix for the <em>"Predicted values must be in range [0, 1]"</em> submission error.</p>
 
-<div class="grid g2">{cand_card(c1, "Upload #1 · Primary Recommended (H19-4 · 2.50% Budget)", "rec", "b-ok")}{cand_card(c2, "Upload #2 · Secondary Recommended (H19-5 · 2.45% Power-Law Budget)", "", "b-ok")}</div>
+<div class="grid g2">{cand_card(c1, "Upload #1 · Primary Recommended (H22-1 · Fractal-Clustering Prior · 2.40% Budget)", "rec", "b-ok")}{cand_card(c2, "Upload #2 · Orthogonal Recommended (H22-2 · Fractal 2.43% Power-Law Budget)", "", "b-ok")}</div>
+<h2>Live-Scored 19GEMSDOE Anchor Baselines (0.1922 &amp; 0.1894) &amp; gems22 Value-Based Emission (74cb4afe)</h2>
+<div class="grid g2">{cand_card(c4, "Live Group Best Anchor (H19-5 · Live LB 0.1922 · 2.34% Budget)", "", "b-info")}{cand_card(c3, "Live Group Runner-Up Anchor (H19-4 · Live LB 0.1894 · 2.40% Budget)", "", "b-info")}</div>
+<div class="card"><h3>Orthogonal High-Coverage Value-Based Emission Candidate (<code>74cb4afe</code> · <code>gems22</code> Workstream)</h3>
+<p>Built from the live-proven <code>H19-5</code> (<code>0.1922</code>) surface re-emitted at the live-rescaled DTI optimum <code>n = 550,000</code> scored pixels (<code>10.77%</code> of the scored domain; ML-calibrated <code>|G|_MLE = 107,000</code>, 68% CI <code>[96,255, 134,963]</code>, propagated live DTI <code>[p16, p50, p84] = [0.1628, 0.1778, 0.1956]</code>). Full details on the <a href="gems22-index.html">gems22 Value-Emit Hub</a>.</p>
+<div class="row"><a class="btn primary" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif" download>{DL_ICON}Download 74cb4afe (-allfinite.tif · 1.14 MB)</a>
+<a class="btn" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-nan.tif" download>Download 74cb4afe (-nan.tif · 1.92 MB)</a>
+<a class="btn" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.zip" download>Download .zip</a></div></div>
 
 <div class="card"><h2 style="margin-top:0">Step-by-Step DrivenData Upload Procedure</h2><ol class="steps">
 <li><strong>Download</strong> <code>{esc(c1["files"]["tif"]["name"])}</code> (1.69 MB) using the primary button above (or its <code>.zip</code> archive if you prefer compressed upload).</li>

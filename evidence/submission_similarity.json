@@ -600,7 +600,7 @@
       "repo_path": "docs/downloads/13gems-composite-plus-20260929T183249Z_allfinite.tif",
       "site_url": "https://buffedlizard55-lab.github.io/13GEMSDOE/",
       "label": "13gems-composite-plus-20260929T183249Z_allfinite (unscored)",
-      "lb_score": null,
+      "lb_score": 0.0904,
       "account_named_by_owner": null,
       "bytes": 606648,
       "sha256": "2b6d871239a886121f3531c33f6b904bc146e3c2a004f4c1f6bd8b1c0d11c137",
@@ -622,7 +622,8 @@
       "dist_300m_to_1500m": 114014,
       "dist_gt_1500m": 154901,
       "frac_near_le_300m": 0.158,
-      "frac_far_gt_1500m": 0.485
+      "frac_far_gt_1500m": 0.485,
+      "account": "smrtdoog5 (owner-reported)"
     },
     {
       "id": "GEMSDOE10-H25",
@@ -631,7 +632,7 @@
       "repo_path": "docs/downloads/gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
       "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
       "label": "h25-ctx-ridge-20260927T232947704150Z-6452ae1d00 (score not reported)",
-      "lb_score": null,
+      "lb_score": 0.128,
       "account_named_by_owner": "wbg1",
       "bytes": 1772935,
       "sha256": "1381e784fb8b8340beffd0e735ac9eea89ad35d1a807f8a9bab5506e3fc8275e",
@@ -653,7 +654,8 @@
       "dist_300m_to_1500m": 73913,
       "dist_gt_1500m": 42643,
       "frac_near_le_300m": 0.2777,
-      "frac_far_gt_1500m": 0.2643
+      "frac_far_gt_1500m": 0.2643,
+      "account": "owner-reported"
     },
     {
       "id": "GEMSDOE10-H28",
@@ -662,7 +664,7 @@
       "repo_path": "docs/downloads/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
       "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
       "label": "h28-dotted-ridge-20260928T020256236880Z-6452ae1d00 (score not reported)",
-      "lb_score": null,
+      "lb_score": 0.1839,
       "account_named_by_owner": "wbg1",
       "bytes": 1620739,
       "sha256": "7637b72d4c6c3e10226bf46bd72a20272d62ccbe29743062632d10b158b49c58",
@@ -684,7 +686,8 @@
       "dist_300m_to_1500m": 29718,
       "dist_gt_1500m": 21061,
       "frac_near_le_300m": 0.2216,
-      "frac_far_gt_1500m": 0.3228
+      "frac_far_gt_1500m": 0.3228,
+      "account": "owner-reported"
     },
     {
       "id": "17GEMSDOE",
@@ -693,7 +696,7 @@
       "repo_path": "docs/downloads/17GEMSDOE_A-verified-01563-support_c5ea501e_20260930T021105Z.tif",
       "site_url": "https://buffedlizard55-lab.github.io/17GEMSDOE/",
       "label": "17GEMSDOE_A-verified-01563-support (same scored mask as ens12_7f00890a)",
-      "lb_score": null,
+      "lb_score": 0.0187,
       "account_named_by_owner": null,
       "bytes": 987669,
       "sha256": "c5ea501eba0ab840d26f0c017d01074c4bd9040ec5e2c5ac19bde8655d150e64",
@@ -715,7 +718,8 @@
       "dist_300m_to_1500m": 57161,
       "dist_gt_1500m": 78499,
       "frac_near_le_300m": 0.1853,
-      "frac_far_gt_1500m": 0.4714
+      "frac_far_gt_1500m": 0.4714,
+      "account": "smrtdoog5 (owner-reported)"
     }
   ],
   "identical_on_scored_pixel_groups": [
