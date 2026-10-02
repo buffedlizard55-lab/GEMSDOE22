@@ -436,12 +436,32 @@ def cand_card(c: dict, label: str, cls: str, badge: str) -> str:
 def build_index() -> str:
     cs = {c["key"]: c for c in subs["candidates"]}
     # Prefer H22 fractal candidates if present, else fallback to H19
-    if "h22-1" in cs and "h22-2" in cs:
+    if "h23-a" in cs and "h23-b" in cs:
+        # H23 is the DTI-optimal-emission arm: biggest measured gain on the SGMC gate, but its
+        # secondary dense gate FAILS and is disclosed as POST_HOC rather than buried.
+        _primary_key, _secondary_key = "h23-a", "h23-b"
+        _primary_label = ("Upload #1 · Primary Recommended (H23-A DTI-Optimal Emission 6.50% · SGMC DTI 0.21390 "
+                          "(+0.0598) · Bour & Davy D=1.62 clustering prior · DISTINCT J=0.65)")
+        _secondary_label = ("Upload #2 · A/B Probe (POST_HOC) (H23-B 10.00% · SGMC DTI 0.21674 · secondary "
+                            "dense gate FAILS, disclosed)")
+        _h1 = "22GEMSDOE — Executive Summary &amp; Validated GeoTIFF Submission Downloads"
+        _lead = ("Ready-to-upload single-band <code>float32</code> GeoTIFF submissions for the "
+                 "<strong>DOE GEMS Geothermal Fault Discovery Challenge</strong>. The H23 candidates apply a "
+                 "<strong>DTI-optimal emission policy</strong> (6.50% / 10.00% instead of the historic 2.4%) on top "
+                 "of the <strong>fractal fault-population spatial statistic</strong> (Bour &amp; Davy 1999 "
+                 "<code>D=1.62</code> + Ripley <code>K(r)</code>) used as both a geometric prior and a post-hoc "
+                 "artifact audit. Measured on the 4-quadrant spatially blocked holdout, <code>H23-A</code> raises "
+                 "the primary SGMC gate by <strong>+0.0598</strong> but <strong>fails the secondary per-fold dense "
+                 "gate (max loss 0.0160)</strong>; that violation is disclosed as <code>POST_HOC</code>, not buried. "
+                 "Every file is verified in <code>[0.0, 1.0]</code> across all <code>5,167,373</code> scored pixels "
+                 "and is <code>DISTINCT</code> (<code>J&lt;0.80</code>) from all 22 historic group submissions. All H23 files are <strong>not live-scored</strong> yet.")
+        _grid = f"{cand_card(cs[_primary_key], _primary_label, 'rec', 'b-ok')}{cand_card(cs[_secondary_key], _secondary_label, '', 'b-warn')}"
+    elif "h22-1" in cs and "h22-2" in cs:
         _primary_key, _secondary_key = "h22-1", "h22-2"
         _primary_label = "Upload #1 · Primary Recommended (H22-1 Fractal-Clustering Prior · 2.50% Budget · 5 Lines · Audit CONSISTENT · DISTINCT)"
         _secondary_label = "Upload #2 · Orthogonal (H22-2 Fractal 2.43% Budget · Power-Law Midpoint + Clustering · DISTINCT)"
-        _lead = "Ready-to-upload single-band <code>float32</code> GeoTIFF submissions for the <strong>DOE GEMS Geothermal Fault Discovery Challenge</strong> (these new 22GEMSDOE candidates add the <strong>fractal fault-population spatial statistic</strong> (Bour &amp; Davy 1999 <code>D≈1.37</code> + Ripley <code>K(r)</code>) as a geometric prior &amp; post-hoc audit on top of the 4-line corroboration and are not live-scored yet). Every file is strictly verified in <code>[0.0, 1.0]</code> across all <code>5,167,373</code> scored footprint pixels (eliminating the <em>\"Predicted values must be in range [0, 1]\"</em> error), satisfies all <strong>5 independent physical lines of reasoning</strong> (<code>L0</code> Fractal Clustering + Power-Law, Thermal inversion, 1m/10m Openness/LRM, and Geopotential worms), discards single-layer pattern matches, and is <code>DISTINCT</code> (<code>J<0.80</code>) from all 23 historic group submissions."
-        _grid = f"{cand_card(cs[_primary_key], _primary_label, 'rec', 'b-ok')}{cand_card(cs[_secondary_key], _secondary_label, '', 'b-ok')}"
+        _lead = "Ready-to-upload single-band <code>float32</code> GeoTIFF submissions for the <strong>DOE GEMS Geothermal Fault Discovery Challenge</strong> (these new 22GEMSDOE candidates add the <strong>fractal fault-population spatial statistic</strong> (Bour &amp; Davy 1999 <code>D=1.62</code> + Ripley <code>K(r)</code>) as a geometric prior &amp; post-hoc audit on top of the 4-line corroboration and are not live-scored yet). Every file is strictly verified in <code>[0.0, 1.0]</code> across all <code>5,167,373</code> scored footprint pixels (eliminating the <em>\"Predicted values must be in range [0, 1]\"</em> error), satisfies all <strong>5 independent physical lines of reasoning</strong> (<code>L0</code> Fractal Clustering + Power-Law, Thermal inversion, 1m/10m Openness/LRM, and Geopotential worms), discards single-layer pattern matches, and is <code>DISTINCT</code> (<code>J<0.80</code>) from all 23 historic group submissions."
+        _grid = f"{cand_card(cs[_primary_key], _primary_label, 'rec', 'b-ok')}{cand_card(cs[_secondary_key], _secondary_label, '', 'b-warn')}"
         _h1 = "22GEMSDOE — Executive Summary &amp; Validated GeoTIFF Submission Downloads"
     else:
         _h1 = "19GEMSDOE — Executive Summary &amp; Validated GeoTIFF Submission Downloads"
@@ -451,7 +471,7 @@ def build_index() -> str:
 <h1>{_h1}</h1>
 <p class="lead">{_lead}</p>
 
-<div class="alert ok"><strong>Immediate Upload Path (2 minutes):</strong> Click <strong>Download submission (.tif)</strong> on <strong>Upload #1 ({_primary_key.upper() if 'h22-1' in cs else 'H19-4'} Primary)</strong> below {ARR} open the <a href="{COMP}submissions/" rel="noopener">DrivenData Submissions Page</a> {ARR} select the downloaded <code>.tif</code> file {ARR} paste the copyable DrivenData note {ARR} click Submit. Full step-by-step instructions and the interactive browser pre-flight verifier are on the <a href="executive_summary.html">Executive Summary &amp; Upload Guide subpage</a>.</div>
+<div class="alert ok"><strong>Immediate Upload Path (2 minutes):</strong> Click <strong>Download submission (.tif)</strong> on <strong>Upload #1 ({cs[_primary_key]['hid']} Primary)</strong> below {ARR} open the <a href="{COMP}submissions/" rel="noopener">DrivenData Submissions Page</a> {ARR} select the downloaded <code>.tif</code> file {ARR} paste the copyable DrivenData note {ARR} click Submit. Full step-by-step instructions and the interactive browser pre-flight verifier are on the <a href="executive_summary.html">Executive Summary &amp; Upload Guide subpage</a>.</div>
 
 <div class="grid g2">{_grid}</div>
 
@@ -491,13 +511,13 @@ def build_index() -> str:
 
 def build_submit() -> str:
     cs = {c["key"]: c for c in subs["candidates"]}
-    c1 = cs.get("h22-1", cs["h19-4"])
+    c1 = cs.get("h23-a", cs.get("h22-1", cs["h19-4"]))
     c2 = cs.get("h22-2", cs["h19-5"])
     c3 = cs["h19-4"]
     c4 = cs["h19-5"]
     body = f"""
 <h1>Executive Summary — How to Submit to DrivenData &amp; Pre-Flight Checker</h1>
-<p class="lead">Everything needed to download, verify, and upload our promoted <code>GEMSDOE22</code> submissions (<code>H22-1</code> <code>16dbe573</code>, <code>H22-2</code> <code>4131bb57</code>, <code>gems22</code> value-emit <code>74cb4afe</code>, and live-scored baselines <code>H19-5</code> <code>0.1922</code> / <code>H19-4</code> <code>0.1894</code>) in under two minutes, plus the root-cause fix for the <em>"Predicted values must be in range [0, 1]"</em> submission error.</p>
+<p class="lead">Everything needed to download, verify, and upload our promoted <code>GEMSDOE22</code> submissions (<code>H23-A</code> <code>e2ec4b49</code>, <code>H23-B</code> <code>86176698</code>, <code>H22-1</code> <code>7fd2f28b</code>, <code>H22-2</code> <code>00a4a807</code>, <code>gems22</code> value-emit <code>74cb4afe</code>, and live-scored baselines <code>H19-5</code> <code>0.1922</code> / <code>H19-4</code> <code>0.1894</code>) in under two minutes, plus the root-cause fix for the <em>"Predicted values must be in range [0, 1]"</em> submission error.</p>
 
 <div class="grid g2">{cand_card(c1, "Upload #1 · Primary Recommended (H22-1 · Fractal-Clustering Prior · 2.40% Budget)", "rec", "b-ok")}{cand_card(c2, "Upload #2 · Orthogonal Recommended (H22-2 · Fractal 2.43% Power-Law Budget)", "", "b-ok")}</div>
 <h2>Live-Scored 19GEMSDOE Anchor Baselines (0.1922 &amp; 0.1894) &amp; gems22 Value-Based Emission (74cb4afe)</h2>

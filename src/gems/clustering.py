@@ -398,3 +398,83 @@ def fit_clustering_to_labels_file(labels_path: str, footprint_path: str | None =
     else:
         foot = np.ones(shape, dtype=bool)
     return fit_clustering_dimension(labels, foot)
+
+
+def grid_alignment_audit(
+    predicted_binary: np.ndarray,
+    footprint: np.ndarray,
+    bin_deg: float = 15.0,
+    tol_deg: float = 7.5,
+) -> dict[str, object]:
+    """Separate *acquisition* artifacts from genuine geology in a predicted fault population.
+
+    Two signatures separate them:
+    1. Grid alignment -- survey flight lines and DEM tile seams are straight and parallel to the
+       acquisition grid; geological faults are not. We histogram the local strike of the predicted
+       ridge field (structure-tensor orientation) and report excess mass in the two raster-axis
+       bins (0 deg, 90 deg) relative to the 2/n_bins share expected for an isotropic population.
+    2. Block edges -- acquisition-block boundaries form long, perfectly straight runs. We report
+       the fraction of predicted pixels lying on runs of >= 40 px straight to within one pixel.
+    """
+    mask = predicted_binary & footprint
+    if mask.sum() < 100:
+        return {"n_pixels": int(mask.sum()), "verdict": "INSUFFICIENT_PREDICTIONS"}
+    theta, coh = _structure_tensor_orientation_cached(mask.astype(np.float32))
+    th, w = theta[mask], coh[mask]
+    n_bins = int(round(180.0 / bin_deg))
+    hist, edges = np.histogram(th, bins=n_bins, range=(0.0, 180.0), weights=w)
+    hist = hist / max(hist.sum(), 1e-9)
+    axis_bins = [0, int(round(90.0 / bin_deg)) % n_bins]
+    axis_mass = float(sum(hist[b] for b in axis_bins))
+    expected = 2.0 / n_bins
+    excess = axis_mass / expected if expected > 0 else float("nan")
+
+    def straight_run_fraction(m: np.ndarray) -> float:
+        a, runs = m, 0
+        for row in range(a.shape[0]):
+            v = a[row]; i = 0
+            while i < a.shape[1]:
+                if v[i]:
+                    j = i
+                    while j + 1 < a.shape[1] and v[j + 1]:
+                        j += 1
+                    if j - i + 1 >= 40:
+                        runs += 1
+                    i = j + 1
+                else:
+                    i += 1
+        return float(min(40.0 * runs / max(int(m.sum()), 1), 1.0))
+
+    rows, cols = straight_run_fraction(mask), straight_run_fraction(mask.T)
+    verdict = ("NO_GRID_ALIASING_SIGNATURE" if excess < 1.25 and max(rows, cols) < 0.02
+               else "POSSIBLE_GRID_ALIASING" if excess < 1.6
+               else "STRONG_GRID_ALIGNMENT_SUSPECT_ACQUISITION_ARTIFACT")
+    return {"n_pixels": int(mask.sum()), "bin_deg": bin_deg,
+            "orientation_histogram": [round(float(x), 5) for x in hist],
+            "bin_edges_deg": [round(float(x), 2) for x in edges],
+            "raster_axis_bins": axis_bins, "raster_axis_mass": round(axis_mass, 5),
+            "expected_axis_mass_if_isotropic": round(expected, 5),
+            "axis_excess_ratio": round(float(excess), 4),
+            "long_straight_run_fraction_rows": round(rows, 5),
+            "long_straight_run_fraction_cols": round(cols, 5), "verdict": verdict}
+
+
+_ST_CACHE: dict[str, tuple[np.ndarray, np.ndarray]] = {}
+
+
+def _structure_tensor_orientation_cached(f: np.ndarray, sigma: float = 1.5):
+    key = f"{f.shape}:{sigma}"
+    if key in _ST_CACHE:
+        return _ST_CACHE[key]
+    from scipy.ndimage import gaussian_filter
+    gy, gx = np.gradient(f)
+    jxx, jyy = gaussian_filter(gx * gx, sigma), gaussian_filter(gy * gy, sigma)
+    jxy = gaussian_filter(gx * gy, sigma)
+    theta = np.degrees(0.5 * np.arctan2(2.0 * jxy, (jxx - jyy) + 1e-12)) % 180.0
+    tr, det = jxx + jyy, jxx * jyy - jxy * jxy
+    disc = np.sqrt(np.maximum(tr * tr / 4.0 - det, 0.0))
+    l1, l2 = tr / 2.0 + disc, tr / 2.0 - disc
+    coh = np.clip(np.where(l1 + l2 > 1e-12, (l1 - l2) / (l1 + l2 + 1e-12), 0.0), 0.0, 1.0)
+    _ST_CACHE.clear()
+    _ST_CACHE[key] = (theta.astype(np.float32), coh.astype(np.float32))
+    return _ST_CACHE[key]

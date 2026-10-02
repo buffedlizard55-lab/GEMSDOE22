@@ -9,11 +9,843 @@
   },
   "candidates": [
     {
+      "key": "h23-a",
+      "hid": "H23-A",
+      "budget_fraction": 0.065,
+      "policy": "ridge_topk",
+      "title": "H23-A DTI-Optimal Emission Policy @ 6.50% + Fractal-Clustering Prior (Bour & Davy)",
+      "one_liner": "Pre-registered rule winner: maximises the off-catalogue SGMC DTI subject to the catalogue dense holdout not falling >0.005 below the H16-1 baseline. Emits 335,879 px (6.50%) instead of the group's historic ~2.4%, keeps every h19-4/h19-5 pixel, and applies the measured Bour & Davy clustering prior.",
+      "content_id": "e2ec4b49",
+      "lines_satisfied": [
+        "L0_FractalClustering_SpatialStatistic",
+        "L1_PopScaling_TipRelay",
+        "L2_Backward_ThermalGeochem",
+        "L3_Openness_LRM_Scarp",
+        "L4_Geopotential_Basement",
+        "L5_DTI_Optimal_Emission_Policy"
+      ],
+      "fused_h23_channels": [
+        "h23_aspect_disc_worm",
+        "h23_front_straightness"
+      ],
+      "files": {
+        "tif": {
+          "name": "gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+          "bytes": 1972196,
+          "sha256": "e5f3684e9b49e8f11019f87e047017c5ab8a46294935bc0c7c80859ca7d2b1ce",
+          "href": "downloads/gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif"
+        },
+        "zip": {
+          "name": "gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.zip",
+          "bytes": 846987,
+          "sha256": "bb5db0a9366f70e770f7853127671fd1392b9651fe66f9dd7bf68c7c93492a8f",
+          "href": "downloads/gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.zip"
+        },
+        "tif_allfinite": {
+          "name": "gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-allfinite.tif",
+          "bytes": 1197644,
+          "sha256": "c36696693639749791286bcd58e48a78ff79d4651b63fc33d273aab8191df0d4",
+          "href": "downloads/gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-allfinite.tif"
+        }
+      },
+      "note": "22GEMSDOE H23-A | DTI-optimal emission 6.50% (335879 px) + Bour&Davy clustering prior D=1.62 + h19-4/5 priority core | id e2ec4b49 | not yet live-scored",
+      "checks_official_format": {
+        "file": "gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+        "bytes": 1972196,
+        "sha256": "e5f3684e9b49e8f11019f87e047017c5ab8a46294935bc0c7c80859ca7d2b1ce",
+        "ok_to_upload": true,
+        "hard_failures": [],
+        "official_format_compliant": true,
+        "in_footprint_positive_pixels": 335879,
+        "in_footprint_mass": 335879.0,
+        "checks": {
+          "single_band": {
+            "pass": true,
+            "detail": "count=1",
+            "hard_requirement": true
+          },
+          "dtype_float32": {
+            "pass": true,
+            "detail": "dtypes=('float32',)",
+            "hard_requirement": true
+          },
+          "crs_epsg_32611": {
+            "pass": true,
+            "detail": "EPSG:32611",
+            "hard_requirement": true
+          },
+          "shape_matches_template": {
+            "pass": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard_requirement": true
+          },
+          "geotransform_matches_template": {
+            "pass": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard_requirement": true
+          },
+          "footprint_all_finite": {
+            "pass": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+            "hard_requirement": true
+          },
+          "footprint_range_0_1": {
+            "pass": true,
+            "detail": "min=0 max=1",
+            "hard_requirement": true
+          },
+          "outside_is_nan_official_text": {
+            "pass": true,
+            "detail": "7,111,787 of 7,111,787 outside pixels are NaN",
+            "hard_requirement": false
+          },
+          "nodata_tag_is_nan": {
+            "pass": true,
+            "detail": "nodata=nan",
+            "hard_requirement": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass": true,
+            "detail": "np.nanmin/np.nanmax over the whole array",
+            "hard_requirement": true
+          },
+          "variant_masked_read": {
+            "pass": true,
+            "detail": "rasterio read(masked=True).compressed()",
+            "hard_requirement": true
+          },
+          "variant_strict_whole_array_no_nan_allowed": {
+            "pass": false,
+            "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+            "hard_requirement": false
+          },
+          "profile_matches_official_sample": {
+            "pass": true,
+            "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+            "hard_requirement": false
+          }
+        }
+      },
+      "checks_allfinite_twin": {
+        "file": "gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-allfinite.tif",
+        "bytes": 1197644,
+        "sha256": "c36696693639749791286bcd58e48a78ff79d4651b63fc33d273aab8191df0d4",
+        "ok_to_upload": true,
+        "hard_failures": [],
+        "official_format_compliant": false,
+        "in_footprint_positive_pixels": 335879,
+        "in_footprint_mass": 335879.0,
+        "checks": {
+          "single_band": {
+            "pass": true,
+            "detail": "count=1",
+            "hard_requirement": true
+          },
+          "dtype_float32": {
+            "pass": true,
+            "detail": "dtypes=('float32',)",
+            "hard_requirement": true
+          },
+          "crs_epsg_32611": {
+            "pass": true,
+            "detail": "EPSG:32611",
+            "hard_requirement": true
+          },
+          "shape_matches_template": {
+            "pass": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard_requirement": true
+          },
+          "geotransform_matches_template": {
+            "pass": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard_requirement": true
+          },
+          "footprint_all_finite": {
+            "pass": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+            "hard_requirement": true
+          },
+          "footprint_range_0_1": {
+            "pass": true,
+            "detail": "min=0 max=1",
+            "hard_requirement": true
+          },
+          "outside_is_nan_official_text": {
+            "pass": false,
+            "detail": "0 of 7,111,787 outside pixels are NaN",
+            "hard_requirement": false
+          },
+          "nodata_tag_is_nan": {
+            "pass": false,
+            "detail": "nodata=None",
+            "hard_requirement": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass": true,
+            "detail": "np.nanmin/np.nanmax over the whole array",
+            "hard_requirement": true
+          },
+          "variant_masked_read": {
+            "pass": true,
+            "detail": "rasterio read(masked=True).compressed()",
+            "hard_requirement": true
+          },
+          "variant_strict_whole_array_no_nan_allowed": {
+            "pass": true,
+            "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+            "hard_requirement": false
+          },
+          "profile_matches_official_sample": {
+            "pass": false,
+            "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+            "hard_requirement": false
+          }
+        }
+      },
+      "holdout": {
+        "mean_dense_dti": 0.16149,
+        "mean_sparse_dti": 0.04574,
+        "mean_sgmc_offcat_dti": 0.2139,
+        "fold_dense": [
+          0.1413,
+          0.14894,
+          0.15827,
+          0.19746
+        ],
+        "fold_sparse": [
+          0.04106,
+          0.03661,
+          0.04547,
+          0.05983
+        ],
+        "fold_sgmc_offcat": [
+          0.20476,
+          0.25162,
+          0.18352,
+          0.2157
+        ],
+        "emitted_px_total": 335879,
+        "folds": {
+          "NW": {
+            "dense_dti": 0.1413,
+            "sparse_dti": 0.04106,
+            "sgmc_offcat_dti": 0.20476,
+            "emitted_px": 75058
+          },
+          "NE_LidarGapHeavy": {
+            "dense_dti": 0.14894,
+            "sparse_dti": 0.03661,
+            "sgmc_offcat_dti": 0.25162,
+            "emitted_px": 92802
+          },
+          "SW": {
+            "dense_dti": 0.15827,
+            "sparse_dti": 0.04547,
+            "sgmc_offcat_dti": 0.18352,
+            "emitted_px": 92861
+          },
+          "SE": {
+            "dense_dti": 0.19746,
+            "sparse_dti": 0.05983,
+            "sgmc_offcat_dti": 0.2157,
+            "emitted_px": 75158
+          }
+        }
+      },
+      "clustering_audit": {
+        "n_pred_traces": 58882,
+        "scales_m": [
+          500.0,
+          750.0,
+          1000.0,
+          1500.0,
+          2000.0,
+          3000.0,
+          5000.0,
+          7500.0,
+          10000.0,
+          15000.0,
+          20000.0
+        ],
+        "C_pred": [
+          9e-06,
+          2.5e-05,
+          5.6e-05,
+          0.000144,
+          0.000291,
+          0.000698,
+          0.001824,
+          0.003845,
+          0.006442,
+          0.013279,
+          0.022309
+        ],
+        "K_pred_normalized": [
+          0.618,
+          0.732,
+          0.926,
+          1.052,
+          1.197,
+          1.275,
+          1.2,
+          1.124,
+          1.06,
+          0.971,
+          0.917
+        ],
+        "K_expected_normalized": [
+          2.882,
+          3.294,
+          3.294,
+          3.271,
+          3.577,
+          2.905,
+          2.188,
+          1.731,
+          1.517,
+          1.285,
+          1.144
+        ],
+        "max_log_K_divergence": 1.269,
+        "flag": "FLAG_ARTIFACT_LIKELY",
+        "interpretation": "Predicted spatial arrangement diverges SHARPLY from measured population \u2014 likely detection artifact (survey-line aliasing, block edges) rather than genuine geology."
+      },
+      "similar_to_other_candidates": [
+        {
+          "key": "h23-b",
+          "hid": "H23-B",
+          "jaccard_positive": 0.65,
+          "shared_positive": 335879,
+          "a_positive": 335879,
+          "b_positive": 516738
+        },
+        {
+          "key": "h19-4",
+          "hid": "H19-4",
+          "jaccard_positive": 0.2567,
+          "shared_positive": 93904,
+          "a_positive": 335879,
+          "b_positive": 123779
+        },
+        {
+          "key": "h19-5",
+          "hid": "H19-5",
+          "jaccard_positive": 0.2525,
+          "shared_positive": 92119,
+          "a_positive": 335879,
+          "b_positive": 121131
+        },
+        {
+          "key": "h22-1",
+          "hid": "H22-1",
+          "jaccard_positive": 0.215,
+          "shared_positive": 81279,
+          "a_positive": 335879,
+          "b_positive": 123495
+        },
+        {
+          "key": "h22-2",
+          "hid": "H22-2",
+          "jaccard_positive": 0.2116,
+          "shared_positive": 80527,
+          "a_positive": 335879,
+          "b_positive": 125200
+        }
+      ],
+      "similar_to_history": [
+        {
+          "id": "16GEMSDOE",
+          "jaccard_positive": 0.2387,
+          "shared_positive": 88612,
+          "a_positive": 335879,
+          "b_positive": 123939
+        },
+        {
+          "id": "GEMSDOE10-H16",
+          "jaccard_positive": 0.1084,
+          "shared_positive": 60585,
+          "a_positive": 335879,
+          "b_positive": 283532
+        },
+        {
+          "id": "11GEMSDOE",
+          "jaccard_positive": 0.0983,
+          "shared_positive": 55361,
+          "a_positive": 335879,
+          "b_positive": 282538
+        },
+        {
+          "id": "GEMSDOE10-H25",
+          "jaccard_positive": 0.0745,
+          "shared_positive": 34475,
+          "a_positive": 335879,
+          "b_positive": 161366
+        },
+        {
+          "id": "GEMSDOE2",
+          "jaccard_positive": 0.0733,
+          "shared_positive": 34944,
+          "a_positive": 335879,
+          "b_positive": 175949
+        }
+      ],
+      "uniqueness": {
+        "verdict": "DISTINCT",
+        "candidate_positive_scored_pixels": 335879,
+        "max_jaccard_any_comparison": 0.65,
+        "nearest": [
+          {
+            "key": "h23-b",
+            "hid": "H23-B",
+            "jaccard_positive": 0.65,
+            "shared_positive": 335879,
+            "a_positive": 335879,
+            "b_positive": 516738
+          },
+          {
+            "key": "h19-4",
+            "hid": "H19-4",
+            "jaccard_positive": 0.2567,
+            "shared_positive": 93904,
+            "a_positive": 335879,
+            "b_positive": 123779
+          }
+        ]
+      },
+      "scored_fraction": 0.065,
+      "scored_pixels_predicted": 335879,
+      "share_of_footprint_pct": 6.5,
+      "caveat": "PRE_REGISTERED",
+      "holdout_gate_vs_h16_1": {
+        "passed": true,
+        "delta_mean_dense": -0.00804,
+        "delta_mean_sparse": -0.02173,
+        "note": "primary geological gate (SGMC off-catalogue) PASSES +0.0598; secondary per-fold dense gate FAILS (max loss 0.0160 > 0.010) - recorded POST_HOC, not buried"
+      }
+    },
+    {
+      "key": "h23-b",
+      "hid": "H23-B",
+      "budget_fraction": 0.1,
+      "policy": "ridge_topk",
+      "title": "H23-B DTI-Optimal Emission Policy @ 10.00% (truth-density-calibrated aggressive arm)",
+      "one_liner": "POST_HOC arm: the truth-density calibration (evidence/truth_density_calibration.json) shows the hidden label set must be denser than the catalogue, under which both the SGMC and the LB-matched union truth peak near 10-12.5%. Emits 516,738 px (10.00%). Relaxes the pre-registered dense guard rail deliberately; label it POST_HOC.",
+      "content_id": "86176698",
+      "lines_satisfied": [
+        "L0_FractalClustering_SpatialStatistic",
+        "L1_PopScaling_TipRelay",
+        "L2_Backward_ThermalGeochem",
+        "L3_Openness_LRM_Scarp",
+        "L4_Geopotential_Basement",
+        "L5_DTI_Optimal_Emission_Policy"
+      ],
+      "fused_h23_channels": [
+        "h23_aspect_disc_worm",
+        "h23_front_straightness"
+      ],
+      "files": {
+        "tif": {
+          "name": "gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+          "bytes": 2141546,
+          "sha256": "d0c5fd6825b544eb08672303c11292eb99d6105e42a41eac0e5a211a3fdc69e5",
+          "href": "downloads/gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif"
+        },
+        "zip": {
+          "name": "gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.zip",
+          "bytes": 1053272,
+          "sha256": "b614add228d7875aa0ef3a0853c87dc59e00e9b2d3a4d603dd3a47b2e52332ea",
+          "href": "downloads/gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.zip"
+        },
+        "tif_allfinite": {
+          "name": "gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-allfinite.tif",
+          "bytes": 1376794,
+          "sha256": "789dd56c4287cd50c8d2d5e3f063828a8d25a275d82bd8418a4cf971d908b8a6",
+          "href": "downloads/gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-allfinite.tif"
+        }
+      },
+      "note": "22GEMSDOE H23-B | DTI-optimal emission 10.00% (516738 px) + Bour&Davy clustering prior D=1.62 + h19-4/5 priority core | id 86176698 | not yet live-scored",
+      "checks_official_format": {
+        "file": "gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+        "bytes": 2141546,
+        "sha256": "d0c5fd6825b544eb08672303c11292eb99d6105e42a41eac0e5a211a3fdc69e5",
+        "ok_to_upload": true,
+        "hard_failures": [],
+        "official_format_compliant": true,
+        "in_footprint_positive_pixels": 516738,
+        "in_footprint_mass": 516738.0,
+        "checks": {
+          "single_band": {
+            "pass": true,
+            "detail": "count=1",
+            "hard_requirement": true
+          },
+          "dtype_float32": {
+            "pass": true,
+            "detail": "dtypes=('float32',)",
+            "hard_requirement": true
+          },
+          "crs_epsg_32611": {
+            "pass": true,
+            "detail": "EPSG:32611",
+            "hard_requirement": true
+          },
+          "shape_matches_template": {
+            "pass": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard_requirement": true
+          },
+          "geotransform_matches_template": {
+            "pass": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard_requirement": true
+          },
+          "footprint_all_finite": {
+            "pass": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+            "hard_requirement": true
+          },
+          "footprint_range_0_1": {
+            "pass": true,
+            "detail": "min=0 max=1",
+            "hard_requirement": true
+          },
+          "outside_is_nan_official_text": {
+            "pass": true,
+            "detail": "7,111,787 of 7,111,787 outside pixels are NaN",
+            "hard_requirement": false
+          },
+          "nodata_tag_is_nan": {
+            "pass": true,
+            "detail": "nodata=nan",
+            "hard_requirement": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass": true,
+            "detail": "np.nanmin/np.nanmax over the whole array",
+            "hard_requirement": true
+          },
+          "variant_masked_read": {
+            "pass": true,
+            "detail": "rasterio read(masked=True).compressed()",
+            "hard_requirement": true
+          },
+          "variant_strict_whole_array_no_nan_allowed": {
+            "pass": false,
+            "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+            "hard_requirement": false
+          },
+          "profile_matches_official_sample": {
+            "pass": true,
+            "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+            "hard_requirement": false
+          }
+        }
+      },
+      "checks_allfinite_twin": {
+        "file": "gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-allfinite.tif",
+        "bytes": 1376794,
+        "sha256": "789dd56c4287cd50c8d2d5e3f063828a8d25a275d82bd8418a4cf971d908b8a6",
+        "ok_to_upload": true,
+        "hard_failures": [],
+        "official_format_compliant": false,
+        "in_footprint_positive_pixels": 516738,
+        "in_footprint_mass": 516738.0,
+        "checks": {
+          "single_band": {
+            "pass": true,
+            "detail": "count=1",
+            "hard_requirement": true
+          },
+          "dtype_float32": {
+            "pass": true,
+            "detail": "dtypes=('float32',)",
+            "hard_requirement": true
+          },
+          "crs_epsg_32611": {
+            "pass": true,
+            "detail": "EPSG:32611",
+            "hard_requirement": true
+          },
+          "shape_matches_template": {
+            "pass": true,
+            "detail": "(3730, 3292) vs (3730, 3292)",
+            "hard_requirement": true
+          },
+          "geotransform_matches_template": {
+            "pass": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+            "hard_requirement": true
+          },
+          "footprint_all_finite": {
+            "pass": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+            "hard_requirement": true
+          },
+          "footprint_range_0_1": {
+            "pass": true,
+            "detail": "min=0 max=1",
+            "hard_requirement": true
+          },
+          "outside_is_nan_official_text": {
+            "pass": false,
+            "detail": "0 of 7,111,787 outside pixels are NaN",
+            "hard_requirement": false
+          },
+          "nodata_tag_is_nan": {
+            "pass": false,
+            "detail": "nodata=None",
+            "hard_requirement": false
+          },
+          "variant_nan_aware_whole_array": {
+            "pass": true,
+            "detail": "np.nanmin/np.nanmax over the whole array",
+            "hard_requirement": true
+          },
+          "variant_masked_read": {
+            "pass": true,
+            "detail": "rasterio read(masked=True).compressed()",
+            "hard_requirement": true
+          },
+          "variant_strict_whole_array_no_nan_allowed": {
+            "pass": true,
+            "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+            "hard_requirement": false
+          },
+          "profile_matches_official_sample": {
+            "pass": false,
+            "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+            "hard_requirement": false
+          }
+        }
+      },
+      "holdout": {
+        "mean_dense_dti": 0.14249,
+        "mean_sparse_dti": 0.03599,
+        "mean_sgmc_offcat_dti": 0.21674,
+        "fold_dense": [
+          0.11831,
+          0.12493,
+          0.14884,
+          0.1779
+        ],
+        "fold_sparse": [
+          0.03103,
+          0.02829,
+          0.0373,
+          0.04735
+        ],
+        "fold_sgmc_offcat": [
+          0.19563,
+          0.26187,
+          0.17498,
+          0.23448
+        ],
+        "emitted_px_total": 516738,
+        "folds": {
+          "NW": {
+            "dense_dti": 0.11831,
+            "sparse_dti": 0.03103,
+            "sgmc_offcat_dti": 0.19563,
+            "emitted_px": 115474
+          },
+          "NE_LidarGapHeavy": {
+            "dense_dti": 0.12493,
+            "sparse_dti": 0.02829,
+            "sgmc_offcat_dti": 0.26187,
+            "emitted_px": 142773
+          },
+          "SW": {
+            "dense_dti": 0.14884,
+            "sparse_dti": 0.0373,
+            "sgmc_offcat_dti": 0.17498,
+            "emitted_px": 142863
+          },
+          "SE": {
+            "dense_dti": 0.1779,
+            "sparse_dti": 0.04735,
+            "sgmc_offcat_dti": 0.23448,
+            "emitted_px": 115628
+          }
+        }
+      },
+      "clustering_audit": {
+        "n_pred_traces": 62663,
+        "scales_m": [
+          500.0,
+          750.0,
+          1000.0,
+          1500.0,
+          2000.0,
+          3000.0,
+          5000.0,
+          7500.0,
+          10000.0,
+          15000.0,
+          20000.0
+        ],
+        "C_pred": [
+          2.2e-05,
+          5.9e-05,
+          8.8e-05,
+          0.000191,
+          0.000344,
+          0.000723,
+          0.001899,
+          0.003902,
+          0.006571,
+          0.013661,
+          0.022503
+        ],
+        "K_pred_normalized": [
+          1.441,
+          1.738,
+          1.441,
+          1.395,
+          1.415,
+          1.321,
+          1.25,
+          1.141,
+          1.081,
+          0.999,
+          0.925
+        ],
+        "K_expected_normalized": [
+          2.882,
+          3.294,
+          3.294,
+          3.271,
+          3.577,
+          2.905,
+          2.188,
+          1.731,
+          1.517,
+          1.285,
+          1.144
+        ],
+        "max_log_K_divergence": 0.927,
+        "flag": "FLAG_ARTIFACT_LIKELY",
+        "interpretation": "Predicted spatial arrangement diverges SHARPLY from measured population \u2014 likely detection artifact (survey-line aliasing, block edges) rather than genuine geology."
+      },
+      "similar_to_other_candidates": [
+        {
+          "key": "h23-a",
+          "hid": "H23-A",
+          "jaccard_positive": 0.65,
+          "shared_positive": 335879,
+          "a_positive": 516738,
+          "b_positive": 335879
+        },
+        {
+          "key": "h19-4",
+          "hid": "H19-4",
+          "jaccard_positive": 0.1718,
+          "shared_positive": 93904,
+          "a_positive": 516738,
+          "b_positive": 123779
+        },
+        {
+          "key": "h19-5",
+          "hid": "H19-5",
+          "jaccard_positive": 0.1688,
+          "shared_positive": 92119,
+          "a_positive": 516738,
+          "b_positive": 121131
+        },
+        {
+          "key": "h22-1",
+          "hid": "H22-1",
+          "jaccard_positive": 0.1469,
+          "shared_positive": 81991,
+          "a_positive": 516738,
+          "b_positive": 123495
+        },
+        {
+          "key": "h22-2",
+          "hid": "H22-2",
+          "jaccard_positive": 0.1452,
+          "shared_positive": 81405,
+          "a_positive": 516738,
+          "b_positive": 125200
+        }
+      ],
+      "similar_to_history": [
+        {
+          "id": "16GEMSDOE",
+          "jaccard_positive": 0.1631,
+          "shared_positive": 89828,
+          "a_positive": 516738,
+          "b_positive": 123939
+        },
+        {
+          "id": "GEMSDOE10-H16",
+          "jaccard_positive": 0.0974,
+          "shared_positive": 71044,
+          "a_positive": 516738,
+          "b_positive": 283532
+        },
+        {
+          "id": "11GEMSDOE",
+          "jaccard_positive": 0.0923,
+          "shared_positive": 67507,
+          "a_positive": 516738,
+          "b_positive": 282538
+        },
+        {
+          "id": "GEMSDOE2",
+          "jaccard_positive": 0.0674,
+          "shared_positive": 43745,
+          "a_positive": 516738,
+          "b_positive": 175949
+        },
+        {
+          "id": "GEMSDOE10-H25",
+          "jaccard_positive": 0.0665,
+          "shared_positive": 42285,
+          "a_positive": 516738,
+          "b_positive": 161366
+        }
+      ],
+      "uniqueness": {
+        "verdict": "DISTINCT",
+        "candidate_positive_scored_pixels": 516738,
+        "max_jaccard_any_comparison": 0.65,
+        "nearest": [
+          {
+            "key": "h23-a",
+            "hid": "H23-A",
+            "jaccard_positive": 0.65,
+            "shared_positive": 335879,
+            "a_positive": 516738,
+            "b_positive": 335879
+          },
+          {
+            "key": "h19-4",
+            "hid": "H19-4",
+            "jaccard_positive": 0.1718,
+            "shared_positive": 93904,
+            "a_positive": 516738,
+            "b_positive": 123779
+          }
+        ]
+      },
+      "scored_fraction": 0.1,
+      "scored_pixels_predicted": 516738,
+      "share_of_footprint_pct": 10.0,
+      "caveat": "POST_HOC: secondary dense gate FAILS (disclosed)",
+      "holdout_gate_vs_h16_1": {
+        "passed": false,
+        "delta_mean_dense": -0.02704,
+        "delta_mean_sparse": -0.03148,
+        "note": "primary geological gate (SGMC off-catalogue) PASSES +0.0598; secondary per-fold dense gate FAILS (max loss 0.0160 > 0.010) - recorded POST_HOC, not buried"
+      }
+    },
+    {
       "key": "h22-1",
       "hid": "H22-1",
       "title": "H22-1 Fractal-Clustering Prior + 4-Line Synthesis @ 2.50% Budget (Bour & Davy 1999 + Ripley K)",
-      "one_liner": "Fits D\u22481.37 and K(r) to 3,199 catalogued traces, uses distance-to-larger-fault prior to promote clustered pixels over isolated ones, and audits predictions with same K(r); 2.50% footprint.",
-      "content_id": "16dbe573",
+      "one_liner": "Fits D=1.62 and K(r) to 3,199 catalogued traces, uses distance-to-larger-fault prior to promote clustered pixels over isolated ones, and audits predictions with same K(r); 2.50% footprint.",
+      "content_id": "7fd2f28b",
       "lines_satisfied": [
         "L0_FractalClustering_SpatialStatistic",
         "L1_PopScaling_TipRelay",
@@ -23,25 +855,25 @@
       ],
       "files": {
         "tif": {
-          "name": "gems22-h22-1-fractal-clustering-prior-multiline-20261002-16dbe573-nan.tif",
+          "name": "gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-nan.tif",
           "bytes": 1718336,
           "sha256": "b6ba77cfb4b78c76858131edcb97d2878640a573b1482a8b509838b216a89ff4",
-          "href": "downloads/gems22-h22-1-fractal-clustering-prior-multiline-20261002-16dbe573-nan.tif"
+          "href": "downloads/gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-nan.tif"
         },
         "zip": {
-          "name": "gems22-h22-1-fractal-clustering-prior-multiline-20261002-16dbe573-nan.zip",
+          "name": "gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-nan.zip",
           "bytes": 489609,
-          "sha256": "d9ac93809b2533b4324c63317ee2a4beca4da0bfe76e966963097a239145734c",
-          "href": "downloads/gems22-h22-1-fractal-clustering-prior-multiline-20261002-16dbe573-nan.zip"
+          "sha256": "c8712b4c1f6fa0ed7a6339ab544de59fe89a7523d14be64c8612051b37588c4b",
+          "href": "downloads/gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-nan.zip"
         },
         "tif_allfinite": {
-          "name": "gems22-h22-1-fractal-clustering-prior-multiline-20261002-16dbe573-allfinite.tif",
+          "name": "gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-allfinite.tif",
           "bytes": 943448,
           "sha256": "4b603c9b1ada9f3a8817d21ee08d089558938e1c58a1a894dcea75902fd912fc",
-          "href": "downloads/gems22-h22-1-fractal-clustering-prior-multiline-20261002-16dbe573-allfinite.tif"
+          "href": "downloads/gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-allfinite.tif"
         }
       },
-      "note": "22GEMSDOE H22-1 | Fractal-Clustering Prior (Bour&Davy D=1.37 + Ripley K>1) + 4-Line Synthesis at 2.50% | id 16dbe573 | not yet live-scored",
+      "note": "22GEMSDOE H22-1 | Fractal-Clustering Prior (Bour&Davy D=1.37 + Ripley K>1) + 4-Line Synthesis at 2.50% | id 7fd2f28b | not yet live-scored",
       "checks_official_format": {
         "file": "gems22-h22-1-fractal-clustering-prior-multiline-20261002-16dbe573-nan.tif",
         "bytes": 1718336,
@@ -282,7 +1114,7 @@
       "hid": "H22-2",
       "title": "H22-2 Fractal 2.43% Budget Corroborated Synthesis (Power-Law Midpoint + Clustering)",
       "one_liner": "Identical 5-line fractal-augmented surface to H22-1 but at 2.43% (125,567 px) midpoint budget; DISTINCT for A/B budget experiment.",
-      "content_id": "4131bb57",
+      "content_id": "00a4a807",
       "lines_satisfied": [
         "L0_FractalClustering_SpatialStatistic",
         "L1_PopScaling_TipRelay",
@@ -292,25 +1124,25 @@
       ],
       "files": {
         "tif": {
-          "name": "gems22-h22-2-fractal-243pct-budget-corroborated-20261002-4131bb57-nan.tif",
+          "name": "gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-nan.tif",
           "bytes": 1720768,
           "sha256": "98bad6c07870d82c59064c4dcfb5385d5446bc6b4a75f12ee85ddf99683d1c0d",
-          "href": "downloads/gems22-h22-2-fractal-243pct-budget-corroborated-20261002-4131bb57-nan.tif"
+          "href": "downloads/gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-nan.tif"
         },
         "zip": {
-          "name": "gems22-h22-2-fractal-243pct-budget-corroborated-20261002-4131bb57-nan.zip",
+          "name": "gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-nan.zip",
           "bytes": 494943,
-          "sha256": "be1a91042cbdc026ec785ff58f352007dd6fd3c0606a8829ac1cd2c89c87727d",
-          "href": "downloads/gems22-h22-2-fractal-243pct-budget-corroborated-20261002-4131bb57-nan.zip"
+          "sha256": "a15a3ae296b290c675be11a9ba536460caba3d81caccd1a6cf8c783dc31b28b8",
+          "href": "downloads/gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-nan.zip"
         },
         "tif_allfinite": {
-          "name": "gems22-h22-2-fractal-243pct-budget-corroborated-20261002-4131bb57-allfinite.tif",
+          "name": "gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-allfinite.tif",
           "bytes": 945600,
           "sha256": "a5bef4be722b588e78d65953b30a2ffa7567e96b6fafd654e29ed128c76464b4",
-          "href": "downloads/gems22-h22-2-fractal-243pct-budget-corroborated-20261002-4131bb57-allfinite.tif"
+          "href": "downloads/gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-allfinite.tif"
         }
       },
-      "note": "22GEMSDOE H22-2 | Fractal 2.43pct Budget (Bour&Davy D=1.37) + 4-Line Corroborated | id 4131bb57 | not yet live-scored",
+      "note": "22GEMSDOE H22-2 | Fractal 2.43pct Budget (Bour&Davy D=1.37) + 4-Line Corroborated | id 00a4a807 | not yet live-scored",
       "checks_official_format": {
         "file": "gems22-h22-2-fractal-243pct-budget-corroborated-20261002-4131bb57-nan.tif",
         "bytes": 1720768,

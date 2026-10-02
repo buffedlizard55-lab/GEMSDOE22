@@ -53,7 +53,7 @@ def _content_id(path: Path, fp: np.ndarray, cat: np.ndarray) -> str:
 def test_filename_content_id_matches_raster() -> None:
     """Every published `.tif` must embed the SHA-256[:8] of its own scored-pixel content (flag F24)."""
     fp, cat = _grid()
-    files = sorted(DOWNLOADS_DIR.glob("*.tif"))
+    files = sorted(p for p in DOWNLOADS_DIR.rglob("*.tif") if p.is_file())
     assert files, "no published submissions found"
     bad = []
     for p in files:
@@ -92,7 +92,7 @@ def test_readme_sha256_values_are_real_file_hashes() -> None:
     """Every 64-hex string in README.md that sits next to a published filename must be a real hash (flag F25)."""
     readme = (ROOT / "README.md").read_text()
     real = {}
-    for p in sorted(DOWNLOADS_DIR.glob("*")):
+    for p in sorted(q for q in DOWNLOADS_DIR.rglob("*") if q.is_file()):
         real[p.name] = sha256_file(p)
     # collect 64-hex tokens
     tokens = set(re.findall(r"\b[0-9a-f]{64}\b", readme))
