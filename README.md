@@ -29,7 +29,7 @@ Every submission file below has been re-read and verified by `src/gems/submissio
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Upload #1 (Primary Recommended)** | **`H22-1`** · Fractal-Clustering Prior + 4-Line Synthesis @ 2.50% Budget (Bour & Davy `D=1.624` / `1.37` + Ripley `K`) | [`gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-nan.tif`](docs/downloads/gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-nan.tif) ([`.zip`](docs/downloads/gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-nan.zip) · [`allfinite`](docs/downloads/gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-allfinite.tif)) | `7fd2f28b`<br>`b6ba77cfb4b78c76858131edcb97d2878640a573b1482a8b509838b216a89ff4` | `123,779` (`2.395%`) | **`0.2162*`** (`+0.0035*`, **4/4 folds projected**) | **`0.0878*`** (`+0.0024*`, **4/4 folds projected**) | **5 / 5** (`L0`+`L1`+`L2`+`L3`+`L4`) | `22GEMSDOE H22-1 | Fractal-Clustering Prior (Bour&Davy D=1.62 + Ripley K>1) + 4-Line Synthesis at 2.50% | id 7fd2f28b | not yet live-scored` |
 | **Upload #2 (Secondary Orthogonal)** | **`H22-2`** · Fractal 2.43% Budget Corroborated Synthesis (Power-Law Midpoint + Clustering) | [`gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-nan.tif`](docs/downloads/gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-nan.tif) ([`.zip`](docs/downloads/gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-nan.zip) · [`allfinite`](docs/downloads/gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-allfinite.tif)) | `00a4a807`<br>`98bad6c07870d82c59064c4dcfb5385d5446bc6b4a75f12ee85ddf99683d1c0d` | `125,567` (`2.430%`) | **`0.2156*`** (`+0.0029*`) | **`0.0880*`** (`+0.0026*`, **4/4 Sparse projected**) | **5 / 5** (`L0`+`L1`+`L2`+`L3`+`L4`) | `22GEMSDOE H22-2 | Fractal 2.43pct Budget (Bour&Davy D=1.62) + 4-Line Corroborated | id 00a4a807 | not yet live-scored` |
-| **Upload #3 (`gems22` Value-Emit)** | **`h22-value-emit`** · High-Coverage Value-Based Emission @ `n = 550,000` (`|G|_MLE = 107,000`, `|G|_used = 125,000`, built on `h19-5` `0.1922`) | [`gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif`](docs/downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif) ([`-nan.tif`](docs/downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-nan.tif) · [`.zip`](docs/downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.zip)) | `74cb4afe`<br>`cd3c26a2fb4b7e649c49d2b565291bca30ee6fe47ea47c1ea6151061dc9a0337` | `550,000` (`10.771%` scored domain) | Live-rescaled `[p16, p50, p84]` = **`[0.1628, 0.1778, 0.1956]`** (`+0.0179` over native in 4/4 trace-cluster folds) | NCC audit **`PASS`** (`mean_ncc = 3.60`) | **5 / 5** (`h19-5` + Bour&Davy prior `w=0.3`) | `GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&Davy(1999) prior w=0.3 | NCC audit PASS | id 74cb4afe` |
+| **Upload #3 (`gems22` Value-Emit)** | **`h22-value-emit`** · High-Coverage Value-Based Emission @ `n = 550,000` (`|G|_MLE = 107,000`, `|G|_used = 125,000`, built on `h19-5` `0.1922`) | [`gems22-h22-value-emit-20261002T015455Z-f6777492-allfinite.tif`](docs/downloads/gems22/gems22-h22-value-emit-20261002T015455Z-f6777492-allfinite.tif) ([`-nan.tif`](docs/downloads/gems22/gems22-h22-value-emit-20261002T015455Z-f6777492-nan.tif) · [`.zip`](docs/downloads/gems22/gems22-h22-value-emit-20261002T015455Z-f6777492-allfinite.zip)) | `f6777492`<br>`cd3c26a2fb4b7e649c49d2b565291bca30ee6fe47ea47c1ea6151061dc9a0337` | `550,000` (`10.771%` scored domain) | Live-rescaled `[p16, p50, p84]` = **`[0.1628, 0.1778, 0.1956]`** (`+0.0179` over native in 4/4 trace-cluster folds) | NCC audit **`PASS`** (`mean_ncc = 3.60`) | **5 / 5** (`h19-5` + Bour&Davy prior `w=0.3`) | `GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&Davy(1999) prior w=0.3 | NCC audit PASS | id f6777492` |
 | **Live Group Best Baseline (`0.1922`)** | **`H19-5`** · 2.45% Power-Law Midpoint (**Live LB `0.1922`**) | [`gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif`](docs/downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif) ([`.zip`](docs/downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.zip) · [`allfinite`](docs/downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif)) | `e27054cf`<br>`ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d` | `121,131` (`2.344%`) | `0.21341` | `0.08667` | **4 / 4** | `22GEMSDOE H19-5 | Openness/Thermal-dominant at 2.45% | id e27054cf | Live LB 0.1922` |
 | **Live Group Runner-Up (`0.1894`)** | **`H19-4`** · Multi-Line Corroborated Synthesis @ 2.50% (**Live LB `0.1894`**, tied with `GEMSDOE21`) | [`gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif`](docs/downloads/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif) ([`.zip`](docs/downloads/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.zip) · [`allfinite`](docs/downloads/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-allfinite.tif)) | `691e4dfa`<br>`89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22` | `123,779` (`2.395%`) | **`0.21413`** (`+0.00141`, **4/4 folds won**) | **`0.08637`** (`+0.00096`, **4/4 folds won**) | **4 / 4** (`L1`+`L2`+`L3`+`L4`) | `22GEMSDOE H19-4 | 4-line corroborated OOF synthesis (PowerLaw tip/relay + GDR1391 thermal/geochem + 1m/10m Openness/LRM + Geopotential worm), single-layer gate, 2.5 | id 691e4dfa | Live LB 0.1894` |
 
@@ -71,7 +71,7 @@ invariants are `AGENTS.md` Part B.
 * **98 tests** plus `.github/workflows/ci.yml` (tests, artefact integrity, site
   freshness, placeholder and link checks).
 
-**Its candidate:** content id `74cb4afe`, `gems22-h22-value-emit`,
+**Its candidate:** content id `f6777492`, `gems22-h22-value-emit`,
 **550,000 emitted scored pixels (10.771%** of the 5,106,385-px scored domain**)**,
 built on the highest authenticated live map (`h19-5`, 0.1922) — 121,131 pixels
 retained, 428,869 newly emitted, **0 trimmed**. It contains **no learned
@@ -86,7 +86,7 @@ informative part, and each row says what would settle it.
 
 | # | Question | Trunk (`src/gems`) | gems22 (`src/gems22`) | Settled by |
 |---|---|---|---|---|
-| 1 | **Emission budget** | ≈120k px, 2.395% (`7fd2f28b`) and 2.43% (`00a4a807`) | **550,000 px, 10.771%** (`74cb4afe`), from `\|G\| = 125,000` and the marginal rule `dA > τ(dA + dB)` | One upload. 12/12 anchor × fold combinations gain, mean **+0.018**; median of the three per-anchor live optima {430k, 550k, 625k} |
+| 1 | **Emission budget** | ≈120k px, 2.395% (`7fd2f28b`) and 2.43% (`00a4a807`) | **550,000 px, 10.771%** (`f6777492`), from `\|G\| = 125,000` and the marginal rule `dA > τ(dA + dB)` | One upload. 12/12 anchor × fold combinations gain, mean **+0.018**; median of the three per-anchor live optima {430k, 550k, 625k} |
 | 2 | **Correlation dimension `D`** | `D_correlation = 1.37`, `D_bour_davy_predicted = 1.38`, `D_consistent = true` | `D = 2.289 > 2` — flagged **F-07** as saturated and biased upward; measured `x/((a−1)/D)` = 1.62, so the relation is **not** validated | Both fitted the same 3,199 traces; the difference is the lag range. **gems22 defers to the trunk's `D = 1.37`** as the better estimate and uses only the weaker monotone statement "large faults have their nearest larger neighbour farther away", which its own fit supports (`x = 0.8223`, `A = 6.268 m`, `R² = 0.956`) |
 | 3 | **Holdout design** | Dense/Sparse geographic quadrants; `H22-1` 0.2162 vs `H16-1` 0.21272 (Dense), 0.0878 vs 0.08541 (Sparse) | Geographic quadrant folds are **structurally invalid here** (flag F-09): they delete *every* known fault from the held-out region, but the live task keeps the catalogue visible everywhere. Measured DTI **0.033** for quadrants vs **0.165** for identical features under trace-cluster folds | Trace-cluster folds (`holdout.trace_cluster_folds(cat \| gap, 4, 48, seed=22)`), pinned by a regression test against exact per-fold pixel counts |
 
@@ -110,11 +110,11 @@ live map rather than the output of a newly trained model.
 
 The trunk's `7fd2f28b` is the safer bet: it is the continuation of a validated
 recipe, at a budget the group has used successfully four times. The gems22
-`74cb4afe` is the higher-variance bet: it tests a **closed-form, data-free**
+`f6777492` is the higher-variance bet: it tests a **closed-form, data-free**
 prediction (the marginal emission rule at `|G| = 125,000`) that no previous
 session has tested, and it is the only one of the two that can *falsify* that
 prediction. With three uploads per rolling 7 days, the information-maximising
-order is trunk first, gems22 second — one upload of `74cb4afe` either confirms a
+order is trunk first, gems22 second — one upload of `f6777492` either confirms a
 +0.018-class budget correction or kills it, and both outcomes are worth more than
 a third variant of a known-good recipe.
 
@@ -245,9 +245,9 @@ With `H19-4` (`0.1894`) and `H19-5` (`0.1922`) now live-scored on DrivenData, we
 1. **Path A — Fractal-Clustering Population Prior & Post-Hoc Audit at the `~2.40–2.43%` Ridge Regime (`H22-1` `7fd2f28b` & `H22-2` `00a4a807`):**
    - Directly fitted to all `3,199` connected fault skeletons in `data/labels.tif` (`evidence/clustering_fit.json`: `alpha_ols = 2.0224`, `alpha_mle = 1.5775`, `R² = 0.9956`, Ripley `D_correlation = 1.624`, Bour & Davy predicted `D = 1.489`, nearest-larger-neighbor median `1,630.9 m`).
    - Post-hoc `audit_predicted_clustering` (`evidence/clustering_audit.json`) reveals why `H19-4` (`max_log_K_divergence = 0.693`) and `H19-5` (`0.708`) still lose DTI to false-positive specks: ~28% of their emitted ridge components are isolated 1–3 pixel segments lying >3 km from any larger fault trunk. `H22-1` (`max_log_K_divergence = 0.54`) and `H22-2` (`0.47`) demote isolated single-pixel detections (`dens < 0.035`) and promote candidates lying within the Bour & Davy fractal clustering halo (`300 m – 1,400 m`) of larger faults, replacing ~14,500 isolated pixels (`Jaccard = 0.768` vs `H19-4`, `0.739` vs `H19-5`).
-2. **Path B — Closed-Form DW-Tversky Value-Based Emission (`gems22` `74cb4afe` at `n = 550,000` scored pixels):**
+2. **Path B — Closed-Form DW-Tversky Value-Based Emission (`gems22` `f6777492` at `n = 550,000` scored pixels):**
    - Joint Maximum-Likelihood inversion of all 22 unique binary group submissions (`src/gems22/metric.py::fit_G_mle`, `registry/group_geometry.json`) yields **`|G|_MLE = 107,000` (`G_mean = 116,106 ± 20,459`, 68% CI `[96,255, 134,963]`, `|G|_used = 125,000`)**.
-   - Because $0.8 |G| \approx 100,000$ is a fixed floor in the denominator $\text{DTI} = \frac{A}{0.2 A + 0.2 B + 0.8 |G|}$, any submission emitting only $n \approx 121,000$ pixels with $A \approx 24,000$ is mathematically capped near $\text{DTI} \approx 0.19$. Reaching $0.30+$ requires either doubling precision at $n = 121\text{k}$ ($A/n \approx 0.36$) **or** emitting all candidate pixels down to the marginal break-even posterior $\pi^* = \tau/(1+\tau) \approx 3.7\%$ (`n = 550,000`, `74cb4afe`), which retains 100% of `H19-5`'s 121,131 pixels and adds 428,869 corroborated Bour & Davy halo + multi-line extension pixels (`+0.0179` mean live-rescaled DTI gain across `4/4` trace-cluster folds).
+   - Because $0.8 |G| \approx 100,000$ is a fixed floor in the denominator $\text{DTI} = \frac{A}{0.2 A + 0.2 B + 0.8 |G|}$, any submission emitting only $n \approx 121,000$ pixels with $A \approx 24,000$ is mathematically capped near $\text{DTI} \approx 0.19$. Reaching $0.30+$ requires either doubling precision at $n = 121\text{k}$ ($A/n \approx 0.36$) **or** emitting all candidate pixels down to the marginal break-even posterior $\pi^* = \tau/(1+\tau) \approx 3.7\%$ (`n = 550,000`, `f6777492`), which retains 100% of `H19-5`'s 121,131 pixels and adds 428,869 corroborated Bour & Davy halo + multi-line extension pixels (`+0.0179` mean live-rescaled DTI gain across `4/4` trace-cluster folds).
 
 **Why the external `0.3168` (`DARD` 11 submissions, `alexoktaba` `0.3042` 17 submissions) is still far ahead — and how `H22-1`/`H22-2` are designed to close the gap:**
 
@@ -268,9 +268,80 @@ A candidate set `S` added to a scored file with public score `s` helps only if i
 
 ---
 
+### 2.5 The no-skill floor — what a *random* submission scores on this metric (H26, 2026-10-02)
+
+This is the H26 answer to §2.4, and it changes the interpretation of every number above.
+A random binary emission of `n` pixels does **not** score zero on
+`DTI = A / (0.2 A + 0.2 B + 0.8 |G|)`, because one emitted pixel credits every
+ground-truth pixel within `R = 3 px`. With `f = n/N` and kernel rings `k_i` (ascending,
+`m_i` offsets above each level):
+
+```
+E[credit per gt pixel] = sum_i (k_i - k_{i-1}) (1 - (1-f)^{m_i});  E[A] = |G| * that
+E[B] = n (1 - union_mass / N);        FN_w = |G| - A
+```
+
+`src/gems/floor.py`, validated by `tests/test_floor.py`, reproduces this repository's
+**own eight measured random arms** (`evidence/holdout_union.json` → `folds.*.null_random`)
+to within **−1.8 % … +3.1 %** on DTI (`evidence/h26_floor_model.json`). On the live
+domain (`N` = 5,106,385 px, `|G|` from `fit_G_mle`):
+
+| `n` emitted | floor at `|G|` = 84,294 | at 116,106 | at 165,151 |
+|---|---|---|---|
+| 60,000 | 0.1056 | 0.1101 | 0.1139 |
+| **121,131** (group's habitual budget) | 0.1683 | **0.1812** | 0.1928 |
+| 250,000 | 0.2198 | 0.2458 | 0.2711 |
+| 464,424 (floor peak at p50 `|G|`) | — | **0.290** | — |
+| **550,000** (`f6777492` rescale budget) | 0.2414 | **0.2900** | 0.3446 |
+
+* **The live table is at the floor.** `h19-5` 0.1922 vs floor 0.1812 = **+0.011**;
+  `h19-4` 0.1894 vs 0.1836 = +0.006; `h16-1` 0.1855 vs 0.1837 = +0.002; `h28` 0.1839 vs
+  0.1810 = +0.003. Across the 95 % `|G|` band every one of those lifts spans zero. Of the
+  nineteen scored files in `evidence/proxy_calibration_vs_lb.json`, only `7GEMSDOE`
+  (+0.0131 at 76,859 px) shows a lift positive at *both* ends of the band.
+* **Why the fold looked so much better than the live task.** The fold holds 21,344 gt px
+  in 5.13 M (0.42 %); the fitted live density is ~2.27 %. The same files are **2.2×** the
+  fold floor but **1.01–1.06×** the live floor. The organisers' own description of the
+  test set — expert-mapped faults *not* in USGS/INGENIOUS (Forum 11527) — is exactly the
+  complement of what the catalogue-trained detector was built to reproduce.
+* **Consequence 1 — ranking rule.** Candidates are compared by
+  **lift = DTI − floor_dti(n, |G|, N) at their own budget**, never by raw DTI. This is now
+  the rule in `AGENTS.md`.
+* **Consequence 2 — Path B of §2.4 is withdrawn pending a measurement.** The delivered
+  550,000-px rescale `f6777492` projects 0.1628–0.1956, i.e. **below** the 550k floor
+  (0.29 at p50 `|G|`) unless `|G|` sits at the bottom of its CI. The projection and the
+  floor cannot both describe the same map, so the cheap resolution is the paired upload
+  (`H19-4` vs `H19-4 ∪ S`) that measures both the floor and `τ` live. **Do not spend a
+  slot on `f6777492` first.**
+* **Consequence 3 — the 0.30 target is a precision target.** At `n` = 121,131, reaching
+  0.30 needs `A` ≈ 0.245·n for a perfectly clean emission, ≈ 0.31·n if the added pixels are
+  pure junk (bounds from `floor.implied_a_bounds`), i.e. roughly double the implied
+  `A/n` of 0.153–0.193 that `h19-5`'s 0.1922 allows. *Erratum:* §2.4 quotes `A/n ≈ 0.36`
+  for this, which follows only if `FP_w = n − TP_w`; the repository's own random arms show
+  `A + B > n`, so the correct bracket is 0.245–0.31.
+
+* **Consequence 4 — the valid instrument does not separate the candidates either.**
+  `scripts/h26_instrument_consistency.py` re-measures every published file on the
+  trace-cluster instrument with the live masking convention, against a random control
+  of the same size (`evidence/h26_instrument_consistency.json`). Mean lift vs the
+  size-matched control: `h19-5` −0.0007, `h19-4` +0.0003, `h22-1` −0.0002,
+  `h22-2` −0.0002, `h23-a` (6 %) −0.0107, `h23-b` (10 %) −0.0119. The instrument
+  also ranks `h19-4` above `h19-5` (live: the reverse) — the same ρ = −1.000
+  pathology as the SGMC proxy, for the same reason: the live spread (0.0067) is
+  smaller than the floor's own budget sensitivity. **Nothing shipped so far has a
+  demonstrated lift over random on either instrument**; the caveat is that the
+  trace-cluster fold penalises proximity priors harder than the live task does.
+
+New hypotheses are therefore ranked by expected **lift over the floor** (favouring
+mechanisms that find faults the catalogue does not contain) in
+[`HYPOTHESES_H26.md`](HYPOTHESES_H26.md); the full derivation, validation and caveats are in
+[`FLOOR_ANALYSIS.md`](FLOOR_ANALYSIS.md) and `evidence/h26_floor_model.json`.
+
+---
+
 ## 3. Ranked Hypotheses — 5 New Geological Hypotheses (plus inherited 4-line arms)
 
-**Pre-registered set `H22-1..H22-5`** (full specs in [`src/gems/hypotheses.py`](src/gems/hypotheses.py) and `docs/research/hypothesis_register.md`; each naming layers, physical signature, catalogue-gap rationale, novelty, rank by expected DTI and cost). **Top candidate `H22-1` is already built and format-verified; it has not yet been live-scored.**
+**Pre-registered set `H22-1..H22-5`** (full specs in [`src/gems/hypotheses.py`](src/gems/hypotheses.py) and `docs/research/hypothesis_register.md`; each naming layers, physical signature, catalogue-gap rationale, novelty, rank by expected DTI and cost). **Top candidate `H22-1` is already built and format-verified; it has not yet been live-scored.** The H26 register — five further candidates ranked by expected *lift over the no-skill floor* (§2.5) — is [`HYPOTHESES_H26.md`](HYPOTHESES_H26.md); ranked as `H26-A` offset markers > `H26-B` anisotropic tip continuation > `H26-C` silica/carbonate blind-fault inversion > `H26-D` conjugate X-pattern nodes > `H26-E` drainage-knickpoint alignment.
 
 | Rank | ID | Layers (specific) | Physical signature being targeted (e.g., edge/curvature transform) | Why it should catch a fault *missing* from the USGS/INGENIOUS catalogue rather than one already in it | How it differs from anything already implemented in this repo | Expected DTI gain & Cost | Data needed (free, official) | Status |
 |---|---|---|---|---|---|---|---|---|
@@ -305,7 +376,7 @@ If a candidate needs external data, its **free, official source is named and ver
 | **2 CPU / 3.9 GB, no GPU** | cannot retrain the CNN ensemble behind `0.1563` or the reference U-Net | A GPU notebook (Colab/Kaggle/cloud) writing predictions to a GitHub release; CI has 4 vCPU/16 GB but no GPU |
 | **Hidden labels and scorer unavailable** | every holdout is a proxy that recovers *known* faults ([Flag F17](docs/audit.html#F17)) | Use live A/B scores to calibrate; never tune to hidden pixels |
 | **H22 fractal fit on `labels.tif` (RESOLVED)** | `evidence/clustering_fit.json` is now **computed directly from `GEMS_DATA_DIR/labels.tif`** (`n=3,199` connected fault traces, `D_correlation=1.624`, Bour & Davy `D_predicted=1.489`, `D_consistent=True`, `nearest_larger_median_m=1,630.9 m`, `status="COMPUTED_FROM_REAL_DATA"`) after vectorizing `_trace_centroids_and_lengths` with `np.bincount` (`1.74 s`). | Completed in `src/gems/clustering.py` and `scripts/generate_h22_submissions.py`. |
-| **4-quadrant OOF baseline cache (RESOLVED) & H22 resort** | `data/cache/oof_probs_h16_1.npz` (`0.21272` Dense / `0.08541` Sparse) is now computed from the real 19-band + external + 10m DEM stack (`tests/test_holdout.py` passes 4/4); `H22-1`/`H22-2` apply the fractal-clustering resort on top of the live-scored `H19-4` (`0.1894`) / `H19-5` (`0.1922`) rasters. | Upload `H22-1` (`7fd2f28b`) and `gems22` `h22-value-emit` (`74cb4afe`) to measure live transfer against `H19-5` (`0.1922`). |
+| **4-quadrant OOF baseline cache (RESOLVED) & H22 resort** | `data/cache/oof_probs_h16_1.npz` (`0.21272` Dense / `0.08541` Sparse) is now computed from the real 19-band + external + 10m DEM stack (`tests/test_holdout.py` passes 4/4); `H22-1`/`H22-2` apply the fractal-clustering resort on top of the live-scored `H19-4` (`0.1894`) / `H19-5` (`0.1922`) rasters. | Upload `H22-1` (`7fd2f28b`) and `gems22` `h22-value-emit` (`f6777492`) to measure live transfer against `H19-5` (`0.1922`). |
 
 **Draft permission request** (send from the team's DrivenData-registered address): *"We maintain a public research repository for GEMS Prize #306. May we retrieve the public leaderboard page once per day by script to update a team dashboard, at no more than one request per day with an identifying User-Agent? If not, we will continue to update it manually."* → `info@drivendata.org`; rules questions → `gemsprize@nlr.gov`.
 
@@ -340,15 +411,309 @@ If a candidate needs external data, its **free, official source is named and ver
 
 ---
 
-## Original request (verbatim, includes fractal-clustering paragraph)
+## Original request (verbatim) — the standing brief, read at the start of every session
 
-<details><summary>Verbatim project specification &amp; standing verification rules</summary>
+<details><summary><strong>Full project specification and standing verification rules (verbatim, unedited)</strong></summary>
 
 ```text
 Treat the fault population as a spatial statistic, not a pile of independent pixels. Real fault networks show documented fractal clustering: Bour and Davy (Geophysical Research Letters, 1999) establish a direct mathematical link between a fault network's clustering dimension and the exponent of its length-frequency distribution, measured through the distance from each fault to its nearest larger neighbor, and later structural-geology studies apply a normalized correlation count to test, at a given length scale, whether faults in a population are clustered, randomly spaced, or regularly spaced. Fit this clustering statistic to the known INGENIOUS/USGS traces inside the GeoDAWN footprint before touching the model, and use it two ways: as a geometric prior that favors a candidate pixel lying along the extrapolated clustering pattern of a known larger fault over an equally-scored but spatially isolated one, and as a post-hoc audit — compute the same statistic on your own predicted raster, and flag any submission whose predicted spatial arrangement diverges sharply from the population statistics actually measured in this region as a likely detection artifact (survey-line aliasing, acquisition-block edges) rather than genuine geology. Nothing in a per-pixel loss function checks whether the output looks like a real fault population; this does.
 
-Review the repo. There should be an easy to download submission tif file as described by the prompt. Read the entire prompt. [...] (full prompt as supplied in the issue) [...]
-Work line by line verify everything no hallucinations.
+Review the repo.
+
+There should be an easy to download submission tif file as described by the prompt. Read the entire prompt.
+
+Here are the results from submissions into the competition, separated by ....:
+https://buffedlizard55-lab.github.io/GEMSDOE/docs/index.html
+gems-submission-20260925T001403Z-7f00890a: 0.1563
+....
+https://buffedlizard55-lab.github.io/6GEMSDOE/
+gems6_hgb88-topk03_33cec71ff0: 0.0286
+....
+https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html
+pindrop-v4-nodes-20260925T152420Z-f347b70daa: 0.1193
+pindrop-v4-discovery-20260925T152423Z-37f9d5b855: 0.0830
+pindrop-v4-ridge-20260925T152422Z-4e03fc9705: 0.1152
+....
+https://buffedlizard55-lab.github.io/GEMSDOE2/docs/index.html
+gemsdoe2-dual-family-union-20260925T160406Z-f68e590f: 0.1560
+....
+https://buffedlizard55-lab.github.io/GEMSDOE4/
+gems-submission-20260926T163915Z-237f0063: 0.0343
+....
+https://buffedlizard55-lab.github.io/5GEMSDOE/docs/index.html
+gems-submission-20260926T175114Z-7f00890a: 0.1563
+....
+https://buffedlizard55-lab.github.io/7GEMSDOE/
+lidarscarp-ridge-top2pct-36c3a3f341c8: 0.1461
+....
+https://buffedlizard55-lab.github.io/8GEMSDOE/
+Hedge-v2_submission: 0.1563
+....
+https://buffedlizard55-lab.github.io/GEMSDOE9/docs/index.html
+2314b599: 0.0107
+....
+https://buffedlizard55-lab.github.io/11GEMSDOE/docs/index.html
+gems-structural-area06-v1: 0.0202
+....
+https://buffedlizard55-lab.github.io/12GEMSDOE/docs/index.html
+r7-nms3-dem10-scarp_0c9199f14e62:0.1294
+r7-nms3-dem10-scarp_0c9199f14e62_allfinite:0.1294
+....
+https://buffedlizard55-lab.github.io/15GEMSDOE/docs/index.html
+gems-tso1-20260929T005627Z-conj_alteration_mag: 0.0782
+....
+https://buffedlizard55-lab.github.io/14GEMSDOE/docs/index.html
+GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f: 0.0020
+....
+https://buffedlizard55-lab.github.io/17GEMSDOE/
+17GEMSDOE_F-ensemble-2pct_20260930T050626Z:0.0187
+....
+https://buffedlizard55-lab.github.io/18GEMSDOE/
+H19-C_20260930T212401Z_c11e495e: 0.0297
+....
+https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html
+h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan: 0.1894
+h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan: 0.1922
+....
+https://buffedlizard55-lab.github.io/GEMSDOE10/
+h16-continuation-20260927T065521077735Z-3431b83c7c: 0.0461
+h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686: 0.0921
+H25-ctx-ridge-20260927T232947704150Z-6452ae1d00: 0.1280
+h28-dotted-ridge-20260928T020256236880Z-6452ae1d00: 0.1839
+....
+https://buffedlizard55-lab.github.io/13GEMSDOE/
+20261001_r13-lattice-s5_v2_nan-outside:0.0904
+....
+https://buffedlizard55-lab.github.io/16GEMSDOE/docs/index.html
+h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan: 0.1855
+h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan: 0.0976
+h18-4-usgs-geologic-map-faults-gap-20260930-aef8f42c-nan:
+....
+https://buffedlizard55-lab.github.io/20GEMSDOE/docs/index.html
+h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan:
+h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan:
+....
+https://buffedlizard55-lab.github.io/GEMSDOE21/
+h19-4-reference-20260930-691e4dfa: 0.1894
+....
+22GEMSDOE SCORE:
+....
+23GEMSDOE SCORE:
+....
+24GEMSDOE SCORE:
+....
+25GEMSDOE SCORE:
+....
+26GEMSDOE SCORE:
+....
+27GEMSDOE SCORE:
+....
+
+WE NEED TO STUDY, ANALYZE, AND UNDERSTAND THE HIGHEST SCORE FROM THE GEMDOE SITE WHERE THE SUBMISSION TIF IS DOWNLOADED FROM WHICH IS THE FOLLOWING:
+https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html
+h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan: 0.1894
+h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan: 0.1922
+
+Why and how did this get the highest score and are we able to generate a submission that scores higher than 0.1894?
+Answer the question using Phd level experience, knowledge, and judgement.
+
+The following is the leaderboard for the competition:
+https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+
+We need to quickly look at the results and results from the GEMSDOE websites above.
+
+Before implementing, generate 3–5 candidate geological hypotheses we haven't tried yet, each naming: the specific layer(s) involved, the physical signature being targeted (e.g., an edge-detection or curvature transform), why it should catch a fault missing from the USGS/INGENIOUS catalogue rather than one already in it, and how it differs from anything already implemented in this repo. Rank them by expected DTI improvement and implementation cost. Validate the top candidate on our spatially-blocked holdout set before touching a weekly submission slot — do not spend a submission slot on an idea that hasn't beaten the current holdout best. If a candidate can't be validated without new external data, name the specific free, official source needed and check it's obtainable before proposing the idea as viable.
+Work line by line verifying from official verified trusted sources, provide links for manual review. There should be no manual input, work on your own to complete tasks. Flag any irregularities for review. No hallucinations.
+Verify no hallucinations.
+
+The goal of this project is to get a full list that follow our requirements. No hallucinations. Verify line by line.
+
+We have a good understanding of how our hypothesis, methodology, calculations, analysis are done so we should be able to figure out a way to score higher on the leaderboard using previous results and scoring that we have across the sites listed above. We need to come up with distinct and unique strategies to score higher in this competition leaderboard. We need to start doing heavy and deep research into the part of the project that matters the most, which is the scientific discovery of geothermal vents. We should store all of our information and knowledge that we can gather from official verified sources. This will serve as a starting point for other projects as well. We need to think outside the box but still be grounded in proper scientific research, we are ultimately aiming for a top prize that many others are competing for. So it's important to be contrarian but be smart about it. We need to find sources of data that others are over looking or areas of the project when it comes to geothermal vents. We need to do deep research and critical thinking and come up with new hypothesis to test.
+
+The following sites should serve as a starting point for understanding how to generate TIF submissions. These websites are researched, and tested and have generated TIF submissions. But we need to generate high scoring submissions.
+
+https://buffedlizard55-lab.github.io/GEMSDOE/docs/index.html
+gems-submission-20260925T001403Z-7f00890a: 0.1563
+https://buffedlizard55-lab.github.io/6GEMSDOE/
+gems6_hgb88-topk03_33cec71ff0: 0.0286
+https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html
+pindrop-v4-nodes-20260925T152420Z-f347b70daa: 0.1193
+pindrop-v4-discovery-20260925T152423Z-37f9d5b855: 0.0830
+pindrop-v4-ridge-20260925T152422Z-4e03fc9705: 0.1152
+https://buffedlizard55-lab.github.io/GEMSDOE2/docs/index.html
+gemsdoe2-dual-family-union-20260925T160406Z-f68e590f: 0.1560
+https://buffedlizard55-lab.github.io/GEMSDOE4/
+gems-submission-20260926T163915Z-237f0063: 0.0343
+https://buffedlizard55-lab.github.io/5GEMSDOE/docs/index.html
+gems-submission-20260926T175114Z-7f00890a: 0.1563
+https://buffedlizard55-lab.github.io/7GEMSDOE/
+lidarscarp-ridge-top2pct-36c3a3f341c8: 0.1461
+https://buffedlizard55-lab.github.io/8GEMSDOE/
+Hedge-v2_submission: 0.1563
+https://buffedlizard55-lab.github.io/GEMSDOE9/docs/index.html
+2314b599: 0.0107
+https://buffedlizard55-lab.github.io/11GEMSDOE/docs/index.html
+gems-structural-area06-v1: 0.0202
+https://buffedlizard55-lab.github.io/12GEMSDOE/docs/index.html
+r7-nms3-dem10-scarp_0c9199f14e62:0.1294
+r7-nms3-dem10-scarp_0c9199f14e62_allfinite:0.1294
+https://buffedlizard55-lab.github.io/15GEMSDOE/docs/index.html
+gems-tso1-20260929T005627Z-conj_alteration_mag: 0.0782
+https://buffedlizard55-lab.github.io/14GEMSDOE/docs/index.html
+GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f: 0.0020
+https://buffedlizard55-lab.github.io/17GEMSDOE/
+17GEMSDOE_F-ensemble-2pct_20260930T050626Z:0.0187
+https://buffedlizard55-lab.github.io/18GEMSDOE/
+H19-C_20260930T212401Z_c11e495e: 0.0297
+https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html
+h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan: 0.1894
+h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan: 0.1922
+https://buffedlizard55-lab.github.io/GEMSDOE10/
+h16-continuation-20260927T065521077735Z-3431b83c7c: 0.0461
+h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686: 0.0921
+H25-ctx-ridge-20260927T232947704150Z-6452ae1d00: 0.1280
+h28-dotted-ridge-20260928T020256236880Z-6452ae1d00: 0.1839
+https://buffedlizard55-lab.github.io/13GEMSDOE/
+20261001_r13-lattice-s5_v2_nan-outside:0.0904
+https://buffedlizard55-lab.github.io/16GEMSDOE/docs/index.html
+h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan: 0.1855
+h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan: 0.0976
+h18-4-usgs-geologic-map-faults-gap-20260930-aef8f42c-nan:
+https://buffedlizard55-lab.github.io/20GEMSDOE/docs/index.html
+h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan:
+h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan:
+https://buffedlizard55-lab.github.io/GEMSDOE21/
+h19-4-reference-20260930-691e4dfa: 0.1894
+22GEMSDOE SCORE:
+23GEMSDOE SCORE:
+24GEMSDOE SCORE:
+25GEMSDOE SCORE:
+26GEMSDOE SCORE:
+27GEMSDOE SCORE:
+
+WE NEED TO STUDY, ANALYZE, AND UNDERSTAND THE HIGHEST SCORE FROM THE GEMDOE SITE WHERE THE SUBMISSION TIF IS DOWNLOADED FROM WHICH IS THE FOLLOWING:
+https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html
+h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan: 0.1894
+h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan: 0.1922
+
+Why and how did this get the highest score and are we able to generate a submission that scores higher than 0.1894?
+Answer the question using Phd level experience, knowledge, and judgement.
+
+The following is the leaderboard for the competition:
+https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+
+0.3049 is the highest score right now so we need to design a new strategy, research, testing, analyzing, and generating submission system than the current website. It should be unique, take unique approaches to generating a submission that can score higher than .3049.
+
+Put this prompt into the repo readme and read it everytime we work on the project as a starting point to make sure we are building what we are aiming for and have a strong base to continue building and improving on making something useful for everyday use. It should solve the problem of having to manually check everything ourselves and have an up to date current feed.
+
+Review the repo.
+
+The following is taken from the Arena AI team and I think it makes a good point on building a successful project, so let's keep the Core Values and Own the Outcome as a focal point when building, developing, researching, suggesting upgrades, and implementing the work.
+
+Our Core Values
+Maximize P(Win)
+"Maximize the Probability of Winning": our decision making framework. In every decision, we weigh tradeoffs, assess risk, and choose the path that maximizes the probability that Arena succeeds. We set aside our emotions and make tough decisions in order to maximize P(Win). "Maximize P(Win)" frees us from constraints and clarifies that we must put Arena first.
+
+Own the Outcome
+We own results end to end — not just our individual slice of the work. When problems arise and we have the means to act, we do so without waiting for permission or assignment. We treat failure and success as signals and use them to improve. At Arena, we stay accountable to the final outcome.
+
+Work line by line verifying from official verified trusted sources, provide links for manual review. There should be no manual input, work on your own to complete tasks. Flag any irregularities for review. No hallucinations.
+Verify no hallucinations.
+The goal of this project is to get a full list that follow our requirements. No hallucinations. Verify line by line.
+
+We need to focus on being able to generate a submission into the competition.
+
+The site should be able to generate a TIF file that is required for submission. It should be as easy as download to click a File to submit into the competition. This needs to be in the executive summary or the very beginning of the site. it should be obvious when you visit the site.
+
+I tried to submit the document that i downloaded from the site but it returned this error on the submission form:
+"Predicted values must be in range [0, 1]"
+
+Also we need to give it a unique name and A short comment to help you or your team tell submissions apart later e.g. clustering with k=25
+
+Here is the submission page when i click submit file
+New submission
+
+File to submitNo file chosen
+You can submit a single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF, with your predictions. It must match the submission format's CRS, shape, and geotransform. You may wish to review the competition rules first.
+Note (optional)
+A short comment to help you or your team tell submissions apart later e.g. clustering with k=25
+
+Create a executive summary subpage that explains exactly how to make a submission into the contest.
+
+Work on the next steps from the previous sessions first.
+
+The goal of this project is to place top of the leaderboard in this competition. The following is the competition:
+https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+
+We need to create a project that can compete and place top of the leaderboard. We need to understand the problem, collect all the data and organize it into a clean easily auditable table with official verified links for manual verification.
+
+This is the guidelines we need to follow.https://www.drivendata.org/competitions/306/competition-doe-gems/
+Get familiar with the problem through the overview and problem description,https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/. You might also want to reference additional resources available on the about page,https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/.
+Download the data from the data,https://www.drivendata.org/competitions/306/competition-doe-gems/data/, tab.
+Create and train your own model. This reference solution,https://github.com/drivendataorg/gems-prize-reference-solution implements a simple approach.
+Use your model to generate predictions that match the submission format.
+Tell me what are you limitations and what you need access to during this project. We will need to find free publicly available sources and data from official and verified sources if we are to use 3rd party or external data.
+
+this pdf outlines how submissions must be entered into the competition.
+https://docs.nlr.gov/docs/fy26osti/96647.pdf
+
+You must be able to do your own research, deep research, scientific literature research and organize the knowledge so that we can critically think through the problem and generate a solution through scientific and free publicly available information. this must be done autonomously and must be constantly reviewed and improved upon. Provide suggestions and improvements and implement them.
+
+No DrivenData auth -> cannot auto-download training_features.tif, labels.tif, sample_submission.tif, 1m_DEM_links.csv from https://www.drivendata.org/competitions/306/competition-doe-gems/data/ (verified redirect to login)
+See below for links from the above site. See attached files for links from the above site.
+https://gdr.openei.org/submissions/1391
+
+Download competition data from https://www.drivendata.org/competitions/306/competition-doe-gems/data/ (requires login) to data/
+See links below for competition data:
+https://www.dropbox.com/scl/fi/aemhtutjgcp6tr3tint94/GEMS_96647.pdf?rlkey=rek210cj2smnmzb8n0sla1vmd&st=wz4kofki&dl=0
+https://www.dropbox.com/scl/fi/6rgvnuady818ol8yqgis4/example_submission.tif?rlkey=kbykilvau066xuogoosbf4cq8&st=8junzdyw&dl=0
+https://www.dropbox.com/scl/fi/t7fyt03qdh9egyme0itwo/existing_faults.tif?rlkey=yiao96uluqdkipf0h5vju71jf&st=rnino7ya&dl=0
+https://www.dropbox.com/scl/fi/3vz9o0wwavi26xaeoxlwr/gems-geodawn-numerical-features.tif?rlkey=je8d8fepqfbst9lnwsq9rkplu&st=zj1lag1r&dl=0
+https://www.dropbox.com/scl/fi/ig0mban712ns1atphgphe/Digital-elevation-model-links-JSON.pdf?rlkey=zm77f1vbtt2if8hlruymptnu3&st=srhhir10&dl=0
+
+Work line by line verifying from official verified trusted sources, provide links for manual review. There should be no manual input, work on your own to complete tasks. Flag any irregularities for review. No hallucinations.
+Verify no hallucinations.
+The goal of this project is to get a full list that follow our requirements. No hallucinations. Verify line by line.
+
+Site creation
+Create a github page for this repo that has clean ui, user friendly, simple and easy to use. It should be organized and clean.
+
+It should include all relevant information in an easy to read format with official verified links as sources for review. Work line by line verify everything no hallucinations.
+
+The single remaining blocker to training is data placement: run bash scripts/download_competition_data.sh on any unrestricted machine into data/, then python scripts/prepare_data.py — after that the full train->inference->validate pipeline is ready to run (GPU needed for training; metric/losses/validation all verified working here on CPU).
+
+you need to complete the above task by yourself. Work line by line verifying from official verified trusted sources, provide links for manual review. There should be no manual input, work on your own to complete tasks. Flag any irregularities for review. No hallucinations.
+
+Verify no hallucinations.
+
+The goal of this project is to get a full list that follow our requirements. No hallucinations. Verify line by line.
+
+Run this task through multiple passes.
+Pass 1: Implement the task completely and verify the result.
+Pass 2: Review your work for bugs, missing requirements, incorrect assumptions, and edge cases. Fix everything you find.
+Pass 3: Re-check the entire implementation against the original request. Improve accuracy, reliability, completeness, and code quality. Fix any remaining issues.
+Do not stop after the first pass. Each pass must build on the previous one. Before finishing, verify that the final result fully satisfies the original request. Work line by line verify everything no hallucinations.
+
+Go ahead and create a pull request and then merge the pull request onto the main. Make suggestions for what work still needs to be done and any limitations that is in the way of a successful project. It should be worked on in this next session or the next session. Work line by line verify everything no hallucinations.
 ```
 
 </details>
+
+### Standing rules extracted from the brief (each one is a checkable requirement)
+
+| # | Requirement (from the brief) | Where it is satisfied | Status |
+| :--- | :--- | :--- | :--- |
+| R1 | Download a submission `.tif` easily, obvious at the very beginning of the site | [`docs/index.html`](docs/index.html) top table + [`docs/executive_summary.html`](docs/executive_summary.html) | see §8 |
+| R2 | Fix `"Predicted values must be in range [0, 1]"` | `src/gems/submission.py::sanitise` + root-cause table F05 | fixed, re-verified |
+| R3 | Unique name + short copyable comment for the DrivenData form | `registry/submissions.json` → `note` per candidate | present |
+| R4 | Fit the fractal clustering statistic to the real traces before touching the model | `src/gems/clustering.py`, `evidence/h26_clustering_audit.json` | COMPUTED |
+| R5 | Use it as a geometric prior (clustering pattern of a larger fault beats an isolated candidate) | `src/gems/geometry_prior.py`, measured in `evidence/h26_geometry_holdout.json` | measured |
+| R6 | Use it as a post-hoc audit and flag divergent predictions as likely artifacts | `evidence/h26_clustering_audit.json` | measured |
+| R7 | 3–5 candidate hypotheses with layers / signature / why-unmapped / how-different, ranked by gain × cost | [`docs/research.html`](docs/research.html) + `docs/H26_HYPOTHESES.md` | this session |
+| R8 | Validate the top candidate on the spatially-blocked holdout before spending a slot | `scripts/h26_geometry_holdout.py` | measured |
+| R9 | Name the free official source for any hypothesis needing new external data, and check obtainability | §7 of this README | done |
+| R10 | Verify line by line from official sources, links for manual review, flag irregularities | [`docs/audit.html`](docs/audit.html), `registry/irregularities.json` | updated |
+| R11 | No manual input; autonomous | `scripts/run_all.sh`, CI | done |
+| R12 | Site: clean, easy, official links, download-first, executive summary subpage | [`docs/`](docs/) | rebuilt |
+| R13 | Multiple passes (implement → review → re-check) | §9 Verification log | done |
+| R14 | Open a pull request and merge it to `main` | `arena/01a0fbf2-gemsdoe22` → `main` | done |

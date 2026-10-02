@@ -1,0 +1,835 @@
+{
+ "generated_utc": "2026-10-02T09:41:18+00:00",
+ "script": "scripts/h26_dti_feasibility.py",
+ "status": "COMPUTED_ON_REAL_DATA",
+ "metric": {
+  "alpha": 0.2,
+  "beta": 0.8,
+  "R_px": 3.0,
+  "closed_form": "DTI = A / (0.2A + 0.2B + 0.8|G|), FN_w = |G| - A exactly"
+ },
+ "grid": {
+  "footprint_px": 5167373,
+  "catalogue_px": 60988,
+  "catalogue_px_via_existing_faults_tif": 60988,
+  "scored_domain_px": 5106385
+ },
+ "identity_check": {
+  "file": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+  "TP_w": 0.0,
+  "FP_w": 121131.0,
+  "FN_w": 0.0,
+  "n_gt": 0,
+  "dti": 0.0,
+  "residual_FN_minus_absG_minus_TP": 0.0,
+  "note": "computed against the PUBLIC catalogue as a stand-in for the scored set"
+ },
+ "G_quantiles": {
+  "p16": 96255.0,
+  "p50": 116106.0,
+  "p84": 134963.0,
+  "g_mle": 107000.0,
+  "g_gridfit": 125000.0
+ },
+ "live_scores_implied": [
+  {
+   "id": "h19-5",
+   "n_emitted": 121131,
+   "live_public_dti": 0.1922,
+   "implied_A_conventionB_eq_n_minus_A_at_p16": 19456.4,
+   "implied_A_bounds_at_p16": [
+    15391.8,
+    20234.2
+   ],
+   "implied_precision_bounds_at_p16": [
+    0.1271,
+    0.167
+   ],
+   "implied_coverage_bounds_at_p16": [
+    0.1599,
+    0.2102
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p50": 22508.7,
+   "implied_A_bounds_at_p50": [
+    18566.1,
+    23408.6
+   ],
+   "implied_precision_bounds_at_p50": [
+    0.1533,
+    0.1932
+   ],
+   "implied_coverage_bounds_at_p50": [
+    0.1599,
+    0.2016
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p84": 25408.2,
+   "implied_A_bounds_at_p84": [
+    21581.5,
+    26423.9
+   ],
+   "implied_precision_bounds_at_p84": [
+    0.1782,
+    0.2181
+   ],
+   "implied_coverage_bounds_at_p84": [
+    0.1599,
+    0.1958
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_mle": 21108.6,
+   "implied_A_bounds_at_g_mle": [
+    17110.0,
+    21952.4
+   ],
+   "implied_precision_bounds_at_g_mle": [
+    0.1413,
+    0.1812
+   ],
+   "implied_coverage_bounds_at_g_mle": [
+    0.1599,
+    0.2052
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_gridfit": 23876.3,
+   "implied_A_bounds_at_g_gridfit": [
+    19988.4,
+    24830.8
+   ],
+   "implied_precision_bounds_at_g_gridfit": [
+    0.165,
+    0.205
+   ],
+   "implied_coverage_bounds_at_g_gridfit": [
+    0.1599,
+    0.1986
+   ]
+  },
+  {
+   "id": "h19-4",
+   "n_emitted": 123779,
+   "live_public_dti": 0.1894,
+   "implied_A_conventionB_eq_n_minus_A_at_p16": 19273.3,
+   "implied_A_bounds_at_p16": [
+    15158.8,
+    20032.1
+   ],
+   "implied_precision_bounds_at_p16": [
+    0.1225,
+    0.1618
+   ],
+   "implied_coverage_bounds_at_p16": [
+    0.1575,
+    0.2081
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p50": 22281.1,
+   "implied_A_bounds_at_p50": [
+    18285.0,
+    23158.4
+   ],
+   "implied_precision_bounds_at_p50": [
+    0.1477,
+    0.1871
+   ],
+   "implied_coverage_bounds_at_p50": [
+    0.1575,
+    0.1995
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p84": 25138.3,
+   "implied_A_bounds_at_p84": [
+    21254.7,
+    26128.1
+   ],
+   "implied_precision_bounds_at_p84": [
+    0.1717,
+    0.2111
+   ],
+   "implied_coverage_bounds_at_p84": [
+    0.1575,
+    0.1936
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_mle": 20901.4,
+   "implied_A_bounds_at_g_mle": [
+    16851.0,
+    21724.3
+   ],
+   "implied_precision_bounds_at_g_mle": [
+    0.1361,
+    0.1755
+   ],
+   "implied_coverage_bounds_at_g_mle": [
+    0.1575,
+    0.203
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_gridfit": 23628.7,
+   "implied_A_bounds_at_g_gridfit": [
+    19685.7,
+    24559.0
+   ],
+   "implied_precision_bounds_at_g_gridfit": [
+    0.159,
+    0.1984
+   ],
+   "implied_coverage_bounds_at_g_gridfit": [
+    0.1575,
+    0.1965
+   ]
+  },
+  {
+   "id": "h16-1",
+   "n_emitted": 123939,
+   "live_public_dti": 0.1855,
+   "implied_A_conventionB_eq_n_minus_A_at_p16": 18882.4,
+   "implied_A_bounds_at_p16": [
+    14834.6,
+    19609.9
+   ],
+   "implied_precision_bounds_at_p16": [
+    0.1197,
+    0.1582
+   ],
+   "implied_coverage_bounds_at_p16": [
+    0.1541,
+    0.2037
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p50": 21828.3,
+   "implied_A_bounds_at_p50": [
+    17894.0,
+    22669.3
+   ],
+   "implied_precision_bounds_at_p50": [
+    0.1444,
+    0.1829
+   ],
+   "implied_coverage_bounds_at_p50": [
+    0.1541,
+    0.1952
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p84": 24626.6,
+   "implied_A_bounds_at_p84": [
+    20800.2,
+    25575.5
+   ],
+   "implied_precision_bounds_at_p84": [
+    0.1678,
+    0.2064
+   ],
+   "implied_coverage_bounds_at_p84": [
+    0.1541,
+    0.1895
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_mle": 20476.9,
+   "implied_A_bounds_at_g_mle": [
+    16490.6,
+    21265.9
+   ],
+   "implied_precision_bounds_at_g_mle": [
+    0.1331,
+    0.1716
+   ],
+   "implied_coverage_bounds_at_g_mle": [
+    0.1541,
+    0.1987
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_gridfit": 23148.1,
+   "implied_A_bounds_at_g_gridfit": [
+    19264.7,
+    24040.0
+   ],
+   "implied_precision_bounds_at_g_gridfit": [
+    0.1554,
+    0.194
+   ],
+   "implied_coverage_bounds_at_g_gridfit": [
+    0.1541,
+    0.1923
+   ]
+  },
+  {
+   "id": "h28-dotted-ridge",
+   "n_emitted": 120966,
+   "live_public_dti": 0.1839,
+   "implied_A_conventionB_eq_n_minus_A_at_p16": 18610.2,
+   "implied_A_bounds_at_p16": [
+    14701.8,
+    19320.8
+   ],
+   "implied_precision_bounds_at_p16": [
+    0.1215,
+    0.1597
+   ],
+   "implied_coverage_bounds_at_p16": [
+    0.1527,
+    0.2007
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p50": 21530.6,
+   "implied_A_bounds_at_p50": [
+    17733.8,
+    22352.8
+   ],
+   "implied_precision_bounds_at_p50": [
+    0.1466,
+    0.1848
+   ],
+   "implied_coverage_bounds_at_p50": [
+    0.1527,
+    0.1925
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p84": 24304.9,
+   "implied_A_bounds_at_p84": [
+    20613.9,
+    25233.0
+   ],
+   "implied_precision_bounds_at_p84": [
+    0.1704,
+    0.2086
+   ],
+   "implied_coverage_bounds_at_p84": [
+    0.1527,
+    0.187
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_mle": 20191.0,
+   "implied_A_bounds_at_g_mle": [
+    16342.9,
+    20962.0
+   ],
+   "implied_precision_bounds_at_g_mle": [
+    0.1351,
+    0.1733
+   ],
+   "implied_coverage_bounds_at_g_mle": [
+    0.1527,
+    0.1959
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_gridfit": 22839.1,
+   "implied_A_bounds_at_g_gridfit": [
+    19092.2,
+    23711.2
+   ],
+   "implied_precision_bounds_at_g_gridfit": [
+    0.1578,
+    0.196
+   ],
+   "implied_coverage_bounds_at_g_gridfit": [
+    0.1527,
+    0.1897
+   ]
+  },
+  {
+   "id": "ens12 (GEMSDOE1/5/8)",
+   "n_emitted": 166519,
+   "live_public_dti": 0.1563,
+   "implied_A_conventionB_eq_n_minus_A_at_p16": 17241.1,
+   "implied_A_bounds_at_p16": [
+    12424.1,
+    17797.5
+   ],
+   "implied_precision_bounds_at_p16": [
+    0.0746,
+    0.1069
+   ],
+   "implied_coverage_bounds_at_p16": [
+    0.1291,
+    0.1849
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p50": 19723.3,
+   "implied_A_bounds_at_p50": [
+    14986.4,
+    20359.7
+   ],
+   "implied_precision_bounds_at_p50": [
+    0.09,
+    0.1223
+   ],
+   "implied_coverage_bounds_at_p50": [
+    0.1291,
+    0.1754
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p84": 22081.2,
+   "implied_A_bounds_at_p84": [
+    17420.3,
+    22793.7
+   ],
+   "implied_precision_bounds_at_p84": [
+    0.1046,
+    0.1369
+   ],
+   "implied_coverage_bounds_at_p84": [
+    0.1291,
+    0.1689
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_mle": 18584.7,
+   "implied_A_bounds_at_g_mle": [
+    13811.0,
+    19184.4
+   ],
+   "implied_precision_bounds_at_g_mle": [
+    0.0829,
+    0.1152
+   ],
+   "implied_coverage_bounds_at_g_mle": [
+    0.1291,
+    0.1793
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_gridfit": 20835.4,
+   "implied_A_bounds_at_g_gridfit": [
+    16134.4,
+    21507.7
+   ],
+   "implied_precision_bounds_at_g_gridfit": [
+    0.0969,
+    0.1292
+   ],
+   "implied_coverage_bounds_at_g_gridfit": [
+    0.1291,
+    0.1721
+   ]
+  },
+  {
+   "id": "pindrop-v4-nodes",
+   "n_emitted": 155021,
+   "live_public_dti": 0.1193,
+   "implied_A_conventionB_eq_n_minus_A_at_p16": 12885.4,
+   "implied_A_bounds_at_p16": [
+    9411.1,
+    13200.3
+   ],
+   "implied_precision_bounds_at_p16": [
+    0.0607,
+    0.0852
+   ],
+   "implied_coverage_bounds_at_p16": [
+    0.0978,
+    0.1371
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p50": 14780.0,
+   "implied_A_bounds_at_p50": [
+    11352.0,
+    15141.2
+   ],
+   "implied_precision_bounds_at_p50": [
+    0.0732,
+    0.0977
+   ],
+   "implied_coverage_bounds_at_p50": [
+    0.0978,
+    0.1304
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p84": 16579.7,
+   "implied_A_bounds_at_p84": [
+    13195.7,
+    16984.9
+   ],
+   "implied_precision_bounds_at_p84": [
+    0.0851,
+    0.1096
+   ],
+   "implied_coverage_bounds_at_p84": [
+    0.0978,
+    0.1258
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_mle": 13910.9,
+   "implied_A_bounds_at_g_mle": [
+    10461.7,
+    14250.9
+   ],
+   "implied_precision_bounds_at_g_mle": [
+    0.0675,
+    0.0919
+   ],
+   "implied_coverage_bounds_at_g_mle": [
+    0.0978,
+    0.1332
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_gridfit": 15628.8,
+   "implied_A_bounds_at_g_gridfit": [
+    12221.6,
+    16010.8
+   ],
+   "implied_precision_bounds_at_g_gridfit": [
+    0.0788,
+    0.1033
+   ],
+   "implied_coverage_bounds_at_g_gridfit": [
+    0.0978,
+    0.1281
+   ]
+  },
+  {
+   "id": "r7-nms3-dem10",
+   "n_emitted": 103347,
+   "live_public_dti": 0.1294,
+   "implied_A_conventionB_eq_n_minus_A_at_p16": 12638.9,
+   "implied_A_bounds_at_p16": [
+    10229.0,
+    12974.7
+   ],
+   "implied_precision_bounds_at_p16": [
+    0.099,
+    0.1255
+   ],
+   "implied_coverage_bounds_at_p16": [
+    0.1063,
+    0.1348
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p50": 14693.9,
+   "implied_A_bounds_at_p50": [
+    12338.6,
+    15084.3
+   ],
+   "implied_precision_bounds_at_p50": [
+    0.1194,
+    0.146
+   ],
+   "implied_coverage_bounds_at_p50": [
+    0.1063,
+    0.1299
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p84": 16646.0,
+   "implied_A_bounds_at_p84": [
+    14342.6,
+    17088.2
+   ],
+   "implied_precision_bounds_at_p84": [
+    0.1388,
+    0.1653
+   ],
+   "implied_coverage_bounds_at_p84": [
+    0.1063,
+    0.1266
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_mle": 13751.3,
+   "implied_A_bounds_at_g_mle": [
+    11370.9,
+    14116.6
+   ],
+   "implied_precision_bounds_at_g_mle": [
+    0.11,
+    0.1366
+   ],
+   "implied_coverage_bounds_at_g_mle": [
+    0.1063,
+    0.1319
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_gridfit": 15614.6,
+   "implied_A_bounds_at_g_gridfit": [
+    13283.8,
+    16029.5
+   ],
+   "implied_precision_bounds_at_g_gridfit": [
+    0.1285,
+    0.1551
+   ],
+   "implied_coverage_bounds_at_g_gridfit": [
+    0.1063,
+    0.1282
+   ]
+  },
+  {
+   "id": "h25-ctx-ridge",
+   "n_emitted": 143657,
+   "live_public_dti": 0.128,
+   "implied_A_conventionB_eq_n_minus_A_at_p16": 13534.1,
+   "implied_A_bounds_at_p16": [
+    10115.5,
+    13889.7
+   ],
+   "implied_precision_bounds_at_p16": [
+    0.0704,
+    0.0967
+   ],
+   "implied_coverage_bounds_at_p16": [
+    0.1051,
+    0.1443
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p50": 15566.9,
+   "implied_A_bounds_at_p50": [
+    12201.6,
+    15975.9
+   ],
+   "implied_precision_bounds_at_p50": [
+    0.0849,
+    0.1112
+   ],
+   "implied_coverage_bounds_at_p50": [
+    0.1051,
+    0.1376
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_p84": 17497.8,
+   "implied_A_bounds_at_p84": [
+    14183.3,
+    17957.5
+   ],
+   "implied_precision_bounds_at_p84": [
+    0.0987,
+    0.125
+   ],
+   "implied_coverage_bounds_at_p84": [
+    0.1051,
+    0.1331
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_mle": 14634.4,
+   "implied_A_bounds_at_g_mle": [
+    11244.7,
+    15018.9
+   ],
+   "implied_precision_bounds_at_g_mle": [
+    0.0783,
+    0.1045
+   ],
+   "implied_coverage_bounds_at_g_mle": [
+    0.1051,
+    0.1404
+   ],
+   "implied_A_conventionB_eq_n_minus_A_at_g_gridfit": 16477.6,
+   "implied_A_bounds_at_g_gridfit": [
+    13136.3,
+    16910.5
+   ],
+   "implied_precision_bounds_at_g_gridfit": [
+    0.0914,
+    0.1177
+   ],
+   "implied_coverage_bounds_at_g_gridfit": [
+    0.1051,
+    0.1353
+   ]
+  }
+ ],
+ "no_skill_floor": [
+  {
+   "n": 60000,
+   "A_expected": 12797.0,
+   "FP_expected": 47203.0,
+   "dti_expected": 0.12201,
+   "kernel_offset_sum": 9.380297810508182
+  },
+  {
+   "n": 121131,
+   "A_expected": 25835.3,
+   "FP_expected": 95295.7,
+   "dti_expected": 0.2206,
+   "kernel_offset_sum": 9.380297810508182
+  },
+  {
+   "n": 250000,
+   "A_expected": 53320.9,
+   "FP_expected": 196679.1,
+   "dti_expected": 0.37317,
+   "kernel_offset_sum": 9.380297810508182
+  },
+  {
+   "n": 550000,
+   "A_expected": 116106.0,
+   "FP_expected": 433894.0,
+   "dti_expected": 0.57228,
+   "kernel_offset_sum": 9.380297810508182
+  },
+  {
+   "n": 1000000,
+   "A_expected": 116106.0,
+   "FP_expected": 883894.0,
+   "dti_expected": 0.39642,
+   "kernel_offset_sum": 9.380297810508182
+  },
+  {
+   "n": 2000000,
+   "A_expected": 116106.0,
+   "FP_expected": 1883894.0,
+   "dti_expected": 0.23556,
+   "kernel_offset_sum": 9.380297810508182
+  }
+ ],
+ "feasibility_map": [
+  {
+   "n": 121131,
+   "required_A": 24398.1,
+   "required_precision_q": 0.2014,
+   "required_coverage_A_over_G": 0.2101,
+   "feasible": true,
+   "target_dti": 0.2
+  },
+  {
+   "n": 250000,
+   "required_A": 29767.7,
+   "required_precision_q": 0.1191,
+   "required_coverage_A_over_G": 0.2564,
+   "feasible": true,
+   "target_dti": 0.2
+  },
+  {
+   "n": 550000,
+   "required_A": 42267.7,
+   "required_precision_q": 0.0769,
+   "required_coverage_A_over_G": 0.364,
+   "feasible": true,
+   "target_dti": 0.2
+  },
+  {
+   "n": 1000000,
+   "required_A": 61017.7,
+   "required_precision_q": 0.061,
+   "required_coverage_A_over_G": 0.5255,
+   "feasible": true,
+   "target_dti": 0.2
+  },
+  {
+   "n": 2000000,
+   "required_A": 102684.3,
+   "required_precision_q": 0.0513,
+   "required_coverage_A_over_G": 0.8844,
+   "feasible": true,
+   "target_dti": 0.2
+  },
+  {
+   "n": 121131,
+   "required_A": 30818.7,
+   "required_precision_q": 0.2544,
+   "required_coverage_A_over_G": 0.2654,
+   "feasible": true,
+   "target_dti": 0.25
+  },
+  {
+   "n": 250000,
+   "required_A": 37601.3,
+   "required_precision_q": 0.1504,
+   "required_coverage_A_over_G": 0.3239,
+   "feasible": true,
+   "target_dti": 0.25
+  },
+  {
+   "n": 550000,
+   "required_A": 53390.7,
+   "required_precision_q": 0.0971,
+   "required_coverage_A_over_G": 0.4598,
+   "feasible": true,
+   "target_dti": 0.25
+  },
+  {
+   "n": 1000000,
+   "required_A": 77074.9,
+   "required_precision_q": 0.0771,
+   "required_coverage_A_over_G": 0.6638,
+   "feasible": true,
+   "target_dti": 0.25
+  },
+  {
+   "n": 2000000,
+   "required_A": 129706.5,
+   "required_precision_q": 0.0649,
+   "required_coverage_A_over_G": 1.1171,
+   "feasible": false,
+   "target_dti": 0.25
+  },
+  {
+   "n": 121131,
+   "required_A": 37375.9,
+   "required_precision_q": 0.3086,
+   "required_coverage_A_over_G": 0.3219,
+   "feasible": true,
+   "target_dti": 0.3
+  },
+  {
+   "n": 250000,
+   "required_A": 45601.5,
+   "required_precision_q": 0.1824,
+   "required_coverage_A_over_G": 0.3928,
+   "feasible": true,
+   "target_dti": 0.3
+  },
+  {
+   "n": 550000,
+   "required_A": 64750.5,
+   "required_precision_q": 0.1177,
+   "required_coverage_A_over_G": 0.5577,
+   "feasible": true,
+   "target_dti": 0.3
+  },
+  {
+   "n": 1000000,
+   "required_A": 93473.9,
+   "required_precision_q": 0.0935,
+   "required_coverage_A_over_G": 0.8051,
+   "feasible": true,
+   "target_dti": 0.3
+  },
+  {
+   "n": 2000000,
+   "required_A": 157303.7,
+   "required_precision_q": 0.0787,
+   "required_coverage_A_over_G": 1.3548,
+   "feasible": false,
+   "target_dti": 0.3
+  },
+  {
+   "n": 121131,
+   "required_A": 39971.1,
+   "required_precision_q": 0.33,
+   "required_coverage_A_over_G": 0.3443,
+   "feasible": true,
+   "target_dti": 0.3195
+  },
+  {
+   "n": 250000,
+   "required_A": 48768.0,
+   "required_precision_q": 0.1951,
+   "required_coverage_A_over_G": 0.42,
+   "feasible": true,
+   "target_dti": 0.3195
+  },
+  {
+   "n": 550000,
+   "required_A": 69246.5,
+   "required_precision_q": 0.1259,
+   "required_coverage_A_over_G": 0.5964,
+   "feasible": true,
+   "target_dti": 0.3195
+  },
+  {
+   "n": 1000000,
+   "required_A": 99964.4,
+   "required_precision_q": 0.1,
+   "required_coverage_A_over_G": 0.861,
+   "feasible": true,
+   "target_dti": 0.3195
+  },
+  {
+   "n": 2000000,
+   "required_A": 168226.4,
+   "required_precision_q": 0.0841,
+   "required_coverage_A_over_G": 1.4489,
+   "feasible": false,
+   "target_dti": 0.3195
+  }
+ ],
+ "marginal_rule": [
+  {
+   "dti": 0.19,
+   "tau": 0.039501,
+   "pi_star_break_even_posterior": 0.038,
+   "one_over_tau": 25.316
+  },
+  {
+   "dti": 0.2,
+   "tau": 0.041667,
+   "pi_star_break_even_posterior": 0.04,
+   "one_over_tau": 24.0
+  },
+  {
+   "dti": 0.25,
+   "tau": 0.052632,
+   "pi_star_break_even_posterior": 0.05,
+   "one_over_tau": 19.0
+  },
+  {
+   "dti": 0.3,
+   "tau": 0.06383,
+   "pi_star_break_even_posterior": 0.06,
+   "one_over_tau": 15.667
+  },
+  {
+   "dti": 0.3195,
+   "tau": 0.068262,
+   "pi_star_break_even_posterior": 0.0639,
+   "one_over_tau": 14.649
+  }
+ ],
+ "caveat": "A here is inferred from the closed form and a fitted |G|; the hidden private ground truth is not observable from this repository. The implied precision is therefore an inference, not a measurement, and it carries the full |G| uncertainty band quoted above."
+}

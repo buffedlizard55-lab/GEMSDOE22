@@ -53,5 +53,60 @@
   "expected_gain": "0 directly; protects against a wasted upload slot",
   "cost": "low (implemented)",
   "status": "implemented"
+ },
+ {
+  "id": "H26-A",
+  "name": "Offset markers on Quaternary surfaces",
+  "layers": "10 m 3DEP DEM scarp channels (GEMSDOE10 tag), 1 m lidar openness/LRM npz, derived_sgmc_faults_100m_u8.tif, labels.tif",
+  "signature": "Fit the local plan-form trend of a depositional marker (fan toe, terrace riser, bar-and-swale axis) on both sides of a candidate line; emit where the trend breaks with a consistent sense along >= 1 km. A differential test, not a scarp-brightness test.",
+  "why_unmapped": "A fault whose only expression is a shear of young fan surfaces may never have been drawn on a compilation map, while it is exactly the class the organisers describe as expert-mapped new faults.",
+  "differs": "H19-3/H22-1 emit where a ridge looks like a scarp and lies in the clustering halo of a mapped fault; H26-A does not require a mapped neighbour and does not key on absolute scarp brightness.",
+  "expected_gain": "high (inference) - attacks the catalogue-complement class directly",
+  "cost": "medium",
+  "status": "designed; needs marker-fold holdout before any slot"
+ },
+ {
+  "id": "H26-B",
+  "name": "Anisotropic tip continuation with measured angular dispersion",
+  "layers": "labels.tif + derived_sgmc_faults_100m_u8.tif trace geometry, 10 m DEM structure tensor for strike",
+  "signature": "Extrapolate each trace tip along the local DEM strike with an angular dispersion measured from the DFN orientation histogram, then require confirmation by a second, independent orientation family within 2-4 km.",
+  "why_unmapped": "The fitted population is spatially organised (nearest-larger median 1,630.9 m, p90 6,047.1 m, D_correlation 1.624), and staff describe the live set as newly mapped geometry of existing systems.",
+  "differs": "strike_tip_field uses catalogue strike with a fixed <= 20 px reach; halo_isotropic ignores orientation entirely; H26-B re-derives strike and calibrates the dispersion from data.",
+  "expected_gain": "medium (inference); testable on the pinned trace-cluster folds",
+  "cost": "low",
+  "status": "coarse version measured by h26_geometry_holdout.py"
+ },
+ {
+  "id": "H26-C",
+  "name": "Silica vs carbonate blind-fault feeder inversion",
+  "layers": "GDR 1391 well/spring geothermometry, 2 m probes, paleo-thermal deposits (mirrored in GEMSDOE24); tc / tmi_hg bands; SGMC-gap raster",
+  "signature": "Separate quartz-dominated (> 70 C) from carbonate/tufa systems, then project the feeder updip through basin fill; emit along the projection.",
+  "why_unmapped": "The feeder is inferred between the deep equilibrium and the surface expression - under cover, where no trace is mapped.",
+  "differs": "H19-2 accumulated a joint conduit field; no repository separated the two geothermometer families (registered as H22-4, never implemented).",
+  "expected_gain": "medium (inference)",
+  "cost": "low-medium",
+  "status": "designed; SGMC-gap holdout gate"
+ },
+ {
+  "id": "H26-D",
+  "name": "Conjugate X-pattern intersection nodes",
+  "layers": "GeoDAWN radiometric/extension bands, iso_grav_anom, tmi_hg, tmi_vg, DEM structure tensor",
+  "signature": "Emit where two independently derived lineament families cross at 50-80 degrees, weighted by both families' amplitude and by intersection density.",
+  "why_unmapped": "Short intra-basin transfer faults at step-over nodes are systematically under-mapped because each segment is short and low-amplitude.",
+  "differs": "Registered as H22-3 and never implemented; prior repos used single-orientation worms only.",
+  "expected_gain": "medium (inference)",
+  "cost": "low",
+  "status": "designed; needs Jaccard distinctness gate"
+ },
+ {
+  "id": "H26-E",
+  "name": "Drainage-knickpoint alignment",
+  "layers": "10 m DEM elevation/slope/curvature channels (3DEP, mirrored), DEM-derived stream network",
+  "signature": "A line of knickpoints at a consistent downstream position in independent catchments implies one tectonic line crossing all of them.",
+  "why_unmapped": "The fault need not produce a 100 m-visible scarp; it only needs to have reorganised drainage.",
+  "differs": "Never tried in any repository in the group.",
+  "expected_gain": "medium-low (inference) but the most orthogonal to every existing map",
+  "cost": "medium",
+  "status": "designed"
  }
 ]

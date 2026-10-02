@@ -16,11 +16,40 @@ against the live leaderboard at the top (ρ = −1.000, n = 3). Slots are the
 scarcest resource in this project. Every item below is marked with whether it
 needs one.
 
+**H26 addendum (2026-10-02).** The rule is now enforced relative to the metric's
+**no-skill floor**: a candidate must beat the incumbent *and* show a positive
+**lift = DTI − floor_dti(n, |G|, N)** at its own budget
+(`src/gems/floor.py`, `FLOOR_ANALYSIS.md`, `evidence/h26_floor_model.json`;
+validated to ±3 % against the repo's own measured random arms). At the fitted
+`|G|` the 121k floor is 0.181 and the 550k floor is 0.290, while the best live
+score is 0.1922 — a +0.011 lift. Read §1 below with that in mind.
+
 Nothing in items 2–6 needs a slot. Only item 1 does.
 
 ---
 
-## 1. Spend one slot on the value-based emission budget — *needs 1 slot*
+## 0. Spend the next slot on a *measurement* — a random binary control — *needs 1 slot*
+
+Nothing shipped has a demonstrated lift over a size-matched random control on the
+valid trace-cluster instrument (`evidence/h26_instrument_consistency.json`), and the
+live scores sit on the metric's own no-skill floor (`FLOOR_ANALYSIS.md`). The single
+upload that would unlock the most is a **random binary control at a fixed budget**
+(e.g. 121,131 px, same format and masking as a normal submission). It measures the
+live floor and `|G|` directly, and retro-calibrates all ~20 historical scores. The
+second is the paired upload (`base` vs `base ∪ S`) which measures `tau` live. These
+are deliberate exceptions to the "beat the holdout best" rule because they are
+measurements, not hypotheses — the operator decides.
+
+## 1. Spend one slot on the value-based emission budget — *needs 1 slot* — **HELD (H26 floor analysis)**
+
+> **H26 verdict: do not upload `f6777492` first.** Its projected live range is
+> 0.1628–0.1956, which lies *below* the 550,000-px no-skill floor of 0.2900
+> (p50 `|G|`; band 0.2414–0.3446) — the projection and the floor cannot both
+> describe the same map. The cheap resolution is the paired upload
+> (`H19-4` vs `H19-4 ∪ S`), which measures the live floor and `τ` in one slot and
+> then makes every later budget decision evidence-based. The material below is
+> retained as the record of how the budget was derived, not as a live
+> recommendation.
 
 **The single largest measured, replicated, data-free gain available.**
 
@@ -46,7 +75,7 @@ held-out behaviour. Under flag F-01 that is a directional expectation
 (≈0.198–0.208), not a guarantee.
 
 **Then:** record the outcome immediately with
-`python3 scripts/record_score_gems22.py --id 74cb4afe --score <X>`. That single
+`python3 scripts/record_score_gems22.py --id f6777492 --score <X>`. That single
 observation is worth more than any further offline work, because it is the first
 data point that can confirm or refute the live-rescaling method itself.
 
@@ -95,10 +124,10 @@ Collapsing identical-on-scored-pixel duplicates leaves `22` unique binary
 68% CI `[96,255, 134,963]`, 95% CI `[84,294, 165,151]` (`registry/group_geometry.json`
 and `registry/gems22_submissions.json`), with propagated `[p16, p50, p84]` intervals on
 `τ = 0.2·DTI/(1 − 0.2·DTI)` (`[0.03299, 0.03837, 0.04352]`), `π* = τ/(1+τ)`
-(`[0.03194, 0.03695, 0.04170]`), and live-rescaled DTI (`74cb4afe` at `n = 550,000`:
+(`[0.03194, 0.03695, 0.04170]`), and live-rescaled DTI (`f6777492` at `n = 550,000`:
 `[0.16277, 0.17783, 0.19560]`).
 
-Remaining step: once `74cb4afe` (`n = 550,000`) is live-scored, append its score and
+Remaining step: once `f6777492` (`n = 550,000`) is live-scored, append its score and
 re-run `python3 scripts/04b_infer_G_and_rescale.py`.
 
 ## 5. Add the INGENIOUS 2 m temperature-probe / geothermometer inversion (**IMPLEMENTED IN `src/gems22/hypotheses.py` & `src/gems22/features.py`**)
@@ -128,6 +157,24 @@ network access this sandbox lacks (GitHub Actions has it).
 Needs: GitHub Actions. Payoff: removes all manual checking. Cost: low.
 
 ---
+
+## 7. New hypotheses ranked by expected lift over the floor (H26) — *no slot until gated*
+
+Full register: [`HYPOTHESES_H26.md`](HYPOTHESES_H26.md). Order:
+`H26-A` offset markers on Quaternary surfaces (medium cost, highest expected
+lift) > `H26-B` anisotropic tip continuation with DEM strike + conjugate
+confirmation (low cost, testable on the pinned trace-cluster folds) > `H26-C`
+silica-vs-carbonate blind-fault feeder inversion > `H26-D` conjugate X-pattern
+nodes > `H26-E` drainage-knickpoint alignment (most orthogonal, lowest expected
+lift). Runnable now with the data in this repository; `H26-A` additionally needs
+the mirrored 10 m 3DEP tiles to be turned into channels, and the 1 m tiles beyond
+the eight cached ones remain blocked from this sandbox
+(`evidence/network_reachability.json`).
+
+The running `scripts/h26_geometry_holdout.py` experiment already measures the
+coarse versions of `H26-B` (`strike_tip`, with and without 1-px dilation) against
+isotropic `halo_isotropic` and `bour_davy_ring` arms at five budgets, on the
+pinned folds, for both heads.
 
 ## Ideas evaluated and rejected — do not re-litigate without new evidence
 

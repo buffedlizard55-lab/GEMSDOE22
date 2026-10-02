@@ -1,7 +1,14 @@
 [
  {
-  "title": "Spend one upload slot on the value-based emission budget",
-  "detail": "The single largest measured, replicated, data-free gain in this repo: three independent evaluations put the DTI-optimal emitted-pixel budget 2.7x-8x above the 120k the group has always used. It must clear the trace-cluster holdout gate AND the NCC artefact audit first, per the brief.",
+  "title": "Spend it on a measurement first: a random binary control (H26)",
+  "detail": "Nothing shipped has a demonstrated lift over a size-matched random control on the valid trace-cluster instrument (evidence/h26_instrument_consistency.json), and the live scores sit on the metric's own no-skill floor: 0.181 at the group's ~121k budget versus a live best of 0.1922. A random control at a fixed budget measures the floor and |G| directly and retro-calibrates every historical score. The paired upload (base vs base union S) then measures tau. These are measurements, not hypotheses, so the operator decides whether to spend a slot.",
+  "needs": "An explicit operator decision to spend a slot on calibration",
+  "payoff": "Calibrates |G| and the floor for every later decision",
+  "cost": "1 slot"
+ },
+ {
+  "title": "Spend one upload slot on the value-based emission budget \u2014 HELD by the H26 floor analysis",
+  "detail": "HELD (H26): the delivered 550k rescale projects 0.1628-0.1956, which is below the 550,000-px no-skill floor of 0.2900 (p50 |G|). The budget was derived by rescaling the anchors' own fold behaviour, where the floor is flat; live it rises from 0.18 at 121k to 0.29 at 550k. Do not upload it until the live floor is measured. Original case: three independent evaluations put the DTI-optimal emitted-pixel budget 2.7x-8x above the 120k the group has always used.",
   "needs": "One of the 3 uploads per rolling 7 days",
   "payoff": "+0.03 to +0.10 DTI",
   "cost": "1 slot"

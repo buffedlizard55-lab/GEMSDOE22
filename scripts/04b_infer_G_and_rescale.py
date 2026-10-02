@@ -199,7 +199,7 @@ def main() -> None:
         "anchor_h19_5_120k": propagate_G_uncertainty(
             A_hold=3194.2, B_hold=116826.3, G_hold=19897.0, G_quantiles=mle_fit["G_quantiles"], coverage_penalty=1.10
         ),
-        "candidate_gems22_74cb4afe_550k": propagate_G_uncertainty(
+        "candidate_gems22_f6777492_550k": propagate_G_uncertainty(
             A_hold=6034.9, B_hold=576951.6, G_hold=19897.0, G_quantiles=mle_fit["G_quantiles"], coverage_penalty=1.10
         ),
     }

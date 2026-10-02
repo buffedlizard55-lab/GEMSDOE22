@@ -113,8 +113,8 @@ observations (after collapsing byte/scored-pixel duplicates), yielding
 `G_mle = 107,000`, `G_mean = 116,106.1 ± 20,458.8`, 68% CI `[96,255, 134,963]`,
 95% CI `[84,294, 165,151]` (`registry/group_geometry.json`), and propagating
 `[p16, p50, p84]` intervals into `τ`, `π*`, and live-rescaled DTI predictions
-(`74cb4afe`: `[0.16277, 0.17783, 0.19560]`). Remaining epistemic uncertainty
-will be collapsed once `74cb4afe` (`n = 550,000`) is live-scored on DrivenData.
+(`f6777492`: `[0.16277, 0.17783, 0.19560]`). Remaining epistemic uncertainty
+will be collapsed once `f6777492` (`n = 550,000`) is live-scored on DrivenData.
 
 ## L-5. The chosen base is h19-5, but the offline evidence marginally prefers h19-4
 
@@ -255,3 +255,31 @@ plus the message, not confirmed by reproduction.
 * The fold partition, the leakage-control prefix list and the `|G|` value are
   mutually load-bearing. Changing one without regenerating `evidence/*.json`
   produces a repo whose documentation contradicts its artefacts.
+
+## L-13. The live no-skill floor is conditional on a *fitted* `|G|`
+
+`src/gems/floor.py` computes what a random emission of `n` pixels scores
+(`FLOOR_ANALYSIS.md`). At the fitted live density it is ≈ 0.181 at the group's
+habitual 121k budget and ≈ 0.290 at 550k, and the closed form reproduces the
+repository's own measured random arms to within −1.8 % … +3.1 %. But `|G|` itself
+is a fit (`fit_G_mle`: MLE 107,000, 95 % CI 84,294–165,151), not an observation,
+so the floor is a *band*, not a number. If the true live label set were ~60k px the
+121k floor would be ≈ 0.154 and every historic submission would gain ~0.03 of real
+lift. The floor's dominant uncertainty is therefore `|G|`, and the only clean way
+to remove it is a deliberately random control upload (or the paired
+`base` vs `base ∪ S` upload), which costs a weekly slot. Until then, all
+lift-over-floor statements in this repository are bracketed by the `|G|` CI.
+
+## L-14. No offline instrument in this repository has demonstrated resolving power for the live task
+
+Three instruments disagree at the top of the table. On the trace-cluster folds with
+the live masking convention and a size-matched random control
+(`evidence/h26_instrument_consistency.json`): `h19-4` +0.0003, `h19-5` −0.0007,
+`h22-1` −0.0002 (mean over 8 fold x head cells). Live: `h19-5` 0.1922 > `h19-4`
+0.1894 > `h16-1` 0.1855. The four-quadrant instrument (flagged invalid, F-09)
+prefers `h19-4`. The SGMC proxy inverts (`rho = -1.000` over the top three). Even a
+perfect instrument must beat the metric's own no-skill floor, which at the group's
+budget is 0.181 (p50 `|G|`) against a live best of 0.1922. The only way to settle
+it is live: a random control upload pins the floor, a paired `base` vs `base ∪ S`
+upload pins `tau`.
+
