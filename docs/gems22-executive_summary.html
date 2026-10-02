@@ -17,7 +17,7 @@
 <a href="gems22-next_steps.html">Next steps</a>
 </nav></div></header><main class="wrap">
 <h2>1. The file</h2>
-<p><a class="btn" href="downloads/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif" download>Download gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif</a></p>
+<p><a class="btn" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif" download>Download gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif</a></p>
 <div class="copyrow"><span class="v"><b>File name:</b><br>gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif</span><button onclick="cp(this)">Copy</button></div>
 <div class="copyrow"><span class="v"><b>DrivenData note:</b><br>GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&amp;Davy(1999) prior w=0.3 | NCC audit PASS | id 74cb4afe</span><button onclick="cp(this)">Copy</button></div>
 
@@ -73,7 +73,7 @@ prediction, two outside-footprint conventions, identical public score.
 0.0 <i>before</i> clipping, zeroes the known-catalogue pixels (they are excluded
 from evaluation anyway, per <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2">forum 11516 post 2</a>), writes
 the official profile, then <b>re-reads the file from disk</b> and runs the checks
-below. A file that fails any hard check is never written to <code>docs/downloads/</code>.</p>
+below. A file that fails any hard check is never written to <code>docs/downloads/gems22/</code>.</p>
 
 <h2>5. Verification actually run on this file</h2>
 <table><tr><th>Check</th><th>Result</th></tr><tr><td>single_band</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>dtype_float32</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>crs_epsg_32611</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>shape_3730x3292</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>geotransform_matches_official</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>footprint_all_finite</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>footprint_min_ge_0</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>footprint_max_le_1</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>scored_all_finite</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>scored_min_ge_0</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>scored_max_le_1</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>probe_nanaware_whole_array</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>probe_masked_read</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>probe_strict_no_nan_anywhere</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>n_footprint_pixels</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>n_outside_pixels</td><td><span class=pass>&#10004; pass</span></td></tr></table>

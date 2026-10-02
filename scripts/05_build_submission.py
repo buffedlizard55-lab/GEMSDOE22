@@ -267,10 +267,10 @@ def main() -> None:
     written = []
     for variant in ("allfinite", "nan"):
         nm = sub.make_submission_name(args.tag, cid, variant, stamp)
-        w = sub.write_submission(S.astype(np.float32), REPO / "docs/downloads" / nm,
+        w = sub.write_submission(S.astype(np.float32), REPO / "docs/downloads/gems22" / nm,
                                  fp, variant, cat)
         sub.write_submission(S.astype(np.float32), REPO / "submissions" / nm, fp, variant, cat)
-        sub.zip_submission(REPO / "docs/downloads" / nm)
+        sub.zip_submission(REPO / "docs/downloads/gems22" / nm)
         sub.zip_submission(REPO / "submissions" / nm)
         written.append(w)
         print(f"  wrote {nm}  sha256={w.sha256[:16]} pos_fp={w.n_positive_footprint:,} "

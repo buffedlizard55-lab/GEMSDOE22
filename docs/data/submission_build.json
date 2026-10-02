@@ -6186,7 +6186,7 @@
  ],
  "seconds": 434.2,
  "reverify": {
-  "generated_utc": "2026-10-02T02:26:25Z",
+  "generated_utc": "2026-10-02T02:39:46Z",
   "script": "scripts/05b_reverify_published.py",
   "artefacts_checked": 8,
   "pixel_level_checks_run": true,
@@ -6194,7 +6194,7 @@
   "failures": [],
   "detail": [
    {
-    "dir": "docs/downloads",
+    "dir": "docs/downloads/gems22",
     "file": "gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif",
     "sha256": "cd3c26a2fb4b7e649c49d2b565291bca30ee6fe47ea47c1ea6151061dc9a0337",
     "bytes": 1141558,
@@ -6269,7 +6269,7 @@
     "is_binary_0_1": true
    },
    {
-    "dir": "docs/downloads",
+    "dir": "docs/downloads/gems22",
     "file": "gems22-h22-value-emit-20261002T015455Z-74cb4afe-nan.tif",
     "sha256": "007a99d6dc2866cc19ed86b1e7b6f1825c470de0104a1789b3f5b736eb7dd118",
     "bytes": 1923026,
@@ -6344,7 +6344,7 @@
     "is_binary_0_1": true
    },
    {
-    "dir": "docs/downloads",
+    "dir": "docs/downloads/gems22",
     "file": "gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.zip",
     "zip_members": [
      "gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif"
@@ -6353,7 +6353,7 @@
     "zip_ok": true
    },
    {
-    "dir": "docs/downloads",
+    "dir": "docs/downloads/gems22",
     "file": "gems22-h22-value-emit-20261002T015455Z-74cb4afe-nan.zip",
     "zip_members": [
      "gems22-h22-value-emit-20261002T015455Z-74cb4afe-nan.tif"

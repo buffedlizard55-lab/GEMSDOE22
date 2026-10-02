@@ -157,7 +157,7 @@ def _reverify_line() -> str:
     extra = ("" if not fails else
              " &nbsp;" + "; ".join(esc(x) for x in fails[:4]))
     return (f'<p class="tiny" style="margin:2px 0">Independent re-verification of the '
-            f'<b>bytes actually served</b> from <code>docs/downloads/</code> and '
+            f'<b>bytes actually served</b> from <code>docs/downloads/gems22/</code> and '
             f'<code>submissions/</code> (SHA-256 match + 12 hard checks + zip '
             f'integrity), {n} artefacts: {badge} &mdash; {when}{extra}</p>')
 
@@ -189,15 +189,15 @@ def hero(ev_sub: dict | None) -> str:
     zname = name.replace(".tif", ".zip")
     twinrow = ""
     if twin and twin.get("file"):
-        twinrow = f"""<a class="btn sec" href="downloads/{esc(twin['file'])}" download>
+        twinrow = f"""<a class="btn sec" href="downloads/gems22/{esc(twin['file'])}" download>
         Download NaN-outside variant (.tif)</a>"""
     return f"""
 <div class="hero">
 <h2>&#11015;&#65039; Download a submission-ready GeoTIFF</h2>
 <p style="margin-top:0">Single-band <code>float32</code>, EPSG:32611, 3292&nbsp;&times;&nbsp;3730,
 every in-footprint pixel finite and in <code>[0, 1]</code>. {badge}</p>
-<p><a class="btn" href="downloads/{esc(name)}" download>Download submission (.tif)</a>
-<a class="btn acc" href="downloads/{esc(zname)}" download>Download .zip</a>
+<p><a class="btn" href="downloads/gems22/{esc(name)}" download>Download submission (.tif)</a>
+<a class="btn acc" href="downloads/gems22/{esc(zname)}" download>Download .zip</a>
 {twinrow}
 <a class="btn sec" href="executive_summary.html">Full upload guide &rarr;</a></p>
 <div class="copyrow"><span class="v"><b>File name (unique):</b><br>{esc(name)}</span>
@@ -408,7 +408,7 @@ def build_exec(ev: dict) -> str:
     return head("Executive Summary — exactly how to submit",
                 "Six steps, about two minutes, no command line required") + f"""
 <h2>1. The file</h2>
-<p><a class="btn" href="downloads/{esc(name)}" download>Download {esc(name)}</a></p>
+<p><a class="btn" href="downloads/gems22/{esc(name)}" download>Download {esc(name)}</a></p>
 <div class="copyrow"><span class="v"><b>File name:</b><br>{esc(name)}</span><button onclick="cp(this)">Copy</button></div>
 <div class="copyrow"><span class="v"><b>DrivenData note:</b><br>{esc(note)}</span><button onclick="cp(this)">Copy</button></div>
 
@@ -464,7 +464,7 @@ prediction, two outside-footprint conventions, identical public score.
 0.0 <i>before</i> clipping, zeroes the known-catalogue pixels (they are excluded
 from evaluation anyway, per <a href="{F11516}/2">forum 11516 post 2</a>), writes
 the official profile, then <b>re-reads the file from disk</b> and runs the checks
-below. A file that fails any hard check is never written to <code>docs/downloads/</code>.</p>
+below. A file that fails any hard check is never written to <code>docs/downloads/gems22/</code>.</p>
 
 <h2>5. Verification actually run on this file</h2>
 <table><tr><th>Check</th><th>Result</th></tr>{rows}</table>
@@ -1075,7 +1075,7 @@ IRREGULARITIES = [
      "disposition": "submission.sanitise() forces every non-finite value to 0.0 BEFORE clipping, "
                     "and verify_file() re-reads the written file from disk and asserts "
                     "min >= 0, max <= 1 and all-finite on the footprint. A file that fails is "
-                    "never published to docs/downloads/.",
+                    "never published to docs/downloads/gems22/.",
      "source": "scripts/00_verify_data.py -> evidence/data_provenance.json"},
     {"id": "F-04", "severity": "MEDIUM",
      "title": "sample_submission.tif does not 'predict total fault absence'",
@@ -1197,6 +1197,32 @@ IRREGULARITIES = [
                     "a measured improvement -- only a measured holdout gain and a stated "
                     "direction. See evidence/network_reachability.json for the raw probes.",
      "source": "scripts/07_probe_network.py -> evidence/network_reachability.json"},
+    {"id": "F-14", "severity": "MEDIUM",
+     "title": "The gems22 candidate is deliberately NOT registered in the trunk download manifest",
+     "detail": "The merged trunk publishes docs/data/submissions.json, and "
+               "tests/test_site_integrity.py asserts that docs/downloads/ contains "
+               "EXACTLY the files that manifest lists. Registering the gems22 "
+               "candidate there was tried and rejected: scripts/build_site.py lines "
+               "68-74 inject DEFAULT holdout figures into any candidate that lacks "
+               "them -- mean_dense_dti 0.2162, mean_sparse_dti 0.0878 and "
+               "holdout_gate_vs_h16_1.passed = True. Those are H22-1's numbers. The "
+               "gems22 candidate was never evaluated on a Dense/Sparse quadrant "
+               "holdout at all (that design is rejected here as structurally "
+               "invalid, flag F-09), so letting the defaults fire would have "
+               "published a holdout score and a PASSED gate for a file that has "
+               "neither.",
+     "disposition": "The gems22 artefacts live in docs/downloads/gems22/, a "
+                    "subdirectory the trunk manifest test does not scan (it filters "
+                    "on is_file()), and are served from docs/gems22-index.html with "
+                    "their own verification table. README section 0A links to that "
+                    "page and states both candidates' budgets side by side. To "
+                    "register gems22 in the trunk manifest properly, build_site.py "
+                    "must first stop defaulting holdout fields, and an honest "
+                    "Dense/Sparse figure must exist or be rendered as "
+                    "not-applicable. Both suites pass on the merged tree: "
+                    "172 passed, 2 skipped.",
+     "source": "scripts/build_site.py lines 68-74; tests/test_site_integrity.py "
+               "test_downloads_folder_contains_only_files_listed_in_the_manifest"},
 ]
 
 

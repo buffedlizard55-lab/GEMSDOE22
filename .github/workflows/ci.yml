@@ -8,7 +8,7 @@
 #
 #   * the metric, clustering-statistic, holdout-design and submission-writer
 #     logic is correct (unit tests on synthetic grids);
-#   * the GeoTIFFs committed to docs/downloads/ are byte-identical to the ones
+#   * the GeoTIFFs committed to docs/downloads/gems22/ are byte-identical to the ones
 #     the build recorded (SHA-256), and each .zip contains exactly that .tif;
 #   * the published site builds from evidence/*.json, has no broken internal
 #     links, and ships valid JavaScript.
@@ -142,7 +142,7 @@ jobs:
               if len(inner) < 16:
                   problems.append(f"{name}: only {len(inner)} inner checks recorded, expected >=16")
               # the committed bytes must still be the recorded bytes
-              p = pathlib.Path("docs/downloads") / name
+              p = pathlib.Path("docs/downloads/gems22") / name
               if p.exists():
                   h = hashlib.sha256(p.read_bytes()).hexdigest()
                   if h != r["sha256"]:

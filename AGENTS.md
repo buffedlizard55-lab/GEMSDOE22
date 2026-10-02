@@ -1,21 +1,40 @@
-# AGENTS.md
+# Instructions for automated agents (and humans) — 22GEMSDOE (fractal-clustering update)
 
-Operating instructions for an agent (or human) continuing this repository.
+1. **Read `README.md` first** — the *Status*, *Limitations* and *Next steps* sections, then the verbatim **Original request** at the bottom (including the Bour & Davy / Ripley K fractal-clustering paragraph). Re-read the request's closing rules before finishing: line-by-line verification from official sources, links for manual review, flag irregularities, no hallucinations, multiple review passes. The clustering prior & audit (`src/gems/clustering.py`) is the *new* 2026-10-02 requirement — fit `D` and `K(r)` to the catalogued `3,199` traces before touching the model, use `D` as a geometric prior, and audit predictions with the same `K(r)`.
+2. **Run `python -m pytest -q`** before and after any change (set `GEMS_DATA_DIR` to also run the `data`-marked tests).
+3. **Evidence over memory.** A claim on the site must trace to `registry/sources.json` (fetched source) or `evidence/*.json` (computed). Label statements OBSERVED / COMPUTED / INFERENCE. Add irregularities to `registry/irregularities.json`.
+4. **Gate before slots.** No candidate is recommended unless it beats the holdout best under a pre-registered protocol (`docs/research/preregistration_*.md`, committed *before* results) **and** passes `gems.forensics.gate_candidate` (not a duplicate) **and** `gems.submission.check_variants`. The weekly limit is 3 uploads per **rolling** 7 days per entity.
+5. **Never automate drivendata.org** (Terms of Use forbid robots/spiders; `tests/test_site_integrity.py::test_no_automated_access_to_drivendata_is_implemented` enforces it). Scores are copied in by a person with `scripts/record_score.py`.
+6. **Do not commit rasters** from `GEMS_DATA_DIR`; only published candidates in `docs/downloads/` and small evidence files.
+7. The agent sandbox cannot reach USGS/GDR/DrivenData; verify external data in GitHub Actions (`.github/workflows/external-verification.yml`) and read the committed results in `evidence/ci/`.
+8. After changing data or evidence, run `python scripts/build_site.py && python scripts/check_site.py` and commit the regenerated HTML.
+9. **After a sandbox restore, verify binaries before trusting the tree.** Once, a restore left `docs/data/footprint.bin` text-decoded (U+FFFD bytes, 31,029 B instead of 15,681 B; flag F21) and lost the local git history. `python -m pytest -q tests/test_footprint.py` detects it. Repair: `gh api -H 'Accept: application/vnd.github.raw' repos/buffedlizard55-lab/GEMSDOE/contents/data/bridge/example_submission.tif > "$GEMS_DATA_DIR/sample_submission.tif"` (its SHA-256 must be `2176d08e…`), then `python scripts/build_footprint_payload.py`; the payload must hash to `9ec93feb…` and leave `docs/data/footprint.json` unchanged. Also re-hash `docs/downloads/*` against `docs/data/submissions.json`.
 
-## Read these first, in this order
+---
 
-1. **`README.md`** — it contains the *verbatim* original brief and the Arena Core
-   Values (**Maximize P(Win)**; **Own the Outcome**). The brief instructs that it
-   be re-read at the start of every session as the starting point. Do not work
-   from a summary of it, including this file.
-2. **`LIMITATIONS.md`** — what the evidence does *not* support. The most
-   important entry is L-1/L-2: no live score for the delivered file has ever been
-   observed, and the offline proxy is known to invert against the live leaderboard
-   at the top.
-3. **`NEXT_STEPS.md`** — ranked work, plus a table of ideas already evaluated and
-   rejected with their evidence. Do not re-litigate those without new data.
-4. **`docs/gems22-irregularities.html`** (or `IRREGULARITIES` in
-   `scripts/06_build_site.py`) — flags F-01…F-13.
+# Part B — the parallel `gems22` workstream (merged 2026-10-02)
+
+A second, independent analysis was developed in parallel and merged here. It lives
+in its own namespace so it cannot silently overwrite the trunk:
+
+| trunk (`src/gems`) | gems22 workstream |
+|---|---|
+| `src/gems/` | `src/gems22/` |
+| `scripts/build_site.py`, `scripts/check_site.py` | `scripts/00…07`, `scripts/05b` |
+| `scripts/record_score.py` | `scripts/record_score_gems22.py` |
+| `evidence/clustering_fit.json` | `evidence/gems22_clustering_fit.json` |
+| `registry/submissions.json` | `registry/gems22_submissions.json` |
+| `docs/index.html` and friends | `docs/gems22-*.html` (9 pages) |
+| `tests/test_*.py` | `tests/test_gems22_*.py` |
+| — | `LIMITATIONS.md`, `NEXT_STEPS.md`, `.github/workflows/ci.yml` |
+
+**Both analyses are retained, and they disagree on three points.** See
+`README.md` §0A for the disagreements and what would settle them. When editing
+either side, do not "fix" the other side's numbers to match — the disagreement is
+the informative part.
+
+Run both suites: `python -m pytest tests -q` covers trunk *and* gems22 (98 tests
+in the gems22 set alone).
 
 ## Non-negotiable invariants
 

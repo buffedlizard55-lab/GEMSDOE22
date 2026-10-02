@@ -32,27 +32,40 @@ login, no upload path and no score feedback. Three consequences:
 **Resolved by:** uploading the file and recording the score with
 `scripts/record_score_gems22.py`. One slot, three per rolling 7 days.
 
-## L-2. The offline target inverts against the live leaderboard at the top (flag F-01)
+## L-2. The offline proxy cannot *resolve* the top three files (flag F-01) — corrected after the merge
 
 `evidence/anchor_calibration.json`: across all four SGMC-gap proxy variants the
 three authenticated anchors rank **h16-1 > h19-4 > h19-5**, i.e. Spearman
 ρ = **−1.000** against the live ordering **h19-5 (0.1922) > h19-4 (0.1894) >
-h16-1 (0.1855)**. n = 3, p = 0.333 — with three points this is not statistically
-significant, but it is also not reassuring.
+h16-1 (0.1855)**. n = 3, p = 0.333.
 
-This is the single most important limitation in the repo, and it is why the
-delivered submission contains **no learned detector**:
+**This was originally written up as "the proxy inverts", and that framing was
+wrong.** The merged trunk carries stronger evidence:
+`evidence/proxy_calibration_vs_lb.json` reports the SGMC-gap proxy correlating
+with public score at **Spearman ρ = +0.518, p = 0.048, n = 15**. The proxy works.
 
-* Any offline DTI number here is a *ranking device of unknown sign* at the top of
-  the leaderboard. It is reliable for coarse comparisons (a collapsed model scores
-  0.033 vs an anchor's 0.107) and unreliable for fine ones.
-* It is the reason the gate in `evidence/submission_build.json` is stated as
-  `gbm_heads_passed: false` and the file's basis is
-  `value-based re-emission of the highest authenticated live map`.
+The two results are consistent, and the distinction matters:
 
-**Resolved by:** a proxy target that correlates positively with live score on
-≥5 authenticated files. None was found here; `registry/gems22_submissions.json` holds
-the 19 observations any future attempt should be calibrated against.
+* The trunk measures the proxy across a **wide** score range (≈0.15–0.19).
+* This measurement uses only the top three files, whose live scores span
+  **0.0067** (0.1855 → 0.1922), while the proxy spread across the same three is
+  0.0106 in the opposite direction.
+
+A proxy can be monotone over a wide range and still be unable to *resolve* a
+0.0067 band. The correct claim is therefore: **the offline proxy cannot rank the
+top three files**, not "the proxy is broken". It remains reliable for coarse
+comparisons (a collapsed model scores 0.033 vs an anchor's 0.107).
+
+This is still why the delivered submission contains **no learned detector**: with
+no offline instrument fine enough to separate 0.1855 from 0.1922, the only
+defensible base is a map whose live score is already authenticated. Hence
+`gate.gbm_heads_passed: false` and
+`this_file_basis: "value-based re-emission of the highest authenticated live map"`.
+
+**Resolved by:** any offline instrument that separates the top three correctly.
+`registry/gems22_submissions.json` (19 observations) and the trunk's
+`registry/submissions.json` (15 scored files) are the calibration sets for any
+future attempt.
 
 ## L-3. Both supervised heads fail the gate; head A is degenerate
 

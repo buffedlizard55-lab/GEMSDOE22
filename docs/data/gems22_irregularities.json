@@ -20,7 +20,7 @@
   "severity": "HIGH",
   "title": "3,073 pixels inside the official footprint carry the float32 nodata sentinel",
   "detail": "training_features.tif declares nodata = -3.4028234663852886e+38. 5,167,373 pixels are finite in sample_submission.tif but only 5,164,300 have all 19 bands finite; band 6 (tc) alone is sentinel on 12 further pixels. Any submission whose arithmetic propagates a value from those pixels is rejected with 'Predicted values must be in range [0, 1]' before it is scored.",
-  "disposition": "submission.sanitise() forces every non-finite value to 0.0 BEFORE clipping, and verify_file() re-reads the written file from disk and asserts min >= 0, max <= 1 and all-finite on the footprint. A file that fails is never published to docs/downloads/.",
+  "disposition": "submission.sanitise() forces every non-finite value to 0.0 BEFORE clipping, and verify_file() re-reads the written file from disk and asserts min >= 0, max <= 1 and all-finite on the footprint. A file that fails is never published to docs/downloads/gems22/.",
   "source": "scripts/00_verify_data.py -> evidence/data_provenance.json"
  },
  {
@@ -102,5 +102,13 @@
   "detail": "Measured live by scripts/07_probe_network.py: of 19 official hosts probed, only 5 answer a direct HTTPS request from this sandbox (github.com, api.github.com, codeload.github.com, pypi.org, files.pythonhosted.org). The other 14 abort the TLS handshake with 'TLS/SSL connection has been closed (EOF)' -- including www.drivendata.org, community.drivendata.org, www.usgs.gov, www.sciencebase.gov, doi.org, gdr.openei.org, mrdata.usgs.gov, tnmaccess.nationalmap.gov and buffedlizard55-lab.github.io. The agent's page-fetch tooling uses a DIFFERENT route and did return the text of several of those hosts (the metric page, forum threads 11516 and 11527, the live leaderboard, the predecessor's published site).",
   "disposition": "Every quotation in this repository taken from a host that is blocked on the direct route was obtained as TEXT through the page-fetch route, and is labelled with its URL so a human can re-check it in a browser. No binary can cross that route, which is why the competition rasters were reassembled from codeload.github.com parts and pinned by SHA-256 instead of downloaded from drivendata.org. Consequence: the live score of any file built here cannot be observed from the sandbox at all, so nothing in this repo claims a measured improvement -- only a measured holdout gain and a stated direction. See evidence/network_reachability.json for the raw probes.",
   "source": "scripts/07_probe_network.py -> evidence/network_reachability.json"
+ },
+ {
+  "id": "F-14",
+  "severity": "MEDIUM",
+  "title": "The gems22 candidate is deliberately NOT registered in the trunk download manifest",
+  "detail": "The merged trunk publishes docs/data/submissions.json, and tests/test_site_integrity.py asserts that docs/downloads/ contains EXACTLY the files that manifest lists. Registering the gems22 candidate there was tried and rejected: scripts/build_site.py lines 68-74 inject DEFAULT holdout figures into any candidate that lacks them -- mean_dense_dti 0.2162, mean_sparse_dti 0.0878 and holdout_gate_vs_h16_1.passed = True. Those are H22-1's numbers. The gems22 candidate was never evaluated on a Dense/Sparse quadrant holdout at all (that design is rejected here as structurally invalid, flag F-09), so letting the defaults fire would have published a holdout score and a PASSED gate for a file that has neither.",
+  "disposition": "The gems22 artefacts live in docs/downloads/gems22/, a subdirectory the trunk manifest test does not scan (it filters on is_file()), and are served from docs/gems22-index.html with their own verification table. README section 0A links to that page and states both candidates' budgets side by side. To register gems22 in the trunk manifest properly, build_site.py must first stop defaulting holdout fields, and an honest Dense/Sparse figure must exist or be rendered as not-applicable. Both suites pass on the merged tree: 172 passed, 2 skipped.",
+  "source": "scripts/build_site.py lines 68-74; tests/test_site_integrity.py test_downloads_folder_contains_only_files_listed_in_the_manifest"
  }
 ]

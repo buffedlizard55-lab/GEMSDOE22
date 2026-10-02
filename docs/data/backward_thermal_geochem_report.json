@@ -1,0 +1,42 @@
+{
+  "generated_utc": "2026-09-30T21:32:05+00:00",
+  "physical_principle": "Amagmatic Great Basin thermal and geochemical anomalies require deep permeable fault conduits for fluid upflow. When a thermal spring/well, silica/cation geothermometer anomaly, 2m temperature probe anomaly, or sinter/travertine/tufa deposit lies >500 m from any catalogued fault in labels.tif, backward physical inversion requires an unmapped permeable fault conduit within the local upflow/outflow radius.",
+  "datasets": {
+    "gdr1391_wellspring": {
+      "source_url": "https://gdr.openei.org/submissions/1391 (wellspringdata.gdb.zip, DOI 10.15121/1881483)",
+      "total_records_in_footprint": 27092,
+      "thermal_or_geochem_anomalies": 7859,
+      "temp_ge_25c": 6139,
+      "temp_ge_37c": 3819,
+      "quartz_geotherm_ge_70c": 856,
+      "chalcedony_geotherm_ge_60c": 567,
+      "cation_geotherm_ge_80c": 499,
+      "orphan_gt_500m_count": 5950,
+      "orphan_gt_500m_fraction": 0.7571,
+      "orphan_gt_1000m_count": 5011,
+      "orphan_gt_1000m_fraction": 0.6376
+    },
+    "gdr1391_2m_temperature_probes": {
+      "source_url": "https://gdr.openei.org/submissions/1391 (2m_temperature_probe_INGENIOUS_regional_data.zip)",
+      "total_stations_in_footprint": 3038,
+      "anomalous_f2mdab_ge_1_5c": 687,
+      "orphan_gt_500m_count": 605,
+      "orphan_gt_500m_fraction": 0.8806,
+      "orphan_gt_1000m_count": 535,
+      "orphan_gt_1000m_fraction": 0.7787
+    },
+    "gdr1391_paleo_geothermal_deposits": {
+      "source_url": "https://gdr.openei.org/submissions/1391 (paleo_geothermal_regional.zip)",
+      "total_sites_in_footprint": 372,
+      "orphan_gt_500m_count": 278,
+      "orphan_gt_500m_fraction": 0.7473,
+      "orphan_gt_1000m_count": 251,
+      "orphan_gt_1000m_fraction": 0.6747
+    },
+    "gdr1391_quaternary_volcanic_vents": {
+      "source_url": "https://gdr.openei.org/submissions/1391 (great_basin_q_volcanics.zip)",
+      "total_vents_in_footprint": 21,
+      "orphan_gt_500m_count": 18
+    }
+  }
+}

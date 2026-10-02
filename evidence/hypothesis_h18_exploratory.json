@@ -1,0 +1,107 @@
+{
+  "generated_utc": "2026-09-30T01:24:45+00:00",
+  "status": "EXPLORATORY_POST_HOC_NOT_GATE_ELIGIBLE",
+  "arms": {
+    "E1_parallel_prior": {
+      "mean_dense_dti": 0.14206,
+      "mean_sparse_dti": 0.08197,
+      "fold_dense": [
+        0.0823,
+        0.20126,
+        0.10921,
+        0.17548
+      ],
+      "fold_sparse": [
+        0.07479,
+        0.07796,
+        0.06543,
+        0.1097
+      ]
+    },
+    "E2_plain_density_prior": {
+      "mean_dense_dti": 0.21317,
+      "mean_sparse_dti": 0.09306,
+      "fold_dense": [
+        0.20844,
+        0.23864,
+        0.1545,
+        0.25108
+      ],
+      "fold_sparse": [
+        0.10171,
+        0.08562,
+        0.07766,
+        0.10724
+      ]
+    },
+    "H18_3a_complexity_prior": {
+      "mean_dense_dti": 0.21319,
+      "mean_sparse_dti": 0.09401,
+      "fold_dense": [
+        0.20839,
+        0.23871,
+        0.15356,
+        0.25209
+      ],
+      "fold_sparse": [
+        0.10112,
+        0.08631,
+        0.07762,
+        0.11098
+      ]
+    }
+  },
+  "resampled_sparse": {
+    "draw_1": {
+      "H16_1_baseline": 0.09074,
+      "H18_3a_complexity_prior": 0.10409,
+      "E2_plain_density_prior": 0.10145,
+      "E1_parallel_prior": 0.08753
+    },
+    "draw_2": {
+      "H16_1_baseline": 0.07929,
+      "H18_3a_complexity_prior": 0.09413,
+      "E2_plain_density_prior": 0.09047,
+      "E1_parallel_prior": 0.0774
+    },
+    "draw_3": {
+      "H16_1_baseline": 0.08382,
+      "H18_3a_complexity_prior": 0.10042,
+      "E2_plain_density_prior": 0.09786,
+      "E1_parallel_prior": 0.08562
+    },
+    "draw_4": {
+      "H16_1_baseline": 0.09126,
+      "H18_3a_complexity_prior": 0.09962,
+      "E2_plain_density_prior": 0.09936,
+      "E1_parallel_prior": 0.08473
+    },
+    "draw_5": {
+      "H16_1_baseline": 0.0877,
+      "H18_3a_complexity_prior": 0.09915,
+      "E2_plain_density_prior": 0.09849,
+      "E1_parallel_prior": 0.08399
+    }
+  },
+  "resampled_sparse_summary": {
+    "H16_1_baseline": {
+      "mean": 0.08656,
+      "sd": 0.00503
+    },
+    "H18_3a_complexity_prior": {
+      "mean": 0.09948,
+      "sd": 0.00357
+    },
+    "E2_plain_density_prior": {
+      "mean": 0.09753,
+      "sd": 0.00417
+    },
+    "E1_parallel_prior": {
+      "mean": 0.08385,
+      "sd": 0.00384
+    }
+  },
+  "draws_where_3a_beats_baseline": 5,
+  "draws_where_3a_beats_plain_density": 5,
+  "elapsed_seconds": 1055.0
+}

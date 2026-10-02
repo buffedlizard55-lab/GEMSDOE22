@@ -101,8 +101,8 @@ def test_zip_contains_a_single_geotiff(tmp_path, masks):
 
 
 def test_published_files_pass_every_hard_check():
-    """Guard on the actual artefacts served from docs/downloads/."""
-    d = REPO / "docs/downloads"
+    """Guard on the actual artefacts served from docs/downloads/gems22/."""
+    d = REPO / "docs/downloads" / "gems22"
     tifs = sorted(d.glob("*.tif"))
     if not tifs:
         pytest.skip("no submission built yet")

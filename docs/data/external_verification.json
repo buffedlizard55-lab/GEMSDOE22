@@ -1,0 +1,873 @@
+{
+  "generated_utc": "2026-09-30T19:52:47+00:00",
+  "downloads": {
+    "labels": {
+      "url": "https://raw.githubusercontent.com/buffedlizard55-lab/GEMSDOE/main/data/bridge/existing_faults.tif",
+      "bytes": 425830,
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "ok": true
+    },
+    "template": {
+      "url": "https://raw.githubusercontent.com/buffedlizard55-lab/GEMSDOE/main/data/bridge/example_submission.tif",
+      "bytes": 1599597,
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "ok": true
+    },
+    "gdr_qfaults_v2": {
+      "url": "https://gdr.openei.org/files/1391/qfaults_ingenious_nad83conus117_2023-06-27.zip",
+      "bytes": 6131182,
+      "sha256": "c7b091c9ac8bca140ad89ee6bb2bd63dd3ac12e3013acbfd8373d11c9faee59d",
+      "ok": true
+    },
+    "gdr_qfaults_v1": {
+      "url": "https://gdr.openei.org/files/1391/faults_quaternary_INGENIOUS_regional_data.zip",
+      "bytes": 6037873,
+      "sha256": "13e851e3618486d1ce8cdcaf238cbf7c5e290805dacee698e479ba3052f53a2a",
+      "ok": true
+    },
+    "gdr_wellspring": {
+      "url": "https://gdr.openei.org/files/1391/wellspringdata.gdb.zip",
+      "bytes": 20810222,
+      "sha256": "7222178427ce0634453846819e6482fd6867536534fe9600987099e3b356590f",
+      "ok": true
+    },
+    "gdr_paleo": {
+      "url": "https://gdr.openei.org/files/1391/paleo_geothermal_regional.zip",
+      "bytes": 84008,
+      "sha256": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca",
+      "ok": true
+    },
+    "gdr_volcanics": {
+      "url": "https://gdr.openei.org/files/1391/great_basin_q_volcanics.zip",
+      "bytes": 9898770,
+      "sha256": "c4a2d2dfd5c44f42e0aba37290948881631aff312b8b9ca7934b6dc1e451e5be",
+      "ok": true
+    },
+    "gdr_2m_probes": {
+      "url": "https://gdr.openei.org/files/1391/2m_temperature_probe_INGENIOUS_regional_data.zip",
+      "bytes": 1080530,
+      "sha256": "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3",
+      "ok": true
+    },
+    "sgmc_nv": {
+      "url": "https://mrdata.usgs.gov/geology/state/shp/NV.zip",
+      "bytes": 69056094,
+      "sha256": "3b333ac025e59aae7f0d827db45ba32c425cf867eb341561a788af1de186b76b",
+      "ok": true
+    },
+    "sgmc_ca": {
+      "url": "https://mrdata.usgs.gov/geology/state/shp/CA.zip",
+      "bytes": 24977406,
+      "sha256": "78765ba4428df9f25a84f86e0b2529bd0508fc8a2cf65d2f41a830e82bccfd58",
+      "ok": true
+    }
+  },
+  "steps": {
+    "A_labels_provenance_vs_GDR_qfaults": {
+      "ok": true,
+      "official_source": "https://gdr.openei.org/submissions/1391 (DOI 10.15121/1881483)",
+      "versions": {
+        "gdr_qfaults_v2": {
+          "ok": true,
+          "layers": {
+            "qfaults_ingenious_nad83conus117_2023-06-27.shp": {
+              "rows": 22956,
+              "crs": "PROJCS[\"NAD_1983_Contiguous_USA_Albers_117\",GEOGCS[\"NAD83\",DATUM[\"North_American_Datum_1983\",SPHEROID[\"GRS 1980\",6378137,298.257222101,AUTHORITY[\"EPSG\",\"7019\"]],AUTHORITY[\"EPSG\",\"6269\"]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",23],PARAMETER[\"longitude_of_center\",-117],PARAMETER[\"standard_parallel_1\",29.5],PARAMETER[\"standard_parallel_2\",45.5],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+              "geom_types": [
+                "LineString",
+                "MultiLineString"
+              ],
+              "columns": [
+                "NAME",
+                "NUM",
+                "DIPDIRECT",
+                "SLIPDIRECT",
+                "SLIPSENSE",
+                "SECONDARY",
+                "SLIPRT2023",
+                "SLIPRTNUM",
+                "REC2023",
+                "RECNUM",
+                "CODE2023",
+                "FCODE2023",
+                "RCODE2023",
+                "SCODE2023",
+                "FTYPE_",
+                "MAPSCALE",
+                "SLIPINFO",
+                "RECINFO",
+                "COMMENTS",
+                "GEOCOMM",
+                "Shape_Leng",
+                "geometry"
+              ]
+            }
+          },
+          "lines_in_grid_bounds": 1126,
+          "all_touched_false": {
+            "raster_pixels": 60982,
+            "labels_pixels": 60988,
+            "exact_overlap_px": 60958,
+            "labels_within_0px_of_raster_frac": 0.9995,
+            "raster_within_0px_of_labels_frac": 0.9996,
+            "labels_within_1px_of_raster_frac": 1.0,
+            "raster_within_1px_of_labels_frac": 0.9999,
+            "labels_within_2px_of_raster_frac": 1.0,
+            "raster_within_2px_of_labels_frac": 1.0,
+            "labels_within_3px_of_raster_frac": 1.0,
+            "raster_within_3px_of_labels_frac": 1.0
+          },
+          "all_touched_true": {
+            "raster_pixels": 82871,
+            "labels_pixels": 60988,
+            "exact_overlap_px": 58876,
+            "labels_within_0px_of_raster_frac": 0.9654,
+            "raster_within_0px_of_labels_frac": 0.7105,
+            "labels_within_1px_of_raster_frac": 1.0,
+            "raster_within_1px_of_labels_frac": 0.9999,
+            "labels_within_2px_of_raster_frac": 1.0,
+            "raster_within_2px_of_labels_frac": 1.0,
+            "labels_within_3px_of_raster_frac": 1.0,
+            "raster_within_3px_of_labels_frac": 1.0
+          },
+          "saved_traces_csv": "evidence/ci/gdr_qfaults_traces.csv",
+          "saved_traces_count": 1126
+        },
+        "gdr_qfaults_v1": {
+          "ok": true,
+          "layers": {
+            "faults_quaternary_regional.shp": {
+              "rows": 22118,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "LineString",
+                "MultiLineString"
+              ],
+              "columns": [
+                "NAME",
+                "SLIPRATE_N",
+                "RECENCY_N",
+                "CODE",
+                "NUM",
+                "AGE",
+                "ACODE",
+                "SLIPCODE",
+                "SLIPDIRECT",
+                "FCODE",
+                "MAPPEDSCAL",
+                "SECONDARYS",
+                "CFM_URL",
+                "SLIPRTmmyr",
+                "Comments",
+                "Geometry_C",
+                "Notes",
+                "SlipRate_c",
+                "Recency_ci",
+                "DIPDIRECT",
+                "FTYPE_",
+                "SLIPSENSE",
+                "geometry"
+              ]
+            }
+          },
+          "lines_in_grid_bounds": 1126,
+          "all_touched_false": {
+            "raster_pixels": 60982,
+            "labels_pixels": 60988,
+            "exact_overlap_px": 60958,
+            "labels_within_0px_of_raster_frac": 0.9995,
+            "raster_within_0px_of_labels_frac": 0.9996,
+            "labels_within_1px_of_raster_frac": 1.0,
+            "raster_within_1px_of_labels_frac": 0.9999,
+            "labels_within_2px_of_raster_frac": 1.0,
+            "raster_within_2px_of_labels_frac": 1.0,
+            "labels_within_3px_of_raster_frac": 1.0,
+            "raster_within_3px_of_labels_frac": 1.0
+          },
+          "all_touched_true": {
+            "raster_pixels": 82871,
+            "labels_pixels": 60988,
+            "exact_overlap_px": 58876,
+            "labels_within_0px_of_raster_frac": 0.9654,
+            "raster_within_0px_of_labels_frac": 0.7105,
+            "labels_within_1px_of_raster_frac": 1.0,
+            "raster_within_1px_of_labels_frac": 0.9999,
+            "labels_within_2px_of_raster_frac": 1.0,
+            "raster_within_2px_of_labels_frac": 1.0,
+            "labels_within_3px_of_raster_frac": 1.0,
+            "raster_within_3px_of_labels_frac": 1.0
+          }
+        }
+      }
+    },
+    "B_thermal_features": {
+      "ok": true,
+      "datasets": {
+        "gdr_wellspring": {
+          "ok": true,
+          "layers": {
+            "wellspringdata.gdb:spring_chemistry_20220808": {
+              "rows": 7522,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "Point"
+              ],
+              "columns": [
+                "sortid",
+                "analysisuri",
+                "springname",
+                "springtype",
+                "thermalclass",
+                "waterphase",
+                "sampledatetime",
+                "sampledby",
+                "origsampleid",
+                "origfileaccess",
+                "sourcedb",
+                "citation",
+                "analyticallab",
+                "labnoteschem",
+                "fieldnotes",
+                "alpha_temp",
+                "temp_c",
+                "geothermcat_c",
+                "geothermcat_info",
+                "geothermquartz_c",
+                "geothermquartz_info",
+                "geothermchalc_c",
+                "geothermchalc_info",
+                "chargebalance_pct",
+                "chargebalance_info",
+                "sampledepth_m",
+                "totaldepth_m",
+                "depth_info",
+                "alpha_flowrate",
+                "flowrate_lmin"
+              ],
+              "in_footprint": 1014,
+              "distance_to_known_fault_px": {
+                "p25": 2.0,
+                "median": 11.873147010803223,
+                "p75": 32.22151565551758,
+                "frac_within_10px_1km": 0.4714,
+                "frac_beyond_30px_3km": 0.3432
+              }
+            },
+            "wellspringdata.gdb:spring_features_20220808": {
+              "rows": 5435,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "Point"
+              ],
+              "columns": [
+                "sortid",
+                "featureuri",
+                "springname",
+                "status",
+                "springtype",
+                "thermalclass",
+                "maxmeasuredtemp_c",
+                "county",
+                "state_",
+                "plss_meridians",
+                "township",
+                "range_",
+                "section_",
+                "sectionpart",
+                "utm_e",
+                "utm_n",
+                "utmdatumzone",
+                "latdegree",
+                "longdegree",
+                "srs",
+                "locationuncertaintystatement",
+                "elevationgl_m",
+                "informationsource",
+                "hastemperaturedata",
+                "hasgeochemistrydata",
+                "geometry"
+              ],
+              "in_footprint": 499,
+              "distance_to_known_fault_px": {
+                "p25": 2.2360680103302,
+                "median": 15.132745742797852,
+                "p75": 32.572994232177734,
+                "frac_within_10px_1km": 0.4509,
+                "frac_beyond_30px_3km": 0.3547
+              }
+            },
+            "wellspringdata.gdb:spring_temperature_20220808": {
+              "rows": 6478,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "Point"
+              ],
+              "columns": [
+                "sortid",
+                "recorduri",
+                "springname",
+                "springtype",
+                "recorddate",
+                "measuredby",
+                "measuredtemp_c",
+                "measuredtempmethod",
+                "flowrate_literspermin",
+                "flowratemethod",
+                "flowcontinuity",
+                "informationsource",
+                "relatedfeatureuri",
+                "latdegree",
+                "longdegree",
+                "srs",
+                "geometry"
+              ],
+              "in_footprint": 945,
+              "distance_to_known_fault_px": {
+                "p25": 2.0,
+                "median": 11.704699516296387,
+                "p75": 31.95309066772461,
+                "frac_within_10px_1km": 0.472,
+                "frac_beyond_30px_3km": 0.3397
+              }
+            },
+            "wellspringdata.gdb:well_chemistry_20220808": {
+              "rows": 41057,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "Point"
+              ],
+              "columns": [
+                "sortid",
+                "analysisuri",
+                "wellname",
+                "apino",
+                "permitno",
+                "welltype",
+                "thermalclass",
+                "waterphase",
+                "sampledatetime",
+                "sampledby",
+                "origsampleid",
+                "origfileaccess",
+                "sourcedb",
+                "citation",
+                "analyticallab",
+                "labnoteschem",
+                "fieldnotes",
+                "alpha_temp",
+                "temp_c",
+                "geothermcat_c",
+                "geothermcat_info",
+                "geothermquartz_c",
+                "geothermquartz_info",
+                "geothermchalc_c",
+                "geothermchalc_info",
+                "chargebalance_pct",
+                "chargebalance_info",
+                "sampledepth_m",
+                "totaldepth_m",
+                "depth_info"
+              ],
+              "in_footprint": 3274,
+              "distance_to_known_fault_px": {
+                "p25": 12.041594505310059,
+                "median": 33.970577239990234,
+                "p75": 48.83646011352539,
+                "frac_within_10px_1km": 0.226,
+                "frac_beyond_30px_3km": 0.5629
+              }
+            },
+            "wellspringdata.gdb:well_features_20220808": {
+              "rows": 163545,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "Point"
+              ],
+              "columns": [
+                "sortid",
+                "featureuri",
+                "wellname",
+                "apino",
+                "permitno",
+                "permitissdatetime",
+                "permitexpiresdatetime",
+                "permitstatus",
+                "operator_",
+                "owner_",
+                "spuddate",
+                "completiondate",
+                "status",
+                "statusdate",
+                "welltype",
+                "sector",
+                "function_",
+                "thermalclass",
+                "maxmeasuredtemp_c",
+                "commodityofinterest",
+                "county",
+                "state_",
+                "plss_meridians",
+                "township",
+                "range_",
+                "township_D",
+                "range__D",
+                "section_",
+                "sectionpart",
+                "utm_e"
+              ],
+              "in_footprint": 21854,
+              "distance_to_known_fault_px": {
+                "p25": 9.899495124816895,
+                "median": 24.031227111816406,
+                "p75": 46.856163024902344,
+                "frac_within_10px_1km": 0.2545,
+                "frac_beyond_30px_3km": 0.4287
+              }
+            },
+            "wellspringdata.gdb:well_temperature_20220808": {
+              "rows": 43478,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "Point"
+              ],
+              "columns": [
+                "sortid",
+                "recorduri",
+                "wellname",
+                "apino",
+                "permitno",
+                "welltype",
+                "recorddate",
+                "measuredby",
+                "surfacemeasuredtemp_c",
+                "minmeasuredtemp_c",
+                "maxmeasuredtemp_c",
+                "bottommeasuredtemp_c",
+                "correctedbottomtemp_c",
+                "correctionmethod",
+                "measuredtempmethod",
+                "measuredtempdepth_m",
+                "measurementformation",
+                "timesincecirculation_hr",
+                "circulationduration_hr",
+                "informationsource",
+                "relatedfeatureuri",
+                "latdegree",
+                "longdegree",
+                "srs",
+                "staticwaterlevel_m",
+                "geometry"
+              ],
+              "in_footprint": 6053,
+              "distance_to_known_fault_px": {
+                "p25": 8.485280990600586,
+                "median": 23.76972770690918,
+                "p75": 46.87216567993164,
+                "frac_within_10px_1km": 0.2842,
+                "frac_beyond_30px_3km": 0.4431
+              }
+            }
+          }
+        },
+        "gdr_paleo": {
+          "ok": true,
+          "layers": {
+            "Paleo_geothermal_final.shp": {
+              "rows": 709,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "Point"
+              ],
+              "columns": [
+                "FID_",
+                "Long_deg",
+                "Lat_deg",
+                "Location",
+                "State",
+                "Deposit_ty",
+                "Map_unit",
+                "Ref_source",
+                "Comments",
+                "geometry"
+              ],
+              "in_footprint": 281,
+              "distance_to_known_fault_px": {
+                "p25": 4.0,
+                "median": 33.83784866333008,
+                "p75": 79.5110092163086,
+                "frac_within_10px_1km": 0.3238,
+                "frac_beyond_30px_3km": 0.5196
+              }
+            }
+          }
+        },
+        "gdr_volcanics": {
+          "ok": true,
+          "layers": {
+            "great_basin_vents.shp": {
+              "rows": 1514,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "Point"
+              ],
+              "columns": [
+                "Rock_Comp",
+                "Age",
+                "State",
+                "Rock_Type",
+                "Age_Source",
+                "Source",
+                "Geo_Age",
+                "Type",
+                "AREA",
+                "PERIMETER",
+                "Name",
+                "Descriptio",
+                "Map_Symbol",
+                "Lat",
+                "Long",
+                "geometry"
+              ],
+              "in_footprint": 21,
+              "distance_to_known_fault_px": {
+                "p25": 8.062257766723633,
+                "median": 22.203603744506836,
+                "p75": 52.55473327636719,
+                "frac_within_10px_1km": 0.2857,
+                "frac_beyond_30px_3km": 0.4762
+              }
+            },
+            "great_basin_flows.shp": {
+              "rows": 5281,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "MultiPolygon",
+                "Polygon"
+              ],
+              "columns": [
+                "Flow_Name",
+                "Rock_Type",
+                "Age",
+                "SHAPE_Leng",
+                "SHAPE_Area",
+                "Source",
+                "Rock_Comp",
+                "State",
+                "Age_Source",
+                "Geo_Age",
+                "AREA",
+                "PERIMETER",
+                "descriptio",
+                "AgeSource",
+                "Map_Symbol",
+                "geometry"
+              ],
+              "in_footprint": 84,
+              "distance_to_known_fault_px": {
+                "p25": 17.167892456054688,
+                "median": 54.057159423828125,
+                "p75": 63.19941329956055,
+                "frac_within_10px_1km": 0.131,
+                "frac_beyond_30px_3km": 0.7024
+              }
+            }
+          }
+        },
+        "gdr_2m_probes": {
+          "ok": true,
+          "layers": {
+            "2m_temperature_probe_n83geo.shp": {
+              "rows": 3800,
+              "crs": "EPSG:4269",
+              "geom_types": [
+                "Point"
+              ],
+              "columns": [
+                "OBJECTID",
+                "Station",
+                "Area",
+                "County",
+                "State",
+                "UTM_E",
+                "UTM_N",
+                "T1m",
+                "T15m",
+                "T2m",
+                "F2mDAB",
+                "Date",
+                "Note",
+                "Project",
+                "Organizati",
+                "Contact",
+                "Citation",
+                "Notes",
+                "T1m_2",
+                "T15m_2",
+                "T2m_2",
+                "Date_2",
+                "T1m_3",
+                "T15m_3",
+                "T2m_3",
+                "Date_3",
+                "T1m_4",
+                "T15m_4",
+                "T2m_4",
+                "Date_4"
+              ],
+              "in_footprint": 2782,
+              "distance_to_known_fault_px": {
+                "p25": 7.6157732009887695,
+                "median": 19.697715759277344,
+                "p75": 39.96242904663086,
+                "frac_within_10px_1km": 0.3181,
+                "frac_beyond_30px_3km": 0.3562
+              }
+            }
+          }
+        }
+      },
+      "random_footprint_pixels_distance_to_known_fault_px": {
+        "p25": 10.0,
+        "median": 23.194826126098633,
+        "p75": 44.65422821044922,
+        "frac_within_10px_1km": 0.25088
+      },
+      "saved_wellspring_csv": {
+        "path": "evidence/ci/gdr_wellspring_in_footprint.csv",
+        "rows": 27092
+      },
+      "saved_volcanics_csv": {
+        "path": "evidence/ci/gdr_volcanic_vents_in_footprint.csv",
+        "rows": 21
+      }
+    },
+    "C_sgmc_faults": {
+      "ok": true,
+      "source": "https://mrdata.usgs.gov/geology/state/ (SGMC; nominal scale 1:1,000,000 per ScienceBase item 5888bf4fe4b05ccb964bab9d)",
+      "states": {
+        "sgmc_nv": {
+          "ok": true,
+          "layers": {
+            "NV_structure.shp": {
+              "rows": 54602,
+              "rows_mentioning_fault_or_thrust": 0,
+              "in_grid_bounds": 20079
+            }
+          }
+        },
+        "sgmc_ca": {
+          "ok": true,
+          "layers": {
+            "CA_structure.shp": {
+              "rows": 31145,
+              "rows_mentioning_fault_or_thrust": 0,
+              "in_grid_bounds": 1339
+            }
+          }
+        }
+      },
+      "fault_lines_in_grid": 21418,
+      "sgmc_fault_pixels_in_footprint": 83593,
+      "sgmc_off_catalogue_pixels_gt_3px": 62122,
+      "derived_raster": {
+        "path": "evidence/ci/derived_sgmc_faults_100m_u8.tif",
+        "bytes": 198602
+      }
+    },
+    "D_targeted_1m_dem_openness_lrm": {
+      "ok": true,
+      "method": "Topographic Openness (Yokoyama et al. 2002) + Local Relief Model (Hesse 2010) on 1m USGS 3DEP DEM tiles",
+      "tiles_requested": 8,
+      "tiles_succeeded": 8,
+      "total_covered_footprint_cells_100m": 71974,
+      "npz_artifact": "evidence/ci/dem1m_high_prior_openness_lrm.npz",
+      "npz_bytes": 610575,
+      "tiles": [
+        {
+          "tile_id": "USGS_1M_11_x34y441_NV_WestCentral_EarthMRI_2020_D20",
+          "project": "NV_WestCentral_EarthMRI_2020_D20",
+          "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/NV_WestCentral_EarthMRI_2020_D20/TIFF/USGS_1M_11_x34y441_NV_WestCentral_EarthMRI_2020_D20.tif",
+          "structural_zone": "Desert Queen / Hot Springs Mountains step-over & fault tips",
+          "tips_in_tile": 18,
+          "orphan_thermal_anomalies_1500m": 40,
+          "joint_prior_score": 0.036471,
+          "bytes": 257861856,
+          "sha256": "748020bfdc133c055c7801f38cdf0932bdce468d9a4f48c45105ad254996bebd",
+          "status": "ok",
+          "window": [
+            984,
+            965,
+            103,
+            103
+          ],
+          "valid_footprint_cells_100m": 10201,
+          "mean_lrm_abs_m": 1.9944,
+          "mean_lrm_grad": 0.1718,
+          "mean_openness_asymm_rad": 0.0961,
+          "seconds": 30.14
+        },
+        {
+          "tile_id": "USGS_1M_11_x36y436_NV_WestCentral_EarthMRI_2020_D20",
+          "project": "NV_WestCentral_EarthMRI_2020_D20",
+          "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/NV_WestCentral_EarthMRI_2020_D20/TIFF/USGS_1M_11_x36y436_NV_WestCentral_EarthMRI_2020_D20.tif",
+          "structural_zone": "Stillwater / Salt Wells / Carson Sink accommodation & step-over zone",
+          "tips_in_tile": 13,
+          "orphan_thermal_anomalies_1500m": 38,
+          "joint_prior_score": 0.024895,
+          "bytes": 246246784,
+          "sha256": "47816119910b14d255680869cb029de7aaf23c381866854ccc8bd56f4854ec3a",
+          "status": "ok",
+          "window": [
+            1484,
+            1165,
+            103,
+            103
+          ],
+          "valid_footprint_cells_100m": 10201,
+          "mean_lrm_abs_m": 1.6717,
+          "mean_lrm_grad": 0.1527,
+          "mean_openness_asymm_rad": 0.0941,
+          "seconds": 28.72
+        },
+        {
+          "tile_id": "USGS_1M_11_x32y441_NV_WestCentral_EarthMRI_2020_D20",
+          "project": "NV_WestCentral_EarthMRI_2020_D20",
+          "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/NV_WestCentral_EarthMRI_2020_D20/TIFF/USGS_1M_11_x32y441_NV_WestCentral_EarthMRI_2020_D20.tif",
+          "structural_zone": "Bradys / Patua / Hazen displacement transfer & relay ramp",
+          "tips_in_tile": 18,
+          "orphan_thermal_anomalies_1500m": 28,
+          "joint_prior_score": 0.021425,
+          "bytes": 261340918,
+          "sha256": "c6938dc33a94eaa967adb64e67df320d951c5a9223ca6a8f9adca372f7b980f3",
+          "status": "ok",
+          "window": [
+            984,
+            765,
+            103,
+            103
+          ],
+          "valid_footprint_cells_100m": 10201,
+          "mean_lrm_abs_m": 2.4089,
+          "mean_lrm_grad": 0.1844,
+          "mean_openness_asymm_rad": 0.1043,
+          "seconds": 30.02
+        },
+        {
+          "tile_id": "USGS_1M_11_x26y446_NV_WestCentral_EarthMRI_2020_D20",
+          "project": "NV_WestCentral_EarthMRI_2020_D20",
+          "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/NV_WestCentral_EarthMRI_2020_D20/TIFF/USGS_1M_11_x26y446_NV_WestCentral_EarthMRI_2020_D20.tif",
+          "structural_zone": "Astor Pass / Pyramid Lake tufa & fault termination corridor",
+          "tips_in_tile": 6,
+          "orphan_thermal_anomalies_1500m": 94,
+          "joint_prior_score": 0.021152,
+          "bytes": 318773552,
+          "sha256": "0b4e7cce8321394702fa3b234f0919b27c0db5b911623bff7bbcdf49ee79405c",
+          "status": "ok",
+          "window": [
+            484,
+            165,
+            103,
+            56
+          ],
+          "valid_footprint_cells_100m": 870,
+          "mean_lrm_abs_m": 5.0953,
+          "mean_lrm_grad": 0.2993,
+          "mean_openness_asymm_rad": 0.1472,
+          "seconds": 22.0
+        },
+        {
+          "tile_id": "USGS_1M_11_x33y441_NV_WestCentral_EarthMRI_2020_D20",
+          "project": "NV_WestCentral_EarthMRI_2020_D20",
+          "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/NV_WestCentral_EarthMRI_2020_D20/TIFF/USGS_1M_11_x33y441_NV_WestCentral_EarthMRI_2020_D20.tif",
+          "structural_zone": "Bradys / Desert Peak step-over & blind geothermal corridor",
+          "tips_in_tile": 9,
+          "orphan_thermal_anomalies_1500m": 53,
+          "joint_prior_score": 0.020921,
+          "bytes": 272176740,
+          "sha256": "375b5ec60627925630c1bed2add49025c490331b6464cead08a4ab7a1dba78ce",
+          "status": "ok",
+          "window": [
+            984,
+            865,
+            103,
+            103
+          ],
+          "valid_footprint_cells_100m": 10403,
+          "mean_lrm_abs_m": 3.3544,
+          "mean_lrm_grad": 0.2549,
+          "mean_openness_asymm_rad": 0.1516,
+          "seconds": 30.25
+        },
+        {
+          "tile_id": "USGS_1M_11_x38y430_NV_WestCentral_EarthMRI_2020_D20",
+          "project": "NV_WestCentral_EarthMRI_2020_D20",
+          "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/NV_WestCentral_EarthMRI_2020_D20/TIFF/USGS_1M_11_x38y430_NV_WestCentral_EarthMRI_2020_D20.tif",
+          "structural_zone": "Southern Dixie Valley / Pirouette Mountain piedmont step-over",
+          "tips_in_tile": 5,
+          "orphan_thermal_anomalies_1500m": 49,
+          "joint_prior_score": 0.01385,
+          "bytes": 264658787,
+          "sha256": "fca97269aa091a7c5cb9a77e8e33eeae91285d7561d03399e7cbc06bb45edafb",
+          "status": "ok",
+          "window": [
+            2084,
+            1365,
+            103,
+            103
+          ],
+          "valid_footprint_cells_100m": 10201,
+          "mean_lrm_abs_m": 2.8735,
+          "mean_lrm_grad": 0.2122,
+          "mean_openness_asymm_rad": 0.1289,
+          "seconds": 28.16
+        },
+        {
+          "tile_id": "USGS_1M_11_x39y430_NV_WestCentral_EarthMRI_2020_D20",
+          "project": "NV_WestCentral_EarthMRI_2020_D20",
+          "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/NV_WestCentral_EarthMRI_2020_D20/TIFF/USGS_1M_11_x39y430_NV_WestCentral_EarthMRI_2020_D20.tif",
+          "structural_zone": "Dixie Valley / Clan Alpine range-front step-over",
+          "tips_in_tile": 8,
+          "orphan_thermal_anomalies_1500m": 46,
+          "joint_prior_score": 0.013034,
+          "bytes": 266045541,
+          "sha256": "70d31c93e0b848680fdb0d14c71c16c62643e2eb386764e0504ca02cffb2b5cd",
+          "status": "ok",
+          "window": [
+            2084,
+            1465,
+            103,
+            103
+          ],
+          "valid_footprint_cells_100m": 10302,
+          "mean_lrm_abs_m": 3.6187,
+          "mean_lrm_grad": 0.2623,
+          "mean_openness_asymm_rad": 0.1614,
+          "seconds": 29.6
+        },
+        {
+          "tile_id": "USGS_1M_11_x32y439_NV_WestCentral_EarthMRI_2020_D20",
+          "project": "NV_WestCentral_EarthMRI_2020_D20",
+          "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/NV_WestCentral_EarthMRI_2020_D20/TIFF/USGS_1M_11_x32y439_NV_WestCentral_EarthMRI_2020_D20.tif",
+          "structural_zone": "Soda Lake / Upsal Hogback blind quaternary basin-floor fault zone",
+          "tips_in_tile": 16,
+          "orphan_thermal_anomalies_1500m": 13,
+          "joint_prior_score": 0.013011,
+          "bytes": 261262739,
+          "sha256": "334152fb9d87d3c2390532b946c1f385f5c0026e94eec11292f94e68df78c6ae",
+          "status": "ok",
+          "window": [
+            1184,
+            765,
+            103,
+            103
+          ],
+          "valid_footprint_cells_100m": 10201,
+          "mean_lrm_abs_m": 2.2269,
+          "mean_lrm_grad": 0.1831,
+          "mean_openness_asymm_rad": 0.1044,
+          "seconds": 101.59
+        }
+      ]
+    }
+  }
+}

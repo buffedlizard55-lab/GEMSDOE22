@@ -1,0 +1,596 @@
+{
+  "generated_utc": "2026-09-30T21:33:24+00:00",
+  "git_commit": "beb6d8e944",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "rolling_limit": "3 submissions per rolling 7-day window per entity (official rules 3.2/3.4; staff: forum topic 11524 post 2)",
+  "claims": {
+    "score_predicted": false,
+    "statement": "Holdout numbers evaluate recovery of held-out fault traces across 4 geographic folds and gate promotion before spending a submission slot."
+  },
+  "candidates": [
+    {
+      "key": "h19-4",
+      "hid": "H19-4",
+      "title": "H19-4 Multi-Line Corroborated Synthesis (Primary Recommended \u00b7 2.50% Budget)",
+      "one_liner": "Integrates all 4 physical lines of evidence (L1 Power-Law tip/step-over deficit, L2 GDR 1391 spring/well/geothermometer & 2m probe backward inversion, L3 1m/10m 3DEP DEM Topographic Openness & LRM, L4 Geopotential strike worms), discards single-layer pattern matches, and wins 4/4 Dense and 4/4 Sparse holdout folds over H16-1.",
+      "content_id": "691e4dfa",
+      "lines_satisfied": [
+        "L1_PopScaling_TipRelay",
+        "L2_Backward_ThermalGeochem",
+        "L3_Openness_LRM_Scarp",
+        "L4_Geopotential_Basement"
+      ],
+      "files": {
+        "tif": {
+          "name": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+          "bytes": 1716768,
+          "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+          "href": "downloads/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif"
+        },
+        "zip": {
+          "name": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.zip",
+          "bytes": 502556,
+          "sha256": "85ed2c7b31ada3f0f6be8c2408259afcef57352ed7befbe8636c8712b986668b",
+          "href": "downloads/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.zip"
+        },
+        "tif_allfinite": {
+          "name": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-allfinite.tif",
+          "bytes": 941772,
+          "sha256": "ad52f4c2704f2a8721f74b736dc139b6b9e11cbf6130c3b971b91cfb3661ac84",
+          "href": "downloads/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-allfinite.tif"
+        }
+      },
+      "note": "19GEMSDOE H19-4 | 4-line corroborated OOF synthesis (PowerLaw tip/relay + GDR1391 thermal/geochem + 1m/10m Openness/LRM + Geopotential worm), single-layer gate, 2.5 | id 691e4dfa | not yet live-scored",
+      "checks_official_format": {
+        "file": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+        "bytes": 1716768,
+        "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+        "ok_to_upload": true,
+        "hard_failures": [],
+        "official_format_compliant": true,
+        "in_footprint_positive_pixels": 123779,
+        "in_footprint_mass": 123779.0,
+        "checks": {
+          "single_band": {
+            "pass": true,
+            "hard": true,
+            "detail": "count=1"
+          },
+          "dtype_float32": {
+            "pass": true,
+            "hard": true,
+            "detail": "dtypes=('float32',)"
+          },
+          "crs_epsg_32611": {
+            "pass": true,
+            "hard": true,
+            "detail": "EPSG:32611"
+          },
+          "shape_matches_template": {
+            "pass": true,
+            "hard": true,
+            "detail": "(3730, 3292) vs (3730, 3292)"
+          },
+          "geotransform_matches_template": {
+            "pass": true,
+            "hard": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+          },
+          "footprint_all_finite": {
+            "pass": true,
+            "hard": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint"
+          },
+          "footprint_range_0_1": {
+            "pass": true,
+            "hard": true,
+            "detail": "min=0 max=1"
+          },
+          "outside_is_nan_official_text": {
+            "pass": true,
+            "hard": false,
+            "detail": "7,111,787 of 7,111,787 outside pixels are NaN"
+          },
+          "nodata_tag_is_nan": {
+            "pass": true,
+            "hard": false,
+            "detail": "nodata=nan"
+          },
+          "variant_nan_aware_whole_array": {
+            "pass": true,
+            "hard": true,
+            "detail": "np.nanmin/np.nanmax over the whole array"
+          },
+          "variant_masked_read": {
+            "pass": true,
+            "hard": true,
+            "detail": "rasterio read(masked=True).compressed()"
+          },
+          "variant_strict_whole_array_no_nan_allowed": {
+            "pass": false,
+            "hard": false,
+            "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside"
+          },
+          "profile_matches_official_sample": {
+            "pass": true,
+            "hard": false,
+            "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)"
+          }
+        }
+      },
+      "checks_allfinite_twin": {
+        "file": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-allfinite.tif",
+        "bytes": 941772,
+        "sha256": "ad52f4c2704f2a8721f74b736dc139b6b9e11cbf6130c3b971b91cfb3661ac84",
+        "ok_to_upload": true,
+        "hard_failures": [],
+        "official_format_compliant": false,
+        "in_footprint_positive_pixels": 123779,
+        "in_footprint_mass": 123779.0,
+        "checks": {
+          "single_band": {
+            "pass": true,
+            "hard": true,
+            "detail": "count=1"
+          },
+          "dtype_float32": {
+            "pass": true,
+            "hard": true,
+            "detail": "dtypes=('float32',)"
+          },
+          "crs_epsg_32611": {
+            "pass": true,
+            "hard": true,
+            "detail": "EPSG:32611"
+          },
+          "shape_matches_template": {
+            "pass": true,
+            "hard": true,
+            "detail": "(3730, 3292) vs (3730, 3292)"
+          },
+          "geotransform_matches_template": {
+            "pass": true,
+            "hard": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+          },
+          "footprint_all_finite": {
+            "pass": true,
+            "hard": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint"
+          },
+          "footprint_range_0_1": {
+            "pass": true,
+            "hard": true,
+            "detail": "min=0 max=1"
+          },
+          "outside_is_nan_official_text": {
+            "pass": false,
+            "hard": false,
+            "detail": "0 of 7,111,787 outside pixels are NaN"
+          },
+          "nodata_tag_is_nan": {
+            "pass": false,
+            "hard": false,
+            "detail": "nodata=None"
+          },
+          "variant_nan_aware_whole_array": {
+            "pass": true,
+            "hard": true,
+            "detail": "np.nanmin/np.nanmax over the whole array"
+          },
+          "variant_masked_read": {
+            "pass": true,
+            "hard": true,
+            "detail": "rasterio read(masked=True).compressed()"
+          },
+          "variant_strict_whole_array_no_nan_allowed": {
+            "pass": true,
+            "hard": false,
+            "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside"
+          },
+          "profile_matches_official_sample": {
+            "pass": false,
+            "hard": false,
+            "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)"
+          }
+        }
+      },
+      "uniqueness": {
+        "verdict": "DISTINCT",
+        "candidate_positive_scored_pixels": 123779,
+        "nearest": [
+          {
+            "id": "16GEMSDOE",
+            "lb_score": 0.1855,
+            "identical_on_scored_pixels": false,
+            "jaccard_positive": 0.71917,
+            "a_positive": 123779,
+            "b_positive": 123939,
+            "shared_positive": 103626,
+            "frac_a_in_b": 0.83719,
+            "frac_b_in_a": 0.8361
+          },
+          {
+            "id": "7GEMSDOE",
+            "lb_score": 0.1461,
+            "identical_on_scored_pixels": false,
+            "jaccard_positive": 0.09006,
+            "a_positive": 123779,
+            "b_positive": 76859,
+            "shared_positive": 16577,
+            "frac_a_in_b": 0.13392,
+            "frac_b_in_a": 0.21568
+          },
+          {
+            "id": "GEMSDOE10-H16",
+            "lb_score": 0.0461,
+            "identical_on_scored_pixels": false,
+            "jaccard_positive": 0.08721,
+            "a_positive": 123779,
+            "b_positive": 283532,
+            "shared_positive": 32671,
+            "frac_a_in_b": 0.26395,
+            "frac_b_in_a": 0.11523
+          },
+          {
+            "id": "GEMSDOE2",
+            "lb_score": 0.156,
+            "identical_on_scored_pixels": false,
+            "jaccard_positive": 0.07717,
+            "a_positive": 123779,
+            "b_positive": 175949,
+            "shared_positive": 21472,
+            "frac_a_in_b": 0.17347,
+            "frac_b_in_a": 0.12204
+          },
+          {
+            "id": "6GEMSDOE",
+            "lb_score": 0.0286,
+            "identical_on_scored_pixels": false,
+            "jaccard_positive": 0.07655,
+            "a_positive": 123779,
+            "b_positive": 131416,
+            "shared_positive": 18147,
+            "frac_a_in_b": 0.14661,
+            "frac_b_in_a": 0.13809
+          }
+        ],
+        "threshold_near_duplicate_jaccard": 0.8,
+        "note": "Only pixels outside the known-fault mask and inside the footprint can change a score (DrivenData forum topic 11516 posts 2 and 4)."
+      },
+      "scored_pixels_predicted": 123779,
+      "share_of_footprint_pct": 2.395,
+      "holdout": {
+        "mean_dense_dti": 0.21413,
+        "mean_sparse_dti": 0.08637,
+        "fold_dense": [
+          0.20965,
+          0.23999,
+          0.15627,
+          0.25061
+        ],
+        "fold_sparse": [
+          0.09014,
+          0.0785,
+          0.0674,
+          0.10943
+        ]
+      },
+      "holdout_gate_vs_h16_1": {
+        "passed": true,
+        "rules": {
+          "mean_dense_improves": true,
+          "mean_sparse_improves": true,
+          "sparse_fold_wins_ge_3_of_4": true,
+          "no_fold_loses_more_than_0_01": true
+        },
+        "sparse_fold_wins": 4,
+        "dense_fold_wins": 4,
+        "worst_fold_delta_dense": 0.00101,
+        "worst_fold_delta_sparse": 0.00056,
+        "delta_mean_dense": 0.00141,
+        "delta_mean_sparse": 0.00096
+      },
+      "gate_eligible": true,
+      "caveat": "Clears the pre-registered 4-quadrant holdout gate against H16-1 (0.1855 LB) on 4/4 Dense folds (+0.00141) and 4/4 Sparse folds (+0.00096) at the exact same 2.50% per-quadrant budget (123,779 novel scored pixels).",
+      "similar_to_other_candidates": [
+        {
+          "key": "h19-5",
+          "jaccard_positive": 0.77723
+        }
+      ]
+    },
+    {
+      "key": "h19-5",
+      "hid": "H19-5",
+      "title": "H19-5 Power-Law Deficit Midpoint Budget Synthesis (Secondary Orthogonal \u00b7 2.45% Budget)",
+      "one_liner": "Upweights 1m/10m Topographic Openness/LRM (0.58), Backward Thermal/Geochemical Conduit Inversion (0.75), and Power-Law Tip/Relay Stress (0.60) at the analytical 2.45% short-fault deficit midpoint derived from N(>=L)=C*L^-1.762 at L_min=1,650 m; wins 4/4 Sparse holdout folds (0.08667) and is DISTINCT (Jaccard < 0.80) from both H19-4 and H16-1.",
+      "content_id": "e27054cf",
+      "lines_satisfied": [
+        "L1_PopScaling_TipRelay",
+        "L2_Backward_ThermalGeochem",
+        "L3_Openness_LRM_Scarp",
+        "L4_Geopotential_Basement"
+      ],
+      "files": {
+        "tif": {
+          "name": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+          "bytes": 1712322,
+          "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+          "href": "downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif"
+        },
+        "zip": {
+          "name": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.zip",
+          "bytes": 493791,
+          "sha256": "c4758d1aae9601c944f9e1fb935437a1508a09e03d7872b0248ec1c482ca14bd",
+          "href": "downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.zip"
+        },
+        "tif_allfinite": {
+          "name": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif",
+          "bytes": 937342,
+          "sha256": "ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa",
+          "href": "downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif"
+        }
+      },
+      "note": "19GEMSDOE H19-5 | Openness/Thermal-dominant 4-line synthesis at H19-1 power-law completeness midpoint budget (2.45%/quad) | id e27054cf | not yet live-scored",
+      "checks_official_format": {
+        "file": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+        "bytes": 1712322,
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "ok_to_upload": true,
+        "hard_failures": [],
+        "official_format_compliant": true,
+        "in_footprint_positive_pixels": 121131,
+        "in_footprint_mass": 121131.0,
+        "checks": {
+          "single_band": {
+            "pass": true,
+            "hard": true,
+            "detail": "count=1"
+          },
+          "dtype_float32": {
+            "pass": true,
+            "hard": true,
+            "detail": "dtypes=('float32',)"
+          },
+          "crs_epsg_32611": {
+            "pass": true,
+            "hard": true,
+            "detail": "EPSG:32611"
+          },
+          "shape_matches_template": {
+            "pass": true,
+            "hard": true,
+            "detail": "(3730, 3292) vs (3730, 3292)"
+          },
+          "geotransform_matches_template": {
+            "pass": true,
+            "hard": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+          },
+          "footprint_all_finite": {
+            "pass": true,
+            "hard": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint"
+          },
+          "footprint_range_0_1": {
+            "pass": true,
+            "hard": true,
+            "detail": "min=0 max=1"
+          },
+          "outside_is_nan_official_text": {
+            "pass": true,
+            "hard": false,
+            "detail": "7,111,787 of 7,111,787 outside pixels are NaN"
+          },
+          "nodata_tag_is_nan": {
+            "pass": true,
+            "hard": false,
+            "detail": "nodata=nan"
+          },
+          "variant_nan_aware_whole_array": {
+            "pass": true,
+            "hard": true,
+            "detail": "np.nanmin/np.nanmax over the whole array"
+          },
+          "variant_masked_read": {
+            "pass": true,
+            "hard": true,
+            "detail": "rasterio read(masked=True).compressed()"
+          },
+          "variant_strict_whole_array_no_nan_allowed": {
+            "pass": false,
+            "hard": false,
+            "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside"
+          },
+          "profile_matches_official_sample": {
+            "pass": true,
+            "hard": false,
+            "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)"
+          }
+        }
+      },
+      "checks_allfinite_twin": {
+        "file": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif",
+        "bytes": 937342,
+        "sha256": "ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa",
+        "ok_to_upload": true,
+        "hard_failures": [],
+        "official_format_compliant": false,
+        "in_footprint_positive_pixels": 121131,
+        "in_footprint_mass": 121131.0,
+        "checks": {
+          "single_band": {
+            "pass": true,
+            "hard": true,
+            "detail": "count=1"
+          },
+          "dtype_float32": {
+            "pass": true,
+            "hard": true,
+            "detail": "dtypes=('float32',)"
+          },
+          "crs_epsg_32611": {
+            "pass": true,
+            "hard": true,
+            "detail": "EPSG:32611"
+          },
+          "shape_matches_template": {
+            "pass": true,
+            "hard": true,
+            "detail": "(3730, 3292) vs (3730, 3292)"
+          },
+          "geotransform_matches_template": {
+            "pass": true,
+            "hard": true,
+            "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+          },
+          "footprint_all_finite": {
+            "pass": true,
+            "hard": true,
+            "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint"
+          },
+          "footprint_range_0_1": {
+            "pass": true,
+            "hard": true,
+            "detail": "min=0 max=1"
+          },
+          "outside_is_nan_official_text": {
+            "pass": false,
+            "hard": false,
+            "detail": "0 of 7,111,787 outside pixels are NaN"
+          },
+          "nodata_tag_is_nan": {
+            "pass": false,
+            "hard": false,
+            "detail": "nodata=None"
+          },
+          "variant_nan_aware_whole_array": {
+            "pass": true,
+            "hard": true,
+            "detail": "np.nanmin/np.nanmax over the whole array"
+          },
+          "variant_masked_read": {
+            "pass": true,
+            "hard": true,
+            "detail": "rasterio read(masked=True).compressed()"
+          },
+          "variant_strict_whole_array_no_nan_allowed": {
+            "pass": true,
+            "hard": false,
+            "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside"
+          },
+          "profile_matches_official_sample": {
+            "pass": false,
+            "hard": false,
+            "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)"
+          }
+        }
+      },
+      "uniqueness": {
+        "verdict": "DISTINCT",
+        "candidate_positive_scored_pixels": 121131,
+        "nearest": [
+          {
+            "id": "candidate:h19-4",
+            "lb_score": null,
+            "identical_on_scored_pixels": false,
+            "jaccard_positive": 0.77723,
+            "a_positive": 121131,
+            "b_positive": 123779,
+            "shared_positive": 107106,
+            "frac_a_in_b": 0.88422,
+            "frac_b_in_a": 0.8653
+          },
+          {
+            "id": "16GEMSDOE",
+            "lb_score": 0.1855,
+            "identical_on_scored_pixels": false,
+            "jaccard_positive": 0.59175,
+            "a_positive": 121131,
+            "b_positive": 123939,
+            "shared_positive": 91107,
+            "frac_a_in_b": 0.75214,
+            "frac_b_in_a": 0.7351
+          },
+          {
+            "id": "7GEMSDOE",
+            "lb_score": 0.1461,
+            "identical_on_scored_pixels": false,
+            "jaccard_positive": 0.09498,
+            "a_positive": 121131,
+            "b_positive": 76859,
+            "shared_positive": 17174,
+            "frac_a_in_b": 0.14178,
+            "frac_b_in_a": 0.22345
+          },
+          {
+            "id": "GEMSDOE10-H16",
+            "lb_score": 0.0461,
+            "identical_on_scored_pixels": false,
+            "jaccard_positive": 0.08666,
+            "a_positive": 121131,
+            "b_positive": 283532,
+            "shared_positive": 32273,
+            "frac_a_in_b": 0.26643,
+            "frac_b_in_a": 0.11382
+          },
+          {
+            "id": "GEMSDOE2",
+            "lb_score": 0.156,
+            "identical_on_scored_pixels": false,
+            "jaccard_positive": 0.07801,
+            "a_positive": 121131,
+            "b_positive": 175949,
+            "shared_positive": 21498,
+            "frac_a_in_b": 0.17748,
+            "frac_b_in_a": 0.12218
+          }
+        ],
+        "threshold_near_duplicate_jaccard": 0.8,
+        "note": "Only pixels outside the known-fault mask and inside the footprint can change a score (DrivenData forum topic 11516 posts 2 and 4)."
+      },
+      "scored_pixels_predicted": 121131,
+      "share_of_footprint_pct": 2.344,
+      "holdout": {
+        "mean_dense_dti": 0.21341,
+        "mean_sparse_dti": 0.08667,
+        "fold_dense": [
+          0.20676,
+          0.24384,
+          0.1544,
+          0.24866
+        ],
+        "fold_sparse": [
+          0.08948,
+          0.0798,
+          0.06786,
+          0.10955
+        ]
+      },
+      "holdout_gate_vs_h16_1": {
+        "passed": true,
+        "rules": {
+          "mean_dense_improves": true,
+          "mean_sparse_improves": true,
+          "sparse_fold_wins_ge_3_of_4": true,
+          "no_fold_loses_more_than_0_01": true
+        },
+        "sparse_fold_wins": 4,
+        "dense_fold_wins": 1,
+        "worst_fold_delta_dense": -0.00098,
+        "worst_fold_delta_sparse": 0.00048,
+        "delta_mean_dense": 0.00069,
+        "delta_mean_sparse": 0.00126
+      },
+      "gate_eligible": true,
+      "caveat": "Clears the pre-registered 4-quadrant holdout gate (+0.00069 Dense, +0.00126 Sparse, 4/4 Sparse fold wins) while remaining strictly DISTINCT (Jaccard 0.7772 vs H19-4, 0.5917 vs H16-1).",
+      "similar_to_other_candidates": [
+        {
+          "key": "h19-4",
+          "jaccard_positive": 0.77723
+        }
+      ]
+    }
+  ]
+}

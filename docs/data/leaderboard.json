@@ -1,0 +1,76 @@
+{
+  "snapshot_utc": "2026-09-30T19:30:00Z",
+  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "how_obtained": "Leaderboard snapshot combined with project owner's reported 2026-09-30 live score for 16GEMSDOE (account Tap: 0.1855). DrivenData's Terms of Use prohibit robots/spiders, so this file is updated by a person, never by a scheduled job.",
+  "metric": "Best public distance-weighted Tversky (DW-Tversky); higher is better",
+  "rows_shown_on_page": 50,
+  "top": [
+    [1, "DARD", 11, 0.3168],
+    [2, "alexoktaba", 17, 0.3042],
+    [3, "joeyfezster", 15, 0.2872],
+    [4, "HardcoreTechGod", 6, 0.2854],
+    [5, "mzoorob", 19, 0.2843],
+    [6, "GrigorSargsyan", 7, 0.2742],
+    [7, "op01", 4, 0.271],
+    [8, "exposed", 16, 0.2584],
+    [9, "Batik Shirt Brothers (team)", 14, 0.2542],
+    [10, "tchu", 14, 0.2511]
+  ],
+  "around_group": [
+    [22, "Tap (16GEMSDOE)", 1, 0.1855],
+    [26, "Scotty77", 6, 0.1682],
+    [27, "dmitry_v", 6, 0.1672],
+    [28, "Ehimenathan", 7, 0.1638],
+    [29, "VictorCallejas", 1, 0.1629],
+    [30, "fishnchips", 7, 0.1587]
+  ],
+  "group": [
+    {
+      "rank": 22,
+      "participant": "Tap",
+      "submissions": 1,
+      "score": 0.1855,
+      "status": "named by owner (16GEMSDOE: h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan)"
+    },
+    {
+      "rank": 31,
+      "participant": "extradr19",
+      "submissions": 3,
+      "score": 0.1563,
+      "status": "unconfirmed - not named by the owner; identical score"
+    },
+    {
+      "rank": 32,
+      "participant": "SDCF9",
+      "submissions": 4,
+      "score": 0.1563,
+      "status": "named by owner (best 0.1563; also submitted 12GEMSDOE 0.1294)"
+    },
+    {
+      "rank": 33,
+      "participant": "smashi34",
+      "submissions": 3,
+      "score": 0.1563,
+      "status": "named by owner (best 0.1563; also submitted 15GEMSDOE 0.0782)"
+    },
+    {
+      "rank": 38,
+      "participant": "wbg1",
+      "submissions": 5,
+      "score": 0.1461,
+      "status": "named by owner (best 0.1461; also submitted GEMSDOE10 H20 0.0921 & H16 0.0461)"
+    },
+    {
+      "rank": 50,
+      "participant": "smrtdoog5",
+      "submissions": 3,
+      "score": 0.1193,
+      "status": "named by owner (best 0.1193; also submitted 14GEMSDOE 0.0020)"
+    }
+  ],
+  "best_group_score": 0.1855,
+  "gap_to_leader_best_group_score": 0.1313,
+  "gap_to_prompt_leader_03049": 0.1194,
+  "ratio_leader_to_best_group_score": 1.71,
+  "previous_snapshot_note": "Earlier snapshot at 2026-09-30T02:27Z was recorded before 16GEMSDOE (account Tap) scored 0.1855 (+0.0292 DTI over the 0.1563 plateau)."
+}

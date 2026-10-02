@@ -1,0 +1,226 @@
+{
+  "generated_utc": "2026-09-30T21:01:06+00:00",
+  "results": [
+    {
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S07"
+    },
+    {
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+      "content_type": "text/html; charset=utf-8",
+      "error": null,
+      "id": "S16"
+    },
+    {
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S19"
+    },
+    {
+      "url": "https://www.usgs.gov/tools/interactive-us-fault-map",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S21"
+    },
+    {
+      "url": "https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S22"
+    },
+    {
+      "url": "https://www.osti.gov/servlets/purl/1724082",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S23"
+    },
+    {
+      "url": "https://www.osti.gov/dataexplorer/biblio/dataset/1148722",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S24"
+    },
+    {
+      "url": "https://pubs.usgs.gov/publication/70202167",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S25"
+    },
+    {
+      "url": "https://www.usgs.gov/publications/geophysical-modeling-a-possible-blind-geothermal-system-near-battle-mountain-nv",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S26"
+    },
+    {
+      "url": "https://www.usgs.gov/publications/geothermal-systems-northern-nevada",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S27"
+    },
+    {
+      "url": "https://gdr.openei.org/submissions/1391",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S28"
+    },
+    {
+      "url": "https://github.com/buffedlizard55-lab/16GEMSDOE/blob/main/evidence/ci/external_verification.json",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://github.com/buffedlizard55-lab/16GEMSDOE/blob/main/evidence/ci/external_verification.json",
+      "content_type": "text/html; charset=utf-8",
+      "error": null,
+      "id": "S29"
+    },
+    {
+      "url": "https://mrdata.usgs.gov/geology/state/",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S31"
+    },
+    {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n39w119/USGS_13_n39w119.tif",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S32"
+    },
+    {
+      "url": "https://github.com/buffedlizard55-lab/5GEMSDOE",
+      "ok": true,
+      "status": 200,
+      "final_url": "https://github.com/buffedlizard55-lab/5GEMSDOE",
+      "content_type": "text/html; charset=utf-8",
+      "error": null,
+      "id": "S33"
+    },
+    {
+      "url": "https://www2.census.gov/geo/tiger/TIGER2023/",
+      "ok": false,
+      "status": null,
+      "final_url": null,
+      "content_type": null,
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "id": "S36"
+    }
+  ],
+  "skipped_drivendata": [
+    {
+      "id": "S01",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S02",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S03",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S04",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S05",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S06",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S09",
+      "url": "https://community.drivendata.org/t/weekly-submissions/11524/2",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S11",
+      "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S12",
+      "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S13",
+      "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536/2",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S14",
+      "url": "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S17",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S18",
+      "url": "https://www.drivendata.org/termsofuse/",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S34",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    },
+    {
+      "id": "S35",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
+      "reason": "DrivenData Terms of Use forbid automated access"
+    }
+  ]
+}

@@ -3,12 +3,12 @@
 
 `05_build_submission.py` verifies each file the instant it writes it.  That is
 necessary but not sufficient: between the write and the upload the artefact is
-copied into `docs/downloads/`, zipped, committed to git, and served over GitHub
+copied into `docs/downloads/gems22/`, zipped, committed to git, and served over GitHub
 Pages.  Any of those steps could in principle substitute, truncate or re-encode
 the file.  This script closes that gap by treating the *served* bytes as the
 object under test:
 
-  1. SHA-256 of every file in `docs/downloads/` must equal the value recorded in
+  1. SHA-256 of every file in `docs/downloads/gems22/` must equal the value recorded in
      `evidence/submission_build.json` (and in `submissions/`, if present).
   2. Every served `.tif` is re-parsed from disk and re-run through
      `submission.verify_file`, i.e. the same 12 hard checks the writer ran.
@@ -36,7 +36,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from gems22 import submission as sub                     # noqa: E402
 from gems22.spec import REPO                              # noqa: E402
 
-DOCS = REPO / "docs" / "downloads"
+DOCS = REPO / "docs" / "downloads" / "gems22"
 ALT = REPO / "submissions"
 EV = REPO / "evidence" / "submission_build.json"
 

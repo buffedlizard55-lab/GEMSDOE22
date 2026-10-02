@@ -1,0 +1,131 @@
+{
+  "generated_utc": "2026-09-30T01:41:00+00:00",
+  "status": "EXPLORATORY_NOT_GATE_ELIGIBLE",
+  "bias_warning": "Hidden faults in the proxy are Quaternary catalogue faults that geologic maps tend to include; real new faults may differ.",
+  "sgmc_fault_pixels_in_footprint": 110732,
+  "baseline_h16_1": {
+    "mean_dense_dti": 0.21272,
+    "mean_sparse_dti": 0.08541,
+    "fold_dense": [
+      0.20774,
+      0.23898,
+      0.15464,
+      0.24951
+    ],
+    "fold_sparse": [
+      0.089,
+      0.07794,
+      0.06622,
+      0.10847
+    ]
+  },
+  "arms": {
+    "SGMC_all_pixels": {
+      "mean_dense_dti": 0.18319,
+      "mean_sparse_dti": 0.07507,
+      "fold_dense": [
+        0.24763,
+        0.21652,
+        0.09059,
+        0.17802
+      ],
+      "fold_sparse": [
+        0.12307,
+        0.07884,
+        0.04167,
+        0.05672
+      ],
+      "gate_vs_h16_1_informational": {
+        "passed": false,
+        "rules": {
+          "mean_dense_improves": false,
+          "mean_sparse_improves": false,
+          "sparse_fold_wins_ge_3_of_4": false,
+          "no_fold_loses_more_than_0_01": false
+        },
+        "sparse_fold_wins": 2,
+        "dense_fold_wins": 1,
+        "worst_fold_delta_dense": -0.07149,
+        "worst_fold_delta_sparse": -0.05175,
+        "delta_mean_dense": -0.02953,
+        "delta_mean_sparse": -0.01034
+      }
+    },
+    "SGMC_gap_only": {
+      "mean_dense_dti": 0.18272,
+      "mean_sparse_dti": 0.08289,
+      "fold_dense": [
+        0.24718,
+        0.21643,
+        0.08987,
+        0.17739
+      ],
+      "fold_sparse": [
+        0.14315,
+        0.0863,
+        0.04061,
+        0.06152
+      ],
+      "gate_vs_h16_1_informational": {
+        "passed": false,
+        "rules": {
+          "mean_dense_improves": false,
+          "mean_sparse_improves": false,
+          "sparse_fold_wins_ge_3_of_4": false,
+          "no_fold_loses_more_than_0_01": false
+        },
+        "sparse_fold_wins": 2,
+        "dense_fold_wins": 1,
+        "worst_fold_delta_dense": -0.07212,
+        "worst_fold_delta_sparse": -0.04695,
+        "delta_mean_dense": -0.03,
+        "delta_mean_sparse": -0.00252
+      }
+    },
+    "H16_1_union_SGMC_gap": {
+      "mean_dense_dti": 0.24133,
+      "mean_sparse_dti": 0.08285,
+      "fold_dense": [
+        0.26426,
+        0.24985,
+        0.1797,
+        0.27151
+      ],
+      "fold_sparse": [
+        0.10269,
+        0.07336,
+        0.06376,
+        0.09159
+      ],
+      "gate_vs_h16_1_informational": {
+        "passed": false,
+        "rules": {
+          "mean_dense_improves": true,
+          "mean_sparse_improves": false,
+          "sparse_fold_wins_ge_3_of_4": false,
+          "no_fold_loses_more_than_0_01": false
+        },
+        "sparse_fold_wins": 1,
+        "dense_fold_wins": 4,
+        "worst_fold_delta_dense": 0.01087,
+        "worst_fold_delta_sparse": -0.01688,
+        "delta_mean_dense": 0.02861,
+        "delta_mean_sparse": -0.00256
+      }
+    }
+  },
+  "emitted_pixels_sparse_mode_per_quadrant": {
+    "SGMC_gap_only": [
+      14042,
+      34515,
+      15302,
+      23527
+    ],
+    "H16_1_union_SGMC_gap": [
+      42286,
+      68951,
+      50289,
+      51706
+    ]
+  }
+}
