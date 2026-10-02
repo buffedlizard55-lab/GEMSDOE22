@@ -1,0 +1,119 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verified sources</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap">
+<div class="kicker">DOE GEMS Prize Challenge &middot; DrivenData #306</div>
+<h1>Verified sources</h1>
+<p style="color:var(--mut);margin:0">Every external input, with the official link for manual review</p>
+<nav class="toc">
+<a href="gems22-index.html">Overview &amp; downloads</a>
+<a href="gems22-executive_summary.html">How to submit</a>
+<a href="gems22-method.html">Metric &amp; method</a>
+<a href="gems22-clustering.html">Spatial statistics</a>
+<a href="gems22-hypotheses.html">Hypotheses</a>
+<a href="gems22-results.html">Results &amp; holdout</a>
+<a href="gems22-sources.html">Verified sources</a>
+<a href="gems22-irregularities.html">Flags</a>
+<a href="gems22-next_steps.html">Next steps</a>
+</nav></div></header><main class="wrap">
+<h2>Competition</h2>
+<table><tr><th>Item</th><th>Link</th><th>Status</th></tr>
+<tr><td>Competition home</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">https://www.drivendata.org/competitions/306/competition-doe-gems/</a></td><td class="pass">fetched 2026-10-01</td></tr>
+<tr><td>Problem description, metric, submission format</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/</a></td><td class="pass">fetched, quoted in method.html</td></tr>
+<tr><td>Leaderboard</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/</a></td><td class="pass">fetched 2026-10-01</td></tr>
+<tr><td>Data download tab</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">https://www.drivendata.org/competitions/306/competition-doe-gems/data/</a></td><td class="warn">login-walled from this sandbox</td></tr>
+<tr><td>Known-fault masking (staff answer)</td><td><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2">https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2</a></td><td class="pass">fetched, quoted verbatim</td></tr>
+<tr><td>Test-set construction (staff answer)</td><td><a href="https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7">https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527/7</a></td><td class="pass">fetched, quoted verbatim</td></tr>
+<tr><td>Reference solution</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">https://github.com/drivendataorg/gems-prize-reference-solution</a></td><td class="pass">cloned; notebook parsed</td></tr>
+</table>
+<h2>Scientific literature</h2>
+<table><tr><th>Citation</th><th>Link</th><th>What is used</th></tr>
+<tr><td>Bour &amp; Davy (1999) GRL 26(13):2001&ndash;2004</td><td><a href="https://doi.org/10.1029/1999GL900419">https://doi.org/10.1029/1999GL900419</a></td>
+<td>x = (a&minus;1)/D; nearest-larger-neighbour scaling; large faults have more distant nearest neighbours</td></tr>
+<tr><td>Marrett, Gale, G&oacute;mez &amp; Laubach (2018) JSG 108:16&ndash;33</td><td><a href="https://doi.org/10.1016/j.jsg.2017.06.012">https://doi.org/10.1016/j.jsg.2017.06.012</a></td>
+<td>normalised correlation count; clustered / random / regular discrimination</td></tr>
+<tr><td>Wang, Laubach, Gale &amp; Ramos (2019) Petrol. Geosci. 25:415&ndash;428</td><td><a href="https://doi.org/10.1144/petgeo2018-146">https://doi.org/10.1144/petgeo2018-146</a></td>
+<td>NCC applied to faults rather than joints</td></tr>
+<tr><td>Bonnet et al. (2001) Rev. Geophys. 39(3):347&ndash;383</td><td><a href="https://doi.org/10.1029/1999RG000074">https://doi.org/10.1029/1999RG000074</a></td>
+<td>scaling of fracture systems — background and caveats on dimension estimation</td></tr>
+</table>
+<h2>Data products</h2>
+<table><tr><th>Product</th><th>Link</th><th>Verified</th></tr>
+<tr><td>GeoDAWN airborne magnetic &amp; radiometric surveys</td>
+<td><a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">ScienceBase 657e1d85d34e23d3533209f7</a> &middot; <a href="https://doi.org/10.5066/P93LGLVQ">https://doi.org/10.5066/P93LGLVQ</a></td>
+<td class="pass">K/Th/U/TC + Th/K, U/K, U/Th, TMI-up150 grids used; 5,166,085 valid px</td></tr>
+<tr><td>INGENIOUS / GDR submission 1391</td><td><a href="https://gdr.openei.org/submissions/1391">https://gdr.openei.org/submissions/1391</a></td>
+<td class="pass">1,125 Quaternary fault traces (376 centroids inside the footprint), 27,092 spring/well records, 21 volcanic vents</td></tr>
+<tr><td>USGS State Geologic Map Compilation faults</td>
+<td><a href="https://mrdata.usgs.gov/geology/state/shp/NV.zip">NV.zip</a> &middot; <a href="https://mrdata.usgs.gov/geology/state/shp/CA.zip">CA.zip</a></td>
+<td class="pass">83,593 px inside the footprint; 79,615 px pixel-disjoint from the catalogue</td></tr>
+<tr><td>USGS 3DEP 1 m DEM</td><td><a href="https://www.usgs.gov/3d-elevation-program">https://www.usgs.gov/3d-elevation-program</a></td>
+<td class="warn">openness/LRM cached for 71,974 cells over 8 tiles only; USGS hosts unreachable from this sandbox</td></tr>
+</table>
+<h2>External layer files in this repo</h2>
+<table><tr><th>File</th><th class="num">Bytes</th><th>Provenance</th></tr>
+
+</table>
+<h2>Network reachability from this sandbox (measured)</h2>
+<p>Reachable: <code>pypi.org</code>, <code>github.com</code>, <code>api.github.com</code>,
+<code>codeload.github.com</code>. Blocked at the TLS layer:
+<code>drivendata.org</code>, <code>dropbox.com</code>, <code>*.github.io</code>,
+<code>raw.githubusercontent.com</code>, <code>usgs.gov</code>, <code>sciencebase.gov</code>,
+<code>gdr.openei.org</code>, <code>nationalmap.gov</code>, <code>arcgisonline.com</code>,
+<code>opentopography.org</code>, <code>*.s3.amazonaws.com</code>. The Arena
+<code>fetch_page</code> tool uses a different egress path and <i>can</i> read the
+live competition pages, forum threads and GitHub Pages sites quoted above; binary
+assets (GeoTIFFs, PDFs, PNGs) cannot be retrieved through it.</p>
+</main><footer><div class="wrap">
+GEMSDOE22 &middot; generated by <code>scripts/06_build_site.py</code> from
+<code>evidence/*.json</code>. Every figure on these pages is read out of a
+measurement file at build time; nothing is hand-typed.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE22">Repository</a>
+</div></footer></body></html><script>
+function cp(btn){const t=btn.previousElementSibling.innerText.replace(/^[^:]*:\s*/,'');
+navigator.clipboard.writeText(t.trim()).then(()=>{btn.textContent='Copied';
+setTimeout(()=>btn.textContent='Copy',1400)});}
+</script>
+<script src="assets/tifcheck.js"></script>
+<script>
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+if(drop&&out){
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+async function run(file){
+  out.innerHTML='<p>Reading '+file.name+' ('+(file.size/1e6).toFixed(2)+' MB)&hellip;</p>';
+  try{
+    const buf=await file.arrayBuffer();
+    const t0=performance.now();
+    const r=await window.GEMS22TifCheck.check(buf);
+    const ms=((performance.now()-t0)/1000).toFixed(1);
+    let h='<h3>Hard requirements</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.hard.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004; pass</span>':'<span class=fail>&#10008; FAIL</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table><h3>Advisory</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.advisory.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004;</span>':'<span class=warn>&#9888;</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table>';
+    h+='<p>'+(r.ok?'<span class=pass style="font-size:18px">&#10004; SAFE TO SUBMIT</span>':
+      '<span class=fail style="font-size:18px">&#10008; DO NOT SUBMIT — a hard check failed</span>')+
+      ' <span style="color:var(--mut)">('+ms+' s, parsed '+(r.meta.total||0).toLocaleString()+' pixels)</span></p>';
+    if(r.meta&&r.meta.total){h+='<p class=badge>NaN '+r.meta.nan.toLocaleString()+
+      '</p><p class=badge>min '+r.meta.min+'</p><p class=badge>max '+r.meta.max+
+      '</p><p class=badge>&lt;0: '+r.meta.n_negative.toLocaleString()+
+      '</p><p class=badge>&gt;1: '+r.meta.n_above_1.toLocaleString()+
+      '</p><p class=badge>&gt;0: '+r.meta.n_positive.toLocaleString()+
+      '</p><p class=badge>EPSG '+r.meta.epsg+'</p>'}
+    out.innerHTML=h;
+  }catch(e){out.innerHTML='<p class=fail>Error: '+e.message+'</p>'}
+}
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>{if(e.dataTransfer.files[0])run(e.dataTransfer.files[0])});
+pick.addEventListener('change',e=>{if(e.target.files[0])run(e.target.files[0])});
+}
+</script>

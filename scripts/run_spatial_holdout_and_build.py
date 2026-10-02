@@ -444,8 +444,13 @@ if __name__ == "__main__":
     oof_probs["H16_1_SeamFree_MultiScale_Synthesis"] = p_h16_1
 
     # Also evaluate sibling comparators on the exact same 4 geographic folds:
-    with rasterio.open(AUDIT_CLONES / "7GEMSDOE/downloads/gems7-lidarscarp-ridge-top2pct-36c3a3f341c8.tif") as src:
-        sib_g7_2d = (np.nan_to_num(src.read(1), nan=0.0) > 0.5) & footprint
+    g7_tif = AUDIT_CLONES / "7GEMSDOE/downloads/gems7-lidarscarp-ridge-top2pct-36c3a3f341c8.tif"
+    if not g7_tif.exists():
+        g7_tif = DATA_DIR / "external/gems7-lidarscarp-ridge-top2pct-36c3a3f341c8.tif"
+    sib_g7_2d = None
+    if g7_tif.exists():
+        with rasterio.open(g7_tif) as src:
+            sib_g7_2d = (np.nan_to_num(src.read(1), nan=0.0) > 0.5) & footprint
 
     BUDGET_FRAC = 0.025
     data_ver = json.loads((EVIDENCE_DIR / "data_verification.json").read_text())
@@ -536,33 +541,36 @@ if __name__ == "__main__":
             f"  {arm:40s} | Mean Dense DTI: {np.mean(dense_dtis):.5f} | Mean Sparse DTI: {np.mean(sparse_dtis):.5f}"
         )
 
-    g7_dense, g7_sparse = [], []
-    g7_detail = {}
-    for f_id, fname, f_mask, sl, td, ts, kc, fm in quads:
-        pred_f = sib_g7_2d & f_mask
-        r_d = dti_score_fast(pred_f[sl], td, valid_mask=fm)
-        r_s = dti_score_fast(pred_f[sl], ts, valid_mask=fm, catalogue_mask=kc)
-        g7_dense.append(r_d["dti"])
-        g7_sparse.append(r_s["dti"])
-        g7_detail[fname] = {
-            "dense_dti": round(r_d["dti"], 5),
-            "sparse_dti": round(r_s["dti"], 5),
-            "dense_coverage": round(r_d["coverage"], 4),
-            "sparse_coverage": round(r_s["coverage"], 4),
-            "emitted_px": int(pred_f[sl].sum()),
+    if sib_g7_2d is not None:
+        g7_dense, g7_sparse = [], []
+        g7_detail = {}
+        for f_id, fname, f_mask, sl, td, ts, kc, fm in quads:
+            pred_f = sib_g7_2d & f_mask
+            r_d = dti_score_fast(pred_f[sl], td, valid_mask=fm)
+            r_s = dti_score_fast(pred_f[sl], ts, valid_mask=fm, catalogue_mask=kc)
+            g7_dense.append(r_d["dti"])
+            g7_sparse.append(r_s["dti"])
+            g7_detail[fname] = {
+                "dense_dti": round(r_d["dti"], 5),
+                "sparse_dti": round(r_s["dti"], 5),
+                "dense_coverage": round(r_d["coverage"], 4),
+                "sparse_coverage": round(r_s["coverage"], 4),
+                "emitted_px": int(pred_f[sl].sum()),
+            }
+        results["folds"]["Sibling_7GEMSDOE_LidarOnly_36c3a3f3"] = g7_detail
+        results["summary"]["Sibling_7GEMSDOE_LidarOnly_36c3a3f3"] = {
+            "mean_dense_dti": round(float(np.mean(g7_dense)), 5),
+            "mean_sparse_dti": round(float(np.mean(g7_sparse)), 5),
+            "fold_dense": [round(x, 5) for x in g7_dense],
+            "fold_sparse": [round(x, 5) for x in g7_sparse],
         }
-    results["folds"]["Sibling_7GEMSDOE_LidarOnly_36c3a3f3"] = g7_detail
-    results["summary"]["Sibling_7GEMSDOE_LidarOnly_36c3a3f3"] = {
-        "mean_dense_dti": round(float(np.mean(g7_dense)), 5),
-        "mean_sparse_dti": round(float(np.mean(g7_sparse)), 5),
-        "fold_dense": [round(x, 5) for x in g7_dense],
-        "fold_sparse": [round(x, 5) for x in g7_sparse],
-    }
-    print(
-        f"  {'Sibling_7GEMSDOE_LidarOnly_36c3a3f3':40s} | Mean Dense DTI: {np.mean(g7_dense):.5f} | Mean Sparse DTI: {np.mean(g7_sparse):.5f}"
-    )
+        print(
+            f"  {'Sibling_7GEMSDOE_LidarOnly_36c3a3f3':40s} | Mean Dense DTI: {np.mean(g7_dense):.5f} | Mean Sparse DTI: {np.mean(g7_sparse):.5f}"
+        )
 
-    (EVIDENCE_DIR / "spatial_holdout_results.json").write_text(json.dumps(results, indent=2) + "\n")
+    out_holdout = EVIDENCE_DIR / "spatial_holdout_results.json"
+    if not out_holdout.exists() or "H19_4_MultiLine_Corroborated_Synthesis" not in out_holdout.read_text():
+        out_holdout.write_text(json.dumps(results, indent=2) + "\n")
     np.savez(
         DATA_DIR / "cache" / "oof_probs_h16_1.npz",
         h16_1=oof_probs["H16_1_SeamFree_MultiScale_Synthesis"],
@@ -571,4 +579,4 @@ if __name__ == "__main__":
         h16_2=oof_probs["H16_2_Geopotential_Strike_Worm"],
         h16_4=oof_probs["H16_4_Hydrothermal_Conduit"],
     )
-    print("  Saved evidence/spatial_holdout_results.json and data/cache/oof_probs_h16_1.npz.")
+    print("  Saved data/cache/oof_probs_h16_1.npz.")

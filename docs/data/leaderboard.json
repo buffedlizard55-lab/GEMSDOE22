@@ -1,7 +1,7 @@
 {
-  "snapshot_utc": "2026-09-30T19:30:00Z",
+  "snapshot_utc": "2026-10-02T03:50:00Z",
   "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-  "how_obtained": "Leaderboard snapshot combined with project owner's reported 2026-09-30 live score for 16GEMSDOE (account Tap: 0.1855). DrivenData's Terms of Use prohibit robots/spiders, so this file is updated by a person, never by a scheduled job.",
+  "how_obtained": "Leaderboard snapshot combined with project owner's reported live scores through 19GEMSDOE (h19-5: 0.1922, h19-4: 0.1894), GEMSDOE21 (0.1894), 16GEMSDOE (Tap: 0.1855), and GEMSDOE10-H28 (0.1839). DrivenData's Terms of Use prohibit robots/spiders, so this file is updated by a person, never by a scheduled job.",
   "metric": "Best public distance-weighted Tversky (DW-Tversky); higher is better",
   "rows_shown_on_page": 50,
   "top": [
@@ -17,7 +17,10 @@
     [10, "tchu", 14, 0.2511]
   ],
   "around_group": [
-    [22, "Tap (16GEMSDOE)", 1, 0.1855],
+    [20, "19GEMSDOE (h19-5 e27054cf)", 2, 0.1922],
+    [21, "19GEMSDOE (h19-4 691e4dfa) / GEMSDOE21", 2, 0.1894],
+    [22, "Tap (16GEMSDOE df20f65e)", 1, 0.1855],
+    [23, "GEMSDOE10 (H28 65,236 px)", 1, 0.1839],
     [26, "Scotty77", 6, 0.1682],
     [27, "dmitry_v", 6, 0.1672],
     [28, "Ehimenathan", 7, 0.1638],
@@ -26,11 +29,32 @@
   ],
   "group": [
     {
+      "rank": 20,
+      "participant": "19GEMSDOE (h19-5)",
+      "submissions": 2,
+      "score": 0.1922,
+      "status": "named by owner (19GEMSDOE: gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan; current group best)"
+    },
+    {
+      "rank": 21,
+      "participant": "19GEMSDOE (h19-4) / GEMSDOE21",
+      "submissions": 2,
+      "score": 0.1894,
+      "status": "named by owner (19GEMSDOE: gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan; GEMSDOE21 identical score)"
+    },
+    {
       "rank": 22,
       "participant": "Tap",
       "submissions": 1,
       "score": 0.1855,
       "status": "named by owner (16GEMSDOE: h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan)"
+    },
+    {
+      "rank": 23,
+      "participant": "GEMSDOE10 (H28)",
+      "submissions": 3,
+      "score": 0.1839,
+      "status": "named by owner (GEMSDOE10 H28: 65,236 scored pixels; also submitted H25 0.1280, H20 0.0921, H16 0.0461)"
     },
     {
       "rank": 31,
@@ -65,12 +89,12 @@
       "participant": "smrtdoog5",
       "submissions": 3,
       "score": 0.1193,
-      "status": "named by owner (best 0.1193; also submitted 14GEMSDOE 0.0020)"
+      "status": "named by owner (best 0.1193; also submitted 13GEMSDOE 0.0904, 18GEMSDOE 0.0297, 17GEMSDOE 0.0187, 14GEMSDOE 0.0020)"
     }
   ],
-  "best_group_score": 0.1855,
-  "gap_to_leader_best_group_score": 0.1313,
-  "gap_to_prompt_leader_03049": 0.1194,
-  "ratio_leader_to_best_group_score": 1.71,
-  "previous_snapshot_note": "Earlier snapshot at 2026-09-30T02:27Z was recorded before 16GEMSDOE (account Tap) scored 0.1855 (+0.0292 DTI over the 0.1563 plateau)."
+  "best_group_score": 0.1922,
+  "gap_to_leader_best_group_score": 0.1246,
+  "gap_to_prompt_leader_03049": 0.1127,
+  "ratio_leader_to_best_group_score": 1.65,
+  "previous_snapshot_note": "19GEMSDOE advanced the group best from 0.1855 (16GEMSDOE) to 0.1894 (h19-4, 691e4dfa) and 0.1922 (h19-5, e27054cf; +0.0067 DTI over 16GEMSDOE and +0.0359 DTI over the 0.1563 plateau)."
 }

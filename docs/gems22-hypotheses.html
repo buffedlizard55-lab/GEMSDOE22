@@ -1,0 +1,125 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Candidate hypotheses — ranked</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap">
+<div class="kicker">DOE GEMS Prize Challenge &middot; DrivenData #306</div>
+<h1>Candidate hypotheses — ranked</h1>
+<p style="color:var(--mut);margin:0">Pre-registered before implementation; none spends a submission slot until it beats the holdout best</p>
+<nav class="toc">
+<a href="gems22-index.html">Overview &amp; downloads</a>
+<a href="gems22-executive_summary.html">How to submit</a>
+<a href="gems22-method.html">Metric &amp; method</a>
+<a href="gems22-clustering.html">Spatial statistics</a>
+<a href="gems22-hypotheses.html">Hypotheses</a>
+<a href="gems22-results.html">Results &amp; holdout</a>
+<a href="gems22-sources.html">Verified sources</a>
+<a href="gems22-irregularities.html">Flags</a>
+<a href="gems22-next_steps.html">Next steps</a>
+</nav></div></header><main class="wrap">
+<p>Each entry names the specific layer(s), the physical signature and transform,
+why it should catch a fault <i>missing</i> from the USGS/INGENIOUS catalogue
+rather than one already in it, how it differs from anything implemented in the 21
+predecessor repos, the expected DTI improvement, the implementation cost, and —
+where external data is needed — the specific free official source, with its
+obtainability checked from this sandbox.</p>
+<table><tr><th>Rank</th><th>Hypothesis &amp; layers</th><th>Physical signature / transform</th>
+<th>Why it catches an <i>unmapped</i> fault</th><th>Difference from prior repos</th>
+<th class="num">Expected gain / cost</th><th class="num">Status</th></tr>
+
+<tr><td><b>#1</b><br><code>H22-1</code></td><td><b>Catalogue-gap supervised transfer</b><br>
+<span style="color:var(--mut);font-size:13px">All 19 competition bands + GeoDAWN K/Th/U/TC + contractor Th/K, U/K, U/Th + TMI-up150 + 1 m LiDAR scarp descriptors + 1 m DEM openness/LRM</span></td>
+<td>Gradient-boosted classifier whose TARGET is not &#x27;is this a fault&#x27; but &#x27;is this a fault the competition catalogue missed&#x27;. Transform: full multi-scale filter bank (Gaussian high-pass residual, gradient magnitude, Frangi Hessian linearity and ridge strength at sigma = 200 m and 400 m, local standard deviation) plus radiometric edge coherence across K/Th/U/TC.</td><td>The private test set is defined as faults absent from the USGS/INGENIOUS catalogue. Training on that definition directly is the only way to learn the catalogue&#x27;s SELECTION FUNCTION — which structures it systematically omits — rather than the geology. SGMC-gap faults are real, publicly mapped, and 79,615 px of them are pixel-disjoint from the catalogue (only 3,978 of 60,988 catalogue pixels coincide with SGMC at all).</td>
+<td>All 21 predecessor repos used SGMC-gap only as an offline VALIDATION proxy. None trained on it. This is a target change, not a feature change.</td>
+<td class="num">+0.02 to +0.06 DTI<br>
+<span style="color:var(--mut);font-size:12px">cost: low (implemented)</span></td>
+<td class="num">implemented</td></tr>
+<tr><td><b>#2</b><br><code>H22-2</code></td><td><b>Value-based emission via the exact DTI marginal rule</b><br>
+<span style="color:var(--mut);font-size:13px">None — a decision layer on any score map</span></td>
+<td>Emit ranked pixels while marginal efficiency exceeds tau = 0.2*DTI/(1 - 0.2*DTI); equivalently while the posterior exceeds tau/(1+tau) = 3.87% at DTI 0.1894. Exact DTI-versus-budget curve computed in one pass from the identity DTI = A/(0.2A + 0.2B + 0.8|G|).</td><td>Independent of geology: the catalogue is incomplete enough that the marginal candidate pixel still carries &gt;4% posterior long after the 2.4% budget is exhausted. Measured on three independent evaluations (SGMC proxy, quadrant holdout, trace-cluster holdout) the DTI-optimal budget is 2.7x to 8x the budget every prior session used.</td>
+<td>Every predecessor hard-coded a per-quadrant percentage budget (2.4-2.5%) derived from a power-law completeness argument. That is a quantity rule. This is the value rule the metric itself implies, and it is exact.</td>
+<td class="num">+0.003 to +0.05 DTI (measured, fold-dependent)<br>
+<span style="color:var(--mut);font-size:12px">cost: very low (implemented)</span></td>
+<td class="num">implemented</td></tr>
+<tr><td><b>#3</b><br><code>H22-3</code></td><td><b>Radiometric alteration-halo coincidence (K/Th edge co-linearity)</b><br>
+<span style="color:var(--mut);font-size:13px">GeoDAWN K, Th, U, TC (external, doi:10.5066/P93LGLVQ) — a data family ENTIRELY ABSENT from the 19 competition bands</span></td>
+<td>Per-channel gradient magnitude at 100 m and 300 m, then an edge-coherence statistic: the mean of each channel&#x27;s normalised gradient divided by the cross-channel maximum. A fault cutting hydrothermally altered ground steps in K, Th, U and TC SIMULTANEOUSLY and co-linearly; a survey-line artefact or acquisition-block edge steps in one channel or steps in all of them along a flight-line azimuth.</td><td>Potassic alteration (K-feldspar adularia, sericite) and thorium depletion are the classic surface expression of a geothermal upflow zone along a permeable fault. A buried fault with an alteration halo has NO topographic expression, so it is invisible to every DEM-based detector the group has built — and it is exactly the class of structure an expert reviewing geophysics would add to the map.</td>
+<td>7GEMSDOE tested radiometric lineaments once (H9b) against catalogue faults under geographic CV and did not promote it. This repo (a) adds the cross-channel COHERENCE statistic rather than per-channel gradients, and (b) evaluates against the catalogue-gap target under trace-cluster folds, which is the correct target for an unmapped-fault detector.</td>
+<td class="num">+0.005 to +0.02 DTI<br>
+<span style="color:var(--mut);font-size:12px">cost: low (features built)</span></td>
+<td class="num">features built</td></tr>
+<tr><td><b>#4</b><br><code>H22-4</code></td><td><b>Bour &amp; Davy nearest-larger-neighbour geometric re-ranking</b><br>
+<span style="color:var(--mut);font-size:13px">Fault trace geometry only — labels.tif connected components and the 1,125 GDR 1391 INGENIOUS vector traces. No feature band.</span></td>
+<td>Fit &lt;d(l)&gt; = A*l^x (measured x = 0.822, A = 6.27 m on the raster catalogue; x = 0.437, A = 177 m on the vector traces). Invert to l*(r) = (r/A)^(1/x) and weight a candidate by how strongly l*(r) lands in the length band where the catalogue is demonstrably incomplete.</td><td>The scaling says where faults of a given size MUST sit relative to larger ones. A candidate that the detector scores equally but that violates the fitted clustering law is more likely to be an artefact; one that lies along the extrapolated pattern of a known larger fault is more likely to be a real unmapped splay, relay or tip fracture.</td>
+<td>19GEMSDOE&#x27;s H19-1 fitted a length-frequency power law and used it only to set a BUDGET (2.45%) and to define isotropic Gaussian tip/step-over lobes. It never fitted or used the Bour &amp; Davy x exponent, and never used the scaling as a per-pixel re-ranking field.</td>
+<td class="num">+0.002 to +0.01 DTI<br>
+<span style="color:var(--mut);font-size:12px">cost: low (implemented)</span></td>
+<td class="num">implemented</td></tr>
+<tr><td><b>#5</b><br><code>H22-5</code></td><td><b>Marrett NCC artefact audit as a submission gate</b><br>
+<span style="color:var(--mut);font-size:13px">The predicted raster itself</span></td>
+<td>Normalised correlation count on 0/90-degree scanlines through the prediction, lag 200 m to 4 km, against a Monte-Carlo complete-spatial-randomness null; compared with the same statistic measured on the known catalogue (mean NCC 5.72, verdict CLUSTERED, slope -0.749).</td><td>It does not find faults — it vetoes false ones. A predicted population whose spatial arrangement diverges sharply from the population statistics actually measured in this region is a detection artefact (survey-line aliasing, acquisition-block edges) rather than geology, and no per-pixel loss function will ever say so.</td>
+<td>No predecessor repo computed any normalised correlation count, on the catalogue or on a prediction. The group&#x27;s only submission-level sanity checks were format checks and a Jaccard duplicate threshold.</td>
+<td class="num">0 directly; protects against a wasted upload slot<br>
+<span style="color:var(--mut);font-size:12px">cost: low (implemented)</span></td>
+<td class="num">implemented</td></tr></table>
+<h2>Ranking rationale</h2>
+<p>Expected gains are ordered by <b>(measured or bounded DTI headroom) &divide;
+(implementation cost in this sandbox)</b>, not by geological elegance. The
+headroom arithmetic comes from <code>DTI = A/(0.2A + 0.2B + 0.8|G|)</code> with the
+|G| estimated from the group&rsquo;s 19 live scores, so each estimate is a difference in
+<code>A</code> or <code>B</code> converted through the exact metric — not a guess.</p>
+<div class="note"><b>Slot discipline.</b> 3 uploads per rolling 7 days. Nothing is
+uploaded unless it beats the current holdout best on the trace-cluster folds
+<i>and</i> clears the Marrett NCC post-hoc artefact audit.</div>
+</main><footer><div class="wrap">
+GEMSDOE22 &middot; generated by <code>scripts/06_build_site.py</code> from
+<code>evidence/*.json</code>. Every figure on these pages is read out of a
+measurement file at build time; nothing is hand-typed.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE22">Repository</a>
+</div></footer></body></html><script>
+function cp(btn){const t=btn.previousElementSibling.innerText.replace(/^[^:]*:\s*/,'');
+navigator.clipboard.writeText(t.trim()).then(()=>{btn.textContent='Copied';
+setTimeout(()=>btn.textContent='Copy',1400)});}
+</script>
+<script src="assets/tifcheck.js"></script>
+<script>
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+if(drop&&out){
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+async function run(file){
+  out.innerHTML='<p>Reading '+file.name+' ('+(file.size/1e6).toFixed(2)+' MB)&hellip;</p>';
+  try{
+    const buf=await file.arrayBuffer();
+    const t0=performance.now();
+    const r=await window.GEMS22TifCheck.check(buf);
+    const ms=((performance.now()-t0)/1000).toFixed(1);
+    let h='<h3>Hard requirements</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.hard.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004; pass</span>':'<span class=fail>&#10008; FAIL</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table><h3>Advisory</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.advisory.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004;</span>':'<span class=warn>&#9888;</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table>';
+    h+='<p>'+(r.ok?'<span class=pass style="font-size:18px">&#10004; SAFE TO SUBMIT</span>':
+      '<span class=fail style="font-size:18px">&#10008; DO NOT SUBMIT — a hard check failed</span>')+
+      ' <span style="color:var(--mut)">('+ms+' s, parsed '+(r.meta.total||0).toLocaleString()+' pixels)</span></p>';
+    if(r.meta&&r.meta.total){h+='<p class=badge>NaN '+r.meta.nan.toLocaleString()+
+      '</p><p class=badge>min '+r.meta.min+'</p><p class=badge>max '+r.meta.max+
+      '</p><p class=badge>&lt;0: '+r.meta.n_negative.toLocaleString()+
+      '</p><p class=badge>&gt;1: '+r.meta.n_above_1.toLocaleString()+
+      '</p><p class=badge>&gt;0: '+r.meta.n_positive.toLocaleString()+
+      '</p><p class=badge>EPSG '+r.meta.epsg+'</p>'}
+    out.innerHTML=h;
+  }catch(e){out.innerHTML='<p class=fail>Error: '+e.message+'</p>'}
+}
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>{if(e.dataTransfer.files[0])run(e.dataTransfer.files[0])});
+pick.addEventListener('change',e=>{if(e.target.files[0])run(e.target.files[0])});
+}
+</script>

@@ -1,7 +1,4 @@
 {
-  "generated_utc": "2026-10-02T03:32:35+00:00",
-  "status": "COMPUTED (fitted on the real labels.tif, not a placeholder)",
-  "input_labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
   "n_traces": 3199,
   "alpha_ols": 2.0224,
   "alpha_mle": 1.5775,
@@ -10,8 +7,8 @@
   "D_correlation": 1.624,
   "D_bour_davy_predicted": 1.489,
   "D_consistent": true,
-  "nearest_larger_median_m": 1629.3,
-  "nearest_larger_p90_m": 6055.2,
+  "nearest_larger_median_m": 1630.9,
+  "nearest_larger_p90_m": 6047.1,
   "ripley_scales_m": [
     500.0,
     750.0,
@@ -64,5 +61,7 @@
     1.285,
     1.144
   ],
-  "interpretation": "clustered"
+  "interpretation": "clustered",
+  "source": "computed directly from GEMS_DATA_DIR/labels.tif (SHA-256 7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093) \u2014 Bour & Davy 1999 GRL (10.1029/1999GL900419), Ripley 1977 (10.1111/j.2517-6161.1977.tb01615.x)",
+  "status": "COMPUTED_FROM_REAL_DATA"
 }

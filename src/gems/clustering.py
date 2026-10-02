@@ -77,27 +77,23 @@ class ClusteringFit:
 
 def _trace_centroids_and_lengths(binary_mask: np.ndarray, pixel_size_m: float = 100.0) -> tuple[np.ndarray, np.ndarray]:
     """Skeletonize ``binary_mask`` and return centroids (y,x) and lengths (m) per connected trace."""
-    mask = binary_mask > 0
-    skel = skeletonize(mask)
-    comp, n = ndi_label(mask, structure=np.ones((3, 3), dtype=int))
+    fg = binary_mask > 0
+    skel = skeletonize(fg)
+    comp, n = ndi_label(fg, structure=np.ones((3, 3), dtype=int))
     if n == 0:
         return np.zeros((0, 2)), np.zeros(0)
-    # Vectorised per-component reduction (np.bincount), NOT a per-component boolean mask:
-    # a prediction raster can contain 10^5+ components and the O(n*H*W) mask loop hangs.
-    flat = comp.ravel()
-    idx = np.flatnonzero(flat)
-    ids = flat[idx]
-    area = np.bincount(ids, minlength=n + 1)[1:].astype(np.float64)
-    sk_counts = np.bincount(ids, weights=skel.ravel()[idx].astype(np.float64), minlength=n + 1)[1:]
-    yy = np.broadcast_to(np.arange(binary_mask.shape[0], dtype=np.float64)[:, None], binary_mask.shape).ravel()[idx]
-    xx = np.broadcast_to(np.arange(binary_mask.shape[1], dtype=np.float64)[None, :], binary_mask.shape).ravel()[idx]
-    sum_y = np.bincount(ids, weights=yy, minlength=n + 1)[1:]
-    sum_x = np.bincount(ids, weights=xx, minlength=n + 1)[1:]
-    centroids = np.column_stack([sum_y / np.maximum(area, 1.0), sum_x / np.maximum(area, 1.0)])
-    length_m = sk_counts * pixel_size_m
-    # sub-resolution components carry no skeleton pixel: fall back to their area
-    length_m = np.where(length_m < pixel_size_m, area * pixel_size_m, length_m)
-    return centroids, np.maximum(length_m, pixel_size_m)
+    comp_px = np.bincount(comp.ravel(), minlength=n + 1)[1:].astype(np.float64)
+    skel_px = np.bincount(np.where(skel, comp, 0).ravel(), minlength=n + 1)[1:].astype(np.float64)
+    lengths = skel_px * float(pixel_size_m)
+    short = lengths < 108.0
+    lengths[short] = comp_px[short] * float(pixel_size_m)
+    lengths = np.maximum(lengths, float(pixel_size_m))
+    rr, cc = np.nonzero(fg)
+    cids = comp[rr, cc]
+    sum_r = np.bincount(cids, weights=rr.astype(np.float64), minlength=n + 1)[1:]
+    sum_c = np.bincount(cids, weights=cc.astype(np.float64), minlength=n + 1)[1:]
+    centroids = np.column_stack([sum_r / np.maximum(comp_px, 1.0), sum_c / np.maximum(comp_px, 1.0)])
+    return centroids.astype(np.float64), lengths.astype(np.float64)
 
 
 def _nearest_larger_distances(centroids: np.ndarray, lengths: np.ndarray, pixel_size_m: float = 100.0) -> np.ndarray:
@@ -402,107 +398,3 @@ def fit_clustering_to_labels_file(labels_path: str, footprint_path: str | None =
     else:
         foot = np.ones(shape, dtype=bool)
     return fit_clustering_dimension(labels, foot)
-
-
-def grid_alignment_audit(
-    predicted_binary: np.ndarray,
-    footprint: np.ndarray,
-    bin_deg: float = 15.0,
-    tol_deg: float = 7.5,
-) -> dict[str, object]:
-    """Distinguish *acquisition* artifacts from genuine geology in a predicted fault population.
-
-    The prompt asks the post-hoc audit to flag "survey-line aliasing, acquisition-block edges"
-    as an alternative explanation to genuine geology. Two signatures separate them:
-
-    1. **Grid alignment.** Airborne survey flight lines and DEM tile seams are straight and
-       parallel to the acquisition grid; geological faults are not. We histogram the local
-       strike of the predicted ridge field (structure-tensor orientation, 15 deg bins over
-       0-180 deg) and report the excess mass in the two raster-axis bins (0 deg and 90 deg)
-       relative to the 2/n_bins share expected for an isotropic population.
-    2. **Block-edge concentration.** Acquisition-block boundaries form long, perfectly
-       straight runs. We report the fraction of predicted pixels lying on runs of >= 40 px
-       that are straight to within one pixel.
-
-    Returns a dict with the histogram, the axis-bin excess and a verdict.
-    """
-    mask = predicted_binary & footprint
-    if mask.sum() < 100:
-        return {"n_pixels": int(mask.sum()), "verdict": "INSUFFICIENT_PREDICTIONS"}
-    f = mask.astype(np.float32)
-    theta, coh = _structure_tensor_orientation_cached(f)
-    w = coh[mask]
-    th = theta[mask]
-    n_bins = int(round(180.0 / bin_deg))
-    hist, edges = np.histogram(th, bins=n_bins, range=(0.0, 180.0), weights=w)
-    hist = hist / max(hist.sum(), 1e-9)
-    # the two raster-axis bins: [0, bin_deg) and the bin containing 90 deg
-    axis_bins = [0, int(round(90.0 / bin_deg)) % n_bins]
-    axis_mass = float(sum(hist[b] for b in axis_bins))
-    expected = 2.0 / n_bins
-    excess = axis_mass / expected if expected > 0 else float("nan")
-
-    # straight-run statistic along rows and columns
-    def longest_straight_fraction(m: np.ndarray, axis: int) -> float:
-        a = m if axis == 1 else m.T
-        frac = 0.0
-        runs = 0
-        for row in range(a.shape[0]):
-            v = a[row]
-            i = 0
-            while i < a.shape[1]:
-                if v[i]:
-                    j = i
-                    while j + 1 < a.shape[1] and v[j + 1]:
-                        j += 1
-                    if j - i + 1 >= 40:
-                        runs += 1
-                    i = j + 1
-                else:
-                    i += 1
-        total = int(m.sum())
-        frac = (40.0 * runs) / max(total, 1)
-        return float(min(frac, 1.0))
-
-    row_frac = longest_straight_fraction(mask, axis=1)
-    col_frac = longest_straight_fraction(mask, axis=0)
-    verdict = "NO_GRID_ALIASING_SIGNATURE" if excess < 1.25 and max(row_frac, col_frac) < 0.02 else (
-        "POSSIBLE_GRID_ALIASING" if excess < 1.6 else "STRONG_GRID_ALIGNMENT_SUSPECT_ACQUISITION_ARTIFACT"
-    )
-    return {
-        "n_pixels": int(mask.sum()),
-        "bin_deg": bin_deg,
-        "orientation_histogram": [round(float(x), 5) for x in hist],
-        "bin_edges_deg": [round(float(x), 2) for x in edges],
-        "raster_axis_bins": axis_bins,
-        "raster_axis_mass": round(axis_mass, 5),
-        "expected_axis_mass_if_isotropic": round(expected, 5),
-        "axis_excess_ratio": round(float(excess), 4),
-        "long_straight_run_fraction_rows": round(row_frac, 5),
-        "long_straight_run_fraction_cols": round(col_frac, 5),
-        "verdict": verdict,
-    }
-
-
-_ST_CACHE: dict[str, tuple[np.ndarray, np.ndarray]] = {}
-
-
-def _structure_tensor_orientation_cached(f: np.ndarray, sigma: float = 1.5):
-    key = f"{f.shape}:{sigma}"
-    if key in _ST_CACHE:
-        return _ST_CACHE[key]
-    gy, gx = np.gradient(f)
-    from scipy.ndimage import gaussian_filter
-
-    jxx = gaussian_filter(gx * gx, sigma)
-    jyy = gaussian_filter(gy * gy, sigma)
-    jxy = gaussian_filter(gx * gy, sigma)
-    theta = np.degrees(0.5 * np.arctan2(2.0 * jxy, (jxx - jyy) + 1e-12)) % 180.0
-    tr = jxx + jyy
-    det = jxx * jyy - jxy * jxy
-    disc = np.sqrt(np.maximum(tr * tr / 4.0 - det, 0.0))
-    l1, l2 = tr / 2.0 + disc, tr / 2.0 - disc
-    coh = np.clip(np.where(l1 + l2 > 1e-12, (l1 - l2) / (l1 + l2 + 1e-12), 0.0), 0.0, 1.0)
-    _ST_CACHE.clear()
-    _ST_CACHE[key] = (theta.astype(np.float32), coh.astype(np.float32))
-    return _ST_CACHE[key]

@@ -1,0 +1,123 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Results — holdout, budget sweep, and proxy calibration</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap">
+<div class="kicker">DOE GEMS Prize Challenge &middot; DrivenData #306</div>
+<h1>Results — holdout, budget sweep, and proxy calibration</h1>
+<p style="color:var(--mut);margin:0"></p>
+<nav class="toc">
+<a href="gems22-index.html">Overview &amp; downloads</a>
+<a href="gems22-executive_summary.html">How to submit</a>
+<a href="gems22-method.html">Metric &amp; method</a>
+<a href="gems22-clustering.html">Spatial statistics</a>
+<a href="gems22-hypotheses.html">Hypotheses</a>
+<a href="gems22-results.html">Results &amp; holdout</a>
+<a href="gems22-sources.html">Verified sources</a>
+<a href="gems22-irregularities.html">Flags</a>
+<a href="gems22-next_steps.html">Next steps</a>
+</nav></div></header><main class="wrap">
+<h2>Trace-cluster holdout and the emission-budget sweep</h2>
+<p>&ldquo;DTI @ 120k&rdquo; is the score at the pixel budget every prior GEMSDOE session
+used (~2.4% of the footprint). &ldquo;DTI at optimum&rdquo; is the best attainable on the
+same score map by emitting a different number of pixels. The gap between those two
+columns is the prize, and it is available without any new data.</p>
+<h3>Fold T0 <span style="color:var(--mut);font-weight:400">
+(trace_cluster &middot; train 4,991,545 px &middot;
+GT {&#x27;A&#x27;: 21344, &#x27;B&#x27;: 28445})</span></h3>
+<table><tr><th>head</th><th>target</th><th class="num">n @ 120k</th><th class="num">DTI @ 120k</th>
+<th class="num">DTI-optimal n</th><th class="num">DTI at optimum</th><th class="num">gain</th>
+<th class="num">marginal rule stops at</th></tr><tr><td>head_A</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.01129</td><td class='num'>4,000,000</td><td class='num'><b>0.01913</b></td><td class='num'>+0.00783</td><td class='num'>250000</td></tr><tr><td>head_A</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00898</td><td class='num'>3,000,000</td><td class='num'><b>0.02987</b></td><td class='num'>+0.02090</td><td class='num'>150000</td></tr><tr><td>head_B</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00198</td><td class='num'>4,000,000</td><td class='num'><b>0.02173</b></td><td class='num'>+0.01975</td><td class='num'>&mdash;</td></tr><tr><td>head_B</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.01141</td><td class='num'>3,000,000</td><td class='num'><b>0.03357</b></td><td class='num'>+0.02216</td><td class='num'>4000000</td></tr><tr><td>head_C</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00048</td><td class='num'>2,500,000</td><td class='num'><b>0.02427</b></td><td class='num'>+0.02378</td><td class='num'>25000</td></tr><tr><td>head_C</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00825</td><td class='num'>2,000,000</td><td class='num'><b>0.03059</b></td><td class='num'>+0.02233</td><td class='num'>25000</td></tr><tr><td>null_random</td><td>A</td><td class='num'>120,000</td><td class='num'>0.09659</td><td class='num'>200,000</td><td class='num'><b>0.10394</b></td><td class='num'>+0.00736</td><td class='num'>&mdash;</td></tr><tr><td>null_random</td><td>B</td><td class='num'>120,000</td><td class='num'>0.11127</td><td class='num'>250,000</td><td class='num'><b>0.12449</b></td><td class='num'>+0.01323</td><td class='num'>&mdash;</td></tr></table><h3>Fold T1 <span style="color:var(--mut);font-weight:400">
+(trace_cluster &middot; train 5,060,662 px &middot;
+GT {&#x27;A&#x27;: 13147, &#x27;B&#x27;: 17411})</span></h3>
+<table><tr><th>head</th><th>target</th><th class="num">n @ 120k</th><th class="num">DTI @ 120k</th>
+<th class="num">DTI-optimal n</th><th class="num">DTI at optimum</th><th class="num">gain</th>
+<th class="num">marginal rule stops at</th></tr><tr><td>head_A</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00000</td><td class='num'>4,000,000</td><td class='num'><b>0.01572</b></td><td class='num'>+0.01572</td><td class='num'>25000</td></tr><tr><td>head_A</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00000</td><td class='num'>2,500,000</td><td class='num'><b>0.02624</b></td><td class='num'>+0.02624</td><td class='num'>25000</td></tr><tr><td>head_B</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00077</td><td class='num'>4,000,000</td><td class='num'><b>0.01388</b></td><td class='num'>+0.01310</td><td class='num'>&mdash;</td></tr><tr><td>head_B</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00374</td><td class='num'>3,000,000</td><td class='num'><b>0.02140</b></td><td class='num'>+0.01766</td><td class='num'>4000000</td></tr><tr><td>head_C</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00000</td><td class='num'>4,000,000</td><td class='num'><b>0.01353</b></td><td class='num'>+0.01353</td><td class='num'>25000</td></tr><tr><td>head_C</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00000</td><td class='num'>4,000,000</td><td class='num'><b>0.01918</b></td><td class='num'>+0.01918</td><td class='num'>25000</td></tr><tr><td>null_random</td><td>A</td><td class='num'>120,000</td><td class='num'>0.06923</td><td class='num'>200,000</td><td class='num'><b>0.07145</b></td><td class='num'>+0.00223</td><td class='num'>&mdash;</td></tr><tr><td>null_random</td><td>B</td><td class='num'>120,000</td><td class='num'>0.08223</td><td class='num'>250,000</td><td class='num'><b>0.08708</b></td><td class='num'>+0.00484</td><td class='num'>&mdash;</td></tr></table><h3>Fold T2 <span style="color:var(--mut);font-weight:400">
+(trace_cluster &middot; train 5,087,759 px &middot;
+GT {&#x27;A&#x27;: 11727, &#x27;B&#x27;: 10254})</span></h3>
+<table><tr><th>head</th><th>target</th><th class="num">n @ 120k</th><th class="num">DTI @ 120k</th>
+<th class="num">DTI-optimal n</th><th class="num">DTI at optimum</th><th class="num">gain</th>
+<th class="num">marginal rule stops at</th></tr><tr><td>head_A</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00350</td><td class='num'>4,000,000</td><td class='num'><b>0.01036</b></td><td class='num'>+0.00686</td><td class='num'>50000</td></tr><tr><td>head_A</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00595</td><td class='num'>3,000,000</td><td class='num'><b>0.01159</b></td><td class='num'>+0.00565</td><td class='num'>200000</td></tr><tr><td>head_B</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00052</td><td class='num'>4,000,000</td><td class='num'><b>0.01033</b></td><td class='num'>+0.00980</td><td class='num'>50000</td></tr><tr><td>head_B</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00188</td><td class='num'>3,000,000</td><td class='num'><b>0.01270</b></td><td class='num'>+0.01082</td><td class='num'>4000000</td></tr><tr><td>head_C</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00000</td><td class='num'>3,000,000</td><td class='num'><b>0.01215</b></td><td class='num'>+0.01215</td><td class='num'>25000</td></tr><tr><td>head_C</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00000</td><td class='num'>4,000,000</td><td class='num'><b>0.01165</b></td><td class='num'>+0.01165</td><td class='num'>25000</td></tr><tr><td>null_random</td><td>A</td><td class='num'>120,000</td><td class='num'>0.06217</td><td class='num'>200,000</td><td class='num'><b>0.06418</b></td><td class='num'>+0.00202</td><td class='num'>&mdash;</td></tr><tr><td>null_random</td><td>B</td><td class='num'>120,000</td><td class='num'>0.05695</td><td class='num'>150,000</td><td class='num'><b>0.05750</b></td><td class='num'>+0.00055</td><td class='num'>&mdash;</td></tr></table><h3>Fold T3 <span style="color:var(--mut);font-weight:400">
+(trace_cluster &middot; train 5,034,299 px &middot;
+GT {&#x27;A&#x27;: 14639, &#x27;B&#x27;: 23478})</span></h3>
+<table><tr><th>head</th><th>target</th><th class="num">n @ 120k</th><th class="num">DTI @ 120k</th>
+<th class="num">DTI-optimal n</th><th class="num">DTI at optimum</th><th class="num">gain</th>
+<th class="num">marginal rule stops at</th></tr><tr><td>head_A</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00606</td><td class='num'>500,000</td><td class='num'><b>0.01427</b></td><td class='num'>+0.00821</td><td class='num'>650000</td></tr><tr><td>head_A</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00753</td><td class='num'>1,500,000</td><td class='num'><b>0.03055</b></td><td class='num'>+0.02302</td><td class='num'>800000</td></tr><tr><td>head_B</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00159</td><td class='num'>4,000,000</td><td class='num'><b>0.01361</b></td><td class='num'>+0.01202</td><td class='num'>&mdash;</td></tr><tr><td>head_B</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00725</td><td class='num'>4,000,000</td><td class='num'><b>0.02344</b></td><td class='num'>+0.01618</td><td class='num'>500000</td></tr><tr><td>head_C</td><td>vs target A</td><td class='num'>120,000</td><td class='num'>0.00748</td><td class='num'>2,500,000</td><td class='num'><b>0.01731</b></td><td class='num'>+0.00983</td><td class='num'>650000</td></tr><tr><td>head_C</td><td>vs target B</td><td class='num'>120,000</td><td class='num'>0.00873</td><td class='num'>2,500,000</td><td class='num'><b>0.02852</b></td><td class='num'>+0.01979</td><td class='num'>25000</td></tr><tr><td>null_random</td><td>A</td><td class='num'>120,000</td><td class='num'>0.07732</td><td class='num'>200,000</td><td class='num'><b>0.07912</b></td><td class='num'>+0.00180</td><td class='num'>&mdash;</td></tr><tr><td>null_random</td><td>B</td><td class='num'>120,000</td><td class='num'>0.10268</td><td class='num'>200,000</td><td class='num'><b>0.11120</b></td><td class='num'>+0.00852</td><td class='num'>&mdash;</td></tr></table>
+<div class="note"><b>Random-null control.</b> Every fold also scores a uniformly
+random score map. On a synthetic ground truth of the same density a random map
+reaches DTI 0.080 at n = 120,000 but 0.156 at its own optimum — i.e. <b>most of
+the apparent gain from a bigger budget is available to a random predictor</b>.
+That is why the null is reported alongside every head: a candidate must beat the
+null at matched budget, not merely beat its own smaller-budget self.</div>
+
+<h2>Proxy calibration against the three live-scored anchors</h2>
+<p>We hold the exact GeoTIFFs DrivenData scored <b>0.1855</b>, <b>0.1894</b> and
+<b>0.1922</b> (<code>assets/lb_anchors/</code>). Any offline proxy is worthless if it
+cannot reproduce that ordering.</p>
+<table><tr><th>proxy truth</th><th class="num">truth px</th><th class="num">Spearman &rho; vs live</th>
+<th class="num">ordering reproduced?</th><th>proxy order (best&rarr;worst)</th></tr><tr><td>sgmc_gap_strict</td><td class='num'>79,615</td><td class='num'>-1.000</td><td class='num'><b class=warn>NO</b></td><td>[&#x27;h16-1&#x27;, &#x27;h19-4&#x27;, &#x27;h19-5&#x27;]</td></tr><tr><td>sgmc_gap_d3</td><td class='num'>62,122</td><td class='num'>-1.000</td><td class='num'><b class=warn>NO</b></td><td>[&#x27;h16-1&#x27;, &#x27;h19-4&#x27;, &#x27;h19-5&#x27;]</td></tr><tr><td>sgmc_gap_d5</td><td class='num'>56,822</td><td class='num'>-1.000</td><td class='num'><b class=warn>NO</b></td><td>[&#x27;h16-1&#x27;, &#x27;h19-4&#x27;, &#x27;h19-5&#x27;]</td></tr><tr><td>sgmc_all</td><td class='num'>83,593</td><td class='num'>-1.000</td><td class='num'><b class=warn>NO</b></td><td>[&#x27;h16-1&#x27;, &#x27;h19-4&#x27;, &#x27;h19-5&#x27;]</td></tr></table>
+<table><tr><th>truth</th><th>anchor</th><th class="num">live score</th><th class="num">n pred</th>
+<th class="num">A (TP_w)</th><th class="num">B (FP_w)</th><th class="num">proxy DTI</th></tr><tr><td>sgmc_gap_strict</td><td>h16-1</td><td class='num'>0.1855</td><td class='num'>123,939</td><td class='num'>13,755</td><td class='num'>110,909</td><td class='num'>0.15521</td></tr><tr><td>sgmc_gap_strict</td><td>h19-4</td><td class='num'>0.1894</td><td class='num'>123,779</td><td class='num'>13,325</td><td class='num'>110,879</td><td class='num'>0.15051</td></tr><tr><td>sgmc_gap_strict</td><td>h19-5</td><td class='num'>0.1922</td><td class='num'>121,131</td><td class='num'>12,717</td><td class='num'>108,595</td><td class='num'>0.14459</td></tr><tr><td>sgmc_gap_d3</td><td>h16-1</td><td class='num'>0.1855</td><td class='num'>123,939</td><td class='num'>8,306</td><td class='num'>116,276</td><td class='num'>0.11132</td></tr><tr><td>sgmc_gap_d3</td><td>h19-4</td><td class='num'>0.1894</td><td class='num'>123,779</td><td class='num'>7,837</td><td class='num'>116,289</td><td class='num'>0.10516</td></tr><tr><td>sgmc_gap_d3</td><td>h19-5</td><td class='num'>0.1922</td><td class='num'>121,131</td><td class='num'>7,334</td><td class='num'>113,958</td><td class='num'>0.09917</td></tr><tr><td>sgmc_gap_d5</td><td>h16-1</td><td class='num'>0.1855</td><td class='num'>123,939</td><td class='num'>7,148</td><td class='num'>117,624</td><td class='num'>0.10152</td></tr><tr><td>sgmc_gap_d5</td><td>h19-4</td><td class='num'>0.1894</td><td class='num'>123,779</td><td class='num'>6,696</td><td class='num'>117,639</td><td class='num'>0.09521</td></tr><tr><td>sgmc_gap_d5</td><td>h19-5</td><td class='num'>0.1922</td><td class='num'>121,131</td><td class='num'>6,223</td><td class='num'>115,277</td><td class='num'>0.08921</td></tr><tr><td>sgmc_all</td><td>h16-1</td><td class='num'>0.1855</td><td class='num'>123,939</td><td class='num'>13,755</td><td class='num'>110,909</td><td class='num'>0.15521</td></tr><tr><td>sgmc_all</td><td>h19-4</td><td class='num'>0.1894</td><td class='num'>123,779</td><td class='num'>13,325</td><td class='num'>110,879</td><td class='num'>0.15051</td></tr><tr><td>sgmc_all</td><td>h19-5</td><td class='num'>0.1922</td><td class='num'>121,131</td><td class='num'>12,717</td><td class='num'>108,595</td><td class='num'>0.14459</td></tr></table>
+<div class="flagbox"><b>Flag F-01 — the proxy inverts at the top.</b> The SGMC-gap
+proxy was reported by 19GEMSDOE as the best available offline correlate of the
+public score (Spearman &rho; = +0.52, p = 0.048 over 15 files). Recomputed here on
+the three files whose scores are &gt;0.18, the correlation is
+<b>&rho; = &minus;1.000</b>: the proxy ranks <code>h16-1 &gt; h19-4 &gt; h19-5</code>
+while the live leaderboard ranks them <code>h19-5 &gt; h19-4 &gt; h16-1</code>. With
+n = 3 that inversion is not statistically significant (p = 0.333) and the three
+live scores differ by only 0.0067, so the honest reading is that <b>the proxy has
+no resolving power at the operating point that matters</b>, not that it is
+anti-signal. It is retained as a secondary check only. This is why the
+trace-cluster holdout, not SGMC-gap, is the primary gate in this repo.</div>
+</main><footer><div class="wrap">
+GEMSDOE22 &middot; generated by <code>scripts/06_build_site.py</code> from
+<code>evidence/*.json</code>. Every figure on these pages is read out of a
+measurement file at build time; nothing is hand-typed.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE22">Repository</a>
+</div></footer></body></html><script>
+function cp(btn){const t=btn.previousElementSibling.innerText.replace(/^[^:]*:\s*/,'');
+navigator.clipboard.writeText(t.trim()).then(()=>{btn.textContent='Copied';
+setTimeout(()=>btn.textContent='Copy',1400)});}
+</script>
+<script src="assets/tifcheck.js"></script>
+<script>
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+if(drop&&out){
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+async function run(file){
+  out.innerHTML='<p>Reading '+file.name+' ('+(file.size/1e6).toFixed(2)+' MB)&hellip;</p>';
+  try{
+    const buf=await file.arrayBuffer();
+    const t0=performance.now();
+    const r=await window.GEMS22TifCheck.check(buf);
+    const ms=((performance.now()-t0)/1000).toFixed(1);
+    let h='<h3>Hard requirements</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.hard.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004; pass</span>':'<span class=fail>&#10008; FAIL</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table><h3>Advisory</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.advisory.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004;</span>':'<span class=warn>&#9888;</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table>';
+    h+='<p>'+(r.ok?'<span class=pass style="font-size:18px">&#10004; SAFE TO SUBMIT</span>':
+      '<span class=fail style="font-size:18px">&#10008; DO NOT SUBMIT — a hard check failed</span>')+
+      ' <span style="color:var(--mut)">('+ms+' s, parsed '+(r.meta.total||0).toLocaleString()+' pixels)</span></p>';
+    if(r.meta&&r.meta.total){h+='<p class=badge>NaN '+r.meta.nan.toLocaleString()+
+      '</p><p class=badge>min '+r.meta.min+'</p><p class=badge>max '+r.meta.max+
+      '</p><p class=badge>&lt;0: '+r.meta.n_negative.toLocaleString()+
+      '</p><p class=badge>&gt;1: '+r.meta.n_above_1.toLocaleString()+
+      '</p><p class=badge>&gt;0: '+r.meta.n_positive.toLocaleString()+
+      '</p><p class=badge>EPSG '+r.meta.epsg+'</p>'}
+    out.innerHTML=h;
+  }catch(e){out.innerHTML='<p class=fail>Error: '+e.message+'</p>'}
+}
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>{if(e.dataTransfer.files[0])run(e.dataTransfer.files[0])});
+pick.addEventListener('change',e=>{if(e.target.files[0])run(e.target.files[0])});
+}
+</script>

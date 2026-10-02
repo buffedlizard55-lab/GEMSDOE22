@@ -1,0 +1,406 @@
+{
+ "product": "external/geodawn_extensions/geodawn_extensions_u8.tif",
+ "product_sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+ "grid": {
+  "width": 3292,
+  "height": 3730,
+  "crs": "EPSG:32611",
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "dtype": "uint8",
+  "nodata": 0
+ },
+ "channels": [
+  "ThK",
+  "UK",
+  "UTh",
+  "TMI_up150"
+ ],
+ "channel_semantics": {
+  "ThK": "contractor Thorium/Potassium ratio grid",
+  "UK": "contractor Uranium/Potassium ratio grid",
+  "UTh": "contractor Uranium/Thorium ratio grid",
+  "TMI_up150": "contractor total magnetic intensity upward-continued to 150 m grid"
+ },
+ "doi": "10.5066/P93LGLVQ",
+ "sciencebase_item": "657e1d85d34e23d3533209f7",
+ "readme": "https://www.sciencebase.gov/catalog/file/get/657e1d85d34e23d3533209f7?name=GeoDAWN_ReadMe.pdf",
+ "retrieved_utc": "2026-09-26T23:33:18.544144+00:00",
+ "archives": {
+  "2": {
+   "name": "22103_area2_tiffs.zip",
+   "size": 241738690,
+   "md5": "2b927f17b8261380b72c2be9e1d46490",
+   "sha256": "c5079b2c8da4d9dfa86ff8db061a6440bf5ef5ed632f7e7ff0a179e234eec662"
+  },
+  "1": {
+   "name": "22103_area1_tiffs.zip",
+   "size": 45685879,
+   "md5": "56d8450884ec737a10ad6031056c22e2",
+   "sha256": "d4eb95223c243a7f79aaf7bb9bfd2a544222b86ceec2cecceb11d4aa8cda4388"
+  }
+ },
+ "archive_member_listing": {
+  "2": [
+   {
+    "name": "22103_area2_tiffs/22103_dem_a2.tif",
+    "size": 49531304
+   },
+   {
+    "name": "22103_area2_tiffs/22103_k_a2.tif",
+    "size": 49531308
+   },
+   {
+    "name": "22103_area2_tiffs/22103_rtp_a2.tif",
+    "size": 49531364
+   },
+   {
+    "name": "22103_area2_tiffs/22103_tc_a2.tif",
+    "size": 49531354
+   },
+   {
+    "name": "22103_area2_tiffs/22103_th_a2.tif",
+    "size": 49531284
+   },
+   {
+    "name": "22103_area2_tiffs/22103_thk_a2.tif",
+    "size": 49531416
+   },
+   {
+    "name": "22103_area2_tiffs/22103_tmi_a2.tif",
+    "size": 49531366
+   },
+   {
+    "name": "22103_area2_tiffs/22103_tmi_hg_a2.tif",
+    "size": 49531420
+   },
+   {
+    "name": "22103_area2_tiffs/22103_tmi_vg_a2.tif",
+    "size": 49531426
+   },
+   {
+    "name": "22103_area2_tiffs/22103_u_a2.tif",
+    "size": 49531302
+   },
+   {
+    "name": "22103_area2_tiffs/22103_uk_a2.tif",
+    "size": 49531606
+   },
+   {
+    "name": "22103_area2_tiffs/22103_upcont_tmi150_a2.tif",
+    "size": 49531368
+   },
+   {
+    "name": "22103_area2_tiffs/22103_uth_a2.tif",
+    "size": 49531312
+   }
+  ],
+  "1": [
+   {
+    "name": "22103_area1_tiffs/22103_dem_a1.tif",
+    "size": 5309326
+   },
+   {
+    "name": "22103_area1_tiffs/22103_k_a1.tif",
+    "size": 5289136
+   },
+   {
+    "name": "22103_area1_tiffs/22103_rtp_a1.tif",
+    "size": 5289116
+   },
+   {
+    "name": "22103_area1_tiffs/22103_tc_a1.tif",
+    "size": 5289096
+   },
+   {
+    "name": "22103_area1_tiffs/22103_th_a1.tif",
+    "size": 5289098
+   },
+   {
+    "name": "22103_area1_tiffs/22103_thk_a1.tif",
+    "size": 5289116
+   },
+   {
+    "name": "22103_area1_tiffs/22103_tmi_a1.tif",
+    "size": 5289114
+   },
+   {
+    "name": "22103_area1_tiffs/22103_tmi_hg_a1.tif",
+    "size": 5289122
+   },
+   {
+    "name": "22103_area1_tiffs/22103_tmi_vg_a1.tif",
+    "size": 5289110
+   },
+   {
+    "name": "22103_area1_tiffs/22103_u_a1.tif",
+    "size": 5289098
+   },
+   {
+    "name": "22103_area1_tiffs/22103_uk_a1.tif",
+    "size": 5289144
+   },
+   {
+    "name": "22103_area1_tiffs/22103_upcont_tmi150_a1.tif",
+    "size": 5301390
+   },
+   {
+    "name": "22103_area1_tiffs/22103_uth_a1.tif",
+    "size": 5289104
+   }
+  ]
+ },
+ "priority_rule": "Area 1 overrides Area 2 where they overlap; Area 1 is 50 m and Area 2 100 m per the official ReadMe.",
+ "quantisation": "uint8 1..255 over each mosaicked source channel's finite in-footprint 1st..99th percentiles; 0=nodata. Bytes are ranks, not physical units.",
+ "rights": "USGS data release; retain citation/attribution and verify per-asset terms before redistribution.",
+ "caveats": [
+  "Ratio grids are contractor products from physical channels; this compact output does not preserve physical units.",
+  "Upward continuation is a smoothed transform of TMI, not an independent sensor.",
+  "Area/acquisition specifications differ; block-aware validation remains required.",
+  "These are feature channels, not a fault map or competition submission."
+ ],
+ "files": {
+  "ThK": {
+   "sources": [
+    {
+     "area": 2,
+     "archive": "22103_area2_tiffs.zip",
+     "member": "22103_area2_tiffs/22103_thk_a2.tif",
+     "member_size": 49531416,
+     "source_grid": {
+      "width": 3292,
+      "height": 3730,
+      "crs": "EPSG:32611",
+      "resolution": [
+       100.0,
+       100.0
+      ],
+      "transform": [
+       100.0,
+       0.0,
+       243350.0,
+       0.0,
+       -100.0,
+       4508550.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 5167628
+    },
+    {
+     "area": 1,
+     "archive": "22103_area1_tiffs.zip",
+     "member": "22103_area1_tiffs/22103_thk_a1.tif",
+     "member_size": 5289116,
+     "source_grid": {
+      "width": 1338,
+      "height": 979,
+      "crs": "EPSG:32611",
+      "resolution": [
+       50.0,
+       50.0
+      ],
+      "transform": [
+       50.0,
+       0.0,
+       406575.0,
+       0.0,
+       -50.0,
+       4202725.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 243065
+    }
+   ],
+   "valid_px": 5166085,
+   "source_value_min": -0.6844606399536133,
+   "source_value_max": 31.97163200378418
+  },
+  "UK": {
+   "sources": [
+    {
+     "area": 2,
+     "archive": "22103_area2_tiffs.zip",
+     "member": "22103_area2_tiffs/22103_uk_a2.tif",
+     "member_size": 49531606,
+     "source_grid": {
+      "width": 3292,
+      "height": 3730,
+      "crs": "EPSG:32611",
+      "resolution": [
+       100.0,
+       100.0
+      ],
+      "transform": [
+       100.0,
+       0.0,
+       243350.0,
+       0.0,
+       -100.0,
+       4508550.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 5167628
+    },
+    {
+     "area": 1,
+     "archive": "22103_area1_tiffs.zip",
+     "member": "22103_area1_tiffs/22103_uk_a1.tif",
+     "member_size": 5289144,
+     "source_grid": {
+      "width": 1338,
+      "height": 979,
+      "crs": "EPSG:32611",
+      "resolution": [
+       50.0,
+       50.0
+      ],
+      "transform": [
+       50.0,
+       0.0,
+       406575.0,
+       0.0,
+       -50.0,
+       4202725.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 243065
+    }
+   ],
+   "valid_px": 5166085,
+   "source_value_min": 0.1590796411037445,
+   "source_value_max": 14.360918998718262
+  },
+  "UTh": {
+   "sources": [
+    {
+     "area": 2,
+     "archive": "22103_area2_tiffs.zip",
+     "member": "22103_area2_tiffs/22103_uth_a2.tif",
+     "member_size": 49531312,
+     "source_grid": {
+      "width": 3292,
+      "height": 3730,
+      "crs": "EPSG:32611",
+      "resolution": [
+       100.0,
+       100.0
+      ],
+      "transform": [
+       100.0,
+       0.0,
+       243350.0,
+       0.0,
+       -100.0,
+       4508550.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 5167628
+    },
+    {
+     "area": 1,
+     "archive": "22103_area1_tiffs.zip",
+     "member": "22103_area1_tiffs/22103_uth_a1.tif",
+     "member_size": 5289104,
+     "source_grid": {
+      "width": 1338,
+      "height": 979,
+      "crs": "EPSG:32611",
+      "resolution": [
+       50.0,
+       50.0
+      ],
+      "transform": [
+       50.0,
+       0.0,
+       406575.0,
+       0.0,
+       -50.0,
+       4202725.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 243065
+    }
+   ],
+   "valid_px": 5166085,
+   "source_value_min": 0.4088197648525238,
+   "source_value_max": 5.607402801513672
+  },
+  "TMI_up150": {
+   "sources": [
+    {
+     "area": 2,
+     "archive": "22103_area2_tiffs.zip",
+     "member": "22103_area2_tiffs/22103_upcont_tmi150_a2.tif",
+     "member_size": 49531368,
+     "source_grid": {
+      "width": 3292,
+      "height": 3730,
+      "crs": "EPSG:32611",
+      "resolution": [
+       100.0,
+       100.0
+      ],
+      "transform": [
+       100.0,
+       0.0,
+       243350.0,
+       0.0,
+       -100.0,
+       4508550.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 5165852
+    },
+    {
+     "area": 1,
+     "archive": "22103_area1_tiffs.zip",
+     "member": "22103_area1_tiffs/22103_upcont_tmi150_a1.tif",
+     "member_size": 5301390,
+     "source_grid": {
+      "width": 1337,
+      "height": 982,
+      "crs": "EPSG:32611",
+      "resolution": [
+       50.0,
+       50.0
+      ],
+      "transform": [
+       50.0,
+       0.0,
+       406625.0,
+       0.0,
+       -50.0,
+       4202875.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 242260
+    }
+   ],
+   "valid_px": 5164312,
+   "source_value_min": -2178.27783203125,
+   "source_value_max": 4506.14111328125
+  }
+ }
+}

@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-02T02:38:20+00:00",
+  "generated_utc": "2026-10-02T03:37:47+00:00",
   "rasters": {
     "training_features.tif": {
       "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
@@ -291,5 +291,5 @@
     "catalogue_pixels_in_gap": 12523,
     "catalogue_fraction_in_gap": 0.205335
   },
-  "elapsed_seconds": 1.25
+  "elapsed_seconds": 1.31
 }

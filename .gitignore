@@ -1,4 +1,7 @@
-# Large competition & external rasters (never committed to Git)
+# ---------------------------------------------------------------------------
+# Trunk rules (src/gems workstream). /data holds the official competition
+# rasters -- training_features.tif alone is 419 MB -- and is never committed.
+# ---------------------------------------------------------------------------
 /data
 /data/
 /.cache/
@@ -6,5 +9,41 @@
 __pycache__/
 .pytest_cache/
 .venv/
+venv/
 scratch/
 *.egg-info/
+.mypy_cache/
+.ruff_cache/
+
+# --- os / editor ---
+.DS_Store
+*.swp
+
+# ---------------------------------------------------------------------------
+# gems22 workstream additions.
+#
+# NOTE on the two files that ARE tracked under /data: data/derived/feature_names.json
+# and data/derived/features.names.json are kept in git on purpose -- they are the
+# audit trail for which of the 156 engineered layers existed and which were
+# excluded as catalogue-derived (leakage control, flag F-10). Because the trunk
+# rule above excludes the whole /data directory, git will not re-include them by
+# negation, so they are force-added and any update needs `git add -f`.
+# ---------------------------------------------------------------------------
+
+# Large DERIVED external layers (91 MB total) from the gems22 workstream. These
+# are predecessor-session products, not deliverables, and each is pinned by
+# SHA-256 + DOI/ScienceBase id in the sibling .json provenance file that IS
+# committed. The small external layers the holdout depends on
+# (derived_sgmc_faults_100m_u8.tif, the GDR CSVs, template-mask.tif,
+# qfaults_prior_u8.tif) are deliberately NOT ignored.
+assets/external/lidar_scarp_features_u8.tif
+assets/external/geodawn_extensions_u8.tif
+assets/external/geodawn_rad_u8.tif
+assets/external/context_detector_prob_*.tif
+assets/external/ens12_*.tif
+
+# Local staging copy of the gems22 submission. docs/downloads/ is the canonical,
+# served copy (GitHub Pages one-click download) and IS committed; submissions/ is
+# a duplicate written by scripts/05_build_submission.py and skipped by
+# scripts/05b_reverify_published.py when absent.
+submissions/

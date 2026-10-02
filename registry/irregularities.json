@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_utc": "2026-10-02",
+  "reviewed_utc": "2026-09-30",
   "flags": [
     {
       "id": "F01",
@@ -309,19 +309,6 @@
       "how_established": "verified",
       "links": [
         "https://github.com/buffedlizard55-lab/GEMSDOE22/blob/main/docs/research/preregistration_h22.md"
-      ]
-    },
-    {
-      "id": "F25",
-      "area": "evidence integrity",
-      "severity": "high",
-      "status": "OPEN",
-      "title": "spatial_holdout_results.json regenerated without the H19/H22 candidate entries",
-      "evidence": "evidence/spatial_holdout_results.json now contains only H16-* arms plus one sibling (Baseline_Bands19_DeReg, H16_1..H16_5, Sibling_7GEMSDOE_LidarOnly_36c3a3f3). The H19_4_MultiLine_Corroborated_Synthesis, H19_5_PowerLaw_Budget_Corroborated and H19_SingleLayer_PatternMatch_Ablation entries that the published holdout claims rest on are absent; the file was overwritten by a later OOF-only run.",
-      "action": "re-run scripts/run_spatial_holdout_and_build.py with the H19/H22 surfaces to restore the entries",
-      "how_established": "COMPUTED - detected by tests/test_h19_corroboration.py::test_holdout_and_corroboration_ledgers",
-      "links": [
-        "https://github.com/buffedlizard55-lab/GEMSDOE22/blob/main/tests/test_h19_corroboration.py"
       ]
     }
   ]

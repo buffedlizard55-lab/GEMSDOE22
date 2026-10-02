@@ -5,8 +5,6 @@ multi-line physical corroboration ledgers.
 from __future__ import annotations
 
 import json
-
-import pytest
 from pathlib import Path
 
 import numpy as np
@@ -81,19 +79,6 @@ def test_dem1m_high_prior_openness_lrm_ci_artifacts() -> None:
 def test_holdout_and_corroboration_ledgers() -> None:
     res = json.loads((EVIDENCE_DIR / "spatial_holdout_results.json").read_text())
     s = res["summary"]
-    _required = [
-        "H19_4_MultiLine_Corroborated_Synthesis",
-        "H19_5_PowerLaw_Budget_Corroborated",
-        "H19_SingleLayer_PatternMatch_Ablation",
-    ]
-    _missing = [k for k in _required if k not in s]
-    if _missing:
-        pytest.skip(
-            "FLAGGED DEFECT F25 (registry/irregularities.json): spatial_holdout_results.json was "
-            f"regenerated OOF-only and no longer contains {_missing}. The published H19/H22 holdout "
-            "claims therefore have no regenerable evidence record until "
-            "scripts/run_spatial_holdout_and_build.py is re-run."
-        )
     b = s["H16_1_SeamFree_MultiScale_Synthesis"]
     h19_4 = s["H19_4_MultiLine_Corroborated_Synthesis"]
     h19_5 = s["H19_5_PowerLaw_Budget_Corroborated"]
