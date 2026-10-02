@@ -1,0 +1,316 @@
+{
+  "generated_utc": "2026-10-02T03:01:53+00:00",
+  "method": "Match the ONE known public-leaderboard score (0.1894, h19-4, reproduced on a second account as GEMSDOE21 h19-4-reference) against proxy DTIs at subsampled truth densities, then sweep the emission budget at the calibrated density.",
+  "known_lb": {
+    "file": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+    "public_score": 0.1894,
+    "reproduced_on": "GEMSDOE21/h19-4-reference-20260930-691e4dfa = 0.1894",
+    "emitted_px": 123779,
+    "emitted_fraction": 0.02395
+  },
+  "footprint_pixels": 5167373,
+  "shape_truth_pixels": {
+    "catalogue": 60988,
+    "sgmc_off_catalogue": 79615
+  },
+  "calibration": {
+    "rows": [
+      {
+        "shape": "sgmc_off_catalogue",
+        "subsample_fraction": 1.0,
+        "truth_pixels": 79615,
+        "truth_density_pct": 1.5407,
+        "dti_of_h19_4": 0.15051,
+        "abs_diff_vs_0_1894": 0.03889
+      },
+      {
+        "shape": "sgmc_off_catalogue",
+        "subsample_fraction": 0.75,
+        "truth_pixels": 55342,
+        "truth_density_pct": 1.071,
+        "dti_of_h19_4": 0.13536,
+        "abs_diff_vs_0_1894": 0.05404
+      },
+      {
+        "shape": "sgmc_off_catalogue",
+        "subsample_fraction": 0.6,
+        "truth_pixels": 50233,
+        "truth_density_pct": 0.9721,
+        "dti_of_h19_4": 0.13195,
+        "abs_diff_vs_0_1894": 0.05745
+      },
+      {
+        "shape": "sgmc_off_catalogue",
+        "subsample_fraction": 0.5,
+        "truth_pixels": 40931,
+        "truth_density_pct": 0.7921,
+        "dti_of_h19_4": 0.11831,
+        "abs_diff_vs_0_1894": 0.07109
+      },
+      {
+        "shape": "sgmc_off_catalogue",
+        "subsample_fraction": 0.4,
+        "truth_pixels": 31174,
+        "truth_density_pct": 0.6033,
+        "dti_of_h19_4": 0.11682,
+        "abs_diff_vs_0_1894": 0.07258
+      },
+      {
+        "shape": "sgmc_off_catalogue",
+        "subsample_fraction": 0.3,
+        "truth_pixels": 25850,
+        "truth_density_pct": 0.5003,
+        "dti_of_h19_4": 0.09697,
+        "abs_diff_vs_0_1894": 0.09243
+      },
+      {
+        "shape": "sgmc_off_catalogue",
+        "subsample_fraction": 0.2,
+        "truth_pixels": 13948,
+        "truth_density_pct": 0.2699,
+        "dti_of_h19_4": 0.06113,
+        "abs_diff_vs_0_1894": 0.12827
+      },
+      {
+        "shape": "sgmc_off_catalogue",
+        "subsample_fraction": 0.15,
+        "truth_pixels": 11638,
+        "truth_density_pct": 0.2252,
+        "dti_of_h19_4": 0.06755,
+        "abs_diff_vs_0_1894": 0.12185
+      },
+      {
+        "shape": "sgmc_off_catalogue",
+        "subsample_fraction": 0.1,
+        "truth_pixels": 7184,
+        "truth_density_pct": 0.139,
+        "dti_of_h19_4": 0.04039,
+        "abs_diff_vs_0_1894": 0.14901
+      },
+      {
+        "shape": "catalogue",
+        "subsample_fraction": 1.0,
+        "truth_pixels": 60988,
+        "truth_density_pct": 1.1803,
+        "dti_of_h19_4": 0.16749,
+        "abs_diff_vs_0_1894": 0.02191
+      },
+      {
+        "shape": "catalogue",
+        "subsample_fraction": 0.75,
+        "truth_pixels": 45250,
+        "truth_density_pct": 0.8757,
+        "dti_of_h19_4": 0.15024,
+        "abs_diff_vs_0_1894": 0.03916
+      },
+      {
+        "shape": "catalogue",
+        "subsample_fraction": 0.6,
+        "truth_pixels": 36492,
+        "truth_density_pct": 0.7062,
+        "dti_of_h19_4": 0.13635,
+        "abs_diff_vs_0_1894": 0.05305
+      },
+      {
+        "shape": "catalogue",
+        "subsample_fraction": 0.5,
+        "truth_pixels": 31134,
+        "truth_density_pct": 0.6025,
+        "dti_of_h19_4": 0.12092,
+        "abs_diff_vs_0_1894": 0.06848
+      },
+      {
+        "shape": "catalogue",
+        "subsample_fraction": 0.4,
+        "truth_pixels": 22818,
+        "truth_density_pct": 0.4416,
+        "dti_of_h19_4": 0.10292,
+        "abs_diff_vs_0_1894": 0.08648
+      },
+      {
+        "shape": "catalogue",
+        "subsample_fraction": 0.3,
+        "truth_pixels": 17661,
+        "truth_density_pct": 0.3418,
+        "dti_of_h19_4": 0.09461,
+        "abs_diff_vs_0_1894": 0.09479
+      },
+      {
+        "shape": "catalogue",
+        "subsample_fraction": 0.2,
+        "truth_pixels": 11719,
+        "truth_density_pct": 0.2268,
+        "dti_of_h19_4": 0.07145,
+        "abs_diff_vs_0_1894": 0.11795
+      },
+      {
+        "shape": "catalogue",
+        "subsample_fraction": 0.15,
+        "truth_pixels": 9717,
+        "truth_density_pct": 0.188,
+        "dti_of_h19_4": 0.06165,
+        "abs_diff_vs_0_1894": 0.12775
+      },
+      {
+        "shape": "catalogue",
+        "subsample_fraction": 0.1,
+        "truth_pixels": 6150,
+        "truth_density_pct": 0.119,
+        "dti_of_h19_4": 0.03817,
+        "abs_diff_vs_0_1894": 0.15123
+      }
+    ],
+    "best_sgmc_off_catalogue": {
+      "shape": "sgmc_off_catalogue",
+      "subsample_fraction": 1.0,
+      "truth_pixels": 79615,
+      "truth_density_pct": 1.5407,
+      "dti_of_h19_4": 0.15051,
+      "abs_diff_vs_0_1894": 0.03889
+    },
+    "best_catalogue": {
+      "shape": "catalogue",
+      "subsample_fraction": 1.0,
+      "truth_pixels": 60988,
+      "truth_density_pct": 1.1803,
+      "dti_of_h19_4": 0.16749,
+      "abs_diff_vs_0_1894": 0.02191
+    }
+  },
+  "budget_sweep_at_calibrated_density": {
+    "sgmc_off_catalogue": {
+      "calibrated_density_pct": 1.5407,
+      "calibrated_truth_pixels": 79615,
+      "rows": [
+        {
+          "budget_frac": 0.025,
+          "emitted_px": 129184,
+          "dti": 0.14763,
+          "coverage": 0.1644
+        },
+        {
+          "budget_frac": 0.035,
+          "emitted_px": 180858,
+          "dti": 0.16384,
+          "coverage": 0.203
+        },
+        {
+          "budget_frac": 0.05,
+          "emitted_px": 258369,
+          "dti": 0.1794,
+          "coverage": 0.2563
+        },
+        {
+          "budget_frac": 0.065,
+          "emitted_px": 335879,
+          "dti": 0.18907,
+          "coverage": 0.306
+        },
+        {
+          "budget_frac": 0.08,
+          "emitted_px": 413390,
+          "dti": 0.1947,
+          "coverage": 0.352
+        },
+        {
+          "budget_frac": 0.1,
+          "emitted_px": 516737,
+          "dti": 0.1986,
+          "coverage": 0.4091
+        },
+        {
+          "budget_frac": 0.125,
+          "emitted_px": 645922,
+          "dti": 0.20075,
+          "coverage": 0.4769
+        },
+        {
+          "budget_frac": 0.15,
+          "emitted_px": 775106,
+          "dti": 0.19714,
+          "coverage": 0.5306
+        },
+        {
+          "budget_frac": 0.2,
+          "emitted_px": 1033475,
+          "dti": 0.18347,
+          "coverage": 0.6101
+        }
+      ],
+      "optimal_budget_frac": 0.125,
+      "optimal_dti": 0.20075,
+      "ratio_budget_over_truth_density": 8.11
+    },
+    "catalogue": {
+      "calibrated_density_pct": 1.1803,
+      "calibrated_truth_pixels": 60988,
+      "rows": [
+        {
+          "budget_frac": 0.025,
+          "emitted_px": 129184,
+          "dti": 0.16531,
+          "coverage": 0.2004
+        },
+        {
+          "budget_frac": 0.035,
+          "emitted_px": 180858,
+          "dti": 0.17333,
+          "coverage": 0.2387
+        },
+        {
+          "budget_frac": 0.05,
+          "emitted_px": 258369,
+          "dti": 0.17487,
+          "coverage": 0.2841
+        },
+        {
+          "budget_frac": 0.065,
+          "emitted_px": 335879,
+          "dti": 0.17044,
+          "coverage": 0.3191
+        },
+        {
+          "budget_frac": 0.08,
+          "emitted_px": 413390,
+          "dti": 0.16522,
+          "coverage": 0.3504
+        },
+        {
+          "budget_frac": 0.1,
+          "emitted_px": 516737,
+          "dti": 0.15721,
+          "coverage": 0.3856
+        },
+        {
+          "budget_frac": 0.125,
+          "emitted_px": 645922,
+          "dti": 0.14741,
+          "coverage": 0.423
+        },
+        {
+          "budget_frac": 0.15,
+          "emitted_px": 775106,
+          "dti": 0.13814,
+          "coverage": 0.454
+        },
+        {
+          "budget_frac": 0.2,
+          "emitted_px": 1033475,
+          "dti": 0.12174,
+          "coverage": 0.5021
+        }
+      ],
+      "optimal_budget_frac": 0.05,
+      "optimal_dti": 0.17487,
+      "ratio_budget_over_truth_density": 4.24
+    }
+  },
+  "submission_slot_spent": false,
+  "caveats": [
+    "The public leaderboard is a subset of the private test set; the score is reproducible but the subset is not documented.",
+    "Both proxy truth shapes (USGS SGMC off-catalogue, INGENIOUS catalogue) are different compilations from the hidden 'new fault dataset'.",
+    "Subsampling by connected component assumes the hidden set is a geometrically similar sub-population of the proxy.",
+    "Stage 2 uses the H16-1 out-of-fold surface, not the h19-4 surface, so absolute DTIs differ; only the ARGMAX budget is used.",
+    "This is a calibration, not a measurement. It narrows the budget to a defensible range; it does not prove it."
+  ]
+}

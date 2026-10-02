@@ -1622,7 +1622,7 @@
           "href": "downloads/gems22-h22-1-fractal-clustering-prior-multiline-20261002-7fd2f28b-allfinite.tif"
         }
       },
-      "note": "22GEMSDOE H22-1 | Fractal-Clustering Prior (Bour&Davy D=1.37 + Ripley K>1) + 4-Line Synthesis at 2.50% | id 7fd2f28b | not yet live-scored",
+      "note": "22GEMSDOE H22-1 | Fractal-Clustering Prior (Bour&Davy D=1.37 + Ripley K>1) + 4-Line Synthesis at 2.50% | id 16dbe573 | not yet live-scored",
       "checks_official_format": {
         "file": "gems22-h22-1-fractal-clustering-prior-multiline-20261002-16dbe573-nan.tif",
         "bytes": 1718336,
@@ -1989,7 +1989,7 @@
           "href": "downloads/gems22-h22-2-fractal-243pct-budget-corroborated-20261002-00a4a807-allfinite.tif"
         }
       },
-      "note": "22GEMSDOE H22-2 | Fractal 2.43pct Budget (Bour&Davy D=1.37) + 4-Line Corroborated | id 00a4a807 | not yet live-scored",
+      "note": "22GEMSDOE H22-2 | Fractal 2.43pct Budget (Bour&Davy D=1.37) + 4-Line Corroborated | id 4131bb57 | not yet live-scored",
       "checks_official_format": {
         "file": "gems22-h22-2-fractal-243pct-budget-corroborated-20261002-4131bb57-nan.tif",
         "bytes": 1720768,

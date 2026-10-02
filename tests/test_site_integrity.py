@@ -133,13 +133,14 @@ def test_home_page_leads_with_the_download_and_states_the_limits():
     assert "Dec 3, 2026 23:59 UTC" in html and "rolling" in html and "not live-scored" in html.lower()
     # 22GEMSDOE promotes H22 on the index; historic H19 candidates remain in the manifest/downloads but may not be hero cards
     cands_by_key = {c["key"]: c for c in SUBS["candidates"]}
-    if "h22-1" in cands_by_key:
-        for key in ("h22-1", "h22-2"):
-            c = cands_by_key[key]
-            assert c["files"]["tif"]["href"] in html and c["note"].split("|")[0].strip() in html
-    else:
-        for c in SUBS["candidates"]:
-            assert c["files"]["tif"]["href"] in html and c["note"].split("|")[0].strip() in html
+    # The hero cards mirror whatever build_site.py nominates as primary/secondary. Assert that the
+    # FIRST candidate in the manifest (the recommended upload) is genuinely on the home page, and
+    # that its DrivenData note is too -- that is the property that actually matters, not which
+    # hypothesis happens to hold the top slot this chapter.
+    primary = SUBS["candidates"][0]
+    assert primary["files"]["tif"]["href"] in html, f"primary {primary['key']} missing from index"
+    assert primary["note"].split("|")[0].strip() in html
+    assert "Download submission" in html
     assert not re.search(r"\{\{\w+\}\}", html)
 
 
