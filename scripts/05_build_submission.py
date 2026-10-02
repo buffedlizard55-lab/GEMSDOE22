@@ -115,7 +115,7 @@ def main() -> None:
     sg = (rasterio.open(REPO / "assets/external/derived_sgmc_faults_100m_u8.tif").read(1) > 0)
     gap = sg & ~cat & fp
     scored = fp & ~cat
-    cfit = json.loads((REPO / "evidence/clustering_fit.json").read_text())
+    cfit = json.loads((REPO / "evidence/gems22_clustering_fit.json").read_text())
     ggeo = json.loads((REPO / "registry/group_geometry.json").read_text()) \
         if (REPO / "registry/group_geometry.json").exists() else {}
     G_live = float(ggeo.get("G_used") or 125_000)
@@ -306,7 +306,7 @@ def main() -> None:
            "files": [sub.registry_record(w, note) for w in written],
            "seconds": round(time.time() - t0, 1)}
     (REPO / "evidence/submission_build.json").write_text(json.dumps(rec, indent=1, default=str))
-    reg = REPO / "registry/submissions.json"
+    reg = REPO / "registry/gems22_submissions.json"
     ex = json.loads(reg.read_text()) if reg.exists() else {"schema_version": 1, "entries": []}
     ex["entries"] = [e for e in ex.get("entries", []) if e.get("content_id") != cid]
     ex["entries"].append(rec)
@@ -315,7 +315,7 @@ def main() -> None:
                           "numbers in the project brief, cross-checked against the live "
                           "leaderboard on 2026-10-01")
     reg.write_text(json.dumps(ex, indent=1, default=str))
-    print(f"\nwrote evidence/submission_build.json + registry/submissions.json "
+    print(f"\nwrote evidence/submission_build.json + registry/gems22_submissions.json "
           f"({time.time()-t0:.0f}s)")
     print("\nDRIVENDATA NOTE:\n  " + note)
 

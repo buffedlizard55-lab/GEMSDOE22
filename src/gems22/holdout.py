@@ -2,7 +2,7 @@
 
 WHY BLOCKED: fault networks are spatially autocorrelated (Bour & Davy 1999 show
 the trace barycentres are themselves a fractal point set, NCC >> 1 at 2-40 px in
-this very region -- see evidence/clustering_fit.json).  A random patch split, as
+this very region -- see evidence/gems22_clustering_fit.json).  A random patch split, as
 used by the official reference solution notebook
 (`make_patches(..., test_proportion=0.5, seed=...)` on a 128 px patch grid), puts
 pieces of the SAME fault into train and test.  That inflates apparent skill and

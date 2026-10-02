@@ -14,7 +14,7 @@ Operating instructions for an agent (or human) continuing this repository.
    at the top.
 3. **`NEXT_STEPS.md`** — ranked work, plus a table of ideas already evaluated and
    rejected with their evidence. Do not re-litigate those without new data.
-4. **`docs/irregularities.html`** (or `IRREGULARITIES` in
+4. **`docs/gems22-irregularities.html`** (or `IRREGULARITIES` in
    `scripts/06_build_site.py`) — flags F-01…F-13.
 
 ## Non-negotiable invariants
@@ -35,7 +35,7 @@ reproduce exactly the per-fold pixel counts recorded in
 | T2 | 11,727 | 10,254 |
 | T3 | 14,639 | 23,478 |
 
-`tests/test_holdout.py::test_real_data_folds_reproduce_recorded_evidence` asserts
+`tests/test_gems22_holdout.py::test_real_data_folds_reproduce_recorded_evidence` asserts
 this. If it fails, **every** cached OOF map, holdout sweep and budget conclusion
 in the repo is stale and must be regenerated before anything is claimed.
 
@@ -66,7 +66,7 @@ detector**.
 
 ### I-4. Submissions must be binary and must never leave the [0, 1] range
 
-Two derived facts, both unit-tested in `tests/test_metric.py`:
+Two derived facts, both unit-tested in `tests/test_gems22_metric.py`:
 
 * `FN_w = |G| − TP_w` **exactly**, so `DTI = A/(0.2A + 0.2B + 0.8|G|)`.
 * For a fixed support, DTI is strictly increasing in a uniform confidence scale,
@@ -158,7 +158,7 @@ Individual stages, all idempotent:
 
 ## What "done" looks like for the next session
 
-A live score for content id `74cb4afe` recorded in `registry/submissions.json`
-via `scripts/record_score.py`, and `LIMITATIONS.md` L-1 updated with the observed
+A live score for content id `74cb4afe` recorded in `registry/gems22_submissions.json`
+via `scripts/record_score_gems22.py`, and `LIMITATIONS.md` L-1 updated with the observed
 value — confirming or refuting the live-rescaling method that the whole budget
 decision rests on.

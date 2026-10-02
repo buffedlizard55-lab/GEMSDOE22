@@ -211,8 +211,8 @@ def main() -> None:
         fp = np.isfinite(ds.read(1))
     sg = (rasterio.open(REPO / "assets/external/derived_sgmc_faults_100m_u8.tif").read(1) > 0)
     gap = sg & ~cat & fp                       # pixel-disjoint from the catalogue
-    cfit = json.loads((REPO / "evidence/clustering_fit.json").read_text()) \
-        if (REPO / "evidence/clustering_fit.json").exists() else {}
+    cfit = json.loads((REPO / "evidence/gems22_clustering_fit.json").read_text()) \
+        if (REPO / "evidence/gems22_clustering_fit.json").exists() else {}
     print(f"catalogue={int(cat.sum()):,} sgmc_gap_strict={int(gap.sum()):,} "
           f"footprint={int(fp.sum()):,}", flush=True)
 

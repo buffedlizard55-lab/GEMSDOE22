@@ -6,15 +6,15 @@
 <h1>GEMSDOE22 — Submission Hub</h1>
 <p style="color:var(--mut);margin:0">Geologic Enhanced Mapping System (GEMS) Prize Challenge &middot; fault discovery in the GeoDAWN region, northwestern Great Basin, Nevada</p>
 <nav class="toc">
-<a href="index.html">Overview &amp; downloads</a>
-<a href="executive_summary.html">How to submit</a>
-<a href="method.html">Metric &amp; method</a>
-<a href="clustering.html">Spatial statistics</a>
-<a href="hypotheses.html">Hypotheses</a>
-<a href="results.html">Results &amp; holdout</a>
-<a href="sources.html">Verified sources</a>
-<a href="irregularities.html">Flags</a>
-<a href="next_steps.html">Next steps</a>
+<a href="gems22-index.html">Overview &amp; downloads</a>
+<a href="gems22-executive_summary.html">How to submit</a>
+<a href="gems22-method.html">Metric &amp; method</a>
+<a href="gems22-clustering.html">Spatial statistics</a>
+<a href="gems22-hypotheses.html">Hypotheses</a>
+<a href="gems22-results.html">Results &amp; holdout</a>
+<a href="gems22-sources.html">Verified sources</a>
+<a href="gems22-irregularities.html">Flags</a>
+<a href="gems22-next_steps.html">Next steps</a>
 </nav></div></header><main class="wrap">
 <div class="hero">
 <h2>&#11015;&#65039; Download a submission-ready GeoTIFF</h2>
@@ -24,7 +24,7 @@ every in-footprint pixel finite and in <code>[0, 1]</code>. <span class="pass">&
 <a class="btn acc" href="downloads/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.zip" download>Download .zip</a>
 <a class="btn sec" href="downloads/gems22-h22-value-emit-20261002T015455Z-74cb4afe-nan.tif" download>
         Download NaN-outside variant (.tif)</a>
-<a class="btn sec" href="executive_summary.html">Full upload guide &rarr;</a></p>
+<a class="btn sec" href="gems22-executive_summary.html">Full upload guide &rarr;</a></p>
 <div class="copyrow"><span class="v"><b>File name (unique):</b><br>gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif</span>
 <button onclick="cp(this)">Copy</button></div>
 <div class="copyrow"><span class="v"><b>DrivenData note (paste into &ldquo;Note (optional)&rdquo;):</b><br>GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&amp;Davy(1999) prior w=0.3 | NCC audit PASS | id 74cb4afe</span>
@@ -73,7 +73,7 @@ that consistently aims <i>away</i> from the catalogue: the organiser masks known
 faults out of scoring entirely (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2">forum 11516, post 2</a>),
 so every pixel spent re-finding a mapped fault earns nothing.</p>
 <p>What limits them is <b>not</b> the recipe. Using the exact algebra of the
-metric (<a href="method.html">derivation</a>),
+metric (<a href="gems22-method.html">derivation</a>),
 <code>DTI = A / (0.2A + 0.2B + 0.8|G|)</code>, and solving for the implied
 ground-truth size across the group&rsquo;s 19 scored files gives
 <b>|G| &asymp; 5&ndash;6 &times; 10<sup>4</sup></b> pixels in the public chunk. At that
@@ -104,7 +104,7 @@ carry <i>no</i> radiometric family although GeoDAWN is an airborne magnetic
 folds delete every known fault from the held-out region — but the live task
 <i>keeps</i> the catalogue visible everywhere. Measured: quadrant folds drove a
 head to <code>p99 = 0.0000</code> inside the held-out quadrant.</td>
-<td><code>src/gems22/holdout.py</code>, <a href="results.html">results</a></td></tr>
+<td><code>src/gems22/holdout.py</code>, <a href="gems22-results.html">results</a></td></tr>
 <tr><td>5</td><td><b>Fault population treated as a spatial statistic</b> — Bour &amp;
 Davy (1999) nearest-larger-neighbour scaling as a geometric prior, and the
 Marrett et al. (2018) normalised correlation count as a post-hoc artefact audit.</td>

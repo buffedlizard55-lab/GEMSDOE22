@@ -159,7 +159,7 @@ def main() -> None:
            },
            "populations": [repA, repB]}
     (REPO / "evidence").mkdir(exist_ok=True)
-    (REPO / "evidence/clustering_fit.json").write_text(json.dumps(out, indent=1, default=str))
+    (REPO / "evidence/gems22_clustering_fit.json").write_text(json.dumps(out, indent=1, default=str))
 
     for rep in (repA, repB):
         print("\n" + "=" * 78)
@@ -177,7 +177,7 @@ def main() -> None:
             print(f"  NCC(Marrett 2018) 2-40px: verdict={v.get('verdict')} mean={v.get('mean_ncc')} "
                   f"range=[{v.get('min_ncc')},{v.get('max_ncc')}] slope={v.get('loglog_slope')} "
                   f"D_ncc={v.get('implied_correlation_dimension')}")
-    print("\nwrote evidence/clustering_fit.json")
+    print("\nwrote evidence/gems22_clustering_fit.json")
 
 
 if __name__ == "__main__":

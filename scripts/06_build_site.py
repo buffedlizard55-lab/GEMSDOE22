@@ -862,7 +862,7 @@ def build_next(ev: dict) -> str:
 Three uploads per rolling 7 days is the only ground-truth feedback channel, and
 the brief forbids spending one on an idea that has not beaten the holdout best.</td>
 <td>Run <code>scripts/fetch_data.sh</code> on a machine with credentials, or paste
-the score back into <code>registry/submissions.json</code> via
+the score back into <code>registry/gems22_submissions.json</code> via
 <code>scripts/record_score.py</code>.</td></tr>
 <tr><td>2</td><td><b>No GPU; 2 CPU, 3.8 GB RAM</b></td>
 <td>The official reference solution is a U-Net (resnet18 encoder) ensemble over
@@ -1121,7 +1121,7 @@ IRREGULARITIES = [
                     "each population separately and neither is presented as a validation of "
                     "x = (a-1)/D; measured ratios are 1.62 and 3.21, i.e. the catalogue's length "
                     "distribution is dominated by mapping incompleteness, not by fractal geometry.",
-     "source": "scripts/02_fit_clustering.py -> evidence/clustering_fit.json"},
+     "source": "scripts/02_fit_clustering.py -> evidence/gems22_clustering_fit.json"},
     {"id": "F-08", "severity": "LOW",
      "title": "Length-frequency exponent does not reproduce the predecessor's value",
      "detail": "This repo fits a = 1.83-2.16 on the raster catalogue depending on L_min; "
@@ -1130,7 +1130,7 @@ IRREGULARITIES = [
      "disposition": "Recorded, not reconciled. No downstream quantity in this repo depends on "
                     "matching 19GEMSDOE's alpha: the emission budget comes from the DTI marginal "
                     "rule, not from a power-law completeness argument.",
-     "source": "evidence/clustering_fit.json vs 19GEMSDOE README section 3.1"},
+     "source": "evidence/gems22_clustering_fit.json vs 19GEMSDOE README section 3.1"},
     {"id": "F-09", "severity": "HIGH",
      "title": "Geographic quadrant folds are structurally invalid for this task",
      "detail": "Holding out a geographic quadrant deletes EVERY known fault from that region. But "
@@ -1226,7 +1226,7 @@ def main() -> None:
             f"<td class='num'>{(f'{ia:,.0f}' if ia is not None else '&mdash;')}</td>"
             f"<td class='num'>{(f'{ie:.4f}' if ie is not None else '&mdash;')}</td></tr>")
 
-    ev = {"prov": prov, "cal": E("anchor_calibration.json"), "clust": E("clustering_fit.json"),
+    ev = {"prov": prov, "cal": E("anchor_calibration.json"), "clust": E("gems22_clustering_fit.json"),
           "sub": E("submission_build.json"), "hold": E("holdout_union.json"),
           # the chosen emission budget lives in submission_build.json as
           # `budget` + `budget_source` (there is no `budget_choice` key -- reading
@@ -1241,6 +1241,18 @@ def main() -> None:
 
     (DOCS / "assets").mkdir(parents=True, exist_ok=True)
     (DOCS / "assets/style.css").write_text(CSS)
+
+    # ------------------------------------------------------------------
+    # PAGE NAMESPACING.  `main` already publishes a GitHub Pages site at
+    # docs/index.html, docs/executive_summary.html and docs/results.html, built
+    # by scripts/build_site.py from a different evidence set (the src/gems/
+    # package).  This builder writes a PARALLEL set of pages under a `gems22-`
+    # prefix so the two sites coexist instead of one silently overwriting the
+    # other.  Internal links are rewritten once, here, rather than in dozens of
+    # link literals -- and only the nine page names are touched, never
+    # downloads/, assets/ or external URLs.
+    # ------------------------------------------------------------------
+    PREFIX = "gems22-"
     pages = {"index.html": build_index(ev),
              "executive_summary.html": build_exec(ev),
              "method.html": build_method(ev),
@@ -1250,28 +1262,32 @@ def main() -> None:
              "sources.html": build_sources(ev),
              "irregularities.html": build_flags(ev),
              "next_steps.html": build_next(ev)}
-    for n, h in pages.items():
-        (DOCS / n).write_text(h)
-        print(f"  wrote docs/{n} ({len(h):,} bytes)")
+    names = sorted(pages, key=len, reverse=True)
+    for src_name, h in pages.items():
+        for n in names:
+            h = h.replace(f'href="{n}"', f'href="{PREFIX}{n}"')
+        out = f"{PREFIX}{src_name}"
+        (DOCS / out).write_text(h)
+        print(f"  wrote docs/{out} ({len(h):,} bytes)")
 
-    # root redirect so the site works whether Pages serves / or /docs
-    (REPO / "index.html").write_text(
-        """<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=docs/index.html">
-<title>GEMSDOE22</title></head><body>
-<p>Loading <a href="docs/index.html">docs/index.html</a>&hellip;</p></body></html>""")
-    (REPO / ".nojekyll").write_text("")
-    # machine-readable copies for the site's own tables
+    # The repository root index.html and docs/index.html belong to the trunk
+    # site.  This builder must NOT write them; it only adds a link into the
+    # trunk's own page set via docs/gems22-index.html.
+    if not (REPO / ".nojekyll").exists():
+        (REPO / ".nojekyll").write_text("")
+
+    # machine-readable copies for the site's own tables, namespaced for the same
+    # reason (docs/data/clustering_fit.json is the trunk's, not ours).
     (DOCS / "data").mkdir(exist_ok=True)
-    for n in ("data_provenance", "anchor_calibration", "clustering_fit",
+    for n in ("data_provenance", "anchor_calibration", "gems22_clustering_fit",
               "submission_build", "holdout_union"):
         d = E(f"{n}.json")
         if d is not None:
             (DOCS / "data" / f"{n}.json").write_text(json.dumps(d, indent=1, default=str))
-    (DOCS / "data/hypotheses.json").write_text(json.dumps(HYPOTHESES, indent=1))
-    (DOCS / "data/irregularities.json").write_text(json.dumps(IRREGULARITIES, indent=1))
-    (DOCS / "data/next_steps.json").write_text(json.dumps(NEXT_STEPS, indent=1))
-    print("site built")
+    (DOCS / "data/gems22_hypotheses.json").write_text(json.dumps(HYPOTHESES, indent=1))
+    (DOCS / "data/gems22_irregularities.json").write_text(json.dumps(IRREGULARITIES, indent=1))
+    (DOCS / "data/gems22_next_steps.json").write_text(json.dumps(NEXT_STEPS, indent=1))
+    print("site built (pages namespaced under gems22-)")
 
 
 if __name__ == "__main__":

@@ -30,7 +30,7 @@ login, no upload path and no score feedback. Three consequences:
   direction in Phase 2. Nothing here can test that.
 
 **Resolved by:** uploading the file and recording the score with
-`scripts/record_score.py`. One slot, three per rolling 7 days.
+`scripts/record_score_gems22.py`. One slot, three per rolling 7 days.
 
 ## L-2. The offline target inverts against the live leaderboard at the top (flag F-01)
 
@@ -51,7 +51,7 @@ delivered submission contains **no learned detector**:
   `value-based re-emission of the highest authenticated live map`.
 
 **Resolved by:** a proxy target that correlates positively with live score on
-≥5 authenticated files. None was found here; `registry/submissions.json` holds
+≥5 authenticated files. None was found here; `registry/gems22_submissions.json` holds
 the 19 observations any future attempt should be calibrated against.
 
 ## L-3. Both supervised heads fail the gate; head A is degenerate
@@ -207,7 +207,7 @@ a naive `x[x < 0] = 0` does too; but any path that computes with them first
 produces `inf`/`NaN` and is the most plausible root cause of the rejection
 message `Predicted values must be in range [0, 1]`.
 
-`submission.sanitise()` handles them explicitly, and `tests/test_submission.py`
+`submission.sanitise()` handles them explicitly, and `tests/test_gems22_submission.py`
 feeds the exact sentinel value plus `±inf` and out-of-range values through both
 output conventions. This is a fix for a *hypothesised* cause — the actual
 rejected file is not in the registry, so the diagnosis is inferred from the data

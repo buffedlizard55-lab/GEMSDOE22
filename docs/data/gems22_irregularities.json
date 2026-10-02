@@ -53,7 +53,7 @@
   "title": "Correlation dimension D = 2.29 > 2 for the raster catalogue",
   "detail": "A fractal dimension of a point set in the plane cannot exceed 2. The correlation integral C2(r) saturates once every box is occupied (Bour et al. 2002 state this explicitly), so a least-squares fit over 1-140 px is biased upward. The vector trace population gives D = 1.471 (R^2 = 0.982), which is the usable estimate.",
   "disposition": "Both values are published. The Bour & Davy consistency ratio is reported for each population separately and neither is presented as a validation of x = (a-1)/D; measured ratios are 1.62 and 3.21, i.e. the catalogue's length distribution is dominated by mapping incompleteness, not by fractal geometry.",
-  "source": "scripts/02_fit_clustering.py -> evidence/clustering_fit.json"
+  "source": "scripts/02_fit_clustering.py -> evidence/gems22_clustering_fit.json"
  },
  {
   "id": "F-08",
@@ -61,7 +61,7 @@
   "title": "Length-frequency exponent does not reproduce the predecessor's value",
   "detail": "This repo fits a = 1.83-2.16 on the raster catalogue depending on L_min; 19GEMSDOE reported alpha = 1.762 at L_min = 1,800 m with R^2 = 0.9936. Both are internally consistent; the difference is the length estimator and binning.",
   "disposition": "Recorded, not reconciled. No downstream quantity in this repo depends on matching 19GEMSDOE's alpha: the emission budget comes from the DTI marginal rule, not from a power-law completeness argument.",
-  "source": "evidence/clustering_fit.json vs 19GEMSDOE README section 3.1"
+  "source": "evidence/gems22_clustering_fit.json vs 19GEMSDOE README section 3.1"
  },
  {
   "id": "F-09",

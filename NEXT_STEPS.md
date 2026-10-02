@@ -2,7 +2,7 @@
 
 Ranked work for the next session, with the gate each item must clear before it is
 allowed to consume a submission slot. The site renders the same list at
-[`docs/next_steps.html`](https://buffedlizard55-lab.github.io/GEMSDOE22/docs/next_steps.html);
+[`docs/gems22-next_steps.html`](https://buffedlizard55-lab.github.io/GEMSDOE22/docs/gems22-next_steps.html);
 this file is the long form and is the one to edit — the site is generated.
 
 ## The standing rule
@@ -46,7 +46,7 @@ held-out behaviour. Under flag F-01 that is a directional expectation
 (≈0.198–0.208), not a guarantee.
 
 **Then:** record the outcome immediately with
-`python3 scripts/record_score.py --id 74cb4afe --score <X>`. That single
+`python3 scripts/record_score_gems22.py --id 74cb4afe --score <X>`. That single
 observation is worth more than any further offline work, because it is the first
 data point that can confirm or refute the live-rescaling method itself.
 
@@ -95,7 +95,7 @@ with an explicit residual model, and propagate the resulting uncertainty into
 *ranking* device into a *score predictor*, which is what makes slot allocation
 rational instead of merely consistent.
 
-Needs: nothing new — the 19 observations are already in `registry/submissions.json`.
+Needs: nothing new — the 19 observations are already in `registry/gems22_submissions.json`.
 Payoff: better slot allocation. Cost: **low**. Best effort-to-value ratio in this
 list; do it before spending any further slots.
 
@@ -115,7 +115,7 @@ Needs: nothing new. Payoff ≈ +0.005 to +0.02 DTI. Cost: medium.
 
 ## 6. Automate the leaderboard and site feed
 
-`scripts/record_score.py` plus a GitHub Action that re-reads the public
+`scripts/record_score_gems22.py` plus a GitHub Action that re-reads the public
 leaderboard and rebuilds `docs/` closes the loop the brief asks for, so nothing
 has to be checked by hand. `.github/workflows/ci.yml` already runs the tests and
 the artefact re-verification; extending it to fetch the leaderboard needs the

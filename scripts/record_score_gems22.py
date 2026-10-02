@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Append an observed DrivenData public score to registry/submissions.json.
+"""Append an observed DrivenData public score to registry/gems22_submissions.json.
 
 The sandbox cannot log in to DrivenData, so the live score of a new file is not
 observable here. This is the single manual-input escape hatch in the repo: run it
@@ -19,7 +19,7 @@ ap.add_argument("--score", required=True, type=float)
 ap.add_argument("--account", default=None)
 ap.add_argument("--url", default=None)
 a = ap.parse_args()
-reg = REPO / "registry/submissions.json"
+reg = REPO / "registry/gems22_submissions.json"
 d = json.loads(reg.read_text()) if reg.exists() else {"schema_version": 1, "entries": []}
 hit = None
 for e in d["entries"]:

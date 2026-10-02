@@ -58,11 +58,11 @@ def main() -> None:
     with rasterio.open(REPO / "data/sample_submission.tif") as ds:
         fp = np.isfinite(ds.read(1))
     cfit = {}
-    p = REPO / "evidence/clustering_fit.json"
+    p = REPO / "evidence/gems22_clustering_fit.json"
     if p.exists():
         cfit = json.loads(p.read_text())
     else:
-        print("WARNING: evidence/clustering_fit.json missing -> run 02_fit_clustering.py")
+        print("WARNING: evidence/gems22_clustering_fit.json missing -> run 02_fit_clustering.py")
     extra = structural_layers(cat, fp, cfit)
     print("structural layers:", {k: (v.dtype.str, float(np.mean(v)), int((v > 0).sum()))
                                  for k, v in extra.items()})

@@ -9,8 +9,8 @@
 > `"Predicted values must be in range [0, 1]"` rejection).
 >
 > Full step-by-step upload guide, copyable unique filename and copyable
-> DrivenData note: **[`docs/executive_summary.html`](docs/executive_summary.html)**
-> Site index: **[`docs/index.html`](docs/index.html)**
+> DrivenData note: **[`docs/gems22-executive_summary.html`](docs/gems22-executive_summary.html)**
+> Site index: **[`docs/gems22-index.html`](docs/gems22-index.html)**
 
 ---
 
@@ -62,7 +62,7 @@ fault population; this does.
 
 WE NEED TO STUDY, ANALYZE, AND UNDERSTAND THE HIGHEST SCORE FROM THE GEMDOE SITE
 WHERE THE SUBMISSION TIF IS DOWNLOADED FROM WHICH IS THE FOLLOWING:
-https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html
+https://buffedlizard55-lab.github.io/19GEMSDOE/docs/gems22-index.html
 h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan: 0.1894
 h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan: 0.1922
 Why and how did this get the highest score and are we able to generate a
@@ -226,7 +226,7 @@ DTI  = A / (0.2·A + 0.2·B + 0.8·G)
 ```
 
 Three consequences drive every design decision in this repo. All three are
-unit-tested in [`tests/test_metric.py`](tests/test_metric.py).
+unit-tested in [`tests/test_gems22_metric.py`](tests/test_gems22_metric.py).
 
 1. **The denominator has an immovable floor of `0.8·G`.** Coverage, not
    precision, dominates the achievable score. Predicting `p=1` on every scored
@@ -259,7 +259,7 @@ reproduces the published worked example's arithmetic (3.00 / 1.89 / 2.00 → 0.6
 Implemented in [`src/gems22/clustering.py`](src/gems22/clustering.py); fitted by
 [`scripts/02_fit_clustering.py`](scripts/02_fit_clustering.py) **before** any
 model was trained, on the known INGENIOUS/USGS traces inside the GeoDAWN
-footprint. Results: [`evidence/clustering_fit.json`](evidence/clustering_fit.json).
+footprint. Results: [`evidence/gems22_clustering_fit.json`](evidence/gems22_clustering_fit.json).
 
 | Population | n traces | median L | a (length-frequency) | x (nearest-larger) | D (correlation dim.) | x / ((a−1)/D) | NCC verdict 2–40 px |
 |---|---|---|---|---|---|---|---|
@@ -306,7 +306,7 @@ python3 scripts/05_build_submission.py    # prior re-rank, emit, NCC audit, writ
 python3 scripts/05b_reverify_published.py # RELEASE GATE: re-verify the bytes actually served
 python3 scripts/06_build_site.py          # regenerate docs/ from evidence/*.json
 python3 scripts/07_probe_network.py       # measure egress -> evidence/network_reachability.json
-python3 scripts/record_score.py --id <content_id> --score <X>   # log an observed live score
+python3 scripts/record_score_gems22.py --id <content_id> --score <X>   # log an observed live score
 python3 -m pytest tests -q                # 98 invariants (~30 s, no GPU, no network)
 bash scripts/run_all.sh                   # the whole chain, steps 0..9
 ```
