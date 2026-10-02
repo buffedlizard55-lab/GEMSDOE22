@@ -299,11 +299,15 @@ domain (`N` = 5,106,385 px, `|G|` from `fit_G_mle`):
   0.1810 = +0.003. Across the 95 % `|G|` band every one of those lifts spans zero. Of the
   nineteen scored files in `evidence/proxy_calibration_vs_lb.json`, only `7GEMSDOE`
   (+0.0131 at 76,859 px) shows a lift positive at *both* ends of the band.
-* **Why the fold looked so much better than the live task.** The fold holds 21,344 gt px
-  in 5.13 M (0.42 %); the fitted live density is ~2.27 %. The same files are **2.2×** the
-  fold floor but **1.01–1.06×** the live floor. The organisers' own description of the
-  test set — expert-mapped faults *not* in USGS/INGENIOUS (Forum 11527) — is exactly the
-  complement of what the catalogue-trained detector was built to reproduce.
+* **Why the "2.2× the floor" reading does not survive re-measurement.** That reading came
+  from the four-quadrant Dense/Sparse instrument, which this repository flags as
+  structurally invalid (F-09). On the *valid* trace-cluster instrument with the live
+  masking convention (`evidence/h26_instrument_consistency.json`), the same files mean
+  **−0.0007 (`h19-5`), +0.0003 (`h19-4`), −0.0002 (`h22-1`)** against a size-matched
+  random control. The fold holds 21,344 gt px in 5.13 M (0.42 %); the fitted live density
+  is ~2.27 %, and the same proportion of the live score is floor. The organisers'
+  description of the test set — expert-mapped faults *not* in USGS/INGENIOUS
+  (Forum 11527) — is the complement of what the catalogue-trained detector reproduces.
 * **Consequence 1 — ranking rule.** Candidates are compared by
   **lift = DTI − floor_dti(n, |G|, N) at their own budget**, never by raw DTI. This is now
   the rule in `AGENTS.md`.
