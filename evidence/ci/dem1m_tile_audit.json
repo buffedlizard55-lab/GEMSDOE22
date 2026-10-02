@@ -28,7 +28,7 @@
       "mean_lrm_abs_m": 1.9944,
       "mean_lrm_grad": 0.1718,
       "mean_openness_asymm_rad": 0.0961,
-      "seconds": 30.14
+      "seconds": 27.7
     },
     {
       "tile_id": "USGS_1M_11_x36y436_NV_WestCentral_EarthMRI_2020_D20",
@@ -51,7 +51,7 @@
       "mean_lrm_abs_m": 1.6717,
       "mean_lrm_grad": 0.1527,
       "mean_openness_asymm_rad": 0.0941,
-      "seconds": 28.72
+      "seconds": 25.89
     },
     {
       "tile_id": "USGS_1M_11_x32y441_NV_WestCentral_EarthMRI_2020_D20",
@@ -74,7 +74,7 @@
       "mean_lrm_abs_m": 2.4089,
       "mean_lrm_grad": 0.1844,
       "mean_openness_asymm_rad": 0.1043,
-      "seconds": 30.02
+      "seconds": 26.58
     },
     {
       "tile_id": "USGS_1M_11_x26y446_NV_WestCentral_EarthMRI_2020_D20",
@@ -97,7 +97,7 @@
       "mean_lrm_abs_m": 5.0953,
       "mean_lrm_grad": 0.2993,
       "mean_openness_asymm_rad": 0.1472,
-      "seconds": 22.0
+      "seconds": 21.08
     },
     {
       "tile_id": "USGS_1M_11_x33y441_NV_WestCentral_EarthMRI_2020_D20",
@@ -120,7 +120,7 @@
       "mean_lrm_abs_m": 3.3544,
       "mean_lrm_grad": 0.2549,
       "mean_openness_asymm_rad": 0.1516,
-      "seconds": 30.25
+      "seconds": 25.7
     },
     {
       "tile_id": "USGS_1M_11_x38y430_NV_WestCentral_EarthMRI_2020_D20",
@@ -143,7 +143,7 @@
       "mean_lrm_abs_m": 2.8735,
       "mean_lrm_grad": 0.2122,
       "mean_openness_asymm_rad": 0.1289,
-      "seconds": 28.16
+      "seconds": 25.86
     },
     {
       "tile_id": "USGS_1M_11_x39y430_NV_WestCentral_EarthMRI_2020_D20",
@@ -166,7 +166,7 @@
       "mean_lrm_abs_m": 3.6187,
       "mean_lrm_grad": 0.2623,
       "mean_openness_asymm_rad": 0.1614,
-      "seconds": 29.6
+      "seconds": 26.8
     },
     {
       "tile_id": "USGS_1M_11_x32y439_NV_WestCentral_EarthMRI_2020_D20",
@@ -189,7 +189,7 @@
       "mean_lrm_abs_m": 2.2269,
       "mean_lrm_grad": 0.1831,
       "mean_openness_asymm_rad": 0.1044,
-      "seconds": 101.59
+      "seconds": 26.22
     }
   ]
 }
