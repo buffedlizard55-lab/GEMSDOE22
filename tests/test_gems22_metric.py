@@ -194,3 +194,47 @@ def test_official_worked_example_arithmetic():
     dti = tp / (tp + 0.2 * fp + 0.8 * fn)
     assert round(dti, 2) == 0.60
     assert tp + fn == 5.0                              # identity (1) implies |G| = 5
+
+
+def test_fit_G_mle_and_uncertainty_propagation():
+    from gems22.metric import fit_G_mle, propagate_G_uncertainty
+
+    obs = [
+        {"id": "h19-5", "n": 121131, "lb": 0.1922},
+        {"id": "h19-4", "n": 123779, "lb": 0.1894},
+        {"id": "h16-1", "n": 123939, "lb": 0.1855},
+        {"id": "h28", "n": 65236, "lb": 0.1839},
+        {"id": "ens12", "n": 166519, "lb": 0.1563},
+        {"id": "ens12_dup", "n": 166519, "lb": 0.1563},  # duplicate collapsed
+        {"id": "g7", "n": 76859, "lb": 0.1461},
+        {"id": "g12", "n": 103347, "lb": 0.1294},
+        {"id": "h25", "n": 161366, "lb": 0.1280},
+        {"id": "g13", "n": 319377, "lb": 0.0904},
+    ]
+    res = fit_G_mle(obs)
+    assert res["n_unique_binary_observations"] == 9
+    q = res["G_quantiles"]
+    assert 40_000 <= q["p025"] < q["p16"] < q["p50"] < q["p84"] < q["p975"] <= 190_000
+    u = propagate_G_uncertainty(A_hold=3395.0, B_hold=116756.5, G_hold=19897.0, G_quantiles=q, coverage_penalty=1.10)
+    assert 0.10 < u["dti_live_p16"] <= u["dti_live_p50"] <= u["dti_live_p84"] < 0.30
+    assert len(u["tau_p16_p50_p84"]) == 3 and len(u["pi_star_p16_p50_p84"]) == 3
+
+
+def test_gems22_thermal_conduit_inversion_layers():
+    from gems22.hypotheses import HYPOTHESES, build_thermal_conduit_layers
+
+    assert len(HYPOTHESES) >= 3
+    fp = np.ones((40, 40), dtype=bool)
+    cat = np.zeros((40, 40), dtype=bool)
+    cat[20, 10:30] = True
+    layers, rep = build_thermal_conduit_layers((40, 40), fp, cat)
+    assert set(layers.keys()) == {
+        "thermal_wellspring_conduit",
+        "thermal_probe2m_conduit",
+        "thermal_paleo_vent_conduit",
+        "thermal_backward_composite",
+    }
+    for arr in layers.values():
+        assert arr.shape == (40, 40) and arr.dtype == np.float32
+    assert rep["wellspring_in_footprint"] == 27092
+

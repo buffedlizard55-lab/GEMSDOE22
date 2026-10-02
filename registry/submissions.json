@@ -261,9 +261,10 @@
       "bytes": 606648,
       "label": "13gems-composite-plus-20260929T183249Z_allfinite (unscored)",
       "site_url": "https://buffedlizard55-lab.github.io/13GEMSDOE/",
-      "lb_score": null,
+      "lb_score": 0.0904,
       "status": "unscored",
-      "account_named_by_owner": null
+      "account_named_by_owner": null,
+      "account": "smrtdoog5 (owner-reported)"
     },
     {
       "id": "GEMSDOE10-H25",
@@ -274,9 +275,10 @@
       "bytes": 1772935,
       "label": "h25-ctx-ridge-20260927T232947704150Z-6452ae1d00 (score not reported)",
       "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
-      "lb_score": null,
+      "lb_score": 0.128,
       "status": "unscored",
-      "account_named_by_owner": "wbg1"
+      "account_named_by_owner": "wbg1",
+      "account": "owner-reported"
     },
     {
       "id": "GEMSDOE10-H28",
@@ -287,9 +289,10 @@
       "bytes": 1620739,
       "label": "h28-dotted-ridge-20260928T020256236880Z-6452ae1d00 (score not reported)",
       "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
-      "lb_score": null,
+      "lb_score": 0.1839,
       "status": "unscored",
-      "account_named_by_owner": "wbg1"
+      "account_named_by_owner": "wbg1",
+      "account": "owner-reported"
     },
     {
       "id": "17GEMSDOE",
@@ -300,9 +303,10 @@
       "bytes": 987669,
       "label": "17GEMSDOE_A-verified-01563-support (same scored mask as ens12_7f00890a)",
       "site_url": "https://buffedlizard55-lab.github.io/17GEMSDOE/",
-      "lb_score": null,
+      "lb_score": 0.0187,
       "status": "unscored",
-      "account_named_by_owner": null
+      "account_named_by_owner": null,
+      "account": "smrtdoog5 (owner-reported)"
     }
   ]
 }

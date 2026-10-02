@@ -118,7 +118,8 @@ class U8Stack:
 def build_stream(A: np.ndarray, band_names: list[str],
                  external_dir: Path | None = None,
                  structural: dict[str, np.ndarray] | None = None,
-                 verbose: bool = True) -> Iterator[tuple[str, np.ndarray]]:
+                 verbose: bool = True,
+                 include_thermal_inversion: bool = False) -> Iterator[tuple[str, np.ndarray]]:
     """Yield (feature_name, float32 full-grid layer) one at a time."""
     nB = A.shape[0]
 
@@ -235,6 +236,13 @@ def build_stream(A: np.ndarray, band_names: list[str],
             yield "dem1m_coverage", cov.reshape(HH, WW).astype(np.float32)
             del cov
             zz.close()
+
+        if include_thermal_inversion:
+            from gems22.hypotheses import build_thermal_conduit_layers
+            fp_mask = np.isfinite(A).any(axis=0)
+            th_layers, _ = build_thermal_conduit_layers((A.shape[1], A.shape[2]), fp_mask)
+            for k_th, v_th in th_layers.items():
+                yield k_th, v_th
 
     if structural:
         for k, v in structural.items():

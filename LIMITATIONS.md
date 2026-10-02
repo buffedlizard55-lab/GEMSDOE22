@@ -106,9 +106,15 @@ chosen 550,000 sits on a broad plateau (300k–700k), which is deliberate — a
 plateau is the right answer to take when the calibration is soft — but the
 plateau's *centre* is not sharply determined.
 
-**Resolved by:** maximum-likelihood joint fit of `|G|` over all 19
-`(A_i, B_i, DTI_i)` triples with an explicit residual model, replacing the grid
-search. Cost: low, no new data. This is `NEXT_STEPS` item 4.
+**Resolved by (IMPLEMENTED OFF-LINE):** `src/gems22/metric.py` (`fit_G_mle` and
+`propagate_G_uncertainty`) and `scripts/04b_infer_G_and_rescale.py` now perform a
+maximum-likelihood joint fit of `|G|` over all `22` unique binary `(n_i, DTI_i)`
+observations (after collapsing byte/scored-pixel duplicates), yielding
+`G_mle = 107,000`, `G_mean = 116,106.1 ± 20,458.8`, 68% CI `[96,255, 134,963]`,
+95% CI `[84,294, 165,151]` (`registry/group_geometry.json`), and propagating
+`[p16, p50, p84]` intervals into `τ`, `π*`, and live-rescaled DTI predictions
+(`74cb4afe`: `[0.16277, 0.17783, 0.19560]`). Remaining epistemic uncertainty
+will be collapsed once `74cb4afe` (`n = 550,000`) is live-scored on DrivenData.
 
 ## L-5. The chosen base is h19-5, but the offline evidence marginally prefers h19-4
 

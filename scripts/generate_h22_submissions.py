@@ -161,8 +161,14 @@ def main():
                 real_D = fit.D_correlation
                 prior_note = f"fitted D_corr={fit.D_correlation} (Bour&Davy predicted {fit.D_bour_davy_predicted}, {fit.interpretation})"
                 print(f"[clustering] fitted: n={fit.n_traces} alpha={fit.alpha_ols} D_corr={fit.D_correlation} D_pred={fit.D_bour_davy_predicted} -> {fit.interpretation}")
-                # Could save fit to evidence/clustering_fit.json for site
-                (ROOT / "evidence" / "clustering_fit.json").write_text(json.dumps(fit.__dict__, indent=2) + "\n")
+                fit_payload = dict(fit.__dict__)
+                fit_payload["source"] = (
+                    "computed directly from GEMS_DATA_DIR/labels.tif (SHA-256 7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093) "
+                    "— Bour & Davy 1999 GRL (10.1029/1999GL900419), Ripley 1977 (10.1111/j.2517-6161.1977.tb01615.x)"
+                )
+                fit_payload["status"] = "COMPUTED_FROM_REAL_DATA"
+                (ROOT / "evidence" / "clustering_fit.json").write_text(json.dumps(fit_payload, indent=2) + "\n")
+                (ROOT / "docs" / "data" / "clustering_fit.json").write_text(json.dumps(fit_payload, indent=2) + "\n")
             except Exception as e:
                 print(f"[warn] clustering fit failed: {e}", file=sys.stderr)
         else:

@@ -39,6 +39,8 @@ scratch/
 assets/external/lidar_scarp_features_u8.tif
 assets/external/geodawn_extensions_u8.tif
 assets/external/geodawn_rad_u8.tif
+assets/external/context_detector_prob_*.tif
+assets/external/ens12_*.tif
 
 # Local staging copy of the gems22 submission. docs/downloads/ is the canonical,
 # served copy (GitHub Pages one-click download) and IS committed; submissions/ is
