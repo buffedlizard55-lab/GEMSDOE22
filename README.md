@@ -38,6 +38,90 @@ Every submission file below has been re-read and verified by `src/gems/submissio
 
 ---
 
+## 0A. Parallel `gems22` workstream, merged 2026-10-02 — a second candidate and three disagreements
+
+A second analysis was developed independently and merged here in its own
+namespace (`src/gems22/`, `scripts/00…07`, `docs/gems22-*.html`,
+`tests/test_gems22_*.py`, `evidence/gems22_*.json`). Entry point:
+**[`docs/gems22-index.html`](docs/gems22-index.html)** — it carries the same
+download-first layout, a one-click `.tif`, a copyable DrivenData note and an
+in-browser pre-flight verifier. Its long form is
+[`LIMITATIONS.md`](LIMITATIONS.md) and [`NEXT_STEPS.md`](NEXT_STEPS.md); its
+invariants are `AGENTS.md` Part B.
+
+**What it adds that the trunk did not have**
+
+* **Metric algebra, closed form.** `FN_w = |G| − TP_w` *exactly*, so
+  `DTI = A/(0.2A + 0.2B + 0.8|G|)`. Two consequences, both unit-tested: the
+  `0.8|G|` term is immovable, so predicting 1.0 everywhere reaches only
+  ≈`c/(c + 0.2(1 − c))` ≈ 0.10 and coverage dominates; and for a fixed support
+  DTI is strictly increasing in a uniform confidence scale, so **optimal
+  submissions are binary {0,1}**. An exact DTI-vs-budget curve in one pass
+  (`metric.budget_curve()`, verified identical to `components()` per budget,
+  200× faster).
+* **`|G|` inverted from the group's own live scores.** Fitting
+  `A_i = DTI_i(0.2·n_i + 0.8G)` over 19 live-scored files gives
+  **`|G| ≈ 125,000`** (`registry/group_geometry.json`), hence
+  τ = 0.2·DTI/(1 − 0.2·DTI) = 0.0403 and an emit threshold π\* = τ/(1+τ) =
+  **3.87%** at DTI 0.1894.
+* **A served-byte release gate.** `scripts/05b_reverify_published.py` re-hashes
+  and re-verifies the files *actually published*, not the in-memory arrays: 8/8
+  artefacts, SHA-256 match, 12/12 hard checks, zip integrity.
+* **98 tests** plus `.github/workflows/ci.yml` (tests, artefact integrity, site
+  freshness, placeholder and link checks).
+
+**Its candidate:** content id `74cb4afe`, `gems22-h22-value-emit`,
+**550,000 emitted scored pixels (10.771%** of the 5,106,385-px scored domain**)**,
+built on the highest authenticated live map (`h19-5`, 0.1922) — 121,131 pixels
+retained, 428,869 newly emitted, **0 trimmed**. It contains **no learned
+detector**: both gradient-boosting heads failed the gate (0/6 folds beat the
+anchors, efficiency 0.004–0.008 vs 0.028–0.042), which is recorded as a negative
+result rather than buried.
+
+### The three disagreements, with both numbers
+
+Neither side is "corrected" to match the other. The disagreement is the
+informative part, and each row says what would settle it.
+
+| # | Question | Trunk (`src/gems`) | gems22 (`src/gems22`) | Settled by |
+|---|---|---|---|---|
+| 1 | **Emission budget** | ≈120k px, 2.395% (`16dbe573`) and 2.43% (`4131bb57`) | **550,000 px, 10.771%** (`74cb4afe`), from `\|G\| = 125,000` and the marginal rule `dA > τ(dA + dB)` | One upload. 12/12 anchor × fold combinations gain, mean **+0.018**; median of the three per-anchor live optima {430k, 550k, 625k} |
+| 2 | **Correlation dimension `D`** | `D_correlation = 1.37`, `D_bour_davy_predicted = 1.38`, `D_consistent = true` | `D = 2.289 > 2` — flagged **F-07** as saturated and biased upward; measured `x/((a−1)/D)` = 1.62, so the relation is **not** validated | Both fitted the same 3,199 traces; the difference is the lag range. **gems22 defers to the trunk's `D = 1.37`** as the better estimate and uses only the weaker monotone statement "large faults have their nearest larger neighbour farther away", which its own fit supports (`x = 0.8223`, `A = 6.268 m`, `R² = 0.956`) |
+| 3 | **Holdout design** | Dense/Sparse geographic quadrants; `H22-1` 0.2162 vs `H16-1` 0.21272 (Dense), 0.0878 vs 0.08541 (Sparse) | Geographic quadrant folds are **structurally invalid here** (flag F-09): they delete *every* known fault from the held-out region, but the live task keeps the catalogue visible everywhere. Measured DTI **0.033** for quadrants vs **0.165** for identical features under trace-cluster folds | Trace-cluster folds (`holdout.trace_cluster_folds(cat \| gap, 4, 48, seed=22)`), pinned by a regression test against exact per-fold pixel counts |
+
+### One apparent conflict that is *not* a conflict
+
+`evidence/proxy_calibration_vs_lb.json` (trunk) reports the SGMC-gap proxy
+correlating with public score at **Spearman ρ = +0.518, p = 0.048, n = 15** —
+the proxy *works*. `evidence/anchor_calibration.json` (gems22) reports
+**ρ = −1.000, n = 3** on the three anchors alone — an apparent inversion
+(flag F-01).
+
+These are consistent. The trunk measures a proxy across a **wide** score range;
+gems22 measures it across the top three files, whose live scores span only
+**0.1855 → 0.1922 (0.0067)**. A proxy can be monotone over 0.15–0.19 and still be
+unable to *resolve* a 0.0067 band. F-01 should therefore be read as **"the
+offline proxy cannot rank the top three"**, not "the proxy is broken" — which is
+precisely why the gems22 candidate is a re-emission of an *already authenticated*
+live map rather than the output of a newly trained model.
+
+### Which file should be uploaded first?
+
+The trunk's `16dbe573` is the safer bet: it is the continuation of a validated
+recipe, at a budget the group has used successfully four times. The gems22
+`74cb4afe` is the higher-variance bet: it tests a **closed-form, data-free**
+prediction (the marginal emission rule at `|G| = 125,000`) that no previous
+session has tested, and it is the only one of the two that can *falsify* that
+prediction. With three uploads per rolling 7 days, the information-maximising
+order is trunk first, gems22 second — one upload of `74cb4afe` either confirms a
++0.018-class budget correction or kills it, and both outcomes are worth more than
+a third variant of a known-good recipe.
+
+Neither file has a live score. Every projection above is offline. See
+[`LIMITATIONS.md`](LIMITATIONS.md) L-1.
+
+---
+
 ## 1. Arena Core Values & Why This Chapter Exists
 
 ### Arena Core Values

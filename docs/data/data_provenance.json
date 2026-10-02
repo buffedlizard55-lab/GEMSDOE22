@@ -1,0 +1,216 @@
+{
+ "generated_utc": "2026-10-02T02:26:25Z",
+ "hashes": {
+  "training_features.tif": {
+   "exists": true,
+   "bytes": 418912844,
+   "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+   "pin": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+   "match": true
+  },
+  "labels.tif": {
+   "exists": true,
+   "bytes": 425830,
+   "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+   "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+   "match": true
+  },
+  "sample_submission.tif": {
+   "exists": true,
+   "bytes": 1599597,
+   "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+   "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+   "match": true
+  }
+ },
+ "checks": {
+  "spec": {
+   "shape_is_3730x3292": true,
+   "crs_is_epsg_32611": true,
+   "transform_matches_official": true,
+   "dtype_float32": true,
+   "count_single_band": true,
+   "nodata_is_nan": true,
+   "n_footprint_5167373": true,
+   "n_outside_7111787": true,
+   "n_catalogue_60988": true,
+   "n_total_12279160": true,
+   "catalogue_inside_footprint": true
+  }
+ },
+ "measurements": {
+  "spec": {
+   "shape": [
+    3730,
+    3292
+   ],
+   "n_total": 12279160,
+   "n_footprint": 5167373,
+   "n_outside": 7111787,
+   "n_catalogue": 60988,
+   "n_evaluate_mask": 5106385,
+   "n_feature_valid": 5164300,
+   "n_footprint_feature_nodata": 3073,
+   "profile": "{'driver': 'GTiff', 'dtype': 'float32', 'nodata': nan, 'width': 3292, 'height': 3730, 'count': 1, 'crs': CRS.from_wkt('PROJCS[\"WGS 84 / UTM zone 11N\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-117],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"32611\"]]'), 'transform': Affine(100.0, 0.0, 243350.0,\n       0.0, -100.0, 4508550.0), 'blockxsize': 3292, 'blockysize': 1, 'tiled': False, 'compress': 'lzw', 'interleave': 'band'}"
+  },
+  "band_names": [
+   "mag_anom",
+   "rtp",
+   "tmi_hg",
+   "geod_2ndinv",
+   "iso_grav_anom_slope",
+   "tc",
+   "geod_shearrate",
+   "geod_dilaterate",
+   "tmi_vg",
+   "deq_n100a15",
+   "iso_grav_anom_vg",
+   "det_elev",
+   "iso_grav_anom",
+   "tmi",
+   "depth_to_base_surf",
+   "ieq_n100a15",
+   "cond_surf",
+   "iso_grav_anom_hg",
+   "det_elev_slope"
+  ],
+  "band_names_from_tags": [
+   "mag_anom",
+   "rtp",
+   "tmi_hg",
+   "geod_2ndinv",
+   "iso_grav_anom_slope",
+   "tc",
+   "geod_shearrate",
+   "geod_dilaterate",
+   "tmi_vg",
+   "deq_n100a15",
+   "iso_grav_anom_vg",
+   "det_elev",
+   "iso_grav_anom",
+   "tmi",
+   "depth_to_base_surf",
+   "ieq_n100a15",
+   "cond_surf",
+   "iso_grav_anom_hg",
+   "det_elev_slope"
+  ],
+  "band_categories": [
+   "geodetic_strain",
+   "gravity_data",
+   "magnetic_data",
+   "seismic",
+   "subsurface",
+   "topographic"
+  ],
+  "n_catalogue": 60988,
+  "n_footprint": 5167373,
+  "n_outside": 7111787,
+  "n_total": 12279160,
+  "n_feature_all_finite_in_footprint": 5164300,
+  "n_sentinel_pixels_inside_footprint": 3073,
+  "per_band_nonfinite_inside_footprint": [
+   {
+    "band": 1,
+    "name": "mag_anom",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 2,
+    "name": "rtp",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 3,
+    "name": "tmi_hg",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 4,
+    "name": "geod_2ndinv",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 5,
+    "name": "iso_grav_anom_slope",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 6,
+    "name": "tc",
+    "non_finite_inside_footprint": 3073
+   },
+   {
+    "band": 7,
+    "name": "geod_shearrate",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 8,
+    "name": "geod_dilaterate",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 9,
+    "name": "tmi_vg",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 10,
+    "name": "deq_n100a15",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 11,
+    "name": "iso_grav_anom_vg",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 12,
+    "name": "det_elev",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 13,
+    "name": "iso_grav_anom",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 14,
+    "name": "tmi",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 15,
+    "name": "depth_to_base_surf",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 16,
+    "name": "ieq_n100a15",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 17,
+    "name": "cond_surf",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 18,
+    "name": "iso_grav_anom_hg",
+    "non_finite_inside_footprint": 3061
+   },
+   {
+    "band": 19,
+    "name": "det_elev_slope",
+    "non_finite_inside_footprint": 3061
+   }
+  ]
+ },
+ "flags": [
+  "F-03 3073 pixels INSIDE the official footprint carry the float32 sentinel -3.4028235e+38 in at least one of the 19 bands (mag_anom, rtp, tmi_hg, geod_2ndinv, iso_grav_anom_slope, tc, geod_shearrate, geod_dilaterate, tmi_vg, deq_n100a15, iso_grav_anom_vg, det_elev, iso_grav_anom, tmi, depth_to_base_surf, ieq_n100a15, cond_surf, iso_grav_anom_hg, det_elev_slope). Any submission that lets a derived value propagate from these pixels is rejected with 'Predicted values must be in range [0, 1]'. gems22.submission.sanitise() forces them to 0.0 before clipping.",
+  "F-04 IRREGULARITY: the mirrored 'example_submission.tif' (= data/sample_submission.tif, sha256 2176d08e485aa2cd) contains 60988 pixels equal to 1.0, exactly the 60988 positive pixels of labels.tif.  The problem description says the sample 'predicts total fault absence'.  The file is still a valid FORMAT template (CRS/shape/transform/dtype/nodata all match), so it is used here only for the footprint mask and the write profile -- never as a prediction.",
+  "F-06 The 19 competition bands carry data_category values ['geodetic_strain', 'gravity_data', 'magnetic_data', 'seismic', 'subsurface', 'topographic'] -- there is NO radiometric family, although GeoDAWN is an 'airborne magnetic AND RADIOMETRIC' survey (USGS doi:10.5066/P93LGLVQ). The K/Th/U/TC grids from that same release are therefore genuinely orthogonal information and are used as external features."
+ ],
+ "all_checks_pass": true
+}

@@ -1,0 +1,157 @@
+{
+ "product": "../external/dem/lidar_scarp_features_u8.tif",
+ "bands": [
+  "ex_max",
+  "ex_mean",
+  "step_max",
+  "lapneg_max",
+  "lappos_max",
+  "downface_max",
+  "upface_max",
+  "cross_max",
+  "relief",
+  "coh100",
+  "strike",
+  "valid"
+ ],
+ "quantisation": {
+  "ex_max": [
+   1.5,
+   "sqrt"
+  ],
+  "ex_mean": [
+   0.3,
+   "sqrt"
+  ],
+  "step_max": [
+   1.0,
+   "sqrt"
+  ],
+  "lapneg_max": [
+   0.05,
+   "sqrt"
+  ],
+  "lappos_max": [
+   0.05,
+   "sqrt"
+  ],
+  "downface_max": [
+   1.0,
+   "sqrt"
+  ],
+  "upface_max": [
+   1.0,
+   "sqrt"
+  ],
+  "cross_max": [
+   1.0,
+   "sqrt"
+  ],
+  "relief": [
+   300.0,
+   "sqrt"
+  ],
+  "coh100": [
+   1.0,
+   "linear"
+  ],
+  "strike": [
+   180.0,
+   "linear"
+  ],
+  "valid": [
+   1.0,
+   "linear"
+  ]
+ },
+ "quantisation_rule": "q = 1 + round(254 * t(clip(x/xmax,0,1))), t in {sqrt, linear}; 0 = no lidar",
+ "channels_2m": [
+  {
+   "name": "ex_max",
+   "aggregation": "max",
+   "meaning": "max 2 m slope in excess of 30 m regional slope (m/m)"
+  },
+  {
+   "name": "ex_mean",
+   "aggregation": "average",
+   "meaning": "mean slope excess (short-wavelength steepness)"
+  },
+  {
+   "name": "step_max",
+   "aggregation": "max",
+   "meaning": "max 10 m-scale slope minus 50 m-scale slope (m/m)"
+  },
+  {
+   "name": "lapneg_max",
+   "aggregation": "max",
+   "meaning": "max crest convexity: -LoG(6 m) of the 50 m band-passed surface (1/m)"
+  },
+  {
+   "name": "lappos_max",
+   "aggregation": "max",
+   "meaning": "max base concavity: +LoG(6 m) of the 50 m band-passed surface (1/m)"
+  },
+  {
+   "name": "downface_max",
+   "aggregation": "max",
+   "meaning": "max band-passed step gradient along the 100 m regional upslope direction"
+  },
+  {
+   "name": "upface_max",
+   "aggregation": "max",
+   "meaning": "max band-passed step gradient against the regional slope (uphill-facing/antislope)"
+  },
+  {
+   "name": "cross_max",
+   "aggregation": "max",
+   "meaning": "max band-passed gradient across the regional slope (channel-bank-like)"
+  },
+  {
+   "name": "jxx_m_jyy",
+   "aggregation": "average",
+   "meaning": "structure tensor Jxx-Jyy (doubled-angle cos)"
+  },
+  {
+   "name": "j2xy",
+   "aggregation": "average",
+   "meaning": "structure tensor 2*Jxy (doubled-angle sin)"
+  },
+  {
+   "name": "jtrace",
+   "aggregation": "average",
+   "meaning": "structure tensor trace (gradient energy)"
+  },
+  {
+   "name": "zmax",
+   "aggregation": "max",
+   "meaning": "max elevation (m)"
+  },
+  {
+   "name": "zmin",
+   "aggregation": "min",
+   "meaning": "min elevation (m)"
+  },
+  {
+   "name": "valid",
+   "aggregation": "average",
+   "meaning": "fraction of valid lidar samples"
+  }
+ ],
+ "work_resolution_m": 2.0,
+ "tiles_total": 716,
+ "tile_status": {
+  "ok": 706,
+  "failed": 10
+ },
+ "grid_cells_with_lidar": 3892964,
+ "source": "USGS 3DEP 1 m DEM tiles listed in knowledge/dem_tiles.json (official bucket URLs)",
+ "rights": "USGS 3DEP products are available without use restrictions; acknowledge 'Map services and data available from U.S. Geological Survey, National Geospatial Program.'",
+ "caveats": [
+  "uncalibrated terrain descriptors, not fault detections",
+  "roads, channels, terrace risers, paleo-shorelines, landslides and mines also create steps",
+  "tile list is an OCR-recovered inventory of the competition PDF, not the login-walled CSV",
+  "NAD83(2011) UTM tiles aggregated onto WGS84 UTM 11N; ~1-2 m datum offset is negligible at 100 m"
+ ],
+ "workflow_run": "https://github.com/buffedlizard55-lab/7GEMSDOE/actions/runs/36266555805",
+ "commit": "2e7bf080270493f77286fd62f2db958805053ba5"
+}

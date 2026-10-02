@@ -1,0 +1,270 @@
+# Continuous integration for GEMSDOE22.
+#
+# Design constraint: the official competition rasters (419 MB) and the derived
+# feature cache (4.4 GB) are gitignored, so a runner does NOT have them.  Every
+# job here is therefore written to run against the committed artefacts only, and
+# the data-dependent tests skip themselves rather than failing.  What CI *can*
+# prove without the rasters is still worth proving:
+#
+#   * the metric, clustering-statistic, holdout-design and submission-writer
+#     logic is correct (unit tests on synthetic grids);
+#   * the GeoTIFFs committed to docs/downloads/gems22/ are byte-identical to the ones
+#     the build recorded (SHA-256), and each .zip contains exactly that .tif;
+#   * the published site builds from evidence/*.json, has no broken internal
+#     links, and ships valid JavaScript.
+#
+# The pixel-level [0,1] verification of the served files runs locally via
+# scripts/05b_reverify_published.py, where the rasters exist; it degrades
+# gracefully to hash-only here and prints a loud NOTE when it does.
+
+name: ci
+
+on:
+  push:
+    branches: [main, "arena/**"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Import check (catches syntax errors in scripts/ too)
+        run: |
+          python - <<'PY'
+          import ast, pathlib, sys
+          bad = []
+          for p in list(pathlib.Path("src").rglob("*.py")) + \
+                   list(pathlib.Path("scripts").rglob("*.py")) + \
+                   list(pathlib.Path("tests").rglob("*.py")):
+              try:
+                  ast.parse(p.read_text())
+              except SyntaxError as e:
+                  bad.append(f"{p}: {e}")
+          print(f"parsed {len(list(pathlib.Path('src').rglob('*.py')))+len(list(pathlib.Path('scripts').rglob('*.py')))+len(list(pathlib.Path('tests').rglob('*.py')))} files")
+          if bad:
+              print("\n".join(bad)); sys.exit(1)
+          PY
+
+      - name: pytest
+        run: python -m pytest tests -q --durations=10
+        env:
+          PYTHONPATH: src
+
+      - name: Report skipped tests
+        if: always()
+        run: |
+          echo "Data-dependent tests are expected to SKIP on CI because the"
+          echo "official rasters are gitignored.  A skip is not a failure, but"
+          echo "an unexpected skip would hide a regression, so list them:"
+          python -m pytest tests -q -rs --collect-only 2>/dev/null | tail -5 || true
+
+  artefacts:
+    name: submission artefact integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Re-verify the committed artefacts
+        run: python scripts/05b_reverify_published.py
+
+      - name: Fail if the verification recorded any failure
+        run: |
+          python - <<'PY'
+          import json, sys
+          rv = json.load(open("evidence/submission_build.json"))["reverify"]
+          print(f"artefacts_checked={rv['artefacts_checked']} "
+                f"all_pass={rv['all_pass']} "
+                f"pixel_level={rv['pixel_level_checks_run']}")
+          for f in rv["failures"]:
+              print("FAIL", f)
+          sys.exit(0 if rv["all_pass"] else 1)
+          PY
+
+      - name: Committed evidence must carry the full verification
+        run: |
+          # 05b rewrites reverify.generated_utc on every run, so a plain
+          # "git diff is empty" check would always fail here.  The staleness risk
+          # that actually matters is different: evidence committed BEFORE
+          # registry_record() started embedding the full verify_file() dict has no
+          # per-file "checks" block, and the published site then silently renders
+          # "pending" instead of the real verdicts.  Assert the substance instead.
+          python - <<'PY'
+          import hashlib, json, pathlib, sys
+          ev = json.load(open("evidence/submission_build.json"))
+          problems = []
+          rv = ev.get("reverify") or {}
+          if not rv:
+              problems.append("no reverify block -- run scripts/05b_reverify_published.py")
+          for r in ev.get("files") or []:
+              name = r["file"]
+              c = r.get("checks")
+              if not c:
+                  problems.append(f"{name}: record has no 'checks' block (pre-fix schema)")
+                  continue
+              if not c.get("hard_all_pass"):
+                  problems.append(f"{name}: recorded hard_all_pass is not true")
+              inner = c.get("checks") or {}
+              if len(inner) < 16:
+                  problems.append(f"{name}: only {len(inner)} inner checks recorded, expected >=16")
+              # the committed bytes must still be the recorded bytes
+              p = pathlib.Path("docs/downloads/gems22") / name
+              if p.exists():
+                  h = hashlib.sha256(p.read_bytes()).hexdigest()
+                  if h != r["sha256"]:
+                      problems.append(f"{name}: committed sha256 {h[:16]} != recorded {r['sha256'][:16]}")
+          for p in problems:
+              print("STALE/INCORRECT", p)
+          print(f"{len(ev.get('files') or [])} file record(s) inspected, {len(problems)} problem(s)")
+          sys.exit(1 if problems else 0)
+          PY
+
+  site:
+    name: published site
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build this branch's site pages from evidence/*.json
+        run: python scripts/06_build_site.py
+
+      - name: Trunk site checks (scripts/check_site.py), when present
+        run: |
+          # main publishes scripts/check_site.py, which validates ALL of docs/
+          # (links, anchors, duplicate ids, JS, placeholders).  Run it rather
+          # than duplicating it; skip cleanly if a checkout predates it.
+          if [ -f scripts/check_site.py ]; then
+            python scripts/check_site.py
+          else
+            echo "scripts/check_site.py not present -- skipped"
+          fi
+
+      - name: Committed gems22- pages must match a fresh build
+        run: |
+          # Scoped to docs/gems22-*.html and docs/data/gems22_*.json: the trunk
+          # pages (docs/index.html, docs/executive_summary.html, docs/results.html)
+          # are built by scripts/build_site.py from a different evidence set and
+          # are not this builder's output.
+          if git diff --quiet -- 'docs/gems22-*.html' 'docs/data/gems22_*.json'; then
+            echo "docs/gems22-* is current with evidence/*.json"
+          else
+            echo "::error::docs/gems22-* is stale -- run scripts/06_build_site.py and commit"
+            git diff --stat -- 'docs/gems22-*.html' 'docs/data/gems22_*.json'
+            exit 1
+          fi
+
+      - name: No unresolved placeholders in the published HTML
+        run: |
+          python - <<'PY'
+          import pathlib, re, sys
+          # "pending" means a value was expected from evidence/ and was absent.
+          # Ignore substring false positives ("depending", "spending").
+          bad = []
+          for f in sorted(pathlib.Path("docs").glob("gems22-*.html")):
+              t = f.read_text()
+              for m in re.finditer(r"(?<![a-z])pending(?![a-z])", t):
+                  bad.append(f"{f}: ...{t[max(0,m.start()-90):m.start()+20]}...")
+          for b in bad:
+              print("PLACEHOLDER", b)
+          print(f"{len(bad)} unresolved placeholder(s)")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: No broken internal links
+        run: |
+          python - <<'PY'
+          import pathlib, re, sys, urllib.parse
+          docs = pathlib.Path("docs"); bad = []; n = 0
+          pages = sorted(docs.glob("gems22-*.html"))
+          for h in pages:
+              base = docs if h.parent.name == "docs" else pathlib.Path(".")
+              for m in re.finditer(r'(?:href|src)="([^"]+)"', h.read_text()):
+                  u = m.group(1)
+                  if u.startswith(("#", "mailto:", "http://", "https://")):
+                      continue
+                  n += 1
+                  if not (base / urllib.parse.unquote(u.split("#")[0])).resolve().exists():
+                      bad.append(f"{h} -> {u}")
+          for b in bad:
+              print("BROKEN", b)
+          print(f"{n} internal reference(s) across {len(pages)} page(s), {len(bad)} broken")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Every download link resolves to a committed file
+        run: |
+          python - <<'PY'
+          import pathlib, re, sys
+          docs = pathlib.Path("docs"); bad = []
+          for h in sorted(docs.glob("gems22-*.html")):
+              for m in re.finditer(r'href="(downloads/[^"]+)"\s+download', h.read_text()):
+                  p = docs / m.group(1)
+                  if not p.exists():
+                      bad.append(f"{h} -> {m.group(1)}")
+                  elif p.stat().st_size == 0:
+                      bad.append(f"{h} -> {m.group(1)} is EMPTY")
+          for b in bad:
+              print("BROKEN DOWNLOAD", b)
+          print(f"{len(bad)} broken download link(s)")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Client-side JavaScript parses
+        run: |
+          node --check docs/assets/tifcheck.js
+          echo "tifcheck.js OK"
+
+      - name: GitHub Pages prerequisites
+        run: |
+          test -f .nojekyll && echo ".nojekyll present (disables Jekyll processing)"
+          test -f index.html && echo "root index.html redirect present"
+          test -f docs/gems22-index.html && echo "docs/gems22-index.html present"

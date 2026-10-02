@@ -1,0 +1,148 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive Summary — exactly how to submit</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap">
+<div class="kicker">DOE GEMS Prize Challenge &middot; DrivenData #306</div>
+<h1>Executive Summary — exactly how to submit</h1>
+<p style="color:var(--mut);margin:0">Six steps, about two minutes, no command line required</p>
+<nav class="toc">
+<a href="gems22-index.html">Overview &amp; downloads</a>
+<a href="gems22-executive_summary.html">How to submit</a>
+<a href="gems22-method.html">Metric &amp; method</a>
+<a href="gems22-clustering.html">Spatial statistics</a>
+<a href="gems22-hypotheses.html">Hypotheses</a>
+<a href="gems22-results.html">Results &amp; holdout</a>
+<a href="gems22-sources.html">Verified sources</a>
+<a href="gems22-irregularities.html">Flags</a>
+<a href="gems22-next_steps.html">Next steps</a>
+</nav></div></header><main class="wrap">
+<h2>1. The file</h2>
+<p><a class="btn" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif" download>Download gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif</a></p>
+<div class="copyrow"><span class="v"><b>File name:</b><br>gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif</span><button onclick="cp(this)">Copy</button></div>
+<div class="copyrow"><span class="v"><b>DrivenData note:</b><br>GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&amp;Davy(1999) prior w=0.3 | NCC audit PASS | id 74cb4afe</span><button onclick="cp(this)">Copy</button></div>
+
+<h2>2. The steps</h2>
+<ol class="steps">
+<li>Click <b>Download</b> above. The file lands in your normal Downloads folder.</li>
+<li>Optional but recommended: drop it into the <b>pre-flight verifier</b> at the
+bottom of this page. It runs entirely in your browser — nothing is uploaded.</li>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submissions page</a>
+(you must be logged in and have accepted the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">rules</a>).</li>
+<li>Under <b>New submission</b>, click <i>Choose file</i> and select the
+<code>.tif</code>. A <code>.zip</code> containing a single GeoTIFF is also accepted.</li>
+<li>Paste the note from the box above into <b>Note (optional)</b>. This is what
+lets you tell submissions apart later — it carries the content id, the emitted
+pixel budget and the recipe.</li>
+<li>Click <b>Submit</b>. Remember the cap: <b>3 uploads per rolling 7 days</b>.</li>
+</ol>
+
+<h2>3. What the platform requires</h2>
+<p>Quoted from the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description &sect; Submission format</a>:</p>
+<ul>
+<li>&ldquo;same projected coordinate reference system as the training data
+(projected coordinate system for UTM zone 11N, EPSG 32611)&rdquo;</li>
+<li>&ldquo;same resolution as the training data (100m)&rdquo;</li>
+<li>&ldquo;same bounds as the training data, and data outside the bounds is null or nan&rdquo;</li>
+<li>&ldquo;a single layer with datatype of 32-bit float (<code>float32</code>) with values
+between 0 and 1 indicating the confidence or probability of fault presence&rdquo;</li>
+</ul>
+
+<h2>4. Why you saw &ldquo;Predicted values must be in range [0, 1]&rdquo;</h2>
+<div class="flagbox">
+<b>Root cause, measured in this repo.</b> <code>training_features.tif</code> carries the
+float32 sentinel <code>-3.4028234663852886e+38</code> on
+<b>3073</b>
+pixels that are <i>inside</i> the official footprint (5,167,373 finite pixels in
+<code>sample_submission.tif</code> versus 5,164,300 pixels where all 19 bands are
+finite; band&nbsp;6 <code>tc</code> alone is sentinel on 12 further pixels). Any
+submission whose arithmetic lets a value propagate from those pixels is
+instantly outside <code>[0, 1]</code> and is rejected before it is scored.
+<br><br>
+<b>Second, independent trigger.</b> A file that is NaN <i>outside</i> the footprint
+is legal per the problem description, but a scorer that uses plain
+<code>min()</code>/<code>max()</code> rather than NaN-aware reductions sees NaN and
+fails the range test. The <b>-allfinite</b> variant removes both risks: it is
+finite everywhere and 0.0 outside the footprint.
+<br><br>
+<b>Both conventions are provably score-equivalent.</b> The group registry holds
+<code>r7-nms3-dem10-scarp_0c9199f14e62</code> = <b>0.1294</b> and
+<code>r7-nms3-dem10-scarp_0c9199f14e62_allfinite</code> = <b>0.1294</b>: the same
+prediction, two outside-footprint conventions, identical public score.
+</div>
+<p><code>src/gems22/submission.py</code> therefore forces every non-finite value to
+0.0 <i>before</i> clipping, zeroes the known-catalogue pixels (they are excluded
+from evaluation anyway, per <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2">forum 11516 post 2</a>), writes
+the official profile, then <b>re-reads the file from disk</b> and runs the checks
+below. A file that fails any hard check is never written to <code>docs/downloads/gems22/</code>.</p>
+
+<h2>5. Verification actually run on this file</h2>
+<table><tr><th>Check</th><th>Result</th></tr><tr><td>single_band</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>dtype_float32</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>crs_epsg_32611</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>shape_3730x3292</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>geotransform_matches_official</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>footprint_all_finite</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>footprint_min_ge_0</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>footprint_max_le_1</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>scored_all_finite</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>scored_min_ge_0</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>scored_max_le_1</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>probe_nanaware_whole_array</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>probe_masked_read</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>probe_strict_no_nan_anywhere</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>n_footprint_pixels</td><td><span class=pass>&#10004; pass</span></td></tr><tr><td>n_outside_pixels</td><td><span class=pass>&#10004; pass</span></td></tr></table>
+<p class="badge">sha256 cd3c26a2fb4b7e649c49d2b565291bca&hellip;</p>
+<p class="badge">1141558 bytes</p>
+<p class="badge">positive in footprint: 550,000</p>
+<p class="badge">positive on scored domain: 550,000</p>
+<p class="badge">positive on catalogue: 0</p>
+
+<h2>6. Browser pre-flight verifier</h2>
+<p>Drop any candidate <code>.tif</code> here. Parsing and all checks happen
+<b>locally in your browser</b> — the file is never uploaded anywhere. This is the
+same check list the server-side writer runs, implemented independently in
+JavaScript from the TIFF specification so a coding mistake is unlikely to appear
+in both.</p>
+<div id="drop">Drop a <code>.tif</code> here, or
+<input type="file" id="pick" accept=".tif,.tiff"></div>
+<div id="out"></div>
+
+</main><footer><div class="wrap">
+GEMSDOE22 &middot; generated by <code>scripts/06_build_site.py</code> from
+<code>evidence/*.json</code>. Every figure on these pages is read out of a
+measurement file at build time; nothing is hand-typed.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE22">Repository</a>
+</div></footer></body></html><script>
+function cp(btn){const t=btn.previousElementSibling.innerText.replace(/^[^:]*:\s*/,'');
+navigator.clipboard.writeText(t.trim()).then(()=>{btn.textContent='Copied';
+setTimeout(()=>btn.textContent='Copy',1400)});}
+</script>
+<script src="assets/tifcheck.js"></script>
+<script>
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+if(drop&&out){
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+async function run(file){
+  out.innerHTML='<p>Reading '+file.name+' ('+(file.size/1e6).toFixed(2)+' MB)&hellip;</p>';
+  try{
+    const buf=await file.arrayBuffer();
+    const t0=performance.now();
+    const r=await window.GEMS22TifCheck.check(buf);
+    const ms=((performance.now()-t0)/1000).toFixed(1);
+    let h='<h3>Hard requirements</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.hard.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004; pass</span>':'<span class=fail>&#10008; FAIL</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table><h3>Advisory</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.advisory.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004;</span>':'<span class=warn>&#9888;</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table>';
+    h+='<p>'+(r.ok?'<span class=pass style="font-size:18px">&#10004; SAFE TO SUBMIT</span>':
+      '<span class=fail style="font-size:18px">&#10008; DO NOT SUBMIT — a hard check failed</span>')+
+      ' <span style="color:var(--mut)">('+ms+' s, parsed '+(r.meta.total||0).toLocaleString()+' pixels)</span></p>';
+    if(r.meta&&r.meta.total){h+='<p class=badge>NaN '+r.meta.nan.toLocaleString()+
+      '</p><p class=badge>min '+r.meta.min+'</p><p class=badge>max '+r.meta.max+
+      '</p><p class=badge>&lt;0: '+r.meta.n_negative.toLocaleString()+
+      '</p><p class=badge>&gt;1: '+r.meta.n_above_1.toLocaleString()+
+      '</p><p class=badge>&gt;0: '+r.meta.n_positive.toLocaleString()+
+      '</p><p class=badge>EPSG '+r.meta.epsg+'</p>'}
+    out.innerHTML=h;
+  }catch(e){out.innerHTML='<p class=fail>Error: '+e.message+'</p>'}
+}
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>{if(e.dataTransfer.files[0])run(e.dataTransfer.files[0])});
+pick.addEventListener('change',e=>{if(e.target.files[0])run(e.target.files[0])});
+}
+</script>

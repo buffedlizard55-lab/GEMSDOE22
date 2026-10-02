@@ -1,0 +1,111 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Next steps and limitations</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap">
+<div class="kicker">DOE GEMS Prize Challenge &middot; DrivenData #306</div>
+<h1>Next steps and limitations</h1>
+<p style="color:var(--mut);margin:0">What the next session should do first</p>
+<nav class="toc">
+<a href="gems22-index.html">Overview &amp; downloads</a>
+<a href="gems22-executive_summary.html">How to submit</a>
+<a href="gems22-method.html">Metric &amp; method</a>
+<a href="gems22-clustering.html">Spatial statistics</a>
+<a href="gems22-hypotheses.html">Hypotheses</a>
+<a href="gems22-results.html">Results &amp; holdout</a>
+<a href="gems22-sources.html">Verified sources</a>
+<a href="gems22-irregularities.html">Flags</a>
+<a href="gems22-next_steps.html">Next steps</a>
+</nav></div></header><main class="wrap">
+<h2>Blockers</h2>
+<table><tr><th>#</th><th>Blocker</th><th>Why it blocks</th><th>Unblock</th></tr>
+<tr><td>1</td><td><b>No DrivenData login in this sandbox</b></td>
+<td>The private test set and the live score of any new file cannot be observed.
+Three uploads per rolling 7 days is the only ground-truth feedback channel, and
+the brief forbids spending one on an idea that has not beaten the holdout best.</td>
+<td>Run <code>scripts/fetch_data.sh</code> on a machine with credentials, or paste
+the score back into <code>registry/gems22_submissions.json</code> via
+<code>scripts/record_score.py</code>.</td></tr>
+<tr><td>2</td><td><b>No GPU; 2 CPU, 3.8 GB RAM</b></td>
+<td>The official reference solution is a U-Net (resnet18 encoder) ensemble over
+128-px patches with 5 Monte-Carlo splits. That cannot be trained here.</td>
+<td>Everything in this repo is a gradient-boosted multi-scale filter bank, a
+deliberate CPU-honest substitute. A GPU session should re-run the same feature
+cache through a U-Net and compare on the same folds.</td></tr>
+<tr><td>3</td><td><b>USGS / OpenEI / Dropbox hosts unreachable</b></td>
+<td>New 1&nbsp;m 3DEP tiles, raw GeoDAWN grids and the GDR file geodatabases cannot
+be re-fetched; only what predecessor repos committed is available.</td>
+<td>All external layers used here were recovered from
+<code>buffedlizard55-lab/7GEMSDOE</code> and <code>19GEMSDOE</code> over
+<code>codeload.github.com</code>, which <i>is</i> reachable, and each carries its
+original DOI and SHA-256.</td></tr>
+<tr><td>4</td><td><b>LiDAR coverage is partial</b></td>
+<td>75.4% of grid cells have 3DEP 1&nbsp;m tiles; the cached openness/LRM fields
+cover only 71,974 cells (1.4% of the footprint) over eight 10&nbsp;km tiles.</td>
+<td>Extend the tile pull; <code>assets/external/lidar_scarp_features.json</code>
+records the 706/716 tiles already fetched and the 10 that failed.</td></tr>
+</table>
+<h2>Ordered next steps</h2>
+<table><tr><th class="num">#</th><th>Action</th><th>What it needs</th>
+<th class="num">Expected payoff</th><th class="num">Cost</th></tr>
+<tr><td class='num'>1</td><td><b>Spend one upload slot on the value-based emission budget</b><br><span style='color:var(--mut);font-size:13px'>The single largest measured, replicated, data-free gain in this repo: three independent evaluations put the DTI-optimal emitted-pixel budget 2.7x-8x above the 120k the group has always used. It must clear the trace-cluster holdout gate AND the NCC artefact audit first, per the brief.</span></td><td>One of the 3 uploads per rolling 7 days</td><td class='num'>+0.03 to +0.10 DTI</td><td class='num'>1 slot</td></tr><tr><td class='num'>2</td><td><b>Extend the 1 m 3DEP DEM openness/LRM coverage from 1.4% to the full footprint</b><br><span style='color:var(--mut);font-size:13px'>Only 71,974 cells over eight 10 km tiles are cached. 7GEMSDOE already fetched 706 of 716 tiles and recorded the URLs in knowledge/dem_tiles.json; the derived 12-band scarp product covers 75.4% of grid cells. Closing the remaining 24.6% (the NE lidar-gap-heavy quadrant) is the highest-value data work left.</span></td><td>A machine that can reach USGS 3DEP / nationalmap.gov</td><td class='num'>+0.01 to +0.03 DTI</td><td class='num'>medium</td></tr><tr><td class='num'>3</td><td><b>Train a U-Net on the same 156-layer cache</b><br><span style='color:var(--mut);font-size:13px'>The official reference solution is a U-Net ensemble; this repo could not train one (no GPU). The feature cache is already on disk in the right shape, so a GPU session only has to swap the learner, keeping the same folds, the same targets and the same emission rule for a like-for-like comparison.</span></td><td>GPU</td><td class='num'>+0.02 to +0.08 DTI</td><td class='num'>high</td></tr><tr><td class='num'>4</td><td><b>Calibrate |G| properly and turn the holdout into a live-score predictor</b><br><span style='color:var(--mut);font-size:13px'>Inverting DTI = A/(0.2A + 0.2B + 0.8|G|) across the group&#x27;s 19 live-scored files, with B ~ n - A, gives |G| = 125,000 px (grid search; objective 0.757, 84.2% of files land in efficiency 0.02-0.35, corr(log n, eff) = -0.585). That single global |G| is a POINT ESTIMATE chosen to make the whole table self-consistent, not an observation: per-file inversions scatter widely (implied efficiency 0.002 to 0.219). Fitting |G| jointly by maximum likelihood over all 19 (A_i, B_i, DTI_i) triples -- with a proper residual model instead of a grid search -- would put an uncertainty band on |G|, and therefore on tau and on the pi* emission threshold, which is what makes slot allocation rational rather than merely consistent.</span></td><td>Nothing new — the 19 observations are already in registry/</td><td class='num'>Better slot allocation</td><td class='num'>low</td></tr><tr><td class='num'>5</td><td><b>Add the INGENIOUS 2 m temperature-probe and geothermometer inversion</b><br><span style='color:var(--mut);font-size:13px'>27,092 spring/well records and the 2 m probe table are cached in assets/external/. 13GEMSDOE committed the full 2m_temperature_probe dbf. Backward conduit inversion (a near-surface thermal anomaly in an amagmatic extensional setting requires a permeable pathway) is a physically independent line of evidence no head in this repo currently uses.</span></td><td>Nothing new — data already local</td><td class='num'>+0.005 to +0.02 DTI</td><td class='num'>medium</td></tr><tr><td class='num'>6</td><td><b>Automate the leaderboard and site feed</b><br><span style='color:var(--mut);font-size:13px'>The brief asks for an up-to-date feed so nothing has to be checked by hand. scripts/record_score.py + a GitHub Action that re-reads the public leaderboard and rebuilds docs/ would close the loop; the Action needs the network access this sandbox lacks.</span></td><td>GitHub Actions (network)</td><td class='num'>Removes all manual checking</td><td class='num'>low</td></tr></table>
+<h2>What would make this useful every day, not just for this competition</h2>
+<p>The two pieces that generalise beyond DrivenData #306 are (i)
+<code>metric.budget_curve()</code> — an exact, 200&times;-accelerated DTI-versus-budget
+curve for any distance-weighted Tversky-style metric, usable for any
+segmentation task with a tolerance kernel — and (ii) the Bour &amp; Davy / Marrett
+NCC pair in <code>clustering.py</code>, which turns &ldquo;does this output look like a
+real fault population?&rdquo; into two numbers with a published null. Both are pure
+functions over numpy arrays with no competition-specific constants.</p>
+</main><footer><div class="wrap">
+GEMSDOE22 &middot; generated by <code>scripts/06_build_site.py</code> from
+<code>evidence/*.json</code>. Every figure on these pages is read out of a
+measurement file at build time; nothing is hand-typed.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE22">Repository</a>
+</div></footer></body></html><script>
+function cp(btn){const t=btn.previousElementSibling.innerText.replace(/^[^:]*:\s*/,'');
+navigator.clipboard.writeText(t.trim()).then(()=>{btn.textContent='Copied';
+setTimeout(()=>btn.textContent='Copy',1400)});}
+</script>
+<script src="assets/tifcheck.js"></script>
+<script>
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+if(drop&&out){
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+async function run(file){
+  out.innerHTML='<p>Reading '+file.name+' ('+(file.size/1e6).toFixed(2)+' MB)&hellip;</p>';
+  try{
+    const buf=await file.arrayBuffer();
+    const t0=performance.now();
+    const r=await window.GEMS22TifCheck.check(buf);
+    const ms=((performance.now()-t0)/1000).toFixed(1);
+    let h='<h3>Hard requirements</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.hard.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004; pass</span>':'<span class=fail>&#10008; FAIL</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table><h3>Advisory</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.advisory.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004;</span>':'<span class=warn>&#9888;</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table>';
+    h+='<p>'+(r.ok?'<span class=pass style="font-size:18px">&#10004; SAFE TO SUBMIT</span>':
+      '<span class=fail style="font-size:18px">&#10008; DO NOT SUBMIT — a hard check failed</span>')+
+      ' <span style="color:var(--mut)">('+ms+' s, parsed '+(r.meta.total||0).toLocaleString()+' pixels)</span></p>';
+    if(r.meta&&r.meta.total){h+='<p class=badge>NaN '+r.meta.nan.toLocaleString()+
+      '</p><p class=badge>min '+r.meta.min+'</p><p class=badge>max '+r.meta.max+
+      '</p><p class=badge>&lt;0: '+r.meta.n_negative.toLocaleString()+
+      '</p><p class=badge>&gt;1: '+r.meta.n_above_1.toLocaleString()+
+      '</p><p class=badge>&gt;0: '+r.meta.n_positive.toLocaleString()+
+      '</p><p class=badge>EPSG '+r.meta.epsg+'</p>'}
+    out.innerHTML=h;
+  }catch(e){out.innerHTML='<p class=fail>Error: '+e.message+'</p>'}
+}
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>{if(e.dataTransfer.files[0])run(e.dataTransfer.files[0])});
+pick.addEventListener('change',e=>{if(e.target.files[0])run(e.target.files[0])});
+}
+</script>

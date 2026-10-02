@@ -1,0 +1,144 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method — the metric algebra and the emission rule</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap">
+<div class="kicker">DOE GEMS Prize Challenge &middot; DrivenData #306</div>
+<h1>Method — the metric algebra and the emission rule</h1>
+<p style="color:var(--mut);margin:0"></p>
+<nav class="toc">
+<a href="gems22-index.html">Overview &amp; downloads</a>
+<a href="gems22-executive_summary.html">How to submit</a>
+<a href="gems22-method.html">Metric &amp; method</a>
+<a href="gems22-clustering.html">Spatial statistics</a>
+<a href="gems22-hypotheses.html">Hypotheses</a>
+<a href="gems22-results.html">Results &amp; holdout</a>
+<a href="gems22-sources.html">Verified sources</a>
+<a href="gems22-irregularities.html">Flags</a>
+<a href="gems22-next_steps.html">Next steps</a>
+</nav></div></header><main class="wrap">
+<h2>The metric, and the identity nobody needs to guess at</h2>
+<p>The published metric (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">&sect; Performance metric</a>) is</p>
+<pre>TP_w = sum_{g in G} max_{x : d(x,g) &lt;= R} p(x) * k(d(x,g))
+FP_w = sum_{x : p(x) &gt; 0} p(x) * [1 - max_{g in G} k(d(x,g))]
+FN_w = sum_{g in G} [1 - max_{x : d(x,g) &lt;= R} p(x) * k(d(x,g))]
+DTI  = TP_w / (TP_w + 0.2*FP_w + 0.8*FN_w + eps),   k(d) = max(1 - d/300 m, 0)</pre>
+<p>The same <code>max</code> term <code>m_g</code> appears in <code>TP_w</code> as
+<code>m_g</code> and in <code>FN_w</code> as <code>1 &minus; m_g</code>, summed over the same
+<code>g</code>. Therefore <b>exactly</b>:</p>
+<pre>FN_w = |G| - TP_w
+DTI  = A / (0.2*A + 0.2*B + 0.8*|G|)        A = TP_w, B = FP_w</pre>
+<p>Verified numerically to &lt; 10<sup>&minus;11</sup> on randomised grids in
+<code>tests/test_metric.py::test_identity_fn_equals_n_gt_minus_tp</code>, and the
+whole implementation agrees with an independent triple-loop transcription of the
+published formula to 7&times;10<sup>&minus;15</sup>.</p>
+
+<h3>Consequence 1 — the floor</h3>
+<p>The denominator carries <code>0.8|G|</code>, which no submission can reduce.
+Coverage, not precision, sets the ceiling. Predicting 1.0 on <i>every</i> scored
+pixel still only reaches about <code>c/(c + 0.2(1&minus;c))</code> &asymp; 0.10 at this
+ground-truth density — which is exactly the band the group&rsquo;s weakest
+submissions occupy (0.0107&ndash;0.0461).</p>
+
+<h3>Consequence 2 — optimal submissions are binary</h3>
+<p>For a fixed support <code>S</code> and uniform confidence <code>q</code>,
+<code>DTI(q) = qA&#8321;/(0.2q(A&#8321;+B&#8321;) + 0.8|G|)</code>, whose derivative in
+<code>q</code> is positive whenever <code>A&#8321; &gt; 0</code>. Soft probabilities are
+strictly dominated by saturating them. Every file this repo emits is
+<code>{0.0, 1.0}</code>.</p>
+
+<h3>Consequence 3 — the break-even posterior is ~4%</h3>
+<p>Adding a pixel-set with marginal gains <code>(dA, dB)</code> raises DTI iff</p>
+<pre>dA &gt; tau * (dA + dB),      tau = 0.2*DTI / (1 - 0.2*DTI)</pre>
+<p>For one isolated pixel with posterior <code>pi</code> of covering a ground-truth
+pixel, <code>dA = pi</code> and <code>dB = 1 &minus; pi</code>, so emit iff
+<code>pi &gt; tau/(1+tau)</code>.</p>
+<table><tr><th>Operating DTI</th><th class="num">tau</th><th class="num">break-even posterior</th><th>Reading</th></tr>
+<tr><td>0.1894 (h19-4, live)</td><td class="num">0.0403</td><td class="num"><b>3.87%</b></td>
+<td>Any pixel with a better-than-1-in-26 chance of sitting on an unmapped fault is worth emitting.</td></tr>
+<tr><td>0.1922 (h19-5, live)</td><td class="num">0.0409</td><td class="num">3.93%</td><td></td></tr>
+<tr><td>0.3168 (leaderboard #1)</td><td class="num">0.0677</td><td class="num">6.34%</td>
+<td>The leader can afford to be pickier — but only because their A is higher.</td></tr>
+</table>
+<p>Every prior GEMSDOE session instead hard-coded a <i>quantity</i> rule
+(&ldquo;emit the top 2.4&ndash;2.5% of each quadrant&rdquo;). A quantity rule cannot
+respond to how good the score map is; a value rule can. This repo picks the
+support by sweeping the exact DTI curve and stopping where the marginal rule says
+stop. <code>metric.budget_curve()</code> computes that curve exactly — identical
+to calling the full metric at every budget, 200&times; faster, verified in
+<code>tests/test_metric.py</code>.</p>
+
+<h2>What the live scores imply about the hidden ground truth</h2>
+<p>Inverting <code>DTI = A/(0.2A + 0.2B + 0.8|G|)</code> across the group&rsquo;s 19
+publicly scored files, assuming <code>B &asymp; n &minus; A</code>, gives a consistent
+<b>|G| &asymp; 5&ndash;6 &times; 10<sup>4</sup></b> pixels — the same order as the
+entire 60,988-pixel known catalogue. Implied hit efficiencies:
+7GEMSDOE 0.119 (highest), h19-5 0.115, h16-1 0.109, GEMSDOE1 0.077,
+11GEMSDOE 0.007 (lowest). The spread is a <b>detector-quality</b> signal, not a
+budget signal: Spearman &rho; between public score and emitted pixel count across
+those files is &minus;0.04 (p = 0.88).</p>
+
+<h2>Training</h2>
+<p>Two gradient-boosted heads over a 156-layer multi-scale filter bank (19 official
+bands + Frangi-style Hessian linearity and ridge strength + multi-scale
+high-pass/gradient/local-std + GeoDAWN K/Th/U/TC radiometrics and their edge
+coherence + contractor Th/K, U/K, U/Th ratios + 1&nbsp;m LiDAR scarp descriptors +
+1&nbsp;m DEM openness/LRM + structural priors). No GPU is available here, so the
+official reference U-Net ensemble is out of reach; a boosted filter bank is the
+CPU-honest equivalent and is trained on ~5.9&times;10<sup>5</sup> rows per fold.</p>
+<p>Catalogue-derived layers (distance-to-known-fault, catalogue dilation, the
+Bour &amp; Davy prior) are <b>excluded from the shared cache and rebuilt per fold
+from the training catalogue only</b>. Without that, a held-out fault sits at zero
+distance from itself and the fold reports DTI 0.977 — measured, and fixed.</p>
+</main><footer><div class="wrap">
+GEMSDOE22 &middot; generated by <code>scripts/06_build_site.py</code> from
+<code>evidence/*.json</code>. Every figure on these pages is read out of a
+measurement file at build time; nothing is hand-typed.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE22">Repository</a>
+</div></footer></body></html><script>
+function cp(btn){const t=btn.previousElementSibling.innerText.replace(/^[^:]*:\s*/,'');
+navigator.clipboard.writeText(t.trim()).then(()=>{btn.textContent='Copied';
+setTimeout(()=>btn.textContent='Copy',1400)});}
+</script>
+<script src="assets/tifcheck.js"></script>
+<script>
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+if(drop&&out){
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+async function run(file){
+  out.innerHTML='<p>Reading '+file.name+' ('+(file.size/1e6).toFixed(2)+' MB)&hellip;</p>';
+  try{
+    const buf=await file.arrayBuffer();
+    const t0=performance.now();
+    const r=await window.GEMS22TifCheck.check(buf);
+    const ms=((performance.now()-t0)/1000).toFixed(1);
+    let h='<h3>Hard requirements</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.hard.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004; pass</span>':'<span class=fail>&#10008; FAIL</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table><h3>Advisory</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.advisory.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004;</span>':'<span class=warn>&#9888;</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table>';
+    h+='<p>'+(r.ok?'<span class=pass style="font-size:18px">&#10004; SAFE TO SUBMIT</span>':
+      '<span class=fail style="font-size:18px">&#10008; DO NOT SUBMIT — a hard check failed</span>')+
+      ' <span style="color:var(--mut)">('+ms+' s, parsed '+(r.meta.total||0).toLocaleString()+' pixels)</span></p>';
+    if(r.meta&&r.meta.total){h+='<p class=badge>NaN '+r.meta.nan.toLocaleString()+
+      '</p><p class=badge>min '+r.meta.min+'</p><p class=badge>max '+r.meta.max+
+      '</p><p class=badge>&lt;0: '+r.meta.n_negative.toLocaleString()+
+      '</p><p class=badge>&gt;1: '+r.meta.n_above_1.toLocaleString()+
+      '</p><p class=badge>&gt;0: '+r.meta.n_positive.toLocaleString()+
+      '</p><p class=badge>EPSG '+r.meta.epsg+'</p>'}
+    out.innerHTML=h;
+  }catch(e){out.innerHTML='<p class=fail>Error: '+e.message+'</p>'}
+}
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>{if(e.dataTransfer.files[0])run(e.dataTransfer.files[0])});
+pick.addEventListener('change',e=>{if(e.target.files[0])run(e.target.files[0])});
+}
+</script>

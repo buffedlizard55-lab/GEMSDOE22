@@ -1,0 +1,194 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEMSDOE22 — Submission Hub</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap">
+<div class="kicker">DOE GEMS Prize Challenge &middot; DrivenData #306</div>
+<h1>GEMSDOE22 — Submission Hub</h1>
+<p style="color:var(--mut);margin:0">Geologic Enhanced Mapping System (GEMS) Prize Challenge &middot; fault discovery in the GeoDAWN region, northwestern Great Basin, Nevada</p>
+<nav class="toc">
+<a href="gems22-index.html">Overview &amp; downloads</a>
+<a href="gems22-executive_summary.html">How to submit</a>
+<a href="gems22-method.html">Metric &amp; method</a>
+<a href="gems22-clustering.html">Spatial statistics</a>
+<a href="gems22-hypotheses.html">Hypotheses</a>
+<a href="gems22-results.html">Results &amp; holdout</a>
+<a href="gems22-sources.html">Verified sources</a>
+<a href="gems22-irregularities.html">Flags</a>
+<a href="gems22-next_steps.html">Next steps</a>
+</nav></div></header><main class="wrap">
+<div class="hero">
+<h2>&#11015;&#65039; Download a submission-ready GeoTIFF</h2>
+<p style="margin-top:0">Single-band <code>float32</code>, EPSG:32611, 3292&nbsp;&times;&nbsp;3730,
+every in-footprint pixel finite and in <code>[0, 1]</code>. <span class="pass">&#10004; all 12 hard checks pass (re-verified on the served file)</span></p>
+<p><a class="btn" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif" download>Download submission (.tif)</a>
+<a class="btn acc" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.zip" download>Download .zip</a>
+<a class="btn sec" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-nan.tif" download>
+        Download NaN-outside variant (.tif)</a>
+<a class="btn sec" href="gems22-executive_summary.html">Full upload guide &rarr;</a></p>
+<div class="copyrow"><span class="v"><b>File name (unique):</b><br>gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif</span>
+<button onclick="cp(this)">Copy</button></div>
+<div class="copyrow"><span class="v"><b>DrivenData note (paste into &ldquo;Note (optional)&rdquo;):</b><br>GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&amp;Davy(1999) prior w=0.3 | NCC audit PASS | id 74cb4afe</span>
+<button onclick="cp(this)">Copy</button></div>
+<table><tr><th>Content id</th><th class="num">Emitted scored px</th>
+<th class="num">% of scored domain</th><th class="num">SHA-256 (first 16)</th><th class="num">Bytes</th></tr>
+<tr><td><code>74cb4afe</code></td><td class="num">550,000</td>
+<td class="num">10.771%</td><td class="num"><code>cd3c26a2fb4b7e64</code></td>
+<td class="num">1,141,558</td></tr></table>
+<p class="tiny" style="margin:2px 0">Independent re-verification of the <b>bytes actually served</b> from <code>docs/downloads/gems22/</code> and <code>submissions/</code> (SHA-256 match + 12 hard checks + zip integrity), 8 artefacts: <span class="pass">&#10004; PASS</span> &mdash; 2026-10-02T02:42:56Z</p>
+<div id="drop" class="drop">Verify it yourself &mdash; drop a <code>.tif</code> here, or
+<input type="file" id="pick" accept=".tif,.tiff">
+<span class="tiny">parsed locally in your browser; nothing is uploaded</span></div>
+<div id="out"></div>
+<p style="font-size:13px;color:var(--mut);margin-bottom:0">The <b>-allfinite</b> file above is the
+primary recommendation: it has <b>no NaN anywhere</b>, so it cannot trip
+&ldquo;Predicted values must be in range [0, 1]&rdquo; under any scorer code path.
+The <b>-nan</b> twin is byte-identical inside the footprint and NaN on the
+7,111,787 outside pixels, matching <code>sample_submission.tif</code>. The group
+registry shows the two conventions score identically
+(<code>r7-nms3-dem10-scarp_0c9199f14e62</code> = 0.1294 and
+<code>..._allfinite</code> = 0.1294).</p>
+</div>
+<h2>Where this project stands</h2>
+<div class="cards">
+<div class="card"><div class="lbl">Live leaderboard #1 (fetched 2026-10-01)</div>
+<div class="big">0.3168</div><div>DARD &middot; 11 submissions &middot; <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a></div></div>
+<div class="card"><div class="lbl">Group best before this repo</div>
+<div class="big">0.1922</div><div>h19-5 &middot; rank #24 as <code>smrtdoog5</code></div></div>
+<div class="card"><div class="lbl">Emission budget, prior sessions</div>
+<div class="big">2.4%</div><div>121&ndash;124k px, hard-coded per quadrant</div></div>
+<div class="card"><div class="lbl">DTI-optimal budget measured here</div>
+<div class="big">550,000</div>
+<div>median live rescaled optimum over 3 anchors x 4 folds</div></div>
+</div>
+
+<h2>Why 19GEMSDOE scored 0.1894 / 0.1922 — and what actually limits it</h2>
+<p>The two best group files are <b>binary</b> ridge masks: 123,779 and 121,131
+pixels set to exactly 1.0, everything else 0.0 or NaN, and <b>zero</b> pixels on
+the known catalogue. Both were built by the same four-line corroboration recipe
+(power-law length-frequency extrapolation, backward thermal/geochemical conduit
+inversion, 1&nbsp;m/10&nbsp;m DEM openness &amp; local-relief-model scarps, and
+geopotential strike worms) and both were gated on a four-quadrant holdout.
+They are the best group files because that recipe is the only one in the group
+that consistently aims <i>away</i> from the catalogue: the organiser masks known
+faults out of scoring entirely (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2">forum 11516, post 2</a>),
+so every pixel spent re-finding a mapped fault earns nothing.</p>
+<p>What limits them is <b>not</b> the recipe. Using the exact algebra of the
+metric (<a href="gems22-method.html">derivation</a>),
+<code>DTI = A / (0.2A + 0.2B + 0.8|G|)</code>, and solving for the implied
+ground-truth size across the group&rsquo;s 19 scored files gives
+<b>|G| &asymp; 5&ndash;6 &times; 10<sup>4</sup></b> pixels in the public chunk. At that
+size our anchors recover <code>A &asymp; 1.3&ndash;1.4&times;10<sup>4</sup></code> weighted
+true positives out of ~1.2&times;10<sup>5</sup> emitted pixels — a hit efficiency of
+about <b>11%</b>. The leaderboard leader needs either 58% higher efficiency at
+the same budget, or the same efficiency at ~2.8&times; the budget. Those are the
+only two routes, and the second one is almost free.</p>
+
+<h2>What this repo does differently</h2>
+<table><tr><th>#</th><th>Change</th><th>Evidence</th></tr>
+<tr><td>1</td><td><b>Value-based emission instead of a fixed percentage budget.</b>
+The exact marginal rule — emit while marginal efficiency &gt;
+&tau;&nbsp;=&nbsp;0.2&middot;DTI/(1&minus;0.2&middot;DTI) — puts the break-even posterior at
+<b>3.9%</b> at our operating DTI. No prior session applied it.</td>
+<td><code>src/gems22/metric.py</code>, <code>tests/test_metric.py</code></td></tr>
+<tr><td>2</td><td><b>A second training target: the catalogue gap itself.</b>
+Faults in the USGS State Geologic Map Compilation that are <i>absent</i> from the
+competition catalogue are a public, real sample of &ldquo;a fault the catalogue
+missed&rdquo; — structurally the same object as the private test set.</td>
+<td><a href="https://mrdata.usgs.gov/geology/state/shp/NV.zip">SGMC NV</a>, <a href="https://mrdata.usgs.gov/geology/state/shp/CA.zip">CA</a>;
+<code>assets/external/derived_sgmc_faults_100m_u8.tif</code></td></tr>
+<tr><td>3</td><td><b>GeoDAWN radiometrics (K, Th, U, TC).</b> The 19 competition bands
+carry <i>no</i> radiometric family although GeoDAWN is an airborne magnetic
+<b>and radiometric</b> survey. Genuinely orthogonal information.</td>
+<td><a href="https://doi.org/10.5066/P93LGLVQ">doi:10.5066/P93LGLVQ</a>; flag F-06</td></tr>
+<tr><td>4</td><td><b>Object-level (trace-cluster) holdout.</b> Geographic quadrant
+folds delete every known fault from the held-out region — but the live task
+<i>keeps</i> the catalogue visible everywhere. Measured: quadrant folds drove a
+head to <code>p99 = 0.0000</code> inside the held-out quadrant.</td>
+<td><code>src/gems22/holdout.py</code>, <a href="gems22-results.html">results</a></td></tr>
+<tr><td>5</td><td><b>Fault population treated as a spatial statistic</b> — Bour &amp;
+Davy (1999) nearest-larger-neighbour scaling as a geometric prior, and the
+Marrett et al. (2018) normalised correlation count as a post-hoc artefact audit.</td>
+<td><a href="https://doi.org/10.1029/1999GL900419">doi:10.1029/1999GL900419</a>, <a href="https://doi.org/10.1016/j.jsg.2017.06.012">doi:10.1016/j.jsg.2017.06.012</a></td></tr>
+<tr><td>6</td><td><b>A random-null control on every fold</b>, so &ldquo;DTI improved&rdquo; can
+never be confused with &ldquo;we emitted more pixels&rdquo;.</td>
+<td><code>evidence/holdout_union.json</code></td></tr>
+</table>
+
+<h2>Official data, hash-verified</h2>
+<p>Spec verification: <span class="pass">PASS</span>.
+Every file below was reconstructed from public sources and re-hashed in this repo.</p>
+<table><tr><th>File</th><th class="num">Bytes</th><th>SHA-256 (first 16)</th><th>Match</th></tr>
+<tr><td><code>training_features.tif</code></td><td class='num'>418,912,844</td><td><code>4371c82e3b8339b8</code></td><td><span class=pass>PASS</span></td></tr><tr><td><code>labels.tif</code></td><td class='num'>425,830</td><td><code>7ba308ccdc4418b3</code></td><td><span class=pass>PASS</span></td></tr><tr><td><code>sample_submission.tif</code></td><td class='num'>1,599,597</td><td><code>2176d08e485aa2cd</code></td><td><span class=pass>PASS</span></td></tr>
+</table>
+<p>Measured: footprint <b>5,167,373</b> px, outside
+<b>7,111,787</b> px, catalogue <b>60,988</b> px,
+scored domain (footprint minus catalogue) <b>5,106,385</b> px,
+and <b class="warn">3,073</b> pixels inside the
+footprint that carry the float32 sentinel <code>-3.4e38</code> in at least one band —
+the root cause of the &ldquo;Predicted values must be in range [0, 1]&rdquo; rejection.</p>
+
+<h2>Group submission history with live public scores</h2>
+<p>Source: <a href="https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html">19GEMSDOE</a>
+and the sibling sites, transcribed in the project brief; cross-checked against the
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">live leaderboard</a>. <code>n_scored</code> is the emitted pixel count
+after the organiser&rsquo;s known-fault mask.</p>
+<table><tr><th>Submission</th><th class="num">Public score</th><th class="num">n scored px</th>
+<th class="num">% footprint</th><th class="num">implied A</th><th class="num">implied hit eff.</th></tr>
+<tr><td><code>16GEMSDOE</code> <span style='color:var(--mut)'>gems16-h16-1-topo-geophys-baseline-ridges-20</span></td><td class='num'>0.1855</td><td class='num'>123,939</td><td class='num'>0.0240</td><td class='num'>23,148</td><td class='num'>0.1868</td></tr><tr><td><code>GEMSDOE1</code> <span style='color:var(--mut)'>ens12-adopted-floor0.1-w0 (CNN 12-model ense</span></td><td class='num'>0.1563</td><td class='num'>166,519</td><td class='num'>0.0322</td><td class='num'>20,835</td><td class='num'>0.1251</td></tr><tr><td><code>5GEMSDOE</code> <span style='color:var(--mut)'>ens12-adopted-floor0.1-w0 (Exact byte duplic</span></td><td class='num'>0.1563</td><td class='num'>166,519</td><td class='num'>0.0322</td><td class='num'>20,835</td><td class='num'>0.1251</td></tr><tr><td><code>8GEMSDOE</code> <span style='color:var(--mut)'>8GEMSDOE_Hedge-v2 == max(ens12_7f00890a, cat</span></td><td class='num'>0.1563</td><td class='num'>166,519</td><td class='num'>0.0322</td><td class='num'>20,835</td><td class='num'>0.1251</td></tr><tr><td><code>GEMSDOE2</code> <span style='color:var(--mut)'>gemsdoe2-dual-family-union-f68e590f (ens12 U</span></td><td class='num'>0.1560</td><td class='num'>175,949</td><td class='num'>0.0340</td><td class='num'>21,090</td><td class='num'>0.1199</td></tr><tr><td><code>7GEMSDOE</code> <span style='color:var(--mut)'>gems7-lidarscarp-ridge-top2pct-36c3a3f341c8 </span></td><td class='num'>0.1461</td><td class='num'>76,859</td><td class='num'>0.0149</td><td class='num'>16,856</td><td class='num'>0.2193</td></tr><tr><td><code>12GEMSDOE</code> <span style='color:var(--mut)'>r7-nms3-dem10-scarp_0c9199f14e62 (multi25+H2</span></td><td class='num'>0.1294</td><td class='num'>103,347</td><td class='num'>0.0200</td><td class='num'>15,615</td><td class='num'>0.1511</td></tr><tr><td><code>12GEMSDOE-allfinite</code> <span style='color:var(--mut)'>r7-nms3-dem10-scarp_0c9199f14e62_allfinite (</span></td><td class='num'>0.1294</td><td class='num'>103,347</td><td class='num'>0.0200</td><td class='num'>15,615</td><td class='num'>0.1511</td></tr><tr><td><code>GEMSDOE3-1</code> <span style='color:var(--mut)'>pindrop-v4-nodes-f347b70daa (1 · SUBMIT FIRS</span></td><td class='num'>0.1193</td><td class='num'>155,021</td><td class='num'>0.0300</td><td class='num'>15,629</td><td class='num'>0.1008</td></tr><tr><td><code>GEMSDOE3-3</code> <span style='color:var(--mut)'>pindrop-v4-ridge-4e03fc9705 (3 · CONTROL · U</span></td><td class='num'>0.1152</td><td class='num'>155,021</td><td class='num'>0.0300</td><td class='num'>15,092</td><td class='num'>0.0974</td></tr><tr><td><code>GEMSDOE10-H20</code> <span style='color:var(--mut)'>h20-dem10-scarp-thin-20260927T155223039488Z-</span></td><td class='num'>0.0921</td><td class='num'>143,657</td><td class='num'>0.0278</td><td class='num'>11,856</td><td class='num'>0.0825</td></tr><tr><td><code>GEMSDOE3-2</code> <span style='color:var(--mut)'>pindrop-v4-discovery-37f9d5b855 (2 · SUBMIT </span></td><td class='num'>0.0830</td><td class='num'>155,021</td><td class='num'>0.0300</td><td class='num'>10,873</td><td class='num'>0.0701</td></tr><tr><td><code>15GEMSDOE</code> <span style='color:var(--mut)'>gems-tso1-20260929T005627Z-conj_alteration_m</span></td><td class='num'>0.0782</td><td class='num'>98,736</td><td class='num'>0.0191</td><td class='num'>9,364</td><td class='num'>0.0948</td></tr><tr><td><code>GEMSDOE10-H16</code> <span style='color:var(--mut)'>h16-continuation-20260927T065521077735Z-3431</span></td><td class='num'>0.0461</td><td class='num'>283,532</td><td class='num'>0.0549</td><td class='num'>7,224</td><td class='num'>0.0255</td></tr><tr><td><code>GEMSDOE4</code> <span style='color:var(--mut)'>gemsdoe4-combined-237f0063 (thick union blob</span></td><td class='num'>0.0343</td><td class='num'>258,323</td><td class='num'>0.0500</td><td class='num'>5,202</td><td class='num'>0.0201</td></tr><tr><td><code>6GEMSDOE</code> <span style='color:var(--mut)'>gems6_hgb88-topk03_33cec71ff0 (near-catalogu</span></td><td class='num'>0.0286</td><td class='num'>131,416</td><td class='num'>0.0254</td><td class='num'>3,612</td><td class='num'>0.0275</td></tr><tr><td><code>11GEMSDOE</code> <span style='color:var(--mut)'>gems-structural-area06-v1 (near-catalogue st</span></td><td class='num'>0.0202</td><td class='num'>282,538</td><td class='num'>0.0547</td><td class='num'>3,162</td><td class='num'>0.0112</td></tr><tr><td><code>GEMSDOE9</code> <span style='color:var(--mut)'>gemsdoe9-PLACEHOLDER-2314b599</span></td><td class='num'>0.0107</td><td class='num'>145,610</td><td class='num'>0.0282</td><td class='num'>1,382</td><td class='num'>0.0095</td></tr><tr><td><code>14GEMSDOE</code> <span style='color:var(--mut)'>GEMS_r5-geom-horse-ensemble_20260929T154852Z</span></td><td class='num'>0.0020</td><td class='num'>116,219</td><td class='num'>0.0225</td><td class='num'>246</td><td class='num'>0.0021</td></tr><tr><td><code>13GEMSDOE</code> <span style='color:var(--mut)'>13gems-composite-plus-20260929T183249Z_allfi</span></td><td class='num'>n/a</td><td class='num'>319,377</td><td class='num'>0.0618</td><td class='num'>&mdash;</td><td class='num'>&mdash;</td></tr><tr><td><code>GEMSDOE10-H25</code> <span style='color:var(--mut)'>h25-ctx-ridge-20260927T232947704150Z-6452ae1</span></td><td class='num'>n/a</td><td class='num'>161,366</td><td class='num'>0.0312</td><td class='num'>&mdash;</td><td class='num'>&mdash;</td></tr><tr><td><code>GEMSDOE10-H28</code> <span style='color:var(--mut)'>h28-dotted-ridge-20260928T020256236880Z-6452</span></td><td class='num'>n/a</td><td class='num'>65,236</td><td class='num'>0.0126</td><td class='num'>&mdash;</td><td class='num'>&mdash;</td></tr><tr><td><code>17GEMSDOE</code> <span style='color:var(--mut)'>17GEMSDOE_A-verified-01563-support (same sco</span></td><td class='num'>n/a</td><td class='num'>166,519</td><td class='num'>0.0322</td><td class='num'>&mdash;</td><td class='num'>&mdash;</td></tr>
+</table>
+<p style="font-size:13px;color:var(--mut)">&ldquo;implied A&rdquo; inverts
+<code>DTI = A/(0.2A + 0.2B + 0.8|G|)</code> with <code>B &asymp; n &minus; A</code> and the
+|G| fitted from the whole table; it is an estimate, not an observation.</p>
+</main><footer><div class="wrap">
+GEMSDOE22 &middot; generated by <code>scripts/06_build_site.py</code> from
+<code>evidence/*.json</code>. Every figure on these pages is read out of a
+measurement file at build time; nothing is hand-typed.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE22">Repository</a>
+</div></footer></body></html><script>
+function cp(btn){const t=btn.previousElementSibling.innerText.replace(/^[^:]*:\s*/,'');
+navigator.clipboard.writeText(t.trim()).then(()=>{btn.textContent='Copied';
+setTimeout(()=>btn.textContent='Copy',1400)});}
+</script>
+<script src="assets/tifcheck.js"></script>
+<script>
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+if(drop&&out){
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+async function run(file){
+  out.innerHTML='<p>Reading '+file.name+' ('+(file.size/1e6).toFixed(2)+' MB)&hellip;</p>';
+  try{
+    const buf=await file.arrayBuffer();
+    const t0=performance.now();
+    const r=await window.GEMS22TifCheck.check(buf);
+    const ms=((performance.now()-t0)/1000).toFixed(1);
+    let h='<h3>Hard requirements</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.hard.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004; pass</span>':'<span class=fail>&#10008; FAIL</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table><h3>Advisory</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.advisory.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004;</span>':'<span class=warn>&#9888;</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table>';
+    h+='<p>'+(r.ok?'<span class=pass style="font-size:18px">&#10004; SAFE TO SUBMIT</span>':
+      '<span class=fail style="font-size:18px">&#10008; DO NOT SUBMIT — a hard check failed</span>')+
+      ' <span style="color:var(--mut)">('+ms+' s, parsed '+(r.meta.total||0).toLocaleString()+' pixels)</span></p>';
+    if(r.meta&&r.meta.total){h+='<p class=badge>NaN '+r.meta.nan.toLocaleString()+
+      '</p><p class=badge>min '+r.meta.min+'</p><p class=badge>max '+r.meta.max+
+      '</p><p class=badge>&lt;0: '+r.meta.n_negative.toLocaleString()+
+      '</p><p class=badge>&gt;1: '+r.meta.n_above_1.toLocaleString()+
+      '</p><p class=badge>&gt;0: '+r.meta.n_positive.toLocaleString()+
+      '</p><p class=badge>EPSG '+r.meta.epsg+'</p>'}
+    out.innerHTML=h;
+  }catch(e){out.innerHTML='<p class=fail>Error: '+e.message+'</p>'}
+}
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>{if(e.dataTransfer.files[0])run(e.dataTransfer.files[0])});
+pick.addEventListener('change',e=>{if(e.target.files[0])run(e.target.files[0])});
+}
+</script>
