@@ -35,7 +35,7 @@ Every submission file below has been re-read and verified by `src/gems/submissio
 
 `*` H22 holdout numbers are **projected** from the 22GEMSDOE 4-quadrant OOF holdout + synthetic fractal resort Jaccard analysis (distinct `J≈0.77` from H19-4, `J≈0.74` from H19-5, and audit `CONSISTENT`). They are labelled `INFERENCE` until `GEMS_DATA_DIR` is placed and `python scripts/run_spatial_holdout_and_build.py` re-measures them (see [Limitations](#limitations)). H22 is **DISTINCT** (`J<0.80`) from all 23 historic group submissions and from H19-4/5.
 
-> **Slot-Management & Audit Summary**: Both H22 submissions are strictly `DISTINCT` (`Jaccard <0.80`) against all historic group files and each other, pass all 9 hard format checks (`[0,1]` verified), and satisfy the new 5th line `L0_FractalClustering_SpatialStatistic` on top of the 4-line corroboration. **Audit coverage:** 45 sourced claims, 26 flags — every number on this page traces to `registry/sources.json` or `evidence/*.json` (see [Audit](docs/audit.html)). The next section explains why H19 scored highest in the group and how H22 is designed to beat the external leader `0.3168`.
+> **Slot-Management & Audit Summary**: Both H22 submissions are strictly `DISTINCT` (`Jaccard <0.80`) against all historic group files and each other, pass all 9 hard format checks (`[0,1]` verified), and satisfy the new 5th line `L0_FractalClustering_SpatialStatistic` on top of the 4-line corroboration. **Audit coverage:** 45 sourced claims, 28 flags — every number on this page traces to `registry/sources.json` or `evidence/*.json` (see [Audit](docs/audit.html)). The next section explains why H19 scored highest in the group and how H22 is designed to beat the external leader `0.3168`.
 
 ---
 
