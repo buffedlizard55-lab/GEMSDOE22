@@ -4,7 +4,7 @@
   {
    "generated_utc": "2026-10-02T01:54:59Z",
    "tag": "h22-value-emit",
-   "content_id": "74cb4afe",
+   "content_id": "f6777492",
    "base_anchor": "h19-5",
    "base_anchor_live_score": 0.1922,
    "budget": 550000,
@@ -5488,7 +5488,7 @@
     }
    },
    "best_base_by_live_gain": "h19-4",
-   "drivendata_note": "GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&Davy(1999) prior w=0.3 | NCC audit PASS | id 74cb4afe",
+   "drivendata_note": "GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&Davy(1999) prior w=0.3 | NCC audit PASS | id f6777492",
    "audit": {
     "known_catalogue": {
      "verdict": "clustered",
@@ -6039,24 +6039,24 @@
    },
    "files": [
     {
-     "file": "gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif",
+     "file": "gems22-h22-value-emit-20261002T015455Z-f6777492-allfinite.tif",
      "variant": "allfinite",
      "sha256": "cd3c26a2fb4b7e649c49d2b565291bca30ee6fe47ea47c1ea6151061dc9a0337",
      "bytes": 1141558,
      "n_positive_footprint": 550000,
      "n_positive_scored": 550000,
-     "drivendata_note": "GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&Davy(1999) prior w=0.3 | NCC audit PASS | id 74cb4afe",
+     "drivendata_note": "GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&Davy(1999) prior w=0.3 | NCC audit PASS | id f6777492",
      "generated_utc": "2026-10-02T01:54:59Z",
      "hard_all_pass": true
     },
     {
-     "file": "gems22-h22-value-emit-20261002T015455Z-74cb4afe-nan.tif",
+     "file": "gems22-h22-value-emit-20261002T015455Z-f6777492-nan.tif",
      "variant": "nan",
      "sha256": "007a99d6dc2866cc19ed86b1e7b6f1825c470de0104a1789b3f5b736eb7dd118",
      "bytes": 1923026,
      "n_positive_footprint": 550000,
      "n_positive_scored": 550000,
-     "drivendata_note": "GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&Davy(1999) prior w=0.3 | NCC audit PASS | id 74cb4afe",
+     "drivendata_note": "GEMSDOE22 h22-value-emit | value-based emission n=550,000 (10.77% scored domain) from live-proven base h19-5 (live 0.1922) | DTI marginal rule at |G|=125,000 | Bour&Davy(1999) prior w=0.3 | NCC audit PASS | id f6777492",
      "generated_utc": "2026-10-02T01:54:59Z",
      "hard_all_pass": true
     }
@@ -6590,7 +6590,7 @@
     0.035022
    ]
   },
-  "candidate_gems22_74cb4afe_550k": {
+  "candidate_gems22_f6777492_550k": {
    "dti_live_p16": 0.16153,
    "dti_live_p50": 0.17632,
    "dti_live_p84": 0.19378,

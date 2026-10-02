@@ -227,13 +227,26 @@ def make_submission_name(tag: str, content_id: str, variant: str,
 
 def content_id(values: np.ndarray, footprint: np.ndarray,
                catalogue: np.ndarray | None = None) -> str:
-    """Hash of the scored pixel set only -- ignores the outside convention."""
-    v = np.asarray(values)
+    """Hash of the scored pixel SET (binary support), ignoring the value scale.
+
+    The definition is deliberately the *binary* one, and it is now the single
+    canonical definition in this repository:
+
+        sha256(uint8( (values > 0.5) over scored pixels ))[:8]
+
+    It must match ``tests/test_download_integrity.py::_content_id`` exactly.
+    Until 2026-10-02 this function hashed the raw float32 values instead, which
+    produced ``74cb4afe`` for the value-emit candidate while the integrity test
+    computed ``f6777492`` from the same file -- two definitions of one name
+    (flag F27).  Because an optimal submission is binary anyway
+    (``src/gems22/metric.py`` identity 2), the two definitions agree on every
+    legal submission; hashing the support makes that explicit and keeps the
+    published filename checkable by anyone with the file.
+    """
     m = footprint if catalogue is None else (footprint & ~catalogue)
-    h = hashlib.sha256()
-    h.update(np.ascontiguousarray(v[m]).astype(np.float32).tobytes())
-    h.update(str(int(m.sum())).encode())
-    return h.hexdigest()[:8]
+    v = np.nan_to_num(np.asarray(values, dtype=np.float32), nan=0.0)
+    support = (v[m] > 0.5).astype(np.uint8)
+    return hashlib.sha256(np.ascontiguousarray(support).tobytes()).hexdigest()[:8]
 
 
 def registry_record(w: Written, note: str, extra: dict | None = None) -> dict:

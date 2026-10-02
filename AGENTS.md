@@ -83,6 +83,17 @@ This is from the brief, not a local preference. The gate lives in
 `gbm_heads_passed: false`, which is why the delivered file contains **no learned
 detector**.
 
+**H26 addendum (2026-10-02) — the gate is now measured *relative to the no-skill
+floor*.** A random binary emission of `n` pixels scores `floor_dti(n, |G|, N)` on
+this metric, which at the group's habitual ~121k budget is ≈ 0.18 and at 550k is
+≈ 0.29 (`src/gems/floor.py`, validated to ±3 % against the eight measured random
+arms in `evidence/holdout_union.json`; `FLOOR_ANALYSIS.md`). Therefore:
+(i) candidates are ranked by **lift = DTI − floor_dti(n, |G|, N) at their own
+budget**, never by raw DTI, and never across instruments; (ii) a budget increase
+must be justified as a *lift* increase, because the fold's flat floor (~0.10 at
+every budget) does not transfer to the live density (0.11 → 0.29); (iii) no slot
+is spent on a file whose projected DTI is at or below the floor for its budget.
+
 ### I-4. Submissions must be binary and must never leave the [0, 1] range
 
 Two derived facts, both unit-tested in `tests/test_gems22_metric.py`:
@@ -177,7 +188,7 @@ Individual stages, all idempotent:
 
 ## What "done" looks like for the next session
 
-A live score for content id `74cb4afe` recorded in `registry/gems22_submissions.json`
+A live score for content id `f6777492` recorded in `registry/gems22_submissions.json`
 via `scripts/record_score_gems22.py`, and `LIMITATIONS.md` L-1 updated with the observed
 value — confirming or refuting the live-rescaling method that the whole budget
 decision rests on.

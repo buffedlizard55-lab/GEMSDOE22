@@ -517,16 +517,16 @@ def build_submit() -> str:
     c4 = cs["h19-5"]
     body = f"""
 <h1>Executive Summary — How to Submit to DrivenData &amp; Pre-Flight Checker</h1>
-<p class="lead">Everything needed to download, verify, and upload our promoted <code>GEMSDOE22</code> submissions (<code>H23-A</code> <code>e2ec4b49</code>, <code>H23-B</code> <code>86176698</code>, <code>H22-1</code> <code>7fd2f28b</code>, <code>H22-2</code> <code>00a4a807</code>, <code>gems22</code> value-emit <code>74cb4afe</code>, and live-scored baselines <code>H19-5</code> <code>0.1922</code> / <code>H19-4</code> <code>0.1894</code>) in under two minutes, plus the root-cause fix for the <em>"Predicted values must be in range [0, 1]"</em> submission error.</p>
+<p class="lead">Everything needed to download, verify, and upload our promoted <code>GEMSDOE22</code> submissions (<code>H23-A</code> <code>e2ec4b49</code>, <code>H23-B</code> <code>86176698</code>, <code>H22-1</code> <code>7fd2f28b</code>, <code>H22-2</code> <code>00a4a807</code>, <code>gems22</code> value-emit <code>f6777492</code>, and live-scored baselines <code>H19-5</code> <code>0.1922</code> / <code>H19-4</code> <code>0.1894</code>) in under two minutes, plus the root-cause fix for the <em>"Predicted values must be in range [0, 1]"</em> submission error.</p>
 
 <div class="grid g2">{cand_card(c1, "Upload #1 · Primary Recommended (H22-1 · Fractal-Clustering Prior · 2.40% Budget)", "rec", "b-ok")}{cand_card(c2, "Upload #2 · Orthogonal Recommended (H22-2 · Fractal 2.43% Power-Law Budget)", "", "b-ok")}</div>
-<h2>Live-Scored 19GEMSDOE Anchor Baselines (0.1922 &amp; 0.1894) &amp; gems22 Value-Based Emission (74cb4afe)</h2>
+<h2>Live-Scored 19GEMSDOE Anchor Baselines (0.1922 &amp; 0.1894) &amp; gems22 Value-Based Emission (f6777492)</h2>
 <div class="grid g2">{cand_card(c4, "Live Group Best Anchor (H19-5 · Live LB 0.1922 · 2.34% Budget)", "", "b-info")}{cand_card(c3, "Live Group Runner-Up Anchor (H19-4 · Live LB 0.1894 · 2.40% Budget)", "", "b-info")}</div>
-<div class="card"><h3>Orthogonal High-Coverage Value-Based Emission Candidate (<code>74cb4afe</code> · <code>gems22</code> Workstream)</h3>
+<div class="card"><h3>Orthogonal High-Coverage Value-Based Emission Candidate (<code>f6777492</code> · <code>gems22</code> Workstream)</h3>
 <p>Built from the live-proven <code>H19-5</code> (<code>0.1922</code>) surface re-emitted at the live-rescaled DTI optimum <code>n = 550,000</code> scored pixels (<code>10.77%</code> of the scored domain; ML-calibrated <code>|G|_MLE = 107,000</code>, 68% CI <code>[96,255, 134,963]</code>, propagated live DTI <code>[p16, p50, p84] = [0.1628, 0.1778, 0.1956]</code>). Full details on the <a href="gems22-index.html">gems22 Value-Emit Hub</a>.</p>
-<div class="row"><a class="btn primary" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.tif" download>{DL_ICON}Download 74cb4afe (-allfinite.tif · 1.14 MB)</a>
-<a class="btn" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-nan.tif" download>Download 74cb4afe (-nan.tif · 1.92 MB)</a>
-<a class="btn" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-74cb4afe-allfinite.zip" download>Download .zip</a></div></div>
+<div class="row"><a class="btn primary" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-f6777492-allfinite.tif" download>{DL_ICON}Download f6777492 (-allfinite.tif · 1.14 MB)</a>
+<a class="btn" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-f6777492-nan.tif" download>Download f6777492 (-nan.tif · 1.92 MB)</a>
+<a class="btn" href="downloads/gems22/gems22-h22-value-emit-20261002T015455Z-f6777492-allfinite.zip" download>Download .zip</a></div></div>
 
 <div class="card"><h2 style="margin-top:0">Step-by-Step DrivenData Upload Procedure</h2><ol class="steps">
 <li><strong>Download</strong> <code>{esc(c1["files"]["tif"]["name"])}</code> (1.69 MB) using the primary button above (or its <code>.zip</code> archive if you prefer compressed upload).</li>

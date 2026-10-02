@@ -688,6 +688,16 @@ obtainability checked from this sandbox.</p>
 <th>Why it catches an <i>unmapped</i> fault</th><th>Difference from prior repos</th>
 <th class="num">Expected gain / cost</th><th class="num">Status</th></tr>
 {rows or '<tr><td colspan=7>pending</td></tr>'}</table>
+<div class="note"><b>H26 floor addendum (2026-10-02).</b> A random emission is not worth
+zero on this metric: the closed form in <code>src/gems/floor.py</code> (validated to within
+&minus;1.8&nbsp;% &hellip; +3.1&nbsp;% against this repository&rsquo;s own eight measured random arms)
+gives a no-skill floor of <b>0.1812</b> at the group&rsquo;s habitual 121,131-pixel budget and
+<b>0.2900</b> at the delivered 550,000-pixel budget (|G| = 116,106; 95&nbsp;% band
+0.2414&ndash;0.3446). The best live score, 0.1922, is a lift of only +0.011 over its own floor,
+while the same file is 2.2&times; the fold floor &mdash; the fold holds 0.42&nbsp;% ground truth
+by area against a fitted ~2.27&nbsp;% live. Hypotheses are therefore ranked here by expected
+<b>lift over the floor</b>, and the 550k rescale is held until the live floor is measured.
+Full derivation: <code>FLOOR_ANALYSIS.md</code> and <code>evidence/h26_floor_model.json</code>.</div>
 <h2>Ranking rationale</h2>
 <p>Expected gains are ordered by <b>(measured or bounded DTI headroom) &divide;
 (implementation cost in this sandbox)</b>, not by geological elegance. The
@@ -986,14 +996,88 @@ HYPOTHESES = [
                 "were format checks and a Jaccard duplicate threshold.",
      "expected_gain": "0 directly; protects against a wasted upload slot",
      "cost": "low (implemented)", "status": "implemented"},
+    {"id": "H26-A", "name": "Offset markers on Quaternary surfaces",
+     "layers": "10 m 3DEP DEM scarp channels (GEMSDOE10 tag), 1 m lidar openness/LRM npz, "
+               "derived_sgmc_faults_100m_u8.tif, labels.tif",
+     "signature": "Fit the local plan-form trend of a depositional marker (fan toe, terrace "
+                  "riser, bar-and-swale axis) on both sides of a candidate line; emit where the "
+                  "trend breaks with a consistent sense along >= 1 km. A differential test, not a "
+                  "scarp-brightness test.",
+     "why_unmapped": "A fault whose only expression is a shear of young fan surfaces may never "
+                     "have been drawn on a compilation map, while it is exactly the class the "
+                     "organisers describe as expert-mapped new faults.",
+     "differs": "H19-3/H22-1 emit where a ridge looks like a scarp and lies in the clustering halo "
+                "of a mapped fault; H26-A does not require a mapped neighbour and does not key on "
+                "absolute scarp brightness.",
+     "expected_gain": "high (inference) - attacks the catalogue-complement class directly",
+     "cost": "medium", "status": "designed; needs marker-fold holdout before any slot"},
+    {"id": "H26-B", "name": "Anisotropic tip continuation with measured angular dispersion",
+     "layers": "labels.tif + derived_sgmc_faults_100m_u8.tif trace geometry, 10 m DEM structure "
+               "tensor for strike",
+     "signature": "Extrapolate each trace tip along the local DEM strike with an angular "
+                  "dispersion measured from the DFN orientation histogram, then require "
+                  "confirmation by a second, independent orientation family within 2-4 km.",
+     "why_unmapped": "The fitted population is spatially organised (nearest-larger median "
+                     "1,630.9 m, p90 6,047.1 m, D_correlation 1.624), and staff describe the live "
+                     "set as newly mapped geometry of existing systems.",
+     "differs": "strike_tip_field uses catalogue strike with a fixed <= 20 px reach; "
+                "halo_isotropic ignores orientation entirely; H26-B re-derives strike and "
+                "calibrates the dispersion from data.",
+     "expected_gain": "medium (inference); testable on the pinned trace-cluster folds",
+     "cost": "low", "status": "coarse version measured by h26_geometry_holdout.py"},
+    {"id": "H26-C", "name": "Silica vs carbonate blind-fault feeder inversion",
+     "layers": "GDR 1391 well/spring geothermometry, 2 m probes, paleo-thermal deposits (mirrored "
+               "in GEMSDOE24); tc / tmi_hg bands; SGMC-gap raster",
+     "signature": "Separate quartz-dominated (> 70 C) from carbonate/tufa systems, then project "
+                  "the feeder updip through basin fill; emit along the projection.",
+     "why_unmapped": "The feeder is inferred between the deep equilibrium and the surface "
+                     "expression - under cover, where no trace is mapped.",
+     "differs": "H19-2 accumulated a joint conduit field; no repository separated the two "
+                "geothermometer families (registered as H22-4, never implemented).",
+     "expected_gain": "medium (inference)", "cost": "low-medium",
+     "status": "designed; SGMC-gap holdout gate"},
+    {"id": "H26-D", "name": "Conjugate X-pattern intersection nodes",
+     "layers": "GeoDAWN radiometric/extension bands, iso_grav_anom, tmi_hg, tmi_vg, DEM structure "
+               "tensor",
+     "signature": "Emit where two independently derived lineament families cross at 50-80 degrees, "
+                  "weighted by both families' amplitude and by intersection density.",
+     "why_unmapped": "Short intra-basin transfer faults at step-over nodes are systematically "
+                     "under-mapped because each segment is short and low-amplitude.",
+     "differs": "Registered as H22-3 and never implemented; prior repos used single-orientation "
+                "worms only.",
+     "expected_gain": "medium (inference)", "cost": "low",
+     "status": "designed; needs Jaccard distinctness gate"},
+    {"id": "H26-E", "name": "Drainage-knickpoint alignment",
+     "layers": "10 m DEM elevation/slope/curvature channels (3DEP, mirrored), DEM-derived stream "
+               "network",
+     "signature": "A line of knickpoints at a consistent downstream position in independent "
+                  "catchments implies one tectonic line crossing all of them.",
+     "why_unmapped": "The fault need not produce a 100 m-visible scarp; it only needs to have "
+                     "reorganised drainage.",
+     "differs": "Never tried in any repository in the group.",
+     "expected_gain": "medium-low (inference) but the most orthogonal to every existing map",
+     "cost": "medium", "status": "designed"},
 ]
 
 NEXT_STEPS = [
-    {"title": "Spend one upload slot on the value-based emission budget",
-     "detail": "The single largest measured, replicated, data-free gain in this repo: three "
-               "independent evaluations put the DTI-optimal emitted-pixel budget 2.7x-8x above "
-               "the 120k the group has always used. It must clear the trace-cluster holdout "
-               "gate AND the NCC artefact audit first, per the brief.",
+    {"title": "Spend it on a measurement first: a random binary control (H26)",
+     "detail": "Nothing shipped has a demonstrated lift over a size-matched random control on "
+               "the valid trace-cluster instrument (evidence/h26_instrument_consistency.json), "
+               "and the live scores sit on the metric's own no-skill floor: 0.181 at the group's "
+               "~121k budget versus a live best of 0.1922. A random control at a fixed budget "
+               "measures the floor and |G| directly and retro-calibrates every historical score. "
+               "The paired upload (base vs base union S) then measures tau. These are "
+               "measurements, not hypotheses, so the operator decides whether to spend a slot.",
+     "needs": "An explicit operator decision to spend a slot on calibration", 
+     "payoff": "Calibrates |G| and the floor for every later decision",
+     "cost": "1 slot"},
+    {"title": "Spend one upload slot on the value-based emission budget — HELD by the H26 floor analysis",
+     "detail": "HELD (H26): the delivered 550k rescale projects 0.1628-0.1956, which is below "
+               "the 550,000-px no-skill floor of 0.2900 (p50 |G|). The budget was derived by "
+               "rescaling the anchors' own fold behaviour, where the floor is flat; live it "
+               "rises from 0.18 at 121k to 0.29 at 550k. Do not upload it until the live floor "
+               "is measured. Original case: three independent evaluations put the DTI-optimal "
+               "emitted-pixel budget 2.7x-8x above the 120k the group has always used.",
      "needs": "One of the 3 uploads per rolling 7 days", "payoff": "+0.03 to +0.10 DTI",
      "cost": "1 slot"},
     {"title": "Extend the 1 m 3DEP DEM openness/LRM coverage from 1.4% to the full footprint",
@@ -1306,7 +1390,7 @@ def main() -> None:
     # reason (docs/data/clustering_fit.json is the trunk's, not ours).
     (DOCS / "data").mkdir(exist_ok=True)
     for n in ("data_provenance", "anchor_calibration", "gems22_clustering_fit",
-              "submission_build", "holdout_union"):
+              "submission_build", "holdout_union", "h26_floor_model"):
         d = E(f"{n}.json")
         if d is not None:
             (DOCS / "data" / f"{n}.json").write_text(json.dumps(d, indent=1, default=str))

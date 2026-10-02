@@ -60,7 +60,52 @@ obtainability checked from this sandbox.</p>
 <td>No predecessor repo computed any normalised correlation count, on the catalogue or on a prediction. The group&#x27;s only submission-level sanity checks were format checks and a Jaccard duplicate threshold.</td>
 <td class="num">0 directly; protects against a wasted upload slot<br>
 <span style="color:var(--mut);font-size:12px">cost: low (implemented)</span></td>
-<td class="num">implemented</td></tr></table>
+<td class="num">implemented</td></tr>
+<tr><td><b>#6</b><br><code>H26-A</code></td><td><b>Offset markers on Quaternary surfaces</b><br>
+<span style="color:var(--mut);font-size:13px">10 m 3DEP DEM scarp channels (GEMSDOE10 tag), 1 m lidar openness/LRM npz, derived_sgmc_faults_100m_u8.tif, labels.tif</span></td>
+<td>Fit the local plan-form trend of a depositional marker (fan toe, terrace riser, bar-and-swale axis) on both sides of a candidate line; emit where the trend breaks with a consistent sense along &gt;= 1 km. A differential test, not a scarp-brightness test.</td><td>A fault whose only expression is a shear of young fan surfaces may never have been drawn on a compilation map, while it is exactly the class the organisers describe as expert-mapped new faults.</td>
+<td>H19-3/H22-1 emit where a ridge looks like a scarp and lies in the clustering halo of a mapped fault; H26-A does not require a mapped neighbour and does not key on absolute scarp brightness.</td>
+<td class="num">high (inference) - attacks the catalogue-complement class directly<br>
+<span style="color:var(--mut);font-size:12px">cost: medium</span></td>
+<td class="num">designed; needs marker-fold holdout before any slot</td></tr>
+<tr><td><b>#7</b><br><code>H26-B</code></td><td><b>Anisotropic tip continuation with measured angular dispersion</b><br>
+<span style="color:var(--mut);font-size:13px">labels.tif + derived_sgmc_faults_100m_u8.tif trace geometry, 10 m DEM structure tensor for strike</span></td>
+<td>Extrapolate each trace tip along the local DEM strike with an angular dispersion measured from the DFN orientation histogram, then require confirmation by a second, independent orientation family within 2-4 km.</td><td>The fitted population is spatially organised (nearest-larger median 1,630.9 m, p90 6,047.1 m, D_correlation 1.624), and staff describe the live set as newly mapped geometry of existing systems.</td>
+<td>strike_tip_field uses catalogue strike with a fixed &lt;= 20 px reach; halo_isotropic ignores orientation entirely; H26-B re-derives strike and calibrates the dispersion from data.</td>
+<td class="num">medium (inference); testable on the pinned trace-cluster folds<br>
+<span style="color:var(--mut);font-size:12px">cost: low</span></td>
+<td class="num">coarse version measured by h26_geometry_holdout.py</td></tr>
+<tr><td><b>#8</b><br><code>H26-C</code></td><td><b>Silica vs carbonate blind-fault feeder inversion</b><br>
+<span style="color:var(--mut);font-size:13px">GDR 1391 well/spring geothermometry, 2 m probes, paleo-thermal deposits (mirrored in GEMSDOE24); tc / tmi_hg bands; SGMC-gap raster</span></td>
+<td>Separate quartz-dominated (&gt; 70 C) from carbonate/tufa systems, then project the feeder updip through basin fill; emit along the projection.</td><td>The feeder is inferred between the deep equilibrium and the surface expression - under cover, where no trace is mapped.</td>
+<td>H19-2 accumulated a joint conduit field; no repository separated the two geothermometer families (registered as H22-4, never implemented).</td>
+<td class="num">medium (inference)<br>
+<span style="color:var(--mut);font-size:12px">cost: low-medium</span></td>
+<td class="num">designed; SGMC-gap holdout gate</td></tr>
+<tr><td><b>#9</b><br><code>H26-D</code></td><td><b>Conjugate X-pattern intersection nodes</b><br>
+<span style="color:var(--mut);font-size:13px">GeoDAWN radiometric/extension bands, iso_grav_anom, tmi_hg, tmi_vg, DEM structure tensor</span></td>
+<td>Emit where two independently derived lineament families cross at 50-80 degrees, weighted by both families&#x27; amplitude and by intersection density.</td><td>Short intra-basin transfer faults at step-over nodes are systematically under-mapped because each segment is short and low-amplitude.</td>
+<td>Registered as H22-3 and never implemented; prior repos used single-orientation worms only.</td>
+<td class="num">medium (inference)<br>
+<span style="color:var(--mut);font-size:12px">cost: low</span></td>
+<td class="num">designed; needs Jaccard distinctness gate</td></tr>
+<tr><td><b>#10</b><br><code>H26-E</code></td><td><b>Drainage-knickpoint alignment</b><br>
+<span style="color:var(--mut);font-size:13px">10 m DEM elevation/slope/curvature channels (3DEP, mirrored), DEM-derived stream network</span></td>
+<td>A line of knickpoints at a consistent downstream position in independent catchments implies one tectonic line crossing all of them.</td><td>The fault need not produce a 100 m-visible scarp; it only needs to have reorganised drainage.</td>
+<td>Never tried in any repository in the group.</td>
+<td class="num">medium-low (inference) but the most orthogonal to every existing map<br>
+<span style="color:var(--mut);font-size:12px">cost: medium</span></td>
+<td class="num">designed</td></tr></table>
+<div class="note"><b>H26 floor addendum (2026-10-02).</b> A random emission is not worth
+zero on this metric: the closed form in <code>src/gems/floor.py</code> (validated to within
+&minus;1.8&nbsp;% &hellip; +3.1&nbsp;% against this repository&rsquo;s own eight measured random arms)
+gives a no-skill floor of <b>0.1812</b> at the group&rsquo;s habitual 121,131-pixel budget and
+<b>0.2900</b> at the delivered 550,000-pixel budget (|G| = 116,106; 95&nbsp;% band
+0.2414&ndash;0.3446). The best live score, 0.1922, is a lift of only +0.011 over its own floor,
+while the same file is 2.2&times; the fold floor &mdash; the fold holds 0.42&nbsp;% ground truth
+by area against a fitted ~2.27&nbsp;% live. Hypotheses are therefore ranked here by expected
+<b>lift over the floor</b>, and the 550k rescale is held until the live floor is measured.
+Full derivation: <code>FLOOR_ANALYSIS.md</code> and <code>evidence/h26_floor_model.json</code>.</div>
 <h2>Ranking rationale</h2>
 <p>Expected gains are ordered by <b>(measured or bounded DTI headroom) &divide;
 (implementation cost in this sandbox)</b>, not by geological elegance. The
