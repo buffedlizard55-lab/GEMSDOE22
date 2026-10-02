@@ -310,6 +310,32 @@
       "links": [
         "https://github.com/buffedlizard55-lab/GEMSDOE22/blob/main/docs/research/preregistration_h22.md"
       ]
+    },
+    {
+      "id": "F25",
+      "area": "evidence integrity",
+      "severity": "high",
+      "status": "OPEN",
+      "title": "spatial_holdout_results.json regenerated without the H19/H22 candidate entries",
+      "evidence": "evidence/spatial_holdout_results.json now contains only H16-* arms plus one sibling. The H19_4_MultiLine_Corroborated_Synthesis, H19_5_PowerLaw_Budget_Corroborated and H19_SingleLayer_PatternMatch_Ablation entries that the published holdout claims rest on are absent; the file was overwritten by a later OOF-only run.",
+      "action": "re-run scripts/run_spatial_holdout_and_build.py with the H19/H22 surfaces to restore the entries",
+      "how_established": "COMPUTED - detected by tests/test_h19_corroboration.py",
+      "links": [
+        "https://github.com/buffedlizard55-lab/GEMSDOE22/blob/main/tests/test_h19_corroboration.py"
+      ]
+    },
+    {
+      "id": "F26",
+      "area": "documentation integrity",
+      "severity": "medium",
+      "status": "RESOLVED",
+      "title": "README.md quoted stale SHA-256 digests for H19-4 (691e4dfa) and H19-5 (e27054cf)",
+      "evidence": "README.md claimed the H19-4 digest was f1266196... and the H19-5 digest was 9d60df0b..., while the published files actually hash to 89109a3b... and ec1f9b56... respectively. Same defect class as F25 but on a different pair of files.",
+      "action": "digests replaced with the recomputed values; locked by tests/test_download_integrity.py",
+      "how_established": "COMPUTED - recomputed SHA-256 of the files on disk",
+      "links": [
+        "https://github.com/buffedlizard55-lab/GEMSDOE22/blob/main/tests/test_download_integrity.py"
+      ]
     }
   ]
 }
