@@ -101,15 +101,65 @@ def test_zip_contains_a_single_geotiff(tmp_path, masks):
 
 
 def test_published_files_pass_every_hard_check():
-    """Guard on the actual artefacts served from docs/downloads/gems22/."""
-    d = REPO / "docs/downloads" / "gems22"
+    """Guard on the actual artefacts served from docs/downloads/gems22/.
+
+    Two modes, because the official 419 MB rasters are gitignored and therefore
+    absent on a fresh clone and on every CI runner:
+
+    * WITH `data/sample_submission.tif` + `data/labels.tif`: run the full
+      `verify_file()` against the official footprint and catalogue (12 hard
+      checks, including "no positive pixel lands on a known fault").
+    * WITHOUT them: fall back to a template-free check that still proves a lot --
+      profile, dtype, CRS, shape, geotransform, the [0, 1] range, and the SHA-256
+      recorded in evidence/submission_build.json.  Skipping entirely here would
+      leave the published artefacts completely unguarded on CI, which is where a
+      bad commit is most likely to slip through.
+    """
+    import hashlib
+    import json
+
+    d = REPO / "docs/downloads/gems22"
     tifs = sorted(d.glob("*.tif"))
     if not tifs:
         pytest.skip("no submission built yet")
-    fp = np.isfinite(rasterio.open(REPO / "data/sample_submission.tif").read(1))
-    cat = rasterio.open(REPO / "data/labels.tif").read(1) == 1
+
+    sample = REPO / "data/sample_submission.tif"
+    labels = REPO / "data/labels.tif"
+
+    if sample.exists() and labels.exists():
+        fp = np.isfinite(rasterio.open(sample).read(1))
+        cat = rasterio.open(labels).read(1) == 1
+        for t in tifs:
+            c = sub.verify_file(t, fp, cat)
+            assert c["hard_all_pass"], (
+                f"{t.name}: failed {[k for k in c['hard_keys'] if not c['checks'][k]]}")
+            assert c["checks"]["footprint_min_ge_0"] and c["checks"]["footprint_max_le_1"]
+            assert c["positive_on_catalogue"] == 0, f"{t.name}: emits onto known faults"
+        return
+
+    # ---- template-free fallback -------------------------------------------
+    ev_path = REPO / "evidence/submission_build.json"
+    recorded = {}
+    if ev_path.exists():
+        for r in json.loads(ev_path.read_text()).get("files") or []:
+            recorded[r["file"]] = r
     for t in tifs:
-        c = sub.verify_file(t, fp, cat)
-        assert c["hard_all_pass"], f"{t.name}: {[k for k in c['hard_keys'] if not c['checks'][k]]}"
-        assert c["shape_3730x3292"] if "shape_3730x3292" in c else True
-        assert c["checks"]["footprint_min_ge_0"] and c["checks"]["footprint_max_le_1"]
+        with rasterio.open(t) as ds:
+            a = ds.read(1)
+            assert ds.count == 1, f"{t.name}: {ds.count} bands, expected 1"
+            assert ds.dtypes[0] == "float32", f"{t.name}: dtype {ds.dtypes[0]}"
+            assert str(ds.crs).upper().endswith("32611"), f"{t.name}: CRS {ds.crs}"
+            assert (ds.height, ds.width) == (sub.HEIGHT, sub.WIDTH), (
+                f"{t.name}: shape {(ds.height, ds.width)}")
+            assert tuple(ds.transform)[:6] == sub.TRANSFORM, f"{t.name}: geotransform"
+        finite = np.isfinite(a)
+        assert a[finite].min() >= 0.0, f"{t.name}: value below 0"
+        assert a[finite].max() <= 1.0, f"{t.name}: value above 1 -> would trip the range error"
+        if "allfinite" in t.name:
+            assert finite.all(), f"{t.name}: allfinite variant contains {int((~finite).sum())} NaN"
+            assert set(np.unique(a).tolist()) <= {0.0, 1.0}, f"{t.name}: not binary"
+        rec = recorded.get(t.name)
+        if rec:
+            h = hashlib.sha256(t.read_bytes()).hexdigest()
+            assert h == rec["sha256"], f"{t.name}: sha256 {h[:16]} != recorded {rec['sha256'][:16]}"
+            assert t.stat().st_size == rec["bytes"], f"{t.name}: size changed"

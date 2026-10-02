@@ -6186,7 +6186,6 @@
  ],
  "seconds": 434.2,
  "reverify": {
-  "generated_utc": "2026-10-02T02:42:56Z",
   "script": "scripts/05b_reverify_published.py",
   "artefacts_checked": 8,
   "pixel_level_checks_run": true,
@@ -6529,6 +6528,7 @@
     "zip_matches_loose_tif": true,
     "zip_ok": true
    }
-  ]
+  ],
+  "generated_utc": "2026-10-02T02:42:56Z"
  }
 }

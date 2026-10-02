@@ -165,8 +165,16 @@ def main() -> int:
                 r["checks"] = row["checks"]
                 r["hard_all_pass"] = row["hard_all_pass"]
                 r["sha256_matches_served"] = row.get("sha256_matches")
-    ev["reverify"] = {
-        "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    # ---- idempotence -------------------------------------------------------
+    # This script is run by run_all.sh, by CI, and by hand.  If it stamped a new
+    # generated_utc on every run then evidence/submission_build.json would change
+    # on every invocation, and any page built from it (docs/gems22-index.html
+    # renders the re-verification timestamp) would go stale the moment the script
+    # ran again -- which is exactly what made the CI "committed site must match a
+    # fresh build" gate fail on an otherwise identical tree.  So: if the
+    # substantive result is unchanged, keep the existing timestamp.
+    prev = ev.get("reverify") or {}
+    new_rv = {
         "script": "scripts/05b_reverify_published.py",
         "artefacts_checked": len(checked),
         "pixel_level_checks_run": pixel_level,
@@ -174,7 +182,15 @@ def main() -> int:
         "failures": failures,
         "detail": checked,
     }
+    same = {k: v for k, v in prev.items() if k != "generated_utc"} == \
+        {k: v for k, v in new_rv.items() if k != "generated_utc"}
+    new_rv["generated_utc"] = (prev.get("generated_utc") if same and prev.get("generated_utc")
+                               else time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
+    ev["reverify"] = new_rv
     EV.write_text(json.dumps(ev, indent=1, default=str))
+    if same:
+        print("  (result unchanged from the recorded run -> timestamp preserved; "
+              "this script is idempotent)")
     print(f"\nartefacts checked: {len(checked)}   failures: {len(failures)}")
     for f in failures:
         print(f"  FAIL {f}")
