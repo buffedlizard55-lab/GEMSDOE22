@@ -1,0 +1,44 @@
+[
+ {
+  "title": "Spend one upload slot on the value-based emission budget",
+  "detail": "The single largest measured, replicated, data-free gain in this repo: three independent evaluations put the DTI-optimal emitted-pixel budget 2.7x-8x above the 120k the group has always used. It must clear the trace-cluster holdout gate AND the NCC artefact audit first, per the brief.",
+  "needs": "One of the 3 uploads per rolling 7 days",
+  "payoff": "+0.03 to +0.10 DTI",
+  "cost": "1 slot"
+ },
+ {
+  "title": "Extend the 1 m 3DEP DEM openness/LRM coverage from 1.4% to the full footprint",
+  "detail": "Only 71,974 cells over eight 10 km tiles are cached. 7GEMSDOE already fetched 706 of 716 tiles and recorded the URLs in knowledge/dem_tiles.json; the derived 12-band scarp product covers 75.4% of grid cells. Closing the remaining 24.6% (the NE lidar-gap-heavy quadrant) is the highest-value data work left.",
+  "needs": "A machine that can reach USGS 3DEP / nationalmap.gov",
+  "payoff": "+0.01 to +0.03 DTI",
+  "cost": "medium"
+ },
+ {
+  "title": "Train a U-Net on the same 156-layer cache",
+  "detail": "The official reference solution is a U-Net ensemble; this repo could not train one (no GPU). The feature cache is already on disk in the right shape, so a GPU session only has to swap the learner, keeping the same folds, the same targets and the same emission rule for a like-for-like comparison.",
+  "needs": "GPU",
+  "payoff": "+0.02 to +0.08 DTI",
+  "cost": "high"
+ },
+ {
+  "title": "Calibrate |G| properly and turn the holdout into a live-score predictor",
+  "detail": "Inverting DTI = A/(0.2A + 0.2B + 0.8|G|) across the group's 19 live-scored files, with B ~ n - A, gives |G| = 125,000 px (grid search; objective 0.757, 84.2% of files land in efficiency 0.02-0.35, corr(log n, eff) = -0.585). That single global |G| is a POINT ESTIMATE chosen to make the whole table self-consistent, not an observation: per-file inversions scatter widely (implied efficiency 0.002 to 0.219). Fitting |G| jointly by maximum likelihood over all 19 (A_i, B_i, DTI_i) triples -- with a proper residual model instead of a grid search -- would put an uncertainty band on |G|, and therefore on tau and on the pi* emission threshold, which is what makes slot allocation rational rather than merely consistent.",
+  "needs": "Nothing new \u2014 the 19 observations are already in registry/",
+  "payoff": "Better slot allocation",
+  "cost": "low"
+ },
+ {
+  "title": "Add the INGENIOUS 2 m temperature-probe and geothermometer inversion",
+  "detail": "27,092 spring/well records and the 2 m probe table are cached in assets/external/. 13GEMSDOE committed the full 2m_temperature_probe dbf. Backward conduit inversion (a near-surface thermal anomaly in an amagmatic extensional setting requires a permeable pathway) is a physically independent line of evidence no head in this repo currently uses.",
+  "needs": "Nothing new \u2014 data already local",
+  "payoff": "+0.005 to +0.02 DTI",
+  "cost": "medium"
+ },
+ {
+  "title": "Automate the leaderboard and site feed",
+  "detail": "The brief asks for an up-to-date feed so nothing has to be checked by hand. scripts/record_score.py + a GitHub Action that re-reads the public leaderboard and rebuilds docs/ would close the loop; the Action needs the network access this sandbox lacks.",
+  "needs": "GitHub Actions (network)",
+  "payoff": "Removes all manual checking",
+  "cost": "low"
+ }
+]

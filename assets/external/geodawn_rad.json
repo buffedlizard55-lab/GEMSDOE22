@@ -1,0 +1,390 @@
+{
+ "product": "external/geodawn_rad/geodawn_rad_u8.tif",
+ "product_sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+ "grid": {
+  "width": 3292,
+  "height": 3730,
+  "crs": "EPSG:32611",
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "dtype": "uint8",
+  "nodata": 0
+ },
+ "channels": [
+  "K",
+  "Th",
+  "U",
+  "TC"
+ ],
+ "doi": "10.5066/P93LGLVQ",
+ "sciencebase_item": "657e1d85d34e23d3533209f7",
+ "retrieved_utc": "2026-09-26T22:18:21.936744+00:00",
+ "archives": {
+  "2": {
+   "name": "22103_area2_tiffs.zip",
+   "size": 241738690,
+   "md5": "2b927f17b8261380b72c2be9e1d46490",
+   "sha256": "c5079b2c8da4d9dfa86ff8db061a6440bf5ef5ed632f7e7ff0a179e234eec662"
+  },
+  "1": {
+   "name": "22103_area1_tiffs.zip",
+   "size": 45685879,
+   "md5": "56d8450884ec737a10ad6031056c22e2",
+   "sha256": "d4eb95223c243a7f79aaf7bb9bfd2a544222b86ceec2cecceb11d4aa8cda4388"
+  }
+ },
+ "archive_member_listing": {
+  "2": [
+   {
+    "name": "22103_area2_tiffs/22103_dem_a2.tif",
+    "size": 49531304
+   },
+   {
+    "name": "22103_area2_tiffs/22103_k_a2.tif",
+    "size": 49531308
+   },
+   {
+    "name": "22103_area2_tiffs/22103_rtp_a2.tif",
+    "size": 49531364
+   },
+   {
+    "name": "22103_area2_tiffs/22103_tc_a2.tif",
+    "size": 49531354
+   },
+   {
+    "name": "22103_area2_tiffs/22103_th_a2.tif",
+    "size": 49531284
+   },
+   {
+    "name": "22103_area2_tiffs/22103_thk_a2.tif",
+    "size": 49531416
+   },
+   {
+    "name": "22103_area2_tiffs/22103_tmi_a2.tif",
+    "size": 49531366
+   },
+   {
+    "name": "22103_area2_tiffs/22103_tmi_hg_a2.tif",
+    "size": 49531420
+   },
+   {
+    "name": "22103_area2_tiffs/22103_tmi_vg_a2.tif",
+    "size": 49531426
+   },
+   {
+    "name": "22103_area2_tiffs/22103_u_a2.tif",
+    "size": 49531302
+   },
+   {
+    "name": "22103_area2_tiffs/22103_uk_a2.tif",
+    "size": 49531606
+   },
+   {
+    "name": "22103_area2_tiffs/22103_upcont_tmi150_a2.tif",
+    "size": 49531368
+   },
+   {
+    "name": "22103_area2_tiffs/22103_uth_a2.tif",
+    "size": 49531312
+   }
+  ],
+  "1": [
+   {
+    "name": "22103_area1_tiffs/22103_dem_a1.tif",
+    "size": 5309326
+   },
+   {
+    "name": "22103_area1_tiffs/22103_k_a1.tif",
+    "size": 5289136
+   },
+   {
+    "name": "22103_area1_tiffs/22103_rtp_a1.tif",
+    "size": 5289116
+   },
+   {
+    "name": "22103_area1_tiffs/22103_tc_a1.tif",
+    "size": 5289096
+   },
+   {
+    "name": "22103_area1_tiffs/22103_th_a1.tif",
+    "size": 5289098
+   },
+   {
+    "name": "22103_area1_tiffs/22103_thk_a1.tif",
+    "size": 5289116
+   },
+   {
+    "name": "22103_area1_tiffs/22103_tmi_a1.tif",
+    "size": 5289114
+   },
+   {
+    "name": "22103_area1_tiffs/22103_tmi_hg_a1.tif",
+    "size": 5289122
+   },
+   {
+    "name": "22103_area1_tiffs/22103_tmi_vg_a1.tif",
+    "size": 5289110
+   },
+   {
+    "name": "22103_area1_tiffs/22103_u_a1.tif",
+    "size": 5289098
+   },
+   {
+    "name": "22103_area1_tiffs/22103_uk_a1.tif",
+    "size": 5289144
+   },
+   {
+    "name": "22103_area1_tiffs/22103_upcont_tmi150_a1.tif",
+    "size": 5301390
+   },
+   {
+    "name": "22103_area1_tiffs/22103_uth_a1.tif",
+    "size": 5289104
+   }
+  ]
+ },
+ "priority_rule": "Area 1 overrides Area 2 where they overlap; Area 1 is 50 m and Area 2 100 m per USGS readme.",
+ "rights": "USGS data release; retain USGS citation/attribution and verify terms for each downloaded asset before redistribution.",
+ "quantisation": "uint8 1..255 over per-channel 1st..99th pct after area mosaic; 0=nodata",
+ "caveats": [
+  "gamma rays sample the top ~0.5-1 m; moisture/vegetation/altitude modulate response",
+  "USGS item describes different flight specifications and acquisition blocks; spatial/block controls are needed",
+  "lithology/alteration proxy, not a fault detector"
+ ],
+ "files": {
+  "K": {
+   "sources": [
+    {
+     "area": 2,
+     "archive": "22103_area2_tiffs.zip",
+     "member": "22103_area2_tiffs/22103_k_a2.tif",
+     "member_size": 49531308,
+     "source_grid": {
+      "width": 3292,
+      "height": 3730,
+      "crs": "EPSG:32611",
+      "resolution": [
+       100.0,
+       100.0
+      ],
+      "transform": [
+       100.0,
+       0.0,
+       243350.0,
+       0.0,
+       -100.0,
+       4508550.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 5167628
+    },
+    {
+     "area": 1,
+     "archive": "22103_area1_tiffs.zip",
+     "member": "22103_area1_tiffs/22103_k_a1.tif",
+     "member_size": 5289136,
+     "source_grid": {
+      "width": 1338,
+      "height": 979,
+      "crs": "EPSG:32611",
+      "resolution": [
+       50.0,
+       50.0
+      ],
+      "transform": [
+       50.0,
+       0.0,
+       406575.0,
+       0.0,
+       -50.0,
+       4202725.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 243065
+    }
+   ],
+   "valid_px": 5166085
+  },
+  "Th": {
+   "sources": [
+    {
+     "area": 2,
+     "archive": "22103_area2_tiffs.zip",
+     "member": "22103_area2_tiffs/22103_th_a2.tif",
+     "member_size": 49531284,
+     "source_grid": {
+      "width": 3292,
+      "height": 3730,
+      "crs": "EPSG:32611",
+      "resolution": [
+       100.0,
+       100.0
+      ],
+      "transform": [
+       100.0,
+       0.0,
+       243350.0,
+       0.0,
+       -100.0,
+       4508550.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 5167628
+    },
+    {
+     "area": 1,
+     "archive": "22103_area1_tiffs.zip",
+     "member": "22103_area1_tiffs/22103_th_a1.tif",
+     "member_size": 5289098,
+     "source_grid": {
+      "width": 1338,
+      "height": 979,
+      "crs": "EPSG:32611",
+      "resolution": [
+       50.0,
+       50.0
+      ],
+      "transform": [
+       50.0,
+       0.0,
+       406575.0,
+       0.0,
+       -50.0,
+       4202725.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 243065
+    }
+   ],
+   "valid_px": 5166085
+  },
+  "U": {
+   "sources": [
+    {
+     "area": 2,
+     "archive": "22103_area2_tiffs.zip",
+     "member": "22103_area2_tiffs/22103_u_a2.tif",
+     "member_size": 49531302,
+     "source_grid": {
+      "width": 3292,
+      "height": 3730,
+      "crs": "EPSG:32611",
+      "resolution": [
+       100.0,
+       100.0
+      ],
+      "transform": [
+       100.0,
+       0.0,
+       243350.0,
+       0.0,
+       -100.0,
+       4508550.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 5167628
+    },
+    {
+     "area": 1,
+     "archive": "22103_area1_tiffs.zip",
+     "member": "22103_area1_tiffs/22103_u_a1.tif",
+     "member_size": 5289098,
+     "source_grid": {
+      "width": 1338,
+      "height": 979,
+      "crs": "EPSG:32611",
+      "resolution": [
+       50.0,
+       50.0
+      ],
+      "transform": [
+       50.0,
+       0.0,
+       406575.0,
+       0.0,
+       -50.0,
+       4202725.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 243065
+    }
+   ],
+   "valid_px": 5166085
+  },
+  "TC": {
+   "sources": [
+    {
+     "area": 2,
+     "archive": "22103_area2_tiffs.zip",
+     "member": "22103_area2_tiffs/22103_tc_a2.tif",
+     "member_size": 49531354,
+     "source_grid": {
+      "width": 3292,
+      "height": 3730,
+      "crs": "EPSG:32611",
+      "resolution": [
+       100.0,
+       100.0
+      ],
+      "transform": [
+       100.0,
+       0.0,
+       243350.0,
+       0.0,
+       -100.0,
+       4508550.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 5167628
+    },
+    {
+     "area": 1,
+     "archive": "22103_area1_tiffs.zip",
+     "member": "22103_area1_tiffs/22103_tc_a1.tif",
+     "member_size": 5289096,
+     "source_grid": {
+      "width": 1338,
+      "height": 979,
+      "crs": "EPSG:32611",
+      "resolution": [
+       50.0,
+       50.0
+      ],
+      "transform": [
+       50.0,
+       0.0,
+       406575.0,
+       0.0,
+       -50.0,
+       4202725.0
+      ],
+      "dtype": "float32",
+      "nodata": -999999.0
+     },
+     "valid_px": 243065
+    }
+   ],
+   "valid_px": 5166085
+  }
+ }
+}

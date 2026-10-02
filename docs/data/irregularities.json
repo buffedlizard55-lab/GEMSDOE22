@@ -1,0 +1,106 @@
+[
+ {
+  "id": "F-01",
+  "severity": "HIGH",
+  "title": "The SGMC-gap offline proxy inverts against the live leaderboard at the top",
+  "detail": "19GEMSDOE reported SGMC-gap as the best offline correlate of the public score (Spearman rho = +0.52, p = 0.048, n = 15). Recomputed on the three files whose live scores exceed 0.18, rho = -1.000: proxy order h16-1 > h19-4 > h19-5 versus live order h19-5 > h19-4 > h16-1. With n = 3 and a live spread of only 0.0067 this is not significant (p = 0.333); the honest reading is that the proxy has NO resolving power at the operating point that matters.",
+  "disposition": "Demoted to a secondary check. The trace-cluster holdout is the primary gate. Documented in results.html.",
+  "source": "scripts/01_calibrate_anchors.py -> evidence/anchor_calibration.json; anchors in assets/lb_anchors/ are the exact bytes DrivenData scored."
+ },
+ {
+  "id": "F-02",
+  "severity": "MEDIUM",
+  "title": "The official worked example cannot be reproduced from the published text alone",
+  "detail": "The problem description gives TP_w = 3.00, FP_w = 1.89, FN_w = 2.00 -> 0.60 for an unnamed small geometry. The arithmetic is consistent with the published formula (3.00/(3.00+0.2*1.89+0.8*2.00) = 0.6027 -> 0.60) and identity FN = |G|-TP forces |G| = 5. But no connected prediction set of size <= 6 on a 5-px vertical ground-truth line reproduces all three components: a contiguous 5-px line cannot have three fully-covered and two entirely-uncovered pixels, since the uncovered two would be within 1-2 px of a covered one. The two schematic PNGs live on drivendata-public-assets.s3.amazonaws.com, which is unreachable from this sandbox.",
+  "disposition": "Not guessed. The implementation is instead validated to 7e-15 against an independent triple-loop transcription of the published formula over 60 randomised grids, plus both algebraic identities. Recorded in tests/test_metric.py::test_official_worked_example_arithmetic.",
+  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+ },
+ {
+  "id": "F-03",
+  "severity": "HIGH",
+  "title": "3,073 pixels inside the official footprint carry the float32 nodata sentinel",
+  "detail": "training_features.tif declares nodata = -3.4028234663852886e+38. 5,167,373 pixels are finite in sample_submission.tif but only 5,164,300 have all 19 bands finite; band 6 (tc) alone is sentinel on 12 further pixels. Any submission whose arithmetic propagates a value from those pixels is rejected with 'Predicted values must be in range [0, 1]' before it is scored.",
+  "disposition": "submission.sanitise() forces every non-finite value to 0.0 BEFORE clipping, and verify_file() re-reads the written file from disk and asserts min >= 0, max <= 1 and all-finite on the footprint. A file that fails is never published to docs/downloads/.",
+  "source": "scripts/00_verify_data.py -> evidence/data_provenance.json"
+ },
+ {
+  "id": "F-04",
+  "severity": "MEDIUM",
+  "title": "sample_submission.tif does not 'predict total fault absence'",
+  "detail": "The problem description says 'A sample submission that predicts total fault absence is provided for your reference'. The mirrored example_submission.tif (sha256 2176d08e485aa2cd..., byte-identical to the file this repo uses as its template) contains 60,988 pixels equal to 1.0 \u2014 exactly the positive pixels of labels.tif. It is the known-fault raster, not an all-zero raster.",
+  "disposition": "Used ONLY as the format/footprint template (CRS, shape, transform, dtype, nodata all match). Never used as a prediction or as a baseline score. If the real all-zero sample on the login-walled data tab differs in profile, re-check spec.verify().",
+  "source": "measured in scripts/00_verify_data.py"
+ },
+ {
+  "id": "F-05",
+  "severity": "LOW",
+  "title": "NaN-outside and 0.0-outside submissions score identically",
+  "detail": "The group registry holds r7-nms3-dem10-scarp_0c9199f14e62 = 0.1294 and r7-nms3-dem10-scarp_0c9199f14e62_allfinite = 0.1294 \u2014 the same prediction under both outside-footprint conventions. So the platform accepts both, contrary to a strict reading of 'data outside the bounds is null or nan'.",
+  "disposition": "Both variants are published for every submission. -allfinite is the primary recommendation because it is immune to a scorer that uses non-NaN-aware reductions; -nan matches the official template convention.",
+  "source": "19GEMSDOE/evidence/submission_similarity.json (23 entries)"
+ },
+ {
+  "id": "F-06",
+  "severity": "MEDIUM",
+  "title": "The 19 competition bands contain no radiometric family",
+  "detail": "Band data_category tags are exactly {magnetic_data, gravity_data, geodetic_strain, topographic, subsurface, seismic}. GeoDAWN is an 'airborne magnetic AND RADIOMETRIC' survey (USGS doi:10.5066/P93LGLVQ), and the K/Th/U/TC grids from that same release cover 5,166,085 footprint pixels (99.97%). Potassic alteration is a primary geothermal discriminator and is entirely absent from the supplied feature stack.",
+  "disposition": "K, Th, U, TC and the contractor Th/K, U/K, U/Th and TMI-up150 grids are loaded as external features with full provenance. Flagged because it means the supplied stack is not the full survey.",
+  "source": "measured band tags; assets/external/geodawn_rad.json (sha256 c22420f75999030d...)"
+ },
+ {
+  "id": "F-07",
+  "severity": "MEDIUM",
+  "title": "Correlation dimension D = 2.29 > 2 for the raster catalogue",
+  "detail": "A fractal dimension of a point set in the plane cannot exceed 2. The correlation integral C2(r) saturates once every box is occupied (Bour et al. 2002 state this explicitly), so a least-squares fit over 1-140 px is biased upward. The vector trace population gives D = 1.471 (R^2 = 0.982), which is the usable estimate.",
+  "disposition": "Both values are published. The Bour & Davy consistency ratio is reported for each population separately and neither is presented as a validation of x = (a-1)/D; measured ratios are 1.62 and 3.21, i.e. the catalogue's length distribution is dominated by mapping incompleteness, not by fractal geometry.",
+  "source": "scripts/02_fit_clustering.py -> evidence/clustering_fit.json"
+ },
+ {
+  "id": "F-08",
+  "severity": "LOW",
+  "title": "Length-frequency exponent does not reproduce the predecessor's value",
+  "detail": "This repo fits a = 1.83-2.16 on the raster catalogue depending on L_min; 19GEMSDOE reported alpha = 1.762 at L_min = 1,800 m with R^2 = 0.9936. Both are internally consistent; the difference is the length estimator and binning.",
+  "disposition": "Recorded, not reconciled. No downstream quantity in this repo depends on matching 19GEMSDOE's alpha: the emission budget comes from the DTI marginal rule, not from a power-law completeness argument.",
+  "source": "evidence/clustering_fit.json vs 19GEMSDOE README section 3.1"
+ },
+ {
+  "id": "F-09",
+  "severity": "HIGH",
+  "title": "Geographic quadrant folds are structurally invalid for this task",
+  "detail": "Holding out a geographic quadrant deletes EVERY known fault from that region. But the live task keeps the full catalogue visible everywhere and asks only for faults missing from it \u2014 proximity to known structure is legitimate signal there (Bour & Davy 1999: fault networks are fractal-clustered). Measured: a head trained on quadrants collapsed to p99 = 0.0000 inside the held-out quadrant and scored DTI 0.033, while the same features scored DTI 0.165 under an object-level holdout. Every prior session gated on quadrant folds.",
+  "disposition": "holdout.trace_cluster_folds() partitions CONNECTED TRACES of (catalogue U SGMC-gap) into spatially coherent groups and holds whole groups out, so no trace is ever seen in training while map-wide context survives. Both designs are implemented and both are reported.",
+  "source": "scripts/04_train_and_optimize.py; evidence/holdout_probe.json vs holdout_union.json"
+ },
+ {
+  "id": "F-10",
+  "severity": "HIGH",
+  "title": "Catalogue-derived features leak the held-out truth if built globally",
+  "detail": "distance-to-catalogue, catalogue-dilated and the Bour & Davy prior field are all functions of the known-fault map. A held-out catalogue fault sits at distance ZERO from itself. With those layers in the shared cache, fold NW reported DTI 0.977 \u2014 a perfect score that is pure leakage.",
+  "disposition": "Those five layers are excluded from the shared cache by name (LEAKY_PREFIXES) and rebuilt per fold from `catalogue & train_mask` only. The exclusion is asserted in the run log and recorded in the evidence JSON.",
+  "source": "scripts/04_train_and_optimize.py; measured DTI 0.977 -> 0.033 after the fix"
+ },
+ {
+  "id": "F-11",
+  "severity": "MEDIUM",
+  "title": "Most of the apparent gain from a larger emission budget is available to a random predictor",
+  "detail": "On a synthetic ground truth of matched density, a uniformly random score map reaches DTI 0.080 at n = 120,000 but 0.156 at its own optimum n = 710,000. Increasing the budget alone therefore raises DTI without improving the detector.",
+  "disposition": "Every fold reports a random-null control at matched budget. A candidate must beat the null at the same n, not merely beat its own smaller-budget self.",
+  "source": "metric.budget_curve() control run; evidence/holdout_union.json null_random"
+ },
+ {
+  "id": "F-12",
+  "severity": "LOW",
+  "title": "The OSTI report URL in the brief does not resolve",
+  "detail": "The brief cites https://docs.nlr.gov/docs/fy26osti/96647.pdf. 'docs.nlr.gov' does not appear to be a live US federal host, and the path segment 'fy26osti' indicates an OSTI (Office of Scientific and Technical Information) record with ID 96647. The canonical OSTI forms would be https://www.osti.gov/biblio/96647 or https://www.osti.gov/servlets/purl/96647. Neither could be checked from this sandbox (osti.gov not tested; the Dropbox mirror of GEMS_96647.pdf is unreachable).",
+  "disposition": "Not used. Nothing in this repo depends on that PDF; the authoritative submission specification is the problem description page, which was fetched and quoted directly.",
+  "source": "project brief; measured unreachability of dropbox.com from this sandbox"
+ },
+ {
+  "id": "F-13",
+  "severity": "HIGH",
+  "title": "The sandbox has two network egress routes and they are not equivalent",
+  "detail": "Measured live by scripts/07_probe_network.py: of 19 official hosts probed, only 5 answer a direct HTTPS request from this sandbox (github.com, api.github.com, codeload.github.com, pypi.org, files.pythonhosted.org). The other 14 abort the TLS handshake with 'TLS/SSL connection has been closed (EOF)' -- including www.drivendata.org, community.drivendata.org, www.usgs.gov, www.sciencebase.gov, doi.org, gdr.openei.org, mrdata.usgs.gov, tnmaccess.nationalmap.gov and buffedlizard55-lab.github.io. The agent's page-fetch tooling uses a DIFFERENT route and did return the text of several of those hosts (the metric page, forum threads 11516 and 11527, the live leaderboard, the predecessor's published site).",
+  "disposition": "Every quotation in this repository taken from a host that is blocked on the direct route was obtained as TEXT through the page-fetch route, and is labelled with its URL so a human can re-check it in a browser. No binary can cross that route, which is why the competition rasters were reassembled from codeload.github.com parts and pinned by SHA-256 instead of downloaded from drivendata.org. Consequence: the live score of any file built here cannot be observed from the sandbox at all, so nothing in this repo claims a measured improvement -- only a measured holdout gain and a stated direction. See evidence/network_reachability.json for the raw probes.",
+  "source": "scripts/07_probe_network.py -> evidence/network_reachability.json"
+ }
+]

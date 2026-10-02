@@ -1,0 +1,6072 @@
+{
+ "generated_utc": "2026-10-02T00:55:09Z",
+ "grid": "union_traces",
+ "buffer_px": 12,
+ "seed": 22,
+ "n_cache_layers": 156,
+ "n_used_layers": 151,
+ "excluded_leaky_layers": [
+  "struct_dist_cat_log",
+  "struct_dist_cat_inv",
+  "struct_cat_dilate3",
+  "struct_bour_davy_prior",
+  "struct_bour_davy_prior_valid"
+ ],
+ "heads": [
+  "A",
+  "B"
+ ],
+ "blend_weight_A": 0.5,
+ "targets": {
+  "A": "labels.tif catalogue faults",
+  "B": "SGMC-gap (USGS state geologic map compilation faults pixel-disjoint from the competition catalogue)"
+ },
+ "leakage_control": "catalogue-derived structural layers rebuilt per fold from catalogue & train_mask only",
+ "folds": {
+  "T0": {
+   "mode": "trace_cluster",
+   "train_px": 4991545,
+   "grid_share": 1.0,
+   "budgets": [
+    10000,
+    25000,
+    50000,
+    75000,
+    100000,
+    120000,
+    150000,
+    200000,
+    250000,
+    300000,
+    400000,
+    500000,
+    650000,
+    800000,
+    1000000,
+    1250000,
+    1500000,
+    2000000,
+    2500000,
+    3000000,
+    4000000
+   ],
+   "n_extra_layers": 5,
+   "eval_px": {
+    "A": 5127729,
+    "B": 5116203
+   },
+   "gt_px": {
+    "A": 21344,
+    "B": 28445
+   },
+   "null_random": {
+    "A": {
+     "best": {
+      "n": 200000,
+      "A": 5997.003,
+      "B": 197102.886,
+      "avg_eff": 0.029985,
+      "marg_eff": 0.024156,
+      "tau_at_dti": 0.02123,
+      "marginal_rule_says_add": true,
+      "dti": 0.1039429
+     },
+     "at_120k": {
+      "n": 120000,
+      "A": 4010.928,
+      "B": 118247.515,
+      "avg_eff": 0.033424,
+      "marg_eff": 0.031121,
+      "tau_at_dti": 0.019698,
+      "marginal_rule_says_add": true,
+      "dti": 0.0965863
+     }
+    },
+    "B": {
+     "best": {
+      "n": 250000,
+      "A": 9168.645,
+      "B": 245285.399,
+      "avg_eff": 0.036675,
+      "marg_eff": 0.028362,
+      "tau_at_dti": 0.025535,
+      "marginal_rule_says_add": true,
+      "dti": 0.1244948
+     },
+     "at_120k": {
+      "n": 120000,
+      "A": 5269.052,
+      "B": 117726.842,
+      "avg_eff": 0.043909,
+      "marg_eff": 0.037583,
+      "tau_at_dti": 0.02276,
+      "marginal_rule_says_add": true,
+      "dti": 0.1112667
+     }
+    }
+   },
+   "head_A": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 44.0,
+       "B": 9890.471,
+       "avg_eff": 0.0044,
+       "marg_eff": null,
+       "tau_at_dti": 0.000462,
+       "marginal_rule_says_add": null,
+       "dti": 0.0023082
+      },
+      {
+       "n": 25000,
+       "A": 108.0,
+       "B": 24724.166,
+       "avg_eff": 0.00432,
+       "marg_eff": 0.004267,
+       "tau_at_dti": 0.000981,
+       "marginal_rule_says_add": true,
+       "dti": 0.0048998
+      },
+      {
+       "n": 50000,
+       "A": 204.0,
+       "B": 49425.23,
+       "avg_eff": 0.00408,
+       "marg_eff": 0.00384,
+       "tau_at_dti": 0.001513,
+       "marginal_rule_says_add": true,
+       "dti": 0.0075553
+      },
+      {
+       "n": 75000,
+       "A": 292.667,
+       "B": 74121.431,
+       "avg_eff": 0.003902,
+       "marg_eff": 0.003547,
+       "tau_at_dti": 0.001835,
+       "marginal_rule_says_add": true,
+       "dti": 0.0091578
+      },
+      {
+       "n": 100000,
+       "A": 386.0,
+       "B": 98814.341,
+       "avg_eff": 0.00386,
+       "marg_eff": 0.003733,
+       "tau_at_dti": 0.002096,
+       "marginal_rule_says_add": true,
+       "dti": 0.0104564
+      },
+      {
+       "n": 120000,
+       "A": 461.667,
+       "B": 118579.123,
+       "avg_eff": 0.003847,
+       "marg_eff": 0.003783,
+       "tau_at_dti": 0.002264,
+       "marginal_rule_says_add": true,
+       "dti": 0.0112923
+      },
+      {
+       "n": 150000,
+       "A": 530.0,
+       "B": 148334.161,
+       "avg_eff": 0.003533,
+       "marg_eff": 0.002278,
+       "tau_at_dti": 0.002268,
+       "marginal_rule_says_add": true,
+       "dti": 0.0113132
+      },
+      {
+       "n": 200000,
+       "A": 664.667,
+       "B": 197866.98,
+       "avg_eff": 0.003323,
+       "marg_eff": 0.002693,
+       "tau_at_dti": 0.002347,
+       "marginal_rule_says_add": true,
+       "dti": 0.0117057
+      },
+      {
+       "n": 250000,
+       "A": 774.0,
+       "B": 247459.087,
+       "avg_eff": 0.003096,
+       "marg_eff": 0.002187,
+       "tau_at_dti": 0.002325,
+       "marginal_rule_says_add": false,
+       "dti": 0.0116004
+      },
+      {
+       "n": 300000,
+       "A": 867.0,
+       "B": 297157.627,
+       "avg_eff": 0.00289,
+       "marg_eff": 0.00186,
+       "tau_at_dti": 0.002266,
+       "marginal_rule_says_add": false,
+       "dti": 0.0113067
+      },
+      {
+       "n": 400000,
+       "A": 1081.333,
+       "B": 396415.122,
+       "avg_eff": 0.002703,
+       "marg_eff": 0.002143,
+       "tau_at_dti": 0.002244,
+       "marginal_rule_says_add": false,
+       "dti": 0.0111969
+      },
+      {
+       "n": 500000,
+       "A": 1577.667,
+       "B": 494658.543,
+       "avg_eff": 0.003155,
+       "marg_eff": 0.004963,
+       "tau_at_dti": 0.00272,
+       "marginal_rule_says_add": true,
+       "dti": 0.0135629
+      },
+      {
+       "n": 650000,
+       "A": 2128.0,
+       "B": 642806.176,
+       "avg_eff": 0.003274,
+       "marg_eff": 0.003669,
+       "tau_at_dti": 0.002922,
+       "marginal_rule_says_add": true,
+       "dti": 0.0145692
+      },
+      {
+       "n": 800000,
+       "A": 2551.333,
+       "B": 791315.936,
+       "avg_eff": 0.003189,
+       "marg_eff": 0.002822,
+       "tau_at_dti": 0.00291,
+       "marginal_rule_says_add": false,
+       "dti": 0.0145087
+      },
+      {
+       "n": 1000000,
+       "A": 3045.333,
+       "B": 989499.769,
+       "avg_eff": 0.003045,
+       "marg_eff": 0.00247,
+       "tau_at_dti": 0.002833,
+       "marginal_rule_says_add": false,
+       "dti": 0.014126
+      },
+      {
+       "n": 1250000,
+       "A": 3951.333,
+       "B": 1236262.166,
+       "avg_eff": 0.003161,
+       "marg_eff": 0.003624,
+       "tau_at_dti": 0.00299,
+       "marginal_rule_says_add": true,
+       "dti": 0.0149041
+      },
+      {
+       "n": 1500000,
+       "A": 4329.0,
+       "B": 1484840.519,
+       "avg_eff": 0.002886,
+       "marg_eff": 0.001511,
+       "tau_at_dti": 0.002757,
+       "marginal_rule_says_add": false,
+       "dti": 0.0137468
+      },
+      {
+       "n": 2000000,
+       "A": 5364.667,
+       "B": 1981092.366,
+       "avg_eff": 0.002682,
+       "marg_eff": 0.002071,
+       "tau_at_dti": 0.002596,
+       "marginal_rule_says_add": false,
+       "dti": 0.0129467
+      },
+      {
+       "n": 2500000,
+       "A": 7356.0,
+       "B": 2473976.712,
+       "avg_eff": 0.002942,
+       "marg_eff": 0.003983,
+       "tau_at_dti": 0.002874,
+       "marginal_rule_says_add": true,
+       "dti": 0.0143296
+      },
+      {
+       "n": 3000000,
+       "A": 10083.0,
+       "B": 2964868.534,
+       "avg_eff": 0.003361,
+       "marg_eff": 0.005454,
+       "tau_at_dti": 0.003306,
+       "marginal_rule_says_add": true,
+       "dti": 0.0164737
+      },
+      {
+       "n": 4000000,
+       "A": 15481.0,
+       "B": 3946383.139,
+       "avg_eff": 0.00387,
+       "marg_eff": 0.005398,
+       "tau_at_dti": 0.00384,
+       "marginal_rule_says_add": true,
+       "dti": 0.0191254
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 15481.0,
+      "B": 3946383.139,
+      "avg_eff": 0.00387,
+      "marg_eff": 0.005398,
+      "tau_at_dti": 0.00384,
+      "marginal_rule_says_add": true,
+      "dti": 0.0191254
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 461.667,
+      "B": 118579.123,
+      "avg_eff": 0.003847,
+      "marg_eff": 0.003783,
+      "tau_at_dti": 0.002264,
+      "marginal_rule_says_add": true,
+      "dti": 0.0112923
+     },
+     "gain_vs_anchor": 0.007833,
+     "marginal_rule_stop_n": 250000,
+     "p99_eval": 6.318091436696704e-07
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 60.0,
+       "B": 9864.973,
+       "avg_eff": 0.006,
+       "marg_eff": null,
+       "tau_at_dti": 0.000485,
+       "marginal_rule_says_add": null,
+       "dti": 0.0024251
+      },
+      {
+       "n": 25000,
+       "A": 120.0,
+       "B": 24672.056,
+       "avg_eff": 0.0048,
+       "marg_eff": 0.004,
+       "tau_at_dti": 0.000867,
+       "marginal_rule_says_add": true,
+       "dti": 0.0043299
+      },
+      {
+       "n": 50000,
+       "A": 211.667,
+       "B": 49379.329,
+       "avg_eff": 0.004233,
+       "marg_eff": 0.003667,
+       "tau_at_dti": 0.001297,
+       "marginal_rule_says_add": true,
+       "dti": 0.0064781
+      },
+      {
+       "n": 75000,
+       "A": 306.333,
+       "B": 74061.173,
+       "avg_eff": 0.004084,
+       "marg_eff": 0.003787,
+       "tau_at_dti": 0.001631,
+       "marginal_rule_says_add": true,
+       "dti": 0.0081408
+      },
+      {
+       "n": 100000,
+       "A": 374.667,
+       "B": 98826.141,
+       "avg_eff": 0.003747,
+       "marg_eff": 0.002733,
+       "tau_at_dti": 0.001762,
+       "marginal_rule_says_add": true,
+       "dti": 0.0087958
+      },
+      {
+       "n": 120000,
+       "A": 418.0,
+       "B": 118668.036,
+       "avg_eff": 0.003483,
+       "marg_eff": 0.002167,
+       "tau_at_dti": 0.001798,
+       "marginal_rule_says_add": true,
+       "dti": 0.0089751
+      },
+      {
+       "n": 150000,
+       "A": 465.667,
+       "B": 148476.04,
+       "avg_eff": 0.003104,
+       "marg_eff": 0.001589,
+       "tau_at_dti": 0.001776,
+       "marginal_rule_says_add": false,
+       "dti": 0.0088624
+      },
+      {
+       "n": 200000,
+       "A": 670.333,
+       "B": 197809.483,
+       "avg_eff": 0.003352,
+       "marg_eff": 0.004093,
+       "tau_at_dti": 0.002151,
+       "marginal_rule_says_add": true,
+       "dti": 0.0107336
+      },
+      {
+       "n": 250000,
+       "A": 934.0,
+       "B": 246916.876,
+       "avg_eff": 0.003736,
+       "marg_eff": 0.005273,
+       "tau_at_dti": 0.002589,
+       "marginal_rule_says_add": true,
+       "dti": 0.0129137
+      },
+      {
+       "n": 300000,
+       "A": 1208.0,
+       "B": 295972.969,
+       "avg_eff": 0.004027,
+       "marg_eff": 0.00548,
+       "tau_at_dti": 0.002948,
+       "marginal_rule_says_add": true,
+       "dti": 0.0146973
+      },
+      {
+       "n": 400000,
+       "A": 1852.667,
+       "B": 393775.416,
+       "avg_eff": 0.004632,
+       "marg_eff": 0.006447,
+       "tau_at_dti": 0.00365,
+       "marginal_rule_says_add": true,
+       "dti": 0.0181845
+      },
+      {
+       "n": 500000,
+       "A": 2711.333,
+       "B": 490840.153,
+       "avg_eff": 0.005423,
+       "marg_eff": 0.008587,
+       "tau_at_dti": 0.004484,
+       "marginal_rule_says_add": true,
+       "dti": 0.0223217
+      },
+      {
+       "n": 650000,
+       "A": 3633.667,
+       "B": 637592.807,
+       "avg_eff": 0.00559,
+       "marg_eff": 0.006149,
+       "tau_at_dti": 0.004836,
+       "marginal_rule_says_add": true,
+       "dti": 0.0240638
+      },
+      {
+       "n": 800000,
+       "A": 4312.333,
+       "B": 785253.394,
+       "avg_eff": 0.00539,
+       "marg_eff": 0.004524,
+       "tau_at_dti": 0.004797,
+       "marginal_rule_says_add": false,
+       "dti": 0.0238687
+      },
+      {
+       "n": 1000000,
+       "A": 5336.333,
+       "B": 981916.927,
+       "avg_eff": 0.005336,
+       "marg_eff": 0.00512,
+       "tau_at_dti": 0.00487,
+       "marginal_rule_says_add": true,
+       "dti": 0.0242333
+      },
+      {
+       "n": 1250000,
+       "A": 6743.667,
+       "B": 1227308.938,
+       "avg_eff": 0.005395,
+       "marg_eff": 0.005629,
+       "tau_at_dti": 0.005029,
+       "marginal_rule_says_add": true,
+       "dti": 0.0250167
+      },
+      {
+       "n": 1500000,
+       "A": 8004.667,
+       "B": 1473095.919,
+       "avg_eff": 0.005336,
+       "marg_eff": 0.005044,
+       "tau_at_dti": 0.005044,
+       "marginal_rule_says_add": false,
+       "dti": 0.0250949
+      },
+      {
+       "n": 2000000,
+       "A": 10640.333,
+       "B": 1964291.968,
+       "avg_eff": 0.00532,
+       "marg_eff": 0.005271,
+       "tau_at_dti": 0.00512,
+       "marginal_rule_says_add": true,
+       "dti": 0.025471
+      },
+      {
+       "n": 2500000,
+       "A": 15306.333,
+       "B": 2448651.254,
+       "avg_eff": 0.006123,
+       "marg_eff": 0.009332,
+       "tau_at_dti": 0.005973,
+       "marginal_rule_says_add": true,
+       "dti": 0.0296895
+      },
+      {
+       "n": 3000000,
+       "A": 18342.0,
+       "B": 2938146.542,
+       "avg_eff": 0.006114,
+       "marg_eff": 0.006071,
+       "tau_at_dti": 0.00601,
+       "marginal_rule_says_add": true,
+       "dti": 0.0298704
+      },
+      {
+       "n": 4000000,
+       "A": 23519.0,
+       "B": 3920286.346,
+       "avg_eff": 0.00588,
+       "marg_eff": 0.005177,
+       "tau_at_dti": 0.00583,
+       "marginal_rule_says_add": false,
+       "dti": 0.0289815
+      }
+     ],
+     "best": {
+      "n": 3000000,
+      "A": 18342.0,
+      "B": 2938146.542,
+      "avg_eff": 0.006114,
+      "marg_eff": 0.006071,
+      "tau_at_dti": 0.00601,
+      "marginal_rule_says_add": true,
+      "dti": 0.0298704
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 418.0,
+      "B": 118668.036,
+      "avg_eff": 0.003483,
+      "marg_eff": 0.002167,
+      "tau_at_dti": 0.001798,
+      "marginal_rule_says_add": true,
+      "dti": 0.0089751
+     },
+     "gain_vs_anchor": 0.020895,
+     "marginal_rule_stop_n": 150000,
+     "p99_eval": 6.318091436696704e-07
+    }
+   },
+   "head_B": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.369,
+       "B": 9999.631,
+       "avg_eff": 3.7e-05,
+       "marg_eff": null,
+       "tau_at_dti": 4e-06,
+       "marginal_rule_says_add": null,
+       "dti": 1.93e-05
+      },
+      {
+       "n": 25000,
+       "A": 6.91,
+       "B": 24992.705,
+       "avg_eff": 0.000276,
+       "marg_eff": 0.000436,
+       "tau_at_dti": 6.3e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.000313
+      },
+      {
+       "n": 50000,
+       "A": 28.241,
+       "B": 49953.908,
+       "avg_eff": 0.000565,
+       "marg_eff": 0.000853,
+       "tau_at_dti": 0.000209,
+       "marginal_rule_says_add": true,
+       "dti": 0.0010432
+      },
+      {
+       "n": 75000,
+       "A": 52.826,
+       "B": 74918.82,
+       "avg_eff": 0.000704,
+       "marg_eff": 0.000983,
+       "tau_at_dti": 0.00033,
+       "marginal_rule_says_add": true,
+       "dti": 0.0016472
+      },
+      {
+       "n": 100000,
+       "A": 65.237,
+       "B": 99877.299,
+       "avg_eff": 0.000652,
+       "marg_eff": 0.000496,
+       "tau_at_dti": 0.000352,
+       "marginal_rule_says_add": true,
+       "dti": 0.0017601
+      },
+      {
+       "n": 120000,
+       "A": 81.429,
+       "B": 119839.655,
+       "avg_eff": 0.000679,
+       "marg_eff": 0.00081,
+       "tau_at_dti": 0.000397,
+       "marginal_rule_says_add": true,
+       "dti": 0.0019832
+      },
+      {
+       "n": 150000,
+       "A": 101.096,
+       "B": 149798.345,
+       "avg_eff": 0.000674,
+       "marg_eff": 0.000656,
+       "tau_at_dti": 0.00043,
+       "marginal_rule_says_add": true,
+       "dti": 0.0021485
+      },
+      {
+       "n": 200000,
+       "A": 124.408,
+       "B": 199721.136,
+       "avg_eff": 0.000622,
+       "marg_eff": 0.000466,
+       "tau_at_dti": 0.000436,
+       "marginal_rule_says_add": true,
+       "dti": 0.0021809
+      },
+      {
+       "n": 250000,
+       "A": 155.457,
+       "B": 249656.154,
+       "avg_eff": 0.000622,
+       "marg_eff": 0.000621,
+       "tau_at_dti": 0.000464,
+       "marginal_rule_says_add": true,
+       "dti": 0.002319
+      },
+      {
+       "n": 300000,
+       "A": 198.016,
+       "B": 299576.849,
+       "avg_eff": 0.00066,
+       "marg_eff": 0.000851,
+       "tau_at_dti": 0.000514,
+       "marginal_rule_says_add": true,
+       "dti": 0.0025706
+      },
+      {
+       "n": 400000,
+       "A": 313.223,
+       "B": 399368.256,
+       "avg_eff": 0.000783,
+       "marg_eff": 0.001152,
+       "tau_at_dti": 0.000646,
+       "marginal_rule_says_add": true,
+       "dti": 0.0032287
+      },
+      {
+       "n": 500000,
+       "A": 496.422,
+       "B": 499073.023,
+       "avg_eff": 0.000993,
+       "marg_eff": 0.001832,
+       "tau_at_dti": 0.000849,
+       "marginal_rule_says_add": true,
+       "dti": 0.0042433
+      },
+      {
+       "n": 650000,
+       "A": 859.733,
+       "B": 648348.687,
+       "avg_eff": 0.001323,
+       "marg_eff": 0.002422,
+       "tau_at_dti": 0.001172,
+       "marginal_rule_says_add": true,
+       "dti": 0.0058518
+      },
+      {
+       "n": 800000,
+       "A": 1305.618,
+       "B": 797192.42,
+       "avg_eff": 0.001632,
+       "marg_eff": 0.002973,
+       "tau_at_dti": 0.001479,
+       "marginal_rule_says_add": true,
+       "dti": 0.0073858
+      },
+      {
+       "n": 1000000,
+       "A": 1900.932,
+       "B": 995281.589,
+       "avg_eff": 0.001901,
+       "marg_eff": 0.002977,
+       "tau_at_dti": 0.001759,
+       "marginal_rule_says_add": true,
+       "dti": 0.0087798
+      },
+      {
+       "n": 1250000,
+       "A": 2693.005,
+       "B": 1242827.551,
+       "avg_eff": 0.002154,
+       "marg_eff": 0.003168,
+       "tau_at_dti": 0.002028,
+       "marginal_rule_says_add": true,
+       "dti": 0.0101173
+      },
+      {
+       "n": 1500000,
+       "A": 3697.606,
+       "B": 1489670.644,
+       "avg_eff": 0.002465,
+       "marg_eff": 0.004018,
+       "tau_at_dti": 0.002348,
+       "marginal_rule_says_add": true,
+       "dti": 0.0117106
+      },
+      {
+       "n": 2000000,
+       "A": 6001.669,
+       "B": 1982307.737,
+       "avg_eff": 0.003001,
+       "marg_eff": 0.004608,
+       "tau_at_dti": 0.002903,
+       "marginal_rule_says_add": true,
+       "dti": 0.014471
+      },
+      {
+       "n": 2500000,
+       "A": 8900.918,
+       "B": 2472905.023,
+       "avg_eff": 0.00356,
+       "marg_eff": 0.005798,
+       "tau_at_dti": 0.003479,
+       "marginal_rule_says_add": true,
+       "dti": 0.017336
+      },
+      {
+       "n": 3000000,
+       "A": 11906.517,
+       "B": 2963158.629,
+       "avg_eff": 0.003969,
+       "marg_eff": 0.006011,
+       "tau_at_dti": 0.003906,
+       "marginal_rule_says_add": true,
+       "dti": 0.0194523
+      },
+      {
+       "n": 4000000,
+       "A": 17585.867,
+       "B": 3943122.563,
+       "avg_eff": 0.004396,
+       "marg_eff": 0.005679,
+       "tau_at_dti": 0.004365,
+       "marginal_rule_says_add": true,
+       "dti": 0.021732
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 17585.867,
+      "B": 3943122.563,
+      "avg_eff": 0.004396,
+      "marg_eff": 0.005679,
+      "tau_at_dti": 0.004365,
+      "marginal_rule_says_add": true,
+      "dti": 0.021732
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 81.429,
+      "B": 119839.655,
+      "avg_eff": 0.000679,
+      "marg_eff": 0.00081,
+      "tau_at_dti": 0.000397,
+      "marginal_rule_says_add": true,
+      "dti": 0.0019832
+     },
+     "gain_vs_anchor": 0.019749,
+     "marginal_rule_stop_n": null,
+     "p99_eval": 0.27102819085121155
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 16.771,
+       "B": 9989.748,
+       "avg_eff": 0.001677,
+       "marg_eff": null,
+       "tau_at_dti": 0.000136,
+       "marginal_rule_says_add": null,
+       "dti": 0.0006774
+      },
+      {
+       "n": 25000,
+       "A": 72.806,
+       "B": 24954.722,
+       "avg_eff": 0.002912,
+       "marg_eff": 0.003736,
+       "tau_at_dti": 0.000525,
+       "marginal_rule_says_add": true,
+       "dti": 0.0026226
+      },
+      {
+       "n": 50000,
+       "A": 203.083,
+       "B": 49805.641,
+       "avg_eff": 0.004062,
+       "marg_eff": 0.005211,
+       "tau_at_dti": 0.001241,
+       "marginal_rule_says_add": true,
+       "dti": 0.0061995
+      },
+      {
+       "n": 75000,
+       "A": 342.162,
+       "B": 74605.788,
+       "avg_eff": 0.004562,
+       "marg_eff": 0.005563,
+       "tau_at_dti": 0.001816,
+       "marginal_rule_says_add": true,
+       "dti": 0.0090649
+      },
+      {
+       "n": 100000,
+       "A": 449.793,
+       "B": 99371.009,
+       "avg_eff": 0.004498,
+       "marg_eff": 0.004305,
+       "tau_at_dti": 0.00211,
+       "marginal_rule_says_add": true,
+       "dti": 0.0105288
+      },
+      {
+       "n": 120000,
+       "A": 532.904,
+       "B": 119172.321,
+       "avg_eff": 0.004441,
+       "marg_eff": 0.004156,
+       "tau_at_dti": 0.002288,
+       "marginal_rule_says_add": true,
+       "dti": 0.0114119
+      },
+      {
+       "n": 150000,
+       "A": 647.904,
+       "B": 148895.153,
+       "avg_eff": 0.004319,
+       "marg_eff": 0.003833,
+       "tau_at_dti": 0.002467,
+       "marginal_rule_says_add": true,
+       "dti": 0.0123025
+      },
+      {
+       "n": 200000,
+       "A": 819.946,
+       "B": 198475.209,
+       "avg_eff": 0.0041,
+       "marg_eff": 0.003441,
+       "tau_at_dti": 0.002626,
+       "marginal_rule_says_add": true,
+       "dti": 0.013095
+      },
+      {
+       "n": 250000,
+       "A": 987.271,
+       "B": 248049.225,
+       "avg_eff": 0.003949,
+       "marg_eff": 0.003347,
+       "tau_at_dti": 0.002729,
+       "marginal_rule_says_add": true,
+       "dti": 0.0136057
+      },
+      {
+       "n": 300000,
+       "A": 1182.685,
+       "B": 297580.943,
+       "avg_eff": 0.003942,
+       "marg_eff": 0.003908,
+       "tau_at_dti": 0.002875,
+       "marginal_rule_says_add": true,
+       "dti": 0.0143341
+      },
+      {
+       "n": 400000,
+       "A": 1573.125,
+       "B": 396651.924,
+       "avg_eff": 0.003933,
+       "marg_eff": 0.003904,
+       "tau_at_dti": 0.003082,
+       "marginal_rule_says_add": true,
+       "dti": 0.0153624
+      },
+      {
+       "n": 500000,
+       "A": 2045.226,
+       "B": 495588.05,
+       "avg_eff": 0.00409,
+       "marg_eff": 0.004721,
+       "tau_at_dti": 0.003356,
+       "marginal_rule_says_add": true,
+       "dti": 0.0167254
+      },
+      {
+       "n": 650000,
+       "A": 2901.353,
+       "B": 643493.003,
+       "avg_eff": 0.004464,
+       "marg_eff": 0.005708,
+       "tau_at_dti": 0.003831,
+       "marginal_rule_says_add": true,
+       "dti": 0.0190835
+      },
+      {
+       "n": 800000,
+       "A": 3851.0,
+       "B": 790876.785,
+       "avg_eff": 0.004814,
+       "marg_eff": 0.006331,
+       "tau_at_dti": 0.004257,
+       "marginal_rule_says_add": true,
+       "dti": 0.0211941
+      },
+      {
+       "n": 1000000,
+       "A": 5167.796,
+       "B": 986762.364,
+       "avg_eff": 0.005168,
+       "marg_eff": 0.006584,
+       "tau_at_dti": 0.004696,
+       "marginal_rule_says_add": true,
+       "dti": 0.0233687
+      },
+      {
+       "n": 1250000,
+       "A": 6823.552,
+       "B": 1231220.971,
+       "avg_eff": 0.005459,
+       "marg_eff": 0.006623,
+       "tau_at_dti": 0.005073,
+       "marginal_rule_says_add": true,
+       "dti": 0.0252383
+      },
+      {
+       "n": 1500000,
+       "A": 8373.616,
+       "B": 1475695.407,
+       "avg_eff": 0.005582,
+       "marg_eff": 0.0062,
+       "tau_at_dti": 0.005268,
+       "marginal_rule_says_add": true,
+       "dti": 0.0262028
+      },
+      {
+       "n": 2000000,
+       "A": 12317.67,
+       "B": 1963136.517,
+       "avg_eff": 0.006159,
+       "marg_eff": 0.007888,
+       "tau_at_dti": 0.005931,
+       "marginal_rule_says_add": true,
+       "dti": 0.0294789
+      },
+      {
+       "n": 2500000,
+       "A": 16663.087,
+       "B": 2448548.26,
+       "avg_eff": 0.006665,
+       "marg_eff": 0.008691,
+       "tau_at_dti": 0.006503,
+       "marginal_rule_says_add": true,
+       "dti": 0.0323054
+      },
+      {
+       "n": 3000000,
+       "A": 20609.097,
+       "B": 2934772.095,
+       "avg_eff": 0.00687,
+       "marg_eff": 0.007892,
+       "tau_at_dti": 0.00676,
+       "marginal_rule_says_add": true,
+       "dti": 0.0335745
+      },
+      {
+       "n": 4000000,
+       "A": 25423.899,
+       "B": 3917105.313,
+       "avg_eff": 0.006356,
+       "marg_eff": 0.004815,
+       "tau_at_dti": 0.006307,
+       "marginal_rule_says_add": false,
+       "dti": 0.0313387
+      }
+     ],
+     "best": {
+      "n": 3000000,
+      "A": 20609.097,
+      "B": 2934772.095,
+      "avg_eff": 0.00687,
+      "marg_eff": 0.007892,
+      "tau_at_dti": 0.00676,
+      "marginal_rule_says_add": true,
+      "dti": 0.0335745
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 532.904,
+      "B": 119172.321,
+      "avg_eff": 0.004441,
+      "marg_eff": 0.004156,
+      "tau_at_dti": 0.002288,
+      "marginal_rule_says_add": true,
+      "dti": 0.0114119
+     },
+     "gain_vs_anchor": 0.022163,
+     "marginal_rule_stop_n": 4000000,
+     "p99_eval": 0.27102819085121155
+    }
+   },
+   "head_C": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.0,
+       "B": 10000.0,
+       "avg_eff": 0.0,
+       "marg_eff": null,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": null,
+       "dti": 0.0
+      },
+      {
+       "n": 25000,
+       "A": 0.0,
+       "B": 25000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 50000,
+       "A": 2.214,
+       "B": 49998.55,
+       "avg_eff": 4.4e-05,
+       "marg_eff": 8.9e-05,
+       "tau_at_dti": 1.6e-05,
+       "marginal_rule_says_add": true,
+       "dti": 8.18e-05
+      },
+      {
+       "n": 75000,
+       "A": 6.195,
+       "B": 74987.208,
+       "avg_eff": 8.3e-05,
+       "marg_eff": 0.000159,
+       "tau_at_dti": 3.9e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0001932
+      },
+      {
+       "n": 100000,
+       "A": 12.8,
+       "B": 99964.946,
+       "avg_eff": 0.000128,
+       "marg_eff": 0.000264,
+       "tau_at_dti": 6.9e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0003453
+      },
+      {
+       "n": 120000,
+       "A": 19.9,
+       "B": 119943.27,
+       "avg_eff": 0.000166,
+       "marg_eff": 0.000355,
+       "tau_at_dti": 9.7e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0004846
+      },
+      {
+       "n": 150000,
+       "A": 59.232,
+       "B": 149886.652,
+       "avg_eff": 0.000395,
+       "marg_eff": 0.001311,
+       "tau_at_dti": 0.000252,
+       "marginal_rule_says_add": true,
+       "dti": 0.0012585
+      },
+      {
+       "n": 200000,
+       "A": 212.47,
+       "B": 199539.21,
+       "avg_eff": 0.001062,
+       "marg_eff": 0.003065,
+       "tau_at_dti": 0.000746,
+       "marginal_rule_says_add": true,
+       "dti": 0.0037259
+      },
+      {
+       "n": 250000,
+       "A": 338.791,
+       "B": 249181.975,
+       "avg_eff": 0.001355,
+       "marg_eff": 0.002526,
+       "tau_at_dti": 0.001013,
+       "marginal_rule_says_add": true,
+       "dti": 0.0050581
+      },
+      {
+       "n": 300000,
+       "A": 556.372,
+       "B": 298692.776,
+       "avg_eff": 0.001855,
+       "marg_eff": 0.004352,
+       "tau_at_dti": 0.001449,
+       "marginal_rule_says_add": true,
+       "dti": 0.0072327
+      },
+      {
+       "n": 400000,
+       "A": 912.481,
+       "B": 397676.626,
+       "avg_eff": 0.002281,
+       "marg_eff": 0.003561,
+       "tau_at_dti": 0.001889,
+       "marginal_rule_says_add": true,
+       "dti": 0.0094271
+      },
+      {
+       "n": 500000,
+       "A": 1241.747,
+       "B": 496735.321,
+       "avg_eff": 0.002483,
+       "marg_eff": 0.003293,
+       "tau_at_dti": 0.002133,
+       "marginal_rule_says_add": true,
+       "dti": 0.0106432
+      },
+      {
+       "n": 650000,
+       "A": 1759.809,
+       "B": 645321.77,
+       "avg_eff": 0.002707,
+       "marg_eff": 0.003454,
+       "tau_at_dti": 0.002408,
+       "marginal_rule_says_add": true,
+       "dti": 0.012013
+      },
+      {
+       "n": 800000,
+       "A": 2524.614,
+       "B": 793240.979,
+       "avg_eff": 0.003156,
+       "marg_eff": 0.005099,
+       "tau_at_dti": 0.002873,
+       "marginal_rule_says_add": true,
+       "dti": 0.0143258
+      },
+      {
+       "n": 1000000,
+       "A": 3566.723,
+       "B": 990104.346,
+       "avg_eff": 0.003567,
+       "marg_eff": 0.005211,
+       "tau_at_dti": 0.003316,
+       "marginal_rule_says_add": true,
+       "dti": 0.0165272
+      },
+      {
+       "n": 1250000,
+       "A": 4960.237,
+       "B": 1235798.573,
+       "avg_eff": 0.003968,
+       "marg_eff": 0.005574,
+       "tau_at_dti": 0.003754,
+       "marginal_rule_says_add": true,
+       "dti": 0.0187019
+      },
+      {
+       "n": 1500000,
+       "A": 6520.057,
+       "B": 1481089.779,
+       "avg_eff": 0.004347,
+       "marg_eff": 0.006239,
+       "tau_at_dti": 0.004162,
+       "marginal_rule_says_add": true,
+       "dti": 0.0207251
+      },
+      {
+       "n": 2000000,
+       "A": 9837.539,
+       "B": 1970246.468,
+       "avg_eff": 0.004919,
+       "marg_eff": 0.006635,
+       "tau_at_dti": 0.004786,
+       "marginal_rule_says_add": true,
+       "dti": 0.0238144
+      },
+      {
+       "n": 2500000,
+       "A": 12419.392,
+       "B": 2460848.932,
+       "avg_eff": 0.004968,
+       "marg_eff": 0.005164,
+       "tau_at_dti": 0.004878,
+       "marginal_rule_says_add": true,
+       "dti": 0.0242695
+      },
+      {
+       "n": 3000000,
+       "A": 14775.317,
+       "B": 2952227.802,
+       "avg_eff": 0.004925,
+       "marg_eff": 0.004712,
+       "tau_at_dti": 0.004864,
+       "marginal_rule_says_add": false,
+       "dti": 0.024203
+      },
+      {
+       "n": 4000000,
+       "A": 17832.66,
+       "B": 3940126.833,
+       "avg_eff": 0.004458,
+       "marg_eff": 0.003057,
+       "tau_at_dti": 0.00443,
+       "marginal_rule_says_add": false,
+       "dti": 0.0220519
+      }
+     ],
+     "best": {
+      "n": 2500000,
+      "A": 12419.392,
+      "B": 2460848.932,
+      "avg_eff": 0.004968,
+      "marg_eff": 0.005164,
+      "tau_at_dti": 0.004878,
+      "marginal_rule_says_add": true,
+      "dti": 0.0242695
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 19.9,
+      "B": 119943.27,
+      "avg_eff": 0.000166,
+      "marg_eff": 0.000355,
+      "tau_at_dti": 9.7e-05,
+      "marginal_rule_says_add": true,
+      "dti": 0.0004846
+     },
+     "gain_vs_anchor": 0.023785,
+     "marginal_rule_stop_n": 25000,
+     "p99_eval": 0.9639354944229126
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.0,
+       "B": 10000.0,
+       "avg_eff": 0.0,
+       "marg_eff": null,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": null,
+       "dti": 0.0
+      },
+      {
+       "n": 25000,
+       "A": 0.0,
+       "B": 25000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 50000,
+       "A": 124.786,
+       "B": 49883.193,
+       "avg_eff": 0.002496,
+       "marg_eff": 0.004991,
+       "tau_at_dti": 0.000762,
+       "marginal_rule_says_add": true,
+       "dti": 0.0038094
+      },
+      {
+       "n": 75000,
+       "A": 246.951,
+       "B": 74601.299,
+       "avg_eff": 0.003293,
+       "marg_eff": 0.004887,
+       "tau_at_dti": 0.001311,
+       "marginal_rule_says_add": true,
+       "dti": 0.006546
+      },
+      {
+       "n": 100000,
+       "A": 319.392,
+       "B": 99307.32,
+       "avg_eff": 0.003194,
+       "marg_eff": 0.002898,
+       "tau_at_dti": 0.001499,
+       "marginal_rule_says_add": true,
+       "dti": 0.0074832
+      },
+      {
+       "n": 120000,
+       "A": 385.08,
+       "B": 119100.674,
+       "avg_eff": 0.003209,
+       "marg_eff": 0.003284,
+       "tau_at_dti": 0.001654,
+       "marginal_rule_says_add": true,
+       "dti": 0.0082541
+      },
+      {
+       "n": 150000,
+       "A": 491.705,
+       "B": 148808.243,
+       "avg_eff": 0.003278,
+       "marg_eff": 0.003554,
+       "tau_at_dti": 0.001873,
+       "marginal_rule_says_add": true,
+       "dti": 0.0093452
+      },
+      {
+       "n": 200000,
+       "A": 669.644,
+       "B": 198291.85,
+       "avg_eff": 0.003348,
+       "marg_eff": 0.003559,
+       "tau_at_dti": 0.002146,
+       "marginal_rule_says_add": true,
+       "dti": 0.010706
+      },
+      {
+       "n": 250000,
+       "A": 926.499,
+       "B": 247696.805,
+       "avg_eff": 0.003706,
+       "marg_eff": 0.005137,
+       "tau_at_dti": 0.002563,
+       "marginal_rule_says_add": true,
+       "dti": 0.0127827
+      },
+      {
+       "n": 300000,
+       "A": 1161.569,
+       "B": 297050.476,
+       "avg_eff": 0.003872,
+       "marg_eff": 0.004701,
+       "tau_at_dti": 0.002827,
+       "marginal_rule_says_add": true,
+       "dti": 0.014097
+      },
+      {
+       "n": 400000,
+       "A": 1551.497,
+       "B": 395937.77,
+       "avg_eff": 0.003879,
+       "marg_eff": 0.003899,
+       "tau_at_dti": 0.003044,
+       "marginal_rule_says_add": true,
+       "dti": 0.015173
+      },
+      {
+       "n": 500000,
+       "A": 2040.441,
+       "B": 494767.665,
+       "avg_eff": 0.004081,
+       "marg_eff": 0.004889,
+       "tau_at_dti": 0.003353,
+       "marginal_rule_says_add": true,
+       "dti": 0.0167088
+      },
+      {
+       "n": 650000,
+       "A": 3109.668,
+       "B": 642269.922,
+       "avg_eff": 0.004784,
+       "marg_eff": 0.007128,
+       "tau_at_dti": 0.004113,
+       "marginal_rule_says_add": true,
+       "dti": 0.020481
+      },
+      {
+       "n": 800000,
+       "A": 4349.579,
+       "B": 788604.886,
+       "avg_eff": 0.005437,
+       "marg_eff": 0.008266,
+       "tau_at_dti": 0.00482,
+       "marginal_rule_says_add": true,
+       "dti": 0.0239849
+      },
+      {
+       "n": 1000000,
+       "A": 6009.506,
+       "B": 983365.584,
+       "avg_eff": 0.00601,
+       "marg_eff": 0.0083,
+       "tau_at_dti": 0.005477,
+       "marginal_rule_says_add": true,
+       "dti": 0.0272378
+      },
+      {
+       "n": 1250000,
+       "A": 7745.699,
+       "B": 1227266.914,
+       "avg_eff": 0.006197,
+       "marg_eff": 0.006945,
+       "tau_at_dti": 0.005776,
+       "marginal_rule_says_add": true,
+       "dti": 0.0287135
+      },
+      {
+       "n": 1500000,
+       "A": 9329.842,
+       "B": 1471972.393,
+       "avg_eff": 0.00622,
+       "marg_eff": 0.006337,
+       "tau_at_dti": 0.005884,
+       "marginal_rule_says_add": true,
+       "dti": 0.0292456
+      },
+      {
+       "n": 2000000,
+       "A": 12764.391,
+       "B": 1959914.182,
+       "avg_eff": 0.006382,
+       "marg_eff": 0.006869,
+       "tau_at_dti": 0.006155,
+       "marginal_rule_says_add": true,
+       "dti": 0.0305887
+      },
+      {
+       "n": 2500000,
+       "A": 15369.742,
+       "B": 2451024.883,
+       "avg_eff": 0.006148,
+       "marg_eff": 0.005211,
+       "tau_at_dti": 0.005993,
+       "marginal_rule_says_add": false,
+       "dti": 0.0297843
+      },
+      {
+       "n": 3000000,
+       "A": 18449.166,
+       "B": 2940807.929,
+       "avg_eff": 0.00615,
+       "marg_eff": 0.006159,
+       "tau_at_dti": 0.00604,
+       "marginal_rule_says_add": true,
+       "dti": 0.0300178
+      },
+      {
+       "n": 4000000,
+       "A": 23435.297,
+       "B": 3922993.765,
+       "avg_eff": 0.005859,
+       "marg_eff": 0.004986,
+       "tau_at_dti": 0.005805,
+       "marginal_rule_says_add": false,
+       "dti": 0.0288597
+      }
+     ],
+     "best": {
+      "n": 2000000,
+      "A": 12764.391,
+      "B": 1959914.182,
+      "avg_eff": 0.006382,
+      "marg_eff": 0.006869,
+      "tau_at_dti": 0.006155,
+      "marginal_rule_says_add": true,
+      "dti": 0.0305887
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 385.08,
+      "B": 119100.674,
+      "avg_eff": 0.003209,
+      "marg_eff": 0.003284,
+      "tau_at_dti": 0.001654,
+      "marginal_rule_says_add": true,
+      "dti": 0.0082541
+     },
+     "gain_vs_anchor": 0.022335,
+     "marginal_rule_stop_n": 25000,
+     "p99_eval": 0.9639354944229126
+    }
+   }
+  },
+  "T1": {
+   "mode": "trace_cluster",
+   "train_px": 5060662,
+   "grid_share": 1.0,
+   "budgets": [
+    10000,
+    25000,
+    50000,
+    75000,
+    100000,
+    120000,
+    150000,
+    200000,
+    250000,
+    300000,
+    400000,
+    500000,
+    650000,
+    800000,
+    1000000,
+    1250000,
+    1500000,
+    2000000,
+    2500000,
+    3000000,
+    4000000
+   ],
+   "n_extra_layers": 5,
+   "eval_px": {
+    "A": 5119532,
+    "B": 5105169
+   },
+   "gt_px": {
+    "A": 13147,
+    "B": 17411
+   },
+   "null_random": {
+    "A": {
+     "best": {
+      "n": 200000,
+      "A": 3635.402,
+      "B": 198161.655,
+      "avg_eff": 0.018177,
+      "marg_eff": 0.014625,
+      "tau_at_dti": 0.014498,
+      "marginal_rule_says_add": true,
+      "dti": 0.0714547
+     },
+     "at_120k": {
+      "n": 120000,
+      "A": 2407.788,
+      "B": 118912.982,
+      "avg_eff": 0.020065,
+      "marg_eff": 0.017945,
+      "tau_at_dti": 0.01404,
+      "marginal_rule_says_add": true,
+      "dti": 0.0692256
+     }
+    },
+    "B": {
+     "best": {
+      "n": 250000,
+      "A": 5614.247,
+      "B": 247116.848,
+      "avg_eff": 0.022457,
+      "marg_eff": 0.017547,
+      "tau_at_dti": 0.017724,
+      "marginal_rule_says_add": false,
+      "dti": 0.0870763
+     },
+     "at_120k": {
+      "n": 120000,
+      "A": 3148.588,
+      "B": 118646.609,
+      "avg_eff": 0.026238,
+      "marg_eff": 0.022917,
+      "tau_at_dti": 0.016722,
+      "marginal_rule_says_add": true,
+      "dti": 0.0822347
+     }
+    }
+   },
+   "head_A": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.0,
+       "B": 10000.0,
+       "avg_eff": 0.0,
+       "marg_eff": null,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": null,
+       "dti": 0.0
+      },
+      {
+       "n": 25000,
+       "A": 0.0,
+       "B": 25000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 50000,
+       "A": 0.0,
+       "B": 50000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 75000,
+       "A": 0.0,
+       "B": 75000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 100000,
+       "A": 0.0,
+       "B": 100000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 120000,
+       "A": 0.0,
+       "B": 120000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 150000,
+       "A": 0.0,
+       "B": 150000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 200000,
+       "A": 2.0,
+       "B": 199993.303,
+       "avg_eff": 1e-05,
+       "marg_eff": 4e-05,
+       "tau_at_dti": 8e-06,
+       "marginal_rule_says_add": true,
+       "dti": 3.96e-05
+      },
+      {
+       "n": 250000,
+       "A": 26.667,
+       "B": 249915.187,
+       "avg_eff": 0.000107,
+       "marg_eff": 0.000493,
+       "tau_at_dti": 8.8e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0004407
+      },
+      {
+       "n": 300000,
+       "A": 74.667,
+       "B": 299742.955,
+       "avg_eff": 0.000249,
+       "marg_eff": 0.00096,
+       "tau_at_dti": 0.000212,
+       "marginal_rule_says_add": true,
+       "dti": 0.0010594
+      },
+      {
+       "n": 400000,
+       "A": 158.333,
+       "B": 399438.399,
+       "avg_eff": 0.000396,
+       "marg_eff": 0.000837,
+       "tau_at_dti": 0.00035,
+       "marginal_rule_says_add": true,
+       "dti": 0.0017508
+      },
+      {
+       "n": 500000,
+       "A": 261.333,
+       "B": 499080.709,
+       "avg_eff": 0.000523,
+       "marg_eff": 0.00103,
+       "tau_at_dti": 0.000474,
+       "marginal_rule_says_add": true,
+       "dti": 0.0023674
+      },
+      {
+       "n": 650000,
+       "A": 532.333,
+       "B": 648143.304,
+       "avg_eff": 0.000819,
+       "marg_eff": 0.001807,
+       "tau_at_dti": 0.00076,
+       "marginal_rule_says_add": true,
+       "dti": 0.0037955
+      },
+      {
+       "n": 800000,
+       "A": 1079.333,
+       "B": 796170.096,
+       "avg_eff": 0.001349,
+       "marg_eff": 0.003647,
+       "tau_at_dti": 0.001272,
+       "marginal_rule_says_add": true,
+       "dti": 0.0063502
+      },
+      {
+       "n": 1000000,
+       "A": 2160.0,
+       "B": 992253.373,
+       "avg_eff": 0.00216,
+       "marg_eff": 0.005403,
+       "tau_at_dti": 0.002067,
+       "marginal_rule_says_add": true,
+       "dti": 0.0103152
+      },
+      {
+       "n": 1250000,
+       "A": 2988.333,
+       "B": 1239290.531,
+       "avg_eff": 0.002391,
+       "marg_eff": 0.003313,
+       "tau_at_dti": 0.002313,
+       "marginal_rule_says_add": true,
+       "dti": 0.0115392
+      },
+      {
+       "n": 1500000,
+       "A": 3672.0,
+       "B": 1486786.852,
+       "avg_eff": 0.002448,
+       "marg_eff": 0.002735,
+       "tau_at_dti": 0.002385,
+       "marginal_rule_says_add": true,
+       "dti": 0.0118985
+      },
+      {
+       "n": 2000000,
+       "A": 6365.0,
+       "B": 1977302.205,
+       "avg_eff": 0.003182,
+       "marg_eff": 0.005386,
+       "tau_at_dti": 0.003136,
+       "marginal_rule_says_add": true,
+       "dti": 0.0156292
+      },
+      {
+       "n": 2500000,
+       "A": 7742.333,
+       "B": 2472353.289,
+       "avg_eff": 0.003097,
+       "marg_eff": 0.002755,
+       "tau_at_dti": 0.003066,
+       "marginal_rule_says_add": false,
+       "dti": 0.0152848
+      },
+      {
+       "n": 3000000,
+       "A": 8590.667,
+       "B": 2969373.234,
+       "avg_eff": 0.002864,
+       "marg_eff": 0.001697,
+       "tau_at_dti": 0.002843,
+       "marginal_rule_says_add": false,
+       "dti": 0.0141734
+      },
+      {
+       "n": 4000000,
+       "A": 12644.0,
+       "B": 3955275.635,
+       "avg_eff": 0.003161,
+       "marg_eff": 0.004053,
+       "tau_at_dti": 0.003155,
+       "marginal_rule_says_add": true,
+       "dti": 0.0157244
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 12644.0,
+      "B": 3955275.635,
+      "avg_eff": 0.003161,
+      "marg_eff": 0.004053,
+      "tau_at_dti": 0.003155,
+      "marginal_rule_says_add": true,
+      "dti": 0.0157244
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 0.0,
+      "B": 120000.0,
+      "avg_eff": 0.0,
+      "marg_eff": 0.0,
+      "tau_at_dti": 0.0,
+      "marginal_rule_says_add": false,
+      "dti": 0.0
+     },
+     "gain_vs_anchor": 0.015724,
+     "marginal_rule_stop_n": 25000,
+     "p99_eval": 6.616786549784592e-07
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.0,
+       "B": 10000.0,
+       "avg_eff": 0.0,
+       "marg_eff": null,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": null,
+       "dti": 0.0
+      },
+      {
+       "n": 25000,
+       "A": 0.0,
+       "B": 25000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 50000,
+       "A": 0.0,
+       "B": 50000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 75000,
+       "A": 0.0,
+       "B": 75000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 100000,
+       "A": 0.0,
+       "B": 100000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 120000,
+       "A": 0.0,
+       "B": 120000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 150000,
+       "A": 0.0,
+       "B": 150000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 200000,
+       "A": 0.0,
+       "B": 200000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 250000,
+       "A": 2.0,
+       "B": 249995.086,
+       "avg_eff": 8e-06,
+       "marg_eff": 4e-05,
+       "tau_at_dti": 6e-06,
+       "marginal_rule_says_add": true,
+       "dti": 3.13e-05
+      },
+      {
+       "n": 300000,
+       "A": 51.333,
+       "B": 299796.055,
+       "avg_eff": 0.000171,
+       "marg_eff": 0.000987,
+       "tau_at_dti": 0.000139,
+       "marginal_rule_says_add": true,
+       "dti": 0.0006946
+      },
+      {
+       "n": 400000,
+       "A": 257.333,
+       "B": 399113.781,
+       "avg_eff": 0.000643,
+       "marg_eff": 0.00206,
+       "tau_at_dti": 0.000549,
+       "marginal_rule_says_add": true,
+       "dti": 0.0027433
+      },
+      {
+       "n": 500000,
+       "A": 592.667,
+       "B": 498002.469,
+       "avg_eff": 0.001185,
+       "marg_eff": 0.003353,
+       "tau_at_dti": 0.001044,
+       "marginal_rule_says_add": true,
+       "dti": 0.0052149
+      },
+      {
+       "n": 650000,
+       "A": 1274.667,
+       "B": 645737.592,
+       "avg_eff": 0.001961,
+       "marg_eff": 0.004547,
+       "tau_at_dti": 0.001782,
+       "marginal_rule_says_add": true,
+       "dti": 0.0088932
+      },
+      {
+       "n": 800000,
+       "A": 1911.667,
+       "B": 793561.332,
+       "avg_eff": 0.00239,
+       "marg_eff": 0.004247,
+       "tau_at_dti": 0.002215,
+       "marginal_rule_says_add": true,
+       "dti": 0.0110486
+      },
+      {
+       "n": 1000000,
+       "A": 3055.667,
+       "B": 989607.696,
+       "avg_eff": 0.003056,
+       "marg_eff": 0.00572,
+       "tau_at_dti": 0.002885,
+       "marginal_rule_says_add": true,
+       "dti": 0.0143822
+      },
+      {
+       "n": 1250000,
+       "A": 4377.0,
+       "B": 1234819.572,
+       "avg_eff": 0.003502,
+       "marg_eff": 0.005285,
+       "tau_at_dti": 0.003355,
+       "marginal_rule_says_add": true,
+       "dti": 0.0167209
+      },
+      {
+       "n": 1500000,
+       "A": 5322.667,
+       "B": 1481436.139,
+       "avg_eff": 0.003548,
+       "marg_eff": 0.003783,
+       "tau_at_dti": 0.003432,
+       "marginal_rule_says_add": true,
+       "dti": 0.0170993
+      },
+      {
+       "n": 2000000,
+       "A": 9533.0,
+       "B": 1967062.595,
+       "avg_eff": 0.004766,
+       "marg_eff": 0.008421,
+       "tau_at_dti": 0.004681,
+       "marginal_rule_says_add": true,
+       "dti": 0.0232939
+      },
+      {
+       "n": 2500000,
+       "A": 13317.333,
+       "B": 2454598.911,
+       "avg_eff": 0.005327,
+       "marg_eff": 0.007569,
+       "tau_at_dti": 0.005276,
+       "marginal_rule_says_add": true,
+       "dti": 0.0262404
+      },
+      {
+       "n": 3000000,
+       "A": 14501.0,
+       "B": 2950532.533,
+       "avg_eff": 0.004834,
+       "marg_eff": 0.002367,
+       "tau_at_dti": 0.004801,
+       "marginal_rule_says_add": false,
+       "dti": 0.0238922
+      },
+      {
+       "n": 4000000,
+       "A": 17376.667,
+       "B": 3940550.964,
+       "avg_eff": 0.004344,
+       "marg_eff": 0.002876,
+       "tau_at_dti": 0.004333,
+       "marginal_rule_says_add": false,
+       "dti": 0.0215721
+      }
+     ],
+     "best": {
+      "n": 2500000,
+      "A": 13317.333,
+      "B": 2454598.911,
+      "avg_eff": 0.005327,
+      "marg_eff": 0.007569,
+      "tau_at_dti": 0.005276,
+      "marginal_rule_says_add": true,
+      "dti": 0.0262404
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 0.0,
+      "B": 120000.0,
+      "avg_eff": 0.0,
+      "marg_eff": 0.0,
+      "tau_at_dti": 0.0,
+      "marginal_rule_says_add": false,
+      "dti": 0.0
+     },
+     "gain_vs_anchor": 0.02624,
+     "marginal_rule_stop_n": 25000,
+     "p99_eval": 6.616786549784592e-07
+    }
+   },
+   "head_B": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.0,
+       "B": 10000.0,
+       "avg_eff": 0.0,
+       "marg_eff": null,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": null,
+       "dti": 0.0
+      },
+      {
+       "n": 25000,
+       "A": 0.057,
+       "B": 24999.943,
+       "avg_eff": 2e-06,
+       "marg_eff": 4e-06,
+       "tau_at_dti": 1e-06,
+       "marginal_rule_says_add": true,
+       "dti": 3.7e-06
+      },
+      {
+       "n": 50000,
+       "A": 0.229,
+       "B": 49999.771,
+       "avg_eff": 5e-06,
+       "marg_eff": 7e-06,
+       "tau_at_dti": 2e-06,
+       "marginal_rule_says_add": true,
+       "dti": 1.11e-05
+      },
+      {
+       "n": 75000,
+       "A": 3.907,
+       "B": 74997.814,
+       "avg_eff": 5.2e-05,
+       "marg_eff": 0.000147,
+       "tau_at_dti": 3.1e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0001531
+      },
+      {
+       "n": 100000,
+       "A": 14.249,
+       "B": 99991.955,
+       "avg_eff": 0.000142,
+       "marg_eff": 0.000414,
+       "tau_at_dti": 9.3e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0004669
+      },
+      {
+       "n": 120000,
+       "A": 26.733,
+       "B": 119977.765,
+       "avg_eff": 0.000223,
+       "marg_eff": 0.000624,
+       "tau_at_dti": 0.000155,
+       "marginal_rule_says_add": true,
+       "dti": 0.0007744
+      },
+      {
+       "n": 150000,
+       "A": 41.301,
+       "B": 149958.146,
+       "avg_eff": 0.000275,
+       "marg_eff": 0.000486,
+       "tau_at_dti": 0.000204,
+       "marginal_rule_says_add": true,
+       "dti": 0.0010193
+      },
+      {
+       "n": 200000,
+       "A": 64.727,
+       "B": 199914.359,
+       "avg_eff": 0.000324,
+       "marg_eff": 0.000469,
+       "tau_at_dti": 0.000256,
+       "marginal_rule_says_add": true,
+       "dti": 0.0012814
+      },
+      {
+       "n": 250000,
+       "A": 92.369,
+       "B": 249860.205,
+       "avg_eff": 0.000369,
+       "marg_eff": 0.000553,
+       "tau_at_dti": 0.000305,
+       "marginal_rule_says_add": true,
+       "dti": 0.0015266
+      },
+      {
+       "n": 300000,
+       "A": 118.379,
+       "B": 299806.248,
+       "avg_eff": 0.000395,
+       "marg_eff": 0.00052,
+       "tau_at_dti": 0.000336,
+       "marginal_rule_says_add": true,
+       "dti": 0.0016791
+      },
+      {
+       "n": 400000,
+       "A": 185.386,
+       "B": 399671.91,
+       "avg_eff": 0.000463,
+       "marg_eff": 0.00067,
+       "tau_at_dti": 0.00041,
+       "marginal_rule_says_add": true,
+       "dti": 0.0020487
+      },
+      {
+       "n": 500000,
+       "A": 278.145,
+       "B": 499487.736,
+       "avg_eff": 0.000556,
+       "marg_eff": 0.000928,
+       "tau_at_dti": 0.000504,
+       "marginal_rule_says_add": true,
+       "dti": 0.0025178
+      },
+      {
+       "n": 650000,
+       "A": 413.395,
+       "B": 649140.771,
+       "avg_eff": 0.000636,
+       "marg_eff": 0.000902,
+       "tau_at_dti": 0.000589,
+       "marginal_rule_says_add": true,
+       "dti": 0.0029438
+      },
+      {
+       "n": 800000,
+       "A": 581.912,
+       "B": 798741.572,
+       "avg_eff": 0.000727,
+       "marg_eff": 0.001123,
+       "tau_at_dti": 0.000684,
+       "marginal_rule_says_add": true,
+       "dti": 0.0034153
+      },
+      {
+       "n": 1000000,
+       "A": 804.637,
+       "B": 998088.082,
+       "avg_eff": 0.000805,
+       "marg_eff": 0.001114,
+       "tau_at_dti": 0.000766,
+       "marginal_rule_says_add": true,
+       "dti": 0.0038262
+      },
+      {
+       "n": 1250000,
+       "A": 1170.373,
+       "B": 1247093.722,
+       "avg_eff": 0.000936,
+       "marg_eff": 0.001463,
+       "tau_at_dti": 0.000901,
+       "marginal_rule_says_add": true,
+       "dti": 0.0044985
+      },
+      {
+       "n": 1500000,
+       "A": 1652.209,
+       "B": 1495708.87,
+       "avg_eff": 0.001101,
+       "marg_eff": 0.001927,
+       "tau_at_dti": 0.001067,
+       "marginal_rule_says_add": true,
+       "dti": 0.0053299
+      },
+      {
+       "n": 2000000,
+       "A": 2711.977,
+       "B": 1992198.42,
+       "avg_eff": 0.001356,
+       "marg_eff": 0.00212,
+       "tau_at_dti": 0.001326,
+       "marginal_rule_says_add": true,
+       "dti": 0.0066227
+      },
+      {
+       "n": 2500000,
+       "A": 4386.104,
+       "B": 2486791.937,
+       "avg_eff": 0.001754,
+       "marg_eff": 0.003348,
+       "tau_at_dti": 0.001727,
+       "marginal_rule_says_add": true,
+       "dti": 0.0086213
+      },
+      {
+       "n": 3000000,
+       "A": 7035.002,
+       "B": 2978318.192,
+       "avg_eff": 0.002345,
+       "marg_eff": 0.005298,
+       "tau_at_dti": 0.002321,
+       "marginal_rule_says_add": true,
+       "dti": 0.0115786
+      },
+      {
+       "n": 4000000,
+       "A": 11175.407,
+       "B": 3962296.343,
+       "avg_eff": 0.002794,
+       "marg_eff": 0.00414,
+       "tau_at_dti": 0.002783,
+       "marginal_rule_says_add": true,
+       "dti": 0.0138788
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 11175.407,
+      "B": 3962296.343,
+      "avg_eff": 0.002794,
+      "marg_eff": 0.00414,
+      "tau_at_dti": 0.002783,
+      "marginal_rule_says_add": true,
+      "dti": 0.0138788
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 26.733,
+      "B": 119977.765,
+      "avg_eff": 0.000223,
+      "marg_eff": 0.000624,
+      "tau_at_dti": 0.000155,
+      "marginal_rule_says_add": true,
+      "dti": 0.0007744
+     },
+     "gain_vs_anchor": 0.013104,
+     "marginal_rule_stop_n": null,
+     "p99_eval": 0.2986876666545868
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.312,
+       "B": 9999.688,
+       "avg_eff": 3.1e-05,
+       "marg_eff": null,
+       "tau_at_dti": 4e-06,
+       "marginal_rule_says_add": null,
+       "dti": 1.96e-05
+      },
+      {
+       "n": 25000,
+       "A": 1.976,
+       "B": 24997.853,
+       "avg_eff": 7.9e-05,
+       "marg_eff": 0.000111,
+       "tau_at_dti": 2.1e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0001044
+      },
+      {
+       "n": 50000,
+       "A": 21.196,
+       "B": 49987.917,
+       "avg_eff": 0.000424,
+       "marg_eff": 0.000769,
+       "tau_at_dti": 0.000177,
+       "marginal_rule_says_add": true,
+       "dti": 0.0008857
+      },
+      {
+       "n": 75000,
+       "A": 47.758,
+       "B": 74967.769,
+       "avg_eff": 0.000637,
+       "marg_eff": 0.001062,
+       "tau_at_dti": 0.00033,
+       "marginal_rule_says_add": true,
+       "dti": 0.0016507
+      },
+      {
+       "n": 100000,
+       "A": 99.584,
+       "B": 99916.153,
+       "avg_eff": 0.000996,
+       "marg_eff": 0.002073,
+       "tau_at_dti": 0.000587,
+       "marginal_rule_says_add": true,
+       "dti": 0.0029348
+      },
+      {
+       "n": 120000,
+       "A": 141.768,
+       "B": 119870.501,
+       "avg_eff": 0.001181,
+       "marg_eff": 0.002109,
+       "tau_at_dti": 0.000748,
+       "marginal_rule_says_add": true,
+       "dti": 0.0037375
+      },
+      {
+       "n": 150000,
+       "A": 187.752,
+       "B": 149791.152,
+       "avg_eff": 0.001252,
+       "marg_eff": 0.001533,
+       "tau_at_dti": 0.000856,
+       "marginal_rule_says_add": true,
+       "dti": 0.0042744
+      },
+      {
+       "n": 200000,
+       "A": 284.685,
+       "B": 199630.566,
+       "avg_eff": 0.001423,
+       "marg_eff": 0.001939,
+       "tau_at_dti": 0.001057,
+       "marginal_rule_says_add": true,
+       "dti": 0.0052806
+      },
+      {
+       "n": 250000,
+       "A": 416.538,
+       "B": 249436.159,
+       "avg_eff": 0.001666,
+       "marg_eff": 0.002637,
+       "tau_at_dti": 0.001305,
+       "marginal_rule_says_add": true,
+       "dti": 0.0065187
+      },
+      {
+       "n": 300000,
+       "A": 549.613,
+       "B": 299215.774,
+       "avg_eff": 0.001832,
+       "marg_eff": 0.002662,
+       "tau_at_dti": 0.00149,
+       "marginal_rule_says_add": true,
+       "dti": 0.0074391
+      },
+      {
+       "n": 400000,
+       "A": 875.801,
+       "B": 398588.546,
+       "avg_eff": 0.00219,
+       "marg_eff": 0.003262,
+       "tau_at_dti": 0.00187,
+       "marginal_rule_says_add": true,
+       "dti": 0.0093347
+      },
+      {
+       "n": 500000,
+       "A": 1144.393,
+       "B": 497919.835,
+       "avg_eff": 0.002289,
+       "marg_eff": 0.002686,
+       "tau_at_dti": 0.002016,
+       "marginal_rule_says_add": true,
+       "dti": 0.0100613
+      },
+      {
+       "n": 650000,
+       "A": 1593.309,
+       "B": 646773.457,
+       "avg_eff": 0.002451,
+       "marg_eff": 0.002993,
+       "tau_at_dti": 0.002224,
+       "marginal_rule_says_add": true,
+       "dti": 0.0110953
+      },
+      {
+       "n": 800000,
+       "A": 2068.96,
+       "B": 795369.893,
+       "avg_eff": 0.002586,
+       "marg_eff": 0.003171,
+       "tau_at_dti": 0.002392,
+       "marginal_rule_says_add": true,
+       "dti": 0.0119306
+      },
+      {
+       "n": 1000000,
+       "A": 2780.638,
+       "B": 993382.174,
+       "avg_eff": 0.002781,
+       "marg_eff": 0.003558,
+       "tau_at_dti": 0.002616,
+       "marginal_rule_says_add": true,
+       "dti": 0.0130448
+      },
+      {
+       "n": 1250000,
+       "A": 3743.647,
+       "B": 1240525.347,
+       "avg_eff": 0.002995,
+       "marg_eff": 0.003852,
+       "tau_at_dti": 0.002857,
+       "marginal_rule_says_add": true,
+       "dti": 0.0142462
+      },
+      {
+       "n": 1500000,
+       "A": 4858.456,
+       "B": 1487041.744,
+       "avg_eff": 0.003239,
+       "marg_eff": 0.004459,
+       "tau_at_dti": 0.003121,
+       "marginal_rule_says_add": true,
+       "dti": 0.0155566
+      },
+      {
+       "n": 2000000,
+       "A": 7147.659,
+       "B": 1978990.034,
+       "avg_eff": 0.003574,
+       "marg_eff": 0.004578,
+       "tau_at_dti": 0.003489,
+       "marginal_rule_says_add": true,
+       "dti": 0.0173843
+      },
+      {
+       "n": 2500000,
+       "A": 9774.124,
+       "B": 2469990.537,
+       "avg_eff": 0.00391,
+       "marg_eff": 0.005253,
+       "tau_at_dti": 0.003849,
+       "marginal_rule_says_add": true,
+       "dti": 0.0191694
+      },
+      {
+       "n": 3000000,
+       "A": 13018.563,
+       "B": 2959054.863,
+       "avg_eff": 0.00434,
+       "marg_eff": 0.006489,
+       "tau_at_dti": 0.004298,
+       "marginal_rule_says_add": true,
+       "dti": 0.0214
+      },
+      {
+       "n": 4000000,
+       "A": 16899.898,
+       "B": 3943163.996,
+       "avg_eff": 0.004225,
+       "marg_eff": 0.003881,
+       "tau_at_dti": 0.004211,
+       "marginal_rule_says_add": false,
+       "dti": 0.0209691
+      }
+     ],
+     "best": {
+      "n": 3000000,
+      "A": 13018.563,
+      "B": 2959054.863,
+      "avg_eff": 0.00434,
+      "marg_eff": 0.006489,
+      "tau_at_dti": 0.004298,
+      "marginal_rule_says_add": true,
+      "dti": 0.0214
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 141.768,
+      "B": 119870.501,
+      "avg_eff": 0.001181,
+      "marg_eff": 0.002109,
+      "tau_at_dti": 0.000748,
+      "marginal_rule_says_add": true,
+      "dti": 0.0037375
+     },
+     "gain_vs_anchor": 0.017662,
+     "marginal_rule_stop_n": 4000000,
+     "p99_eval": 0.2986876666545868
+    }
+   },
+   "head_C": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.0,
+       "B": 10000.0,
+       "avg_eff": 0.0,
+       "marg_eff": null,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": null,
+       "dti": 0.0
+      },
+      {
+       "n": 25000,
+       "A": 0.0,
+       "B": 25000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 50000,
+       "A": 0.0,
+       "B": 50000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 75000,
+       "A": 0.0,
+       "B": 75000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 100000,
+       "A": 0.0,
+       "B": 100000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 120000,
+       "A": 0.0,
+       "B": 120000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 150000,
+       "A": 0.0,
+       "B": 150000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 200000,
+       "A": 0.333,
+       "B": 199999.355,
+       "avg_eff": 2e-06,
+       "marg_eff": 7e-06,
+       "tau_at_dti": 1e-06,
+       "marginal_rule_says_add": true,
+       "dti": 6.6e-06
+      },
+      {
+       "n": 250000,
+       "A": 6.878,
+       "B": 249992.634,
+       "avg_eff": 2.8e-05,
+       "marg_eff": 0.000131,
+       "tau_at_dti": 2.3e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0001137
+      },
+      {
+       "n": 300000,
+       "A": 37.855,
+       "B": 299942.272,
+       "avg_eff": 0.000126,
+       "marg_eff": 0.00062,
+       "tau_at_dti": 0.000107,
+       "marginal_rule_says_add": true,
+       "dti": 0.0005368
+      },
+      {
+       "n": 400000,
+       "A": 51.581,
+       "B": 399865.123,
+       "avg_eff": 0.000129,
+       "marg_eff": 0.000137,
+       "tau_at_dti": 0.000114,
+       "marginal_rule_says_add": true,
+       "dti": 0.0005699
+      },
+      {
+       "n": 500000,
+       "A": 76.518,
+       "B": 499822.909,
+       "avg_eff": 0.000153,
+       "marg_eff": 0.000249,
+       "tau_at_dti": 0.000139,
+       "marginal_rule_says_add": true,
+       "dti": 0.0006925
+      },
+      {
+       "n": 650000,
+       "A": 111.404,
+       "B": 649741.841,
+       "avg_eff": 0.000171,
+       "marg_eff": 0.000233,
+       "tau_at_dti": 0.000159,
+       "marginal_rule_says_add": true,
+       "dti": 0.000793
+      },
+      {
+       "n": 800000,
+       "A": 167.425,
+       "B": 799616.778,
+       "avg_eff": 0.000209,
+       "marg_eff": 0.000373,
+       "tau_at_dti": 0.000196,
+       "marginal_rule_says_add": true,
+       "dti": 0.0009821
+      },
+      {
+       "n": 1000000,
+       "A": 321.359,
+       "B": 999232.74,
+       "avg_eff": 0.000321,
+       "marg_eff": 0.00077,
+       "tau_at_dti": 0.000306,
+       "marginal_rule_says_add": true,
+       "dti": 0.0015272
+      },
+      {
+       "n": 1250000,
+       "A": 723.496,
+       "B": 1248262.05,
+       "avg_eff": 0.000579,
+       "marg_eff": 0.001609,
+       "tau_at_dti": 0.000556,
+       "marginal_rule_says_add": true,
+       "dti": 0.0027793
+      },
+      {
+       "n": 1500000,
+       "A": 1327.081,
+       "B": 1496596.083,
+       "avg_eff": 0.000885,
+       "marg_eff": 0.002414,
+       "tau_at_dti": 0.000857,
+       "marginal_rule_says_add": true,
+       "dti": 0.0042795
+      },
+      {
+       "n": 2000000,
+       "A": 2871.081,
+       "B": 1991848.782,
+       "avg_eff": 0.001436,
+       "marg_eff": 0.003088,
+       "tau_at_dti": 0.001404,
+       "marginal_rule_says_add": true,
+       "dti": 0.0070118
+      },
+      {
+       "n": 2500000,
+       "A": 4736.153,
+       "B": 2485663.882,
+       "avg_eff": 0.001894,
+       "marg_eff": 0.00373,
+       "tau_at_dti": 0.001866,
+       "marginal_rule_says_add": true,
+       "dti": 0.0093122
+      },
+      {
+       "n": 3000000,
+       "A": 6911.421,
+       "B": 2977982.757,
+       "avg_eff": 0.002304,
+       "marg_eff": 0.004351,
+       "tau_at_dti": 0.002281,
+       "marginal_rule_says_add": true,
+       "dti": 0.0113769
+      },
+      {
+       "n": 4000000,
+       "A": 10896.667,
+       "B": 3962798.104,
+       "avg_eff": 0.002724,
+       "marg_eff": 0.003985,
+       "tau_at_dti": 0.002714,
+       "marginal_rule_says_add": true,
+       "dti": 0.0135319
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 10896.667,
+      "B": 3962798.104,
+      "avg_eff": 0.002724,
+      "marg_eff": 0.003985,
+      "tau_at_dti": 0.002714,
+      "marginal_rule_says_add": true,
+      "dti": 0.0135319
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 0.0,
+      "B": 120000.0,
+      "avg_eff": 0.0,
+      "marg_eff": 0.0,
+      "tau_at_dti": 0.0,
+      "marginal_rule_says_add": false,
+      "dti": 0.0
+     },
+     "gain_vs_anchor": 0.013532,
+     "marginal_rule_stop_n": 25000,
+     "p99_eval": 0.9641416668891907
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.0,
+       "B": 10000.0,
+       "avg_eff": 0.0,
+       "marg_eff": null,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": null,
+       "dti": 0.0
+      },
+      {
+       "n": 25000,
+       "A": 0.0,
+       "B": 25000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 50000,
+       "A": 0.0,
+       "B": 50000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 75000,
+       "A": 0.0,
+       "B": 75000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 100000,
+       "A": 0.0,
+       "B": 100000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 120000,
+       "A": 0.0,
+       "B": 120000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 150000,
+       "A": 0.0,
+       "B": 150000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 200000,
+       "A": 0.0,
+       "B": 200000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 250000,
+       "A": 0.645,
+       "B": 249999.667,
+       "avg_eff": 3e-06,
+       "marg_eff": 1.3e-05,
+       "tau_at_dti": 2e-06,
+       "marginal_rule_says_add": true,
+       "dti": 1.01e-05
+      },
+      {
+       "n": 300000,
+       "A": 0.702,
+       "B": 299999.609,
+       "avg_eff": 2e-06,
+       "marg_eff": 1e-06,
+       "tau_at_dti": 2e-06,
+       "marginal_rule_says_add": false,
+       "dti": 9.5e-06
+      },
+      {
+       "n": 400000,
+       "A": 2.762,
+       "B": 399996.203,
+       "avg_eff": 7e-06,
+       "marg_eff": 2.1e-05,
+       "tau_at_dti": 6e-06,
+       "marginal_rule_says_add": true,
+       "dti": 2.94e-05
+      },
+      {
+       "n": 500000,
+       "A": 9.488,
+       "B": 499982.251,
+       "avg_eff": 1.9e-05,
+       "marg_eff": 6.7e-05,
+       "tau_at_dti": 1.7e-05,
+       "marginal_rule_says_add": true,
+       "dti": 8.33e-05
+      },
+      {
+       "n": 650000,
+       "A": 53.108,
+       "B": 649942.386,
+       "avg_eff": 8.2e-05,
+       "marg_eff": 0.000291,
+       "tau_at_dti": 7.4e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.000369
+      },
+      {
+       "n": 800000,
+       "A": 223.607,
+       "B": 799724.539,
+       "avg_eff": 0.00028,
+       "marg_eff": 0.001137,
+       "tau_at_dti": 0.000257,
+       "marginal_rule_says_add": true,
+       "dti": 0.0012857
+      },
+      {
+       "n": 1000000,
+       "A": 729.62,
+       "B": 998595.431,
+       "avg_eff": 0.00073,
+       "marg_eff": 0.00253,
+       "tau_at_dti": 0.000683,
+       "marginal_rule_says_add": true,
+       "dti": 0.0034127
+      },
+      {
+       "n": 1250000,
+       "A": 1602.033,
+       "B": 1246351.098,
+       "avg_eff": 0.001282,
+       "marg_eff": 0.00349,
+       "tau_at_dti": 0.001217,
+       "marginal_rule_says_add": true,
+       "dti": 0.0060794
+      },
+      {
+       "n": 1500000,
+       "A": 2912.368,
+       "B": 1492851.529,
+       "avg_eff": 0.001942,
+       "marg_eff": 0.005241,
+       "tau_at_dti": 0.001864,
+       "marginal_rule_says_add": true,
+       "dti": 0.0093023
+      },
+      {
+       "n": 2000000,
+       "A": 5377.377,
+       "B": 1984458.842,
+       "avg_eff": 0.002689,
+       "marg_eff": 0.00493,
+       "tau_at_dti": 0.002618,
+       "marginal_rule_says_add": true,
+       "dti": 0.0130552
+      },
+      {
+       "n": 2500000,
+       "A": 7448.021,
+       "B": 2476948.749,
+       "avg_eff": 0.002979,
+       "marg_eff": 0.004141,
+       "tau_at_dti": 0.002925,
+       "marginal_rule_says_add": true,
+       "dti": 0.0145809
+      },
+      {
+       "n": 3000000,
+       "A": 9705.093,
+       "B": 2969545.644,
+       "avg_eff": 0.003235,
+       "marg_eff": 0.004514,
+       "tau_at_dti": 0.003193,
+       "marginal_rule_says_add": true,
+       "dti": 0.0159158
+      },
+      {
+       "n": 4000000,
+       "A": 15476.283,
+       "B": 3948892.114,
+       "avg_eff": 0.003869,
+       "marg_eff": 0.005771,
+       "tau_at_dti": 0.003851,
+       "marginal_rule_says_add": true,
+       "dti": 0.0191822
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 15476.283,
+      "B": 3948892.114,
+      "avg_eff": 0.003869,
+      "marg_eff": 0.005771,
+      "tau_at_dti": 0.003851,
+      "marginal_rule_says_add": true,
+      "dti": 0.0191822
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 0.0,
+      "B": 120000.0,
+      "avg_eff": 0.0,
+      "marg_eff": 0.0,
+      "tau_at_dti": 0.0,
+      "marginal_rule_says_add": false,
+      "dti": 0.0
+     },
+     "gain_vs_anchor": 0.019182,
+     "marginal_rule_stop_n": 25000,
+     "p99_eval": 0.9641416668891907
+    }
+   }
+  },
+  "T2": {
+   "mode": "trace_cluster",
+   "train_px": 5087759,
+   "grid_share": 1.0,
+   "budgets": [
+    10000,
+    25000,
+    50000,
+    75000,
+    100000,
+    120000,
+    150000,
+    200000,
+    250000,
+    300000,
+    400000,
+    500000,
+    650000,
+    800000,
+    1000000,
+    1250000,
+    1500000,
+    2000000,
+    2500000,
+    3000000,
+    4000000
+   ],
+   "n_extra_layers": 5,
+   "eval_px": {
+    "A": 5118112,
+    "B": 5098012
+   },
+   "gt_px": {
+    "A": 11727,
+    "B": 10254
+   },
+   "null_random": {
+    "A": {
+     "best": {
+      "n": 200000,
+      "A": 3190.285,
+      "B": 198429.662,
+      "avg_eff": 0.015951,
+      "marg_eff": 0.013069,
+      "tau_at_dti": 0.013004,
+      "marginal_rule_says_add": true,
+      "dti": 0.0641836
+     },
+     "at_120k": {
+      "n": 120000,
+      "A": 2089.803,
+      "B": 119078.692,
+      "avg_eff": 0.017415,
+      "marg_eff": 0.013301,
+      "tau_at_dti": 0.01259,
+      "marginal_rule_says_add": true,
+      "dti": 0.0621682
+     }
+    },
+    "B": {
+     "best": {
+      "n": 150000,
+      "A": 2210.707,
+      "B": 148996.83,
+      "avg_eff": 0.014738,
+      "marg_eff": 0.012161,
+      "tau_at_dti": 0.011635,
+      "marginal_rule_says_add": true,
+      "dti": 0.0575035
+     },
+     "at_120k": {
+      "n": 120000,
+      "A": 1845.881,
+      "B": 119193.711,
+      "avg_eff": 0.015382,
+      "marg_eff": 0.012918,
+      "tau_at_dti": 0.011522,
+      "marginal_rule_says_add": true,
+      "dti": 0.0569521
+     }
+    }
+   },
+   "head_A": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 31.333,
+       "B": 9922.218,
+       "avg_eff": 0.003133,
+       "marg_eff": null,
+       "tau_at_dti": 0.000551,
+       "marginal_rule_says_add": null,
+       "dti": 0.0027552
+      },
+      {
+       "n": 25000,
+       "A": 66.0,
+       "B": 24786.045,
+       "avg_eff": 0.00264,
+       "marg_eff": 0.002311,
+       "tau_at_dti": 0.000921,
+       "marginal_rule_says_add": true,
+       "dti": 0.0045987
+      },
+      {
+       "n": 50000,
+       "A": 84.0,
+       "B": 49709.999,
+       "avg_eff": 0.00168,
+       "marg_eff": 0.00072,
+       "tau_at_dti": 0.000869,
+       "marginal_rule_says_add": false,
+       "dti": 0.0043432
+      },
+      {
+       "n": 75000,
+       "A": 91.0,
+       "B": 74681.795,
+       "avg_eff": 0.001213,
+       "marg_eff": 0.00028,
+       "tau_at_dti": 0.000748,
+       "marginal_rule_says_add": false,
+       "dti": 0.0037393
+      },
+      {
+       "n": 100000,
+       "A": 98.0,
+       "B": 99658.836,
+       "avg_eff": 0.00098,
+       "marg_eff": 0.00028,
+       "tau_at_dti": 0.000669,
+       "marginal_rule_says_add": false,
+       "dti": 0.003341
+      },
+      {
+       "n": 120000,
+       "A": 116.667,
+       "B": 119597.211,
+       "avg_eff": 0.000972,
+       "marg_eff": 0.000933,
+       "tau_at_dti": 0.000701,
+       "marginal_rule_says_add": true,
+       "dti": 0.0035009
+      },
+      {
+       "n": 150000,
+       "A": 185.0,
+       "B": 149364.389,
+       "avg_eff": 0.001233,
+       "marg_eff": 0.002278,
+       "tau_at_dti": 0.000943,
+       "marginal_rule_says_add": true,
+       "dti": 0.0047084
+      },
+      {
+       "n": 200000,
+       "A": 307.333,
+       "B": 198952.105,
+       "avg_eff": 0.001537,
+       "marg_eff": 0.002447,
+       "tau_at_dti": 0.00125,
+       "marginal_rule_says_add": true,
+       "dti": 0.0062424
+      },
+      {
+       "n": 250000,
+       "A": 407.0,
+       "B": 248579.406,
+       "avg_eff": 0.001628,
+       "marg_eff": 0.001993,
+       "tau_at_dti": 0.001377,
+       "marginal_rule_says_add": true,
+       "dti": 0.0068775
+      },
+      {
+       "n": 300000,
+       "A": 464.0,
+       "B": 298380.921,
+       "avg_eff": 0.001547,
+       "marg_eff": 0.00114,
+       "tau_at_dti": 0.001344,
+       "marginal_rule_says_add": false,
+       "dti": 0.00671
+      },
+      {
+       "n": 400000,
+       "A": 544.0,
+       "B": 398053.329,
+       "avg_eff": 0.00136,
+       "marg_eff": 0.0008,
+       "tau_at_dti": 0.001223,
+       "marginal_rule_says_add": false,
+       "dti": 0.0061054
+      },
+      {
+       "n": 500000,
+       "A": 573.0,
+       "B": 497939.315,
+       "avg_eff": 0.001146,
+       "marg_eff": 0.00029,
+       "tau_at_dti": 0.001052,
+       "marginal_rule_says_add": false,
+       "dti": 0.0052528
+      },
+      {
+       "n": 650000,
+       "A": 636.333,
+       "B": 647693.068,
+       "avg_eff": 0.000979,
+       "marg_eff": 0.000422,
+       "tau_at_dti": 0.000916,
+       "marginal_rule_says_add": false,
+       "dti": 0.0045764
+      },
+      {
+       "n": 800000,
+       "A": 703.333,
+       "B": 797423.918,
+       "avg_eff": 0.000879,
+       "marg_eff": 0.000447,
+       "tau_at_dti": 0.000833,
+       "marginal_rule_says_add": false,
+       "dti": 0.0041616
+      },
+      {
+       "n": 1000000,
+       "A": 828.0,
+       "B": 996960.064,
+       "avg_eff": 0.000828,
+       "marg_eff": 0.000623,
+       "tau_at_dti": 0.000793,
+       "marginal_rule_says_add": false,
+       "dti": 0.0039629
+      },
+      {
+       "n": 1250000,
+       "A": 864.667,
+       "B": 1246836.745,
+       "avg_eff": 0.000692,
+       "marg_eff": 0.000147,
+       "tau_at_dti": 0.000668,
+       "marginal_rule_says_add": false,
+       "dti": 0.0033395
+      },
+      {
+       "n": 1500000,
+       "A": 1187.0,
+       "B": 1495671.141,
+       "avg_eff": 0.000791,
+       "marg_eff": 0.001289,
+       "tau_at_dti": 0.000769,
+       "marginal_rule_says_add": true,
+       "dti": 0.0038445
+      },
+      {
+       "n": 2000000,
+       "A": 1894.0,
+       "B": 1993111.648,
+       "avg_eff": 0.000947,
+       "marg_eff": 0.001414,
+       "tau_at_dti": 0.000928,
+       "marginal_rule_says_add": true,
+       "dti": 0.0046378
+      },
+      {
+       "n": 2500000,
+       "A": 2810.667,
+       "B": 2489916.545,
+       "avg_eff": 0.001124,
+       "marg_eff": 0.001833,
+       "tau_at_dti": 0.001108,
+       "marginal_rule_says_add": true,
+       "dti": 0.0055336
+      },
+      {
+       "n": 3000000,
+       "A": 6195.0,
+       "B": 2978545.424,
+       "avg_eff": 0.002065,
+       "marg_eff": 0.006769,
+       "tau_at_dti": 0.002048,
+       "marginal_rule_says_add": true,
+       "dti": 0.0102172
+      },
+      {
+       "n": 4000000,
+       "A": 8342.333,
+       "B": 3971063.169,
+       "avg_eff": 0.002086,
+       "marg_eff": 0.002147,
+       "tau_at_dti": 0.002076,
+       "marginal_rule_says_add": true,
+       "dti": 0.0103598
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 8342.333,
+      "B": 3971063.169,
+      "avg_eff": 0.002086,
+      "marg_eff": 0.002147,
+      "tau_at_dti": 0.002076,
+      "marginal_rule_says_add": true,
+      "dti": 0.0103598
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 116.667,
+      "B": 119597.211,
+      "avg_eff": 0.000972,
+      "marg_eff": 0.000933,
+      "tau_at_dti": 0.000701,
+      "marginal_rule_says_add": true,
+      "dti": 0.0035009
+     },
+     "gain_vs_anchor": 0.006859,
+     "marginal_rule_stop_n": 50000,
+     "p99_eval": 6.66259154513682e-07
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 12.0,
+       "B": 9971.479,
+       "avg_eff": 0.0012,
+       "marg_eff": null,
+       "tau_at_dti": 0.000235,
+       "marginal_rule_says_add": null,
+       "dti": 0.0011765
+      },
+      {
+       "n": 25000,
+       "A": 39.667,
+       "B": 24889.158,
+       "avg_eff": 0.001587,
+       "marg_eff": 0.001844,
+       "tau_at_dti": 0.000602,
+       "marginal_rule_says_add": true,
+       "dti": 0.0030076
+      },
+      {
+       "n": 50000,
+       "A": 75.0,
+       "B": 49765.55,
+       "avg_eff": 0.0015,
+       "marg_eff": 0.001413,
+       "tau_at_dti": 0.000826,
+       "marginal_rule_says_add": true,
+       "dti": 0.0041274
+      },
+      {
+       "n": 75000,
+       "A": 106.667,
+       "B": 74665.434,
+       "avg_eff": 0.001422,
+       "marg_eff": 0.001267,
+       "tau_at_dti": 0.000922,
+       "marginal_rule_says_add": true,
+       "dti": 0.0046061
+      },
+      {
+       "n": 100000,
+       "A": 150.667,
+       "B": 99530.102,
+       "avg_eff": 0.001507,
+       "marg_eff": 0.00176,
+       "tau_at_dti": 0.001072,
+       "marginal_rule_says_add": true,
+       "dti": 0.0053543
+      },
+      {
+       "n": 120000,
+       "A": 191.0,
+       "B": 119395.575,
+       "avg_eff": 0.001592,
+       "marg_eff": 0.002017,
+       "tau_at_dti": 0.001191,
+       "marginal_rule_says_add": true,
+       "dti": 0.0059464
+      },
+      {
+       "n": 150000,
+       "A": 237.0,
+       "B": 149238.337,
+       "avg_eff": 0.00158,
+       "marg_eff": 0.001533,
+       "tau_at_dti": 0.001246,
+       "marginal_rule_says_add": true,
+       "dti": 0.0062208
+      },
+      {
+       "n": 200000,
+       "A": 286.0,
+       "B": 199059.604,
+       "avg_eff": 0.00143,
+       "marg_eff": 0.00098,
+       "tau_at_dti": 0.001191,
+       "marginal_rule_says_add": false,
+       "dti": 0.0059494
+      },
+      {
+       "n": 250000,
+       "A": 309.0,
+       "B": 248975.139,
+       "avg_eff": 0.001236,
+       "marg_eff": 0.00046,
+       "tau_at_dti": 0.001066,
+       "marginal_rule_says_add": false,
+       "dti": 0.0053221
+      },
+      {
+       "n": 300000,
+       "A": 383.667,
+       "B": 298730.24,
+       "avg_eff": 0.001279,
+       "marg_eff": 0.001493,
+       "tau_at_dti": 0.001129,
+       "marginal_rule_says_add": true,
+       "dti": 0.00564
+      },
+      {
+       "n": 400000,
+       "A": 485.667,
+       "B": 398331.284,
+       "avg_eff": 0.001214,
+       "marg_eff": 0.00102,
+       "tau_at_dti": 0.001105,
+       "marginal_rule_says_add": false,
+       "dti": 0.005521
+      },
+      {
+       "n": 500000,
+       "A": 580.333,
+       "B": 498016.501,
+       "avg_eff": 0.001161,
+       "marg_eff": 0.000947,
+       "tau_at_dti": 0.001077,
+       "marginal_rule_says_add": false,
+       "dti": 0.0053773
+      },
+      {
+       "n": 650000,
+       "A": 702.0,
+       "B": 647561.458,
+       "avg_eff": 0.00108,
+       "marg_eff": 0.000811,
+       "tau_at_dti": 0.001019,
+       "marginal_rule_says_add": false,
+       "dti": 0.0050923
+      },
+      {
+       "n": 800000,
+       "A": 905.0,
+       "B": 796897.166,
+       "avg_eff": 0.001131,
+       "marg_eff": 0.001353,
+       "tau_at_dti": 0.00108,
+       "marginal_rule_says_add": true,
+       "dti": 0.0053945
+      },
+      {
+       "n": 1000000,
+       "A": 1190.0,
+       "B": 995889.883,
+       "avg_eff": 0.00119,
+       "marg_eff": 0.001425,
+       "tau_at_dti": 0.001148,
+       "marginal_rule_says_add": true,
+       "dti": 0.0057316
+      },
+      {
+       "n": 1250000,
+       "A": 1260.667,
+       "B": 1245653.678,
+       "avg_eff": 0.001009,
+       "marg_eff": 0.000283,
+       "tau_at_dti": 0.00098,
+       "marginal_rule_says_add": false,
+       "dti": 0.0048942
+      },
+      {
+       "n": 1500000,
+       "A": 1899.333,
+       "B": 1493427.545,
+       "avg_eff": 0.001266,
+       "marg_eff": 0.002555,
+       "tau_at_dti": 0.001238,
+       "marginal_rule_says_add": true,
+       "dti": 0.0061813
+      },
+      {
+       "n": 2000000,
+       "A": 3904.333,
+       "B": 1986755.667,
+       "avg_eff": 0.001952,
+       "marg_eff": 0.00401,
+       "tau_at_dti": 0.001925,
+       "marginal_rule_says_add": true,
+       "dti": 0.0096087
+      },
+      {
+       "n": 2500000,
+       "A": 5207.667,
+       "B": 2482597.59,
+       "avg_eff": 0.002083,
+       "marg_eff": 0.002607,
+       "tau_at_dti": 0.002064,
+       "marginal_rule_says_add": true,
+       "dti": 0.0102966
+      },
+      {
+       "n": 3000000,
+       "A": 7012.333,
+       "B": 2976406.87,
+       "avg_eff": 0.002337,
+       "marg_eff": 0.003609,
+       "tau_at_dti": 0.002324,
+       "marginal_rule_says_add": true,
+       "dti": 0.0115928
+      },
+      {
+       "n": 4000000,
+       "A": 8743.0,
+       "B": 3970385.703,
+       "avg_eff": 0.002186,
+       "marg_eff": 0.001731,
+       "tau_at_dti": 0.00218,
+       "marginal_rule_says_add": false,
+       "dti": 0.010874
+      }
+     ],
+     "best": {
+      "n": 3000000,
+      "A": 7012.333,
+      "B": 2976406.87,
+      "avg_eff": 0.002337,
+      "marg_eff": 0.003609,
+      "tau_at_dti": 0.002324,
+      "marginal_rule_says_add": true,
+      "dti": 0.0115928
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 191.0,
+      "B": 119395.575,
+      "avg_eff": 0.001592,
+      "marg_eff": 0.002017,
+      "tau_at_dti": 0.001191,
+      "marginal_rule_says_add": true,
+      "dti": 0.0059464
+     },
+     "gain_vs_anchor": 0.005646,
+     "marginal_rule_stop_n": 200000,
+     "p99_eval": 6.66259154513682e-07
+    }
+   },
+   "head_B": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 2.702,
+       "B": 9997.771,
+       "avg_eff": 0.00027,
+       "marg_eff": null,
+       "tau_at_dti": 4.7e-05,
+       "marginal_rule_says_add": null,
+       "dti": 0.0002374
+      },
+      {
+       "n": 25000,
+       "A": 6.031,
+       "B": 24991.719,
+       "avg_eff": 0.000241,
+       "marg_eff": 0.000222,
+       "tau_at_dti": 8.4e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0004193
+      },
+      {
+       "n": 50000,
+       "A": 8.086,
+       "B": 49987.079,
+       "avg_eff": 0.000162,
+       "marg_eff": 8.2e-05,
+       "tau_at_dti": 8.3e-05,
+       "marginal_rule_says_add": false,
+       "dti": 0.0004172
+      },
+      {
+       "n": 75000,
+       "A": 11.373,
+       "B": 74983.717,
+       "avg_eff": 0.000152,
+       "marg_eff": 0.000131,
+       "tau_at_dti": 9.3e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0004665
+      },
+      {
+       "n": 100000,
+       "A": 13.759,
+       "B": 99980.094,
+       "avg_eff": 0.000138,
+       "marg_eff": 9.5e-05,
+       "tau_at_dti": 9.4e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0004683
+      },
+      {
+       "n": 120000,
+       "A": 17.444,
+       "B": 119976.001,
+       "avg_eff": 0.000145,
+       "marg_eff": 0.000184,
+       "tau_at_dti": 0.000105,
+       "marginal_rule_says_add": true,
+       "dti": 0.0005226
+      },
+      {
+       "n": 150000,
+       "A": 25.047,
+       "B": 149967.299,
+       "avg_eff": 0.000167,
+       "marg_eff": 0.000253,
+       "tau_at_dti": 0.000127,
+       "marginal_rule_says_add": true,
+       "dti": 0.000636
+      },
+      {
+       "n": 200000,
+       "A": 36.848,
+       "B": 199952.136,
+       "avg_eff": 0.000184,
+       "marg_eff": 0.000236,
+       "tau_at_dti": 0.000149,
+       "marginal_rule_says_add": true,
+       "dti": 0.0007462
+      },
+      {
+       "n": 250000,
+       "A": 58.296,
+       "B": 249925.64,
+       "avg_eff": 0.000233,
+       "marg_eff": 0.000429,
+       "tau_at_dti": 0.000196,
+       "marginal_rule_says_add": true,
+       "dti": 0.0009818
+      },
+      {
+       "n": 300000,
+       "A": 71.972,
+       "B": 299902.359,
+       "avg_eff": 0.00024,
+       "marg_eff": 0.000274,
+       "tau_at_dti": 0.000208,
+       "marginal_rule_says_add": true,
+       "dti": 0.0010374
+      },
+      {
+       "n": 400000,
+       "A": 118.556,
+       "B": 399831.322,
+       "avg_eff": 0.000296,
+       "marg_eff": 0.000466,
+       "tau_at_dti": 0.000265,
+       "marginal_rule_says_add": true,
+       "dti": 0.0013266
+      },
+      {
+       "n": 500000,
+       "A": 184.577,
+       "B": 499719.793,
+       "avg_eff": 0.000369,
+       "marg_eff": 0.00066,
+       "tau_at_dti": 0.000338,
+       "marginal_rule_says_add": true,
+       "dti": 0.0016878
+      },
+      {
+       "n": 650000,
+       "A": 320.6,
+       "B": 649450.811,
+       "avg_eff": 0.000493,
+       "marg_eff": 0.000907,
+       "tau_at_dti": 0.00046,
+       "marginal_rule_says_add": true,
+       "dti": 0.0023009
+      },
+      {
+       "n": 800000,
+       "A": 467.399,
+       "B": 799044.98,
+       "avg_eff": 0.000584,
+       "marg_eff": 0.000979,
+       "tau_at_dti": 0.000553,
+       "marginal_rule_says_add": true,
+       "dti": 0.002761
+      },
+      {
+       "n": 1000000,
+       "A": 721.291,
+       "B": 998415.0,
+       "avg_eff": 0.000721,
+       "marg_eff": 0.001269,
+       "tau_at_dti": 0.00069,
+       "marginal_rule_says_add": true,
+       "dti": 0.0034477
+      },
+      {
+       "n": 1250000,
+       "A": 1155.382,
+       "B": 1247186.179,
+       "avg_eff": 0.000924,
+       "marg_eff": 0.001736,
+       "tau_at_dti": 0.000893,
+       "marginal_rule_says_add": true,
+       "dti": 0.0044601
+      },
+      {
+       "n": 1500000,
+       "A": 1636.841,
+       "B": 1495634.5,
+       "avg_eff": 0.001091,
+       "marg_eff": 0.001926,
+       "tau_at_dti": 0.001061,
+       "marginal_rule_says_add": true,
+       "dti": 0.0053
+      },
+      {
+       "n": 2000000,
+       "A": 2603.077,
+       "B": 1992161.118,
+       "avg_eff": 0.001302,
+       "marg_eff": 0.001932,
+       "tau_at_dti": 0.001277,
+       "marginal_rule_says_add": true,
+       "dti": 0.0063749
+      },
+      {
+       "n": 2500000,
+       "A": 3961.372,
+       "B": 2487789.943,
+       "avg_eff": 0.001585,
+       "marg_eff": 0.002717,
+       "tau_at_dti": 0.001563,
+       "marginal_rule_says_add": true,
+       "dti": 0.0078021
+      },
+      {
+       "n": 3000000,
+       "A": 5488.393,
+       "B": 2982643.083,
+       "avg_eff": 0.001829,
+       "marg_eff": 0.003054,
+       "tau_at_dti": 0.001812,
+       "marginal_rule_says_add": true,
+       "dti": 0.0090417
+      },
+      {
+       "n": 4000000,
+       "A": 8317.538,
+       "B": 3972404.728,
+       "avg_eff": 0.002079,
+       "marg_eff": 0.002829,
+       "tau_at_dti": 0.002069,
+       "marginal_rule_says_add": true,
+       "dti": 0.0103256
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 8317.538,
+      "B": 3972404.728,
+      "avg_eff": 0.002079,
+      "marg_eff": 0.002829,
+      "tau_at_dti": 0.002069,
+      "marginal_rule_says_add": true,
+      "dti": 0.0103256
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 17.444,
+      "B": 119976.001,
+      "avg_eff": 0.000145,
+      "marg_eff": 0.000184,
+      "tau_at_dti": 0.000105,
+      "marginal_rule_says_add": true,
+      "dti": 0.0005226
+     },
+     "gain_vs_anchor": 0.009803,
+     "marginal_rule_stop_n": 50000,
+     "p99_eval": 0.32462847232818604
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 3.111,
+       "B": 9998.745,
+       "avg_eff": 0.000311,
+       "marg_eff": null,
+       "tau_at_dti": 6.1e-05,
+       "marginal_rule_says_add": null,
+       "dti": 0.0003049
+      },
+      {
+       "n": 25000,
+       "A": 5.388,
+       "B": 24995.883,
+       "avg_eff": 0.000216,
+       "marg_eff": 0.000152,
+       "tau_at_dti": 8.2e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.000408
+      },
+      {
+       "n": 50000,
+       "A": 17.497,
+       "B": 49989.24,
+       "avg_eff": 0.00035,
+       "marg_eff": 0.000484,
+       "tau_at_dti": 0.000192,
+       "marginal_rule_says_add": true,
+       "dti": 0.0009611
+      },
+      {
+       "n": 75000,
+       "A": 31.712,
+       "B": 74979.862,
+       "avg_eff": 0.000423,
+       "marg_eff": 0.000569,
+       "tau_at_dti": 0.000273,
+       "marginal_rule_says_add": true,
+       "dti": 0.0013666
+      },
+      {
+       "n": 100000,
+       "A": 45.023,
+       "B": 99967.186,
+       "avg_eff": 0.00045,
+       "marg_eff": 0.000532,
+       "tau_at_dti": 0.000319,
+       "marginal_rule_says_add": true,
+       "dti": 0.0015962
+      },
+      {
+       "n": 120000,
+       "A": 60.622,
+       "B": 119953.062,
+       "avg_eff": 0.000505,
+       "marg_eff": 0.00078,
+       "tau_at_dti": 0.000377,
+       "marginal_rule_says_add": true,
+       "dti": 0.0018823
+      },
+      {
+       "n": 150000,
+       "A": 90.426,
+       "B": 149922.762,
+       "avg_eff": 0.000603,
+       "marg_eff": 0.000993,
+       "tau_at_dti": 0.000474,
+       "marginal_rule_says_add": true,
+       "dti": 0.0023668
+      },
+      {
+       "n": 200000,
+       "A": 124.925,
+       "B": 199864.861,
+       "avg_eff": 0.000625,
+       "marg_eff": 0.00069,
+       "tau_at_dti": 0.000519,
+       "marginal_rule_says_add": true,
+       "dti": 0.0025917
+      },
+      {
+       "n": 250000,
+       "A": 178.218,
+       "B": 249784.964,
+       "avg_eff": 0.000713,
+       "marg_eff": 0.001066,
+       "tau_at_dti": 0.000613,
+       "marginal_rule_says_add": true,
+       "dti": 0.0030624
+      },
+      {
+       "n": 300000,
+       "A": 237.807,
+       "B": 299680.928,
+       "avg_eff": 0.000793,
+       "marg_eff": 0.001192,
+       "tau_at_dti": 0.000698,
+       "marginal_rule_says_add": true,
+       "dti": 0.0034876
+      },
+      {
+       "n": 400000,
+       "A": 353.678,
+       "B": 399432.737,
+       "avg_eff": 0.000884,
+       "marg_eff": 0.001159,
+       "tau_at_dti": 0.000803,
+       "marginal_rule_says_add": true,
+       "dti": 0.0040117
+      },
+      {
+       "n": 500000,
+       "A": 513.372,
+       "B": 499124.758,
+       "avg_eff": 0.001027,
+       "marg_eff": 0.001597,
+       "tau_at_dti": 0.00095,
+       "marginal_rule_says_add": true,
+       "dti": 0.0047477
+      },
+      {
+       "n": 650000,
+       "A": 747.44,
+       "B": 648544.122,
+       "avg_eff": 0.00115,
+       "marg_eff": 0.00156,
+       "tau_at_dti": 0.001084,
+       "marginal_rule_says_add": true,
+       "dti": 0.0054138
+      },
+      {
+       "n": 800000,
+       "A": 1065.711,
+       "B": 797750.509,
+       "avg_eff": 0.001332,
+       "marg_eff": 0.002122,
+       "tau_at_dti": 0.001271,
+       "marginal_rule_says_add": true,
+       "dti": 0.0063448
+      },
+      {
+       "n": 1000000,
+       "A": 1496.01,
+       "B": 996485.39,
+       "avg_eff": 0.001496,
+       "marg_eff": 0.002151,
+       "tau_at_dti": 0.001442,
+       "marginal_rule_says_add": true,
+       "dti": 0.0071993
+      },
+      {
+       "n": 1250000,
+       "A": 2147.57,
+       "B": 1244482.525,
+       "avg_eff": 0.001718,
+       "marg_eff": 0.002606,
+       "tau_at_dti": 0.001671,
+       "marginal_rule_says_add": true,
+       "dti": 0.0083391
+      },
+      {
+       "n": 1500000,
+       "A": 2829.975,
+       "B": 1492234.391,
+       "avg_eff": 0.001887,
+       "marg_eff": 0.00273,
+       "tau_at_dti": 0.001846,
+       "marginal_rule_says_add": true,
+       "dti": 0.0092117
+      },
+      {
+       "n": 2000000,
+       "A": 4229.842,
+       "B": 1987395.077,
+       "avg_eff": 0.002115,
+       "marg_eff": 0.0028,
+       "tau_at_dti": 0.002085,
+       "marginal_rule_says_add": true,
+       "dti": 0.0104048
+      },
+      {
+       "n": 2500000,
+       "A": 5915.274,
+       "B": 2481839.524,
+       "avg_eff": 0.002366,
+       "marg_eff": 0.003371,
+       "tau_at_dti": 0.002345,
+       "marginal_rule_says_add": true,
+       "dti": 0.0116959
+      },
+      {
+       "n": 3000000,
+       "A": 7683.005,
+       "B": 2975548.931,
+       "avg_eff": 0.002561,
+       "marg_eff": 0.003535,
+       "tau_at_dti": 0.002547,
+       "marginal_rule_says_add": true,
+       "dti": 0.0127023
+      },
+      {
+       "n": 4000000,
+       "A": 9451.762,
+       "B": 3968383.123,
+       "avg_eff": 0.002363,
+       "marg_eff": 0.001769,
+       "tau_at_dti": 0.002357,
+       "marginal_rule_says_add": false,
+       "dti": 0.0117593
+      }
+     ],
+     "best": {
+      "n": 3000000,
+      "A": 7683.005,
+      "B": 2975548.931,
+      "avg_eff": 0.002561,
+      "marg_eff": 0.003535,
+      "tau_at_dti": 0.002547,
+      "marginal_rule_says_add": true,
+      "dti": 0.0127023
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 60.622,
+      "B": 119953.062,
+      "avg_eff": 0.000505,
+      "marg_eff": 0.00078,
+      "tau_at_dti": 0.000377,
+      "marginal_rule_says_add": true,
+      "dti": 0.0018823
+     },
+     "gain_vs_anchor": 0.01082,
+     "marginal_rule_stop_n": 4000000,
+     "p99_eval": 0.32462847232818604
+    }
+   },
+   "head_C": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.0,
+       "B": 10000.0,
+       "avg_eff": 0.0,
+       "marg_eff": null,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": null,
+       "dti": 0.0
+      },
+      {
+       "n": 25000,
+       "A": 0.0,
+       "B": 25000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 50000,
+       "A": 0.0,
+       "B": 50000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 75000,
+       "A": 0.0,
+       "B": 75000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 100000,
+       "A": 0.0,
+       "B": 100000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 120000,
+       "A": 0.0,
+       "B": 120000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 150000,
+       "A": 0.0,
+       "B": 150000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 200000,
+       "A": 0.057,
+       "B": 199999.943,
+       "avg_eff": 0.0,
+       "marg_eff": 1e-06,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": true,
+       "dti": 1.2e-06
+      },
+      {
+       "n": 250000,
+       "A": 19.142,
+       "B": 249975.867,
+       "avg_eff": 7.7e-05,
+       "marg_eff": 0.000382,
+       "tau_at_dti": 6.4e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0003224
+      },
+      {
+       "n": 300000,
+       "A": 63.154,
+       "B": 299905.877,
+       "avg_eff": 0.000211,
+       "marg_eff": 0.00088,
+       "tau_at_dti": 0.000182,
+       "marginal_rule_says_add": true,
+       "dti": 0.0009103
+      },
+      {
+       "n": 400000,
+       "A": 166.865,
+       "B": 399679.817,
+       "avg_eff": 0.000417,
+       "marg_eff": 0.001037,
+       "tau_at_dti": 0.000374,
+       "marginal_rule_says_add": true,
+       "dti": 0.0018675
+      },
+      {
+       "n": 500000,
+       "A": 291.297,
+       "B": 499346.729,
+       "avg_eff": 0.000583,
+       "marg_eff": 0.001244,
+       "tau_at_dti": 0.000533,
+       "marginal_rule_says_add": true,
+       "dti": 0.0026649
+      },
+      {
+       "n": 650000,
+       "A": 500.668,
+       "B": 648773.756,
+       "avg_eff": 0.00077,
+       "marg_eff": 0.001396,
+       "tau_at_dti": 0.00072,
+       "marginal_rule_says_add": true,
+       "dti": 0.0035958
+      },
+      {
+       "n": 800000,
+       "A": 737.654,
+       "B": 798163.561,
+       "avg_eff": 0.000922,
+       "marg_eff": 0.00158,
+       "tau_at_dti": 0.000873,
+       "marginal_rule_says_add": true,
+       "dti": 0.0043606
+      },
+      {
+       "n": 1000000,
+       "A": 1112.266,
+       "B": 997094.518,
+       "avg_eff": 0.001112,
+       "marg_eff": 0.001873,
+       "tau_at_dti": 0.001065,
+       "marginal_rule_says_add": true,
+       "dti": 0.0053213
+      },
+      {
+       "n": 1250000,
+       "A": 1704.466,
+       "B": 1245318.323,
+       "avg_eff": 0.001364,
+       "marg_eff": 0.002369,
+       "tau_at_dti": 0.001319,
+       "marginal_rule_says_add": true,
+       "dti": 0.0065864
+      },
+      {
+       "n": 1500000,
+       "A": 2346.924,
+       "B": 1493142.24,
+       "avg_eff": 0.001565,
+       "marg_eff": 0.00257,
+       "tau_at_dti": 0.001524,
+       "marginal_rule_says_add": true,
+       "dti": 0.007608
+      },
+      {
+       "n": 2000000,
+       "A": 3914.62,
+       "B": 1988163.689,
+       "avg_eff": 0.001957,
+       "marg_eff": 0.003135,
+       "tau_at_dti": 0.001924,
+       "marginal_rule_says_add": true,
+       "dti": 0.0095994
+      },
+      {
+       "n": 2500000,
+       "A": 5819.845,
+       "B": 2481822.442,
+       "avg_eff": 0.002328,
+       "marg_eff": 0.00381,
+       "tau_at_dti": 0.002301,
+       "marginal_rule_says_add": true,
+       "dti": 0.011481
+      },
+      {
+       "n": 3000000,
+       "A": 7364.238,
+       "B": 2975786.124,
+       "avg_eff": 0.002455,
+       "marg_eff": 0.003089,
+       "tau_at_dti": 0.002436,
+       "marginal_rule_says_add": true,
+       "dti": 0.012152
+      },
+      {
+       "n": 4000000,
+       "A": 9371.589,
+       "B": 3967710.65,
+       "avg_eff": 0.002343,
+       "marg_eff": 0.002007,
+       "tau_at_dti": 0.002334,
+       "marginal_rule_says_add": false,
+       "dti": 0.0116446
+      }
+     ],
+     "best": {
+      "n": 3000000,
+      "A": 7364.238,
+      "B": 2975786.124,
+      "avg_eff": 0.002455,
+      "marg_eff": 0.003089,
+      "tau_at_dti": 0.002436,
+      "marginal_rule_says_add": true,
+      "dti": 0.012152
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 0.0,
+      "B": 120000.0,
+      "avg_eff": 0.0,
+      "marg_eff": 0.0,
+      "tau_at_dti": 0.0,
+      "marginal_rule_says_add": false,
+      "dti": 0.0
+     },
+     "gain_vs_anchor": 0.012152,
+     "marginal_rule_stop_n": 25000,
+     "p99_eval": 0.9591095447540283
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 0.0,
+       "B": 10000.0,
+       "avg_eff": 0.0,
+       "marg_eff": null,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": null,
+       "dti": 0.0
+      },
+      {
+       "n": 25000,
+       "A": 0.0,
+       "B": 25000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 50000,
+       "A": 0.0,
+       "B": 50000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 75000,
+       "A": 0.0,
+       "B": 75000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 100000,
+       "A": 0.0,
+       "B": 100000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 120000,
+       "A": 0.0,
+       "B": 120000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 150000,
+       "A": 0.0,
+       "B": 150000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 200000,
+       "A": 0.0,
+       "B": 200000.0,
+       "avg_eff": 0.0,
+       "marg_eff": 0.0,
+       "tau_at_dti": 0.0,
+       "marginal_rule_says_add": false,
+       "dti": 0.0
+      },
+      {
+       "n": 250000,
+       "A": 2.783,
+       "B": 249999.0,
+       "avg_eff": 1.1e-05,
+       "marg_eff": 5.6e-05,
+       "tau_at_dti": 1e-05,
+       "marginal_rule_says_add": true,
+       "dti": 4.78e-05
+      },
+      {
+       "n": 300000,
+       "A": 3.45,
+       "B": 299996.71,
+       "avg_eff": 1.1e-05,
+       "marg_eff": 1.3e-05,
+       "tau_at_dti": 1e-05,
+       "marginal_rule_says_add": true,
+       "dti": 5.06e-05
+      },
+      {
+       "n": 400000,
+       "A": 18.44,
+       "B": 399974.92,
+       "avg_eff": 4.6e-05,
+       "marg_eff": 0.00015,
+       "tau_at_dti": 4.2e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0002091
+      },
+      {
+       "n": 500000,
+       "A": 78.593,
+       "B": 499876.047,
+       "avg_eff": 0.000157,
+       "marg_eff": 0.000602,
+       "tau_at_dti": 0.000145,
+       "marginal_rule_says_add": true,
+       "dti": 0.0007264
+      },
+      {
+       "n": 650000,
+       "A": 351.193,
+       "B": 649364.897,
+       "avg_eff": 0.00054,
+       "marg_eff": 0.001817,
+       "tau_at_dti": 0.000509,
+       "marginal_rule_says_add": true,
+       "dti": 0.0025422
+      },
+      {
+       "n": 800000,
+       "A": 719.428,
+       "B": 798501.637,
+       "avg_eff": 0.000899,
+       "marg_eff": 0.002455,
+       "tau_at_dti": 0.000857,
+       "marginal_rule_says_add": true,
+       "dti": 0.0042811
+      },
+      {
+       "n": 1000000,
+       "A": 1238.512,
+       "B": 997136.143,
+       "avg_eff": 0.001239,
+       "marg_eff": 0.002595,
+       "tau_at_dti": 0.001193,
+       "marginal_rule_says_add": true,
+       "dti": 0.0059579
+      },
+      {
+       "n": 1250000,
+       "A": 2045.3,
+       "B": 1244736.172,
+       "avg_eff": 0.001636,
+       "marg_eff": 0.003227,
+       "tau_at_dti": 0.001591,
+       "marginal_rule_says_add": true,
+       "dti": 0.0079411
+      },
+      {
+       "n": 1500000,
+       "A": 2731.832,
+       "B": 1492174.686,
+       "avg_eff": 0.001821,
+       "marg_eff": 0.002746,
+       "tau_at_dti": 0.001782,
+       "marginal_rule_says_add": true,
+       "dti": 0.0088931
+      },
+      {
+       "n": 2000000,
+       "A": 4089.446,
+       "B": 1987414.555,
+       "avg_eff": 0.002045,
+       "marg_eff": 0.002715,
+       "tau_at_dti": 0.002016,
+       "marginal_rule_says_add": true,
+       "dti": 0.01006
+      },
+      {
+       "n": 2500000,
+       "A": 5448.74,
+       "B": 2482746.555,
+       "avg_eff": 0.002179,
+       "marg_eff": 0.002719,
+       "tau_at_dti": 0.002159,
+       "marginal_rule_says_add": true,
+       "dti": 0.0107716
+      },
+      {
+       "n": 3000000,
+       "A": 7013.588,
+       "B": 2977080.673,
+       "avg_eff": 0.002338,
+       "marg_eff": 0.00313,
+       "tau_at_dti": 0.002324,
+       "marginal_rule_says_add": true,
+       "dti": 0.0115923
+      },
+      {
+       "n": 4000000,
+       "A": 9362.846,
+       "B": 3968292.034,
+       "avg_eff": 0.002341,
+       "marg_eff": 0.002349,
+       "tau_at_dti": 0.002335,
+       "marginal_rule_says_add": true,
+       "dti": 0.0116492
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 9362.846,
+      "B": 3968292.034,
+      "avg_eff": 0.002341,
+      "marg_eff": 0.002349,
+      "tau_at_dti": 0.002335,
+      "marginal_rule_says_add": true,
+      "dti": 0.0116492
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 0.0,
+      "B": 120000.0,
+      "avg_eff": 0.0,
+      "marg_eff": 0.0,
+      "tau_at_dti": 0.0,
+      "marginal_rule_says_add": false,
+      "dti": 0.0
+     },
+     "gain_vs_anchor": 0.011649,
+     "marginal_rule_stop_n": 25000,
+     "p99_eval": 0.9591095447540283
+    }
+   }
+  },
+  "T3": {
+   "mode": "trace_cluster",
+   "train_px": 5034299,
+   "grid_share": 1.0,
+   "budgets": [
+    10000,
+    25000,
+    50000,
+    75000,
+    100000,
+    120000,
+    150000,
+    200000,
+    250000,
+    300000,
+    400000,
+    500000,
+    650000,
+    800000,
+    1000000,
+    1250000,
+    1500000,
+    2000000,
+    2500000,
+    3000000,
+    4000000
+   ],
+   "n_extra_layers": 5,
+   "eval_px": {
+    "A": 5121024,
+    "B": 5111236
+   },
+   "gt_px": {
+    "A": 14639,
+    "B": 23478
+   },
+   "null_random": {
+    "A": {
+     "best": {
+      "n": 200000,
+      "A": 4125.282,
+      "B": 198011.373,
+      "avg_eff": 0.020626,
+      "marg_eff": 0.016523,
+      "tau_at_dti": 0.016079,
+      "marginal_rule_says_add": true,
+      "dti": 0.0791216
+     },
+     "at_120k": {
+      "n": 120000,
+      "A": 2785.774,
+      "B": 118798.609,
+      "avg_eff": 0.023215,
+      "marg_eff": 0.0212,
+      "tau_at_dti": 0.015707,
+      "marginal_rule_says_add": true,
+      "dti": 0.0773223
+     }
+    },
+    "B": {
+     "best": {
+      "n": 200000,
+      "A": 6615.41,
+      "B": 196934.235,
+      "avg_eff": 0.033077,
+      "marg_eff": 0.026142,
+      "tau_at_dti": 0.022745,
+      "marginal_rule_says_add": true,
+      "dti": 0.1111977
+     },
+     "at_120k": {
+      "n": 120000,
+      "A": 4446.088,
+      "B": 118152.273,
+      "avg_eff": 0.037051,
+      "marg_eff": 0.030168,
+      "tau_at_dti": 0.020966,
+      "marginal_rule_says_add": true,
+      "dti": 0.1026761
+     }
+    }
+   },
+   "head_A": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 18.0,
+       "B": 9947.513,
+       "avg_eff": 0.0018,
+       "marg_eff": null,
+       "tau_at_dti": 0.000263,
+       "marginal_rule_says_add": null,
+       "dti": 0.0013135
+      },
+      {
+       "n": 25000,
+       "A": 43.0,
+       "B": 24854.7,
+       "avg_eff": 0.00172,
+       "marg_eff": 0.001667,
+       "tau_at_dti": 0.000516,
+       "marginal_rule_says_add": true,
+       "dti": 0.0025763
+      },
+      {
+       "n": 50000,
+       "A": 71.0,
+       "B": 49735.618,
+       "avg_eff": 0.00142,
+       "marg_eff": 0.00112,
+       "tau_at_dti": 0.000656,
+       "marginal_rule_says_add": true,
+       "dti": 0.003276
+      },
+      {
+       "n": 75000,
+       "A": 111.667,
+       "B": 74586.797,
+       "avg_eff": 0.001489,
+       "marg_eff": 0.001627,
+       "tau_at_dti": 0.000839,
+       "marginal_rule_says_add": true,
+       "dti": 0.00419
+      },
+      {
+       "n": 100000,
+       "A": 166.0,
+       "B": 99385.369,
+       "avg_eff": 0.00166,
+       "marg_eff": 0.002173,
+       "tau_at_dti": 0.001051,
+       "marginal_rule_says_add": true,
+       "dti": 0.0052496
+      },
+      {
+       "n": 120000,
+       "A": 215.667,
+       "B": 119205.152,
+       "avg_eff": 0.001797,
+       "marg_eff": 0.002483,
+       "tau_at_dti": 0.001213,
+       "marginal_rule_says_add": true,
+       "dti": 0.0060588
+      },
+      {
+       "n": 150000,
+       "A": 305.667,
+       "B": 148872.969,
+       "avg_eff": 0.002038,
+       "marg_eff": 0.003,
+       "tau_at_dti": 0.001474,
+       "marginal_rule_says_add": true,
+       "dti": 0.0073571
+      },
+      {
+       "n": 200000,
+       "A": 464.333,
+       "B": 198292.979,
+       "avg_eff": 0.002322,
+       "marg_eff": 0.003173,
+       "tau_at_dti": 0.001808,
+       "marginal_rule_says_add": true,
+       "dti": 0.0090227
+      },
+      {
+       "n": 250000,
+       "A": 648.0,
+       "B": 247614.146,
+       "avg_eff": 0.002592,
+       "marg_eff": 0.003673,
+       "tau_at_dti": 0.002116,
+       "marginal_rule_says_add": true,
+       "dti": 0.01056
+      },
+      {
+       "n": 300000,
+       "A": 787.0,
+       "B": 297100.818,
+       "avg_eff": 0.002623,
+       "marg_eff": 0.00278,
+       "tau_at_dti": 0.002213,
+       "marginal_rule_says_add": true,
+       "dti": 0.0110396
+      },
+      {
+       "n": 400000,
+       "A": 1144.333,
+       "B": 395837.202,
+       "avg_eff": 0.002861,
+       "marg_eff": 0.003573,
+       "tau_at_dti": 0.002518,
+       "marginal_rule_says_add": true,
+       "dti": 0.0125603
+      },
+      {
+       "n": 500000,
+       "A": 1582.0,
+       "B": 494214.284,
+       "avg_eff": 0.003164,
+       "marg_eff": 0.004377,
+       "tau_at_dti": 0.002862,
+       "marginal_rule_says_add": true,
+       "dti": 0.0142689
+      },
+      {
+       "n": 650000,
+       "A": 1957.0,
+       "B": 642803.434,
+       "avg_eff": 0.003011,
+       "marg_eff": 0.0025,
+       "tau_at_dti": 0.00279,
+       "marginal_rule_says_add": false,
+       "dti": 0.0139127
+      },
+      {
+       "n": 800000,
+       "A": 2193.667,
+       "B": 791927.876,
+       "avg_eff": 0.002742,
+       "marg_eff": 0.001578,
+       "tau_at_dti": 0.002579,
+       "marginal_rule_says_add": false,
+       "dti": 0.0128634
+      },
+      {
+       "n": 1000000,
+       "A": 2639.0,
+       "B": 990310.87,
+       "avg_eff": 0.002639,
+       "marg_eff": 0.002227,
+       "tau_at_dti": 0.002516,
+       "marginal_rule_says_add": false,
+       "dti": 0.0125487
+      },
+      {
+       "n": 1250000,
+       "A": 3244.667,
+       "B": 1238019.754,
+       "avg_eff": 0.002596,
+       "marg_eff": 0.002423,
+       "tau_at_dti": 0.002502,
+       "marginal_rule_says_add": false,
+       "dti": 0.0124812
+      },
+      {
+       "n": 1500000,
+       "A": 3748.667,
+       "B": 1486194.426,
+       "avg_eff": 0.002499,
+       "marg_eff": 0.002016,
+       "tau_at_dti": 0.002427,
+       "marginal_rule_says_add": false,
+       "dti": 0.0121042
+      },
+      {
+       "n": 2000000,
+       "A": 4156.0,
+       "B": 1984763.48,
+       "avg_eff": 0.002078,
+       "marg_eff": 0.000815,
+       "tau_at_dti": 0.002034,
+       "marginal_rule_says_add": false,
+       "dti": 0.0101491
+      },
+      {
+       "n": 2500000,
+       "A": 4314.0,
+       "B": 2484256.014,
+       "avg_eff": 0.001726,
+       "marg_eff": 0.000316,
+       "tau_at_dti": 0.001697,
+       "marginal_rule_says_add": false,
+       "dti": 0.0084684
+      },
+      {
+       "n": 3000000,
+       "A": 5668.0,
+       "B": 2979437.326,
+       "avg_eff": 0.001889,
+       "marg_eff": 0.002708,
+       "tau_at_dti": 0.001866,
+       "marginal_rule_says_add": true,
+       "dti": 0.0093112
+      },
+      {
+       "n": 4000000,
+       "A": 8475.0,
+       "B": 3969469.101,
+       "avg_eff": 0.002119,
+       "marg_eff": 0.002807,
+       "tau_at_dti": 0.002104,
+       "marginal_rule_says_add": true,
+       "dti": 0.010498
+      }
+     ],
+     "best": {
+      "n": 500000,
+      "A": 1582.0,
+      "B": 494214.284,
+      "avg_eff": 0.003164,
+      "marg_eff": 0.004377,
+      "tau_at_dti": 0.002862,
+      "marginal_rule_says_add": true,
+      "dti": 0.0142689
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 215.667,
+      "B": 119205.152,
+      "avg_eff": 0.001797,
+      "marg_eff": 0.002483,
+      "tau_at_dti": 0.001213,
+      "marginal_rule_says_add": true,
+      "dti": 0.0060588
+     },
+     "gain_vs_anchor": 0.00821,
+     "marginal_rule_stop_n": 650000,
+     "p99_eval": 6.562147518707206e-07
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 20.667,
+       "B": 9941.48,
+       "avg_eff": 0.002067,
+       "marg_eff": null,
+       "tau_at_dti": 0.000199,
+       "marginal_rule_says_add": null,
+       "dti": 0.0009948
+      },
+      {
+       "n": 25000,
+       "A": 54.0,
+       "B": 24825.525,
+       "avg_eff": 0.00216,
+       "marg_eff": 0.002222,
+       "tau_at_dti": 0.000455,
+       "marginal_rule_says_add": true,
+       "dti": 0.0022729
+      },
+      {
+       "n": 50000,
+       "A": 91.333,
+       "B": 49672.804,
+       "avg_eff": 0.001827,
+       "marg_eff": 0.001493,
+       "tau_at_dti": 0.000636,
+       "marginal_rule_says_add": true,
+       "dti": 0.0031784
+      },
+      {
+       "n": 75000,
+       "A": 149.667,
+       "B": 74474.326,
+       "avg_eff": 0.001996,
+       "marg_eff": 0.002333,
+       "tau_at_dti": 0.000889,
+       "marginal_rule_says_add": true,
+       "dti": 0.0044402
+      },
+      {
+       "n": 100000,
+       "A": 240.0,
+       "B": 99167.917,
+       "avg_eff": 0.0024,
+       "marg_eff": 0.003613,
+       "tau_at_dti": 0.001243,
+       "marginal_rule_says_add": true,
+       "dti": 0.0062073
+      },
+      {
+       "n": 120000,
+       "A": 321.0,
+       "B": 118879.15,
+       "avg_eff": 0.002675,
+       "marg_eff": 0.00405,
+       "tau_at_dti": 0.001509,
+       "marginal_rule_says_add": true,
+       "dti": 0.0075312
+      },
+      {
+       "n": 150000,
+       "A": 404.667,
+       "B": 148558.201,
+       "avg_eff": 0.002698,
+       "marg_eff": 0.002789,
+       "tau_at_dti": 0.001669,
+       "marginal_rule_says_add": true,
+       "dti": 0.0083308
+      },
+      {
+       "n": 200000,
+       "A": 555.333,
+       "B": 198043.29,
+       "avg_eff": 0.002777,
+       "marg_eff": 0.003013,
+       "tau_at_dti": 0.001902,
+       "marginal_rule_says_add": true,
+       "dti": 0.0094925
+      },
+      {
+       "n": 250000,
+       "A": 810.333,
+       "B": 247181.922,
+       "avg_eff": 0.003241,
+       "marg_eff": 0.0051,
+       "tau_at_dti": 0.002376,
+       "marginal_rule_says_add": true,
+       "dti": 0.0118503
+      },
+      {
+       "n": 300000,
+       "A": 1099.667,
+       "B": 296217.529,
+       "avg_eff": 0.003666,
+       "marg_eff": 0.005787,
+       "tau_at_dti": 0.002819,
+       "marginal_rule_says_add": true,
+       "dti": 0.014054
+      },
+      {
+       "n": 400000,
+       "A": 1903.667,
+       "B": 393597.345,
+       "avg_eff": 0.004759,
+       "marg_eff": 0.00804,
+       "tau_at_dti": 0.003905,
+       "marginal_rule_says_add": true,
+       "dti": 0.0194485
+      },
+      {
+       "n": 500000,
+       "A": 2844.667,
+       "B": 490541.633,
+       "avg_eff": 0.005689,
+       "marg_eff": 0.00941,
+       "tau_at_dti": 0.004867,
+       "marginal_rule_says_add": true,
+       "dti": 0.0242182
+      },
+      {
+       "n": 650000,
+       "A": 3858.0,
+       "B": 637184.485,
+       "avg_eff": 0.005935,
+       "marg_eff": 0.006756,
+       "tau_at_dti": 0.005277,
+       "marginal_rule_says_add": true,
+       "dti": 0.0262465
+      },
+      {
+       "n": 800000,
+       "A": 4242.333,
+       "B": 785857.331,
+       "avg_eff": 0.005303,
+       "marg_eff": 0.002562,
+       "tau_at_dti": 0.004822,
+       "marginal_rule_says_add": false,
+       "dti": 0.0239948
+      },
+      {
+       "n": 1000000,
+       "A": 5233.667,
+       "B": 982516.933,
+       "avg_eff": 0.005234,
+       "marg_eff": 0.004957,
+       "tau_at_dti": 0.004862,
+       "marginal_rule_says_add": true,
+       "dti": 0.0241927
+      },
+      {
+       "n": 1250000,
+       "A": 7040.0,
+       "B": 1226602.509,
+       "avg_eff": 0.005632,
+       "marg_eff": 0.007225,
+       "tau_at_dti": 0.005331,
+       "marginal_rule_says_add": true,
+       "dti": 0.0265149
+      },
+      {
+       "n": 1500000,
+       "A": 9607.0,
+       "B": 1468655.384,
+       "avg_eff": 0.006405,
+       "marg_eff": 0.010268,
+       "tau_at_dti": 0.006148,
+       "marginal_rule_says_add": true,
+       "dti": 0.0305532
+      },
+      {
+       "n": 2000000,
+       "A": 10557.0,
+       "B": 1965405.398,
+       "avg_eff": 0.005278,
+       "marg_eff": 0.0019,
+       "tau_at_dti": 0.005126,
+       "marginal_rule_says_add": false,
+       "dti": 0.0255015
+      },
+      {
+       "n": 2500000,
+       "A": 10706.0,
+       "B": 2464926.005,
+       "avg_eff": 0.004282,
+       "marg_eff": 0.000298,
+       "tau_at_dti": 0.004184,
+       "marginal_rule_says_add": false,
+       "dti": 0.0208325
+      },
+      {
+       "n": 3000000,
+       "A": 11222.333,
+       "B": 2963144.806,
+       "avg_eff": 0.003741,
+       "marg_eff": 0.001033,
+       "tau_at_dti": 0.003671,
+       "marginal_rule_says_add": false,
+       "dti": 0.0182877
+      },
+      {
+       "n": 4000000,
+       "A": 12668.0,
+       "B": 3958082.401,
+       "avg_eff": 0.003167,
+       "marg_eff": 0.001446,
+       "tau_at_dti": 0.003126,
+       "marginal_rule_says_add": false,
+       "dti": 0.0155831
+      }
+     ],
+     "best": {
+      "n": 1500000,
+      "A": 9607.0,
+      "B": 1468655.384,
+      "avg_eff": 0.006405,
+      "marg_eff": 0.010268,
+      "tau_at_dti": 0.006148,
+      "marginal_rule_says_add": true,
+      "dti": 0.0305532
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 321.0,
+      "B": 118879.15,
+      "avg_eff": 0.002675,
+      "marg_eff": 0.00405,
+      "tau_at_dti": 0.001509,
+      "marginal_rule_says_add": true,
+      "dti": 0.0075312
+     },
+     "gain_vs_anchor": 0.023022,
+     "marginal_rule_stop_n": 800000,
+     "p99_eval": 6.562147518707206e-07
+    }
+   },
+   "head_B": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 1.038,
+       "B": 9999.217,
+       "avg_eff": 0.000104,
+       "marg_eff": null,
+       "tau_at_dti": 1.5e-05,
+       "marginal_rule_says_add": null,
+       "dti": 7.57e-05
+      },
+      {
+       "n": 25000,
+       "A": 7.111,
+       "B": 24992.774,
+       "avg_eff": 0.000284,
+       "marg_eff": 0.000405,
+       "tau_at_dti": 8.5e-05,
+       "marginal_rule_says_add": true,
+       "dti": 0.0004256
+      },
+      {
+       "n": 50000,
+       "A": 14.873,
+       "B": 49981.101,
+       "avg_eff": 0.000297,
+       "marg_eff": 0.00031,
+       "tau_at_dti": 0.000137,
+       "marginal_rule_says_add": true,
+       "dti": 0.0006851
+      },
+      {
+       "n": 75000,
+       "A": 20.593,
+       "B": 74970.739,
+       "avg_eff": 0.000275,
+       "marg_eff": 0.000229,
+       "tau_at_dti": 0.000154,
+       "marginal_rule_says_add": true,
+       "dti": 0.000771
+      },
+      {
+       "n": 100000,
+       "A": 39.908,
+       "B": 99951.088,
+       "avg_eff": 0.000399,
+       "marg_eff": 0.000773,
+       "tau_at_dti": 0.000252,
+       "marginal_rule_says_add": true,
+       "dti": 0.0012586
+      },
+      {
+       "n": 120000,
+       "A": 56.667,
+       "B": 119929.848,
+       "avg_eff": 0.000472,
+       "marg_eff": 0.000838,
+       "tau_at_dti": 0.000317,
+       "marginal_rule_says_add": true,
+       "dti": 0.0015869
+      },
+      {
+       "n": 150000,
+       "A": 88.907,
+       "B": 149892.163,
+       "avg_eff": 0.000593,
+       "marg_eff": 0.001075,
+       "tau_at_dti": 0.000427,
+       "marginal_rule_says_add": true,
+       "dti": 0.0021317
+      },
+      {
+       "n": 200000,
+       "A": 146.703,
+       "B": 199796.516,
+       "avg_eff": 0.000734,
+       "marg_eff": 0.001156,
+       "tau_at_dti": 0.000568,
+       "marginal_rule_says_add": true,
+       "dti": 0.0028376
+      },
+      {
+       "n": 250000,
+       "A": 185.144,
+       "B": 249709.397,
+       "avg_eff": 0.000741,
+       "marg_eff": 0.000769,
+       "tau_at_dti": 0.000601,
+       "marginal_rule_says_add": true,
+       "dti": 0.0030012
+      },
+      {
+       "n": 300000,
+       "A": 232.316,
+       "B": 299595.727,
+       "avg_eff": 0.000774,
+       "marg_eff": 0.000943,
+       "tau_at_dti": 0.000649,
+       "marginal_rule_says_add": true,
+       "dti": 0.0032412
+      },
+      {
+       "n": 400000,
+       "A": 310.194,
+       "B": 399342.698,
+       "avg_eff": 0.000775,
+       "marg_eff": 0.000779,
+       "tau_at_dti": 0.000677,
+       "marginal_rule_says_add": true,
+       "dti": 0.0033849
+      },
+      {
+       "n": 500000,
+       "A": 390.602,
+       "B": 499105.373,
+       "avg_eff": 0.000781,
+       "marg_eff": 0.000804,
+       "tau_at_dti": 0.0007,
+       "marginal_rule_says_add": true,
+       "dti": 0.0034997
+      },
+      {
+       "n": 650000,
+       "A": 548.349,
+       "B": 648714.445,
+       "avg_eff": 0.000844,
+       "marg_eff": 0.001052,
+       "tau_at_dti": 0.000775,
+       "marginal_rule_says_add": true,
+       "dti": 0.0038735
+      },
+      {
+       "n": 800000,
+       "A": 706.752,
+       "B": 798272.518,
+       "avg_eff": 0.000883,
+       "marg_eff": 0.001056,
+       "tau_at_dti": 0.000825,
+       "marginal_rule_says_add": true,
+       "dti": 0.0041208
+      },
+      {
+       "n": 1000000,
+       "A": 936.128,
+       "B": 997565.428,
+       "avg_eff": 0.000936,
+       "marg_eff": 0.001147,
+       "tau_at_dti": 0.000886,
+       "marginal_rule_says_add": true,
+       "dti": 0.004428
+      },
+      {
+       "n": 1250000,
+       "A": 1294.827,
+       "B": 1246496.476,
+       "avg_eff": 0.001036,
+       "marg_eff": 0.001435,
+       "tau_at_dti": 0.000992,
+       "marginal_rule_says_add": true,
+       "dti": 0.0049559
+      },
+      {
+       "n": 1500000,
+       "A": 1791.965,
+       "B": 1495074.864,
+       "avg_eff": 0.001195,
+       "marg_eff": 0.001989,
+       "tau_at_dti": 0.001153,
+       "marginal_rule_says_add": true,
+       "dti": 0.0057604
+      },
+      {
+       "n": 2000000,
+       "A": 3377.988,
+       "B": 1990520.181,
+       "avg_eff": 0.001689,
+       "marg_eff": 0.003172,
+       "tau_at_dti": 0.001649,
+       "marginal_rule_says_add": true,
+       "dti": 0.0082291
+      },
+      {
+       "n": 2500000,
+       "A": 5373.242,
+       "B": 2483639.665,
+       "avg_eff": 0.002149,
+       "marg_eff": 0.003991,
+       "tau_at_dti": 0.002114,
+       "marginal_rule_says_add": true,
+       "dti": 0.0105458
+      },
+      {
+       "n": 3000000,
+       "A": 7477.706,
+       "B": 2976157.501,
+       "avg_eff": 0.002493,
+       "marg_eff": 0.004209,
+       "tau_at_dti": 0.002464,
+       "marginal_rule_says_add": true,
+       "dti": 0.01229
+      },
+      {
+       "n": 4000000,
+       "A": 10980.63,
+       "B": 3964433.198,
+       "avg_eff": 0.002745,
+       "marg_eff": 0.003503,
+       "tau_at_dti": 0.002729,
+       "marginal_rule_says_add": true,
+       "dti": 0.0136102
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 10980.63,
+      "B": 3964433.198,
+      "avg_eff": 0.002745,
+      "marg_eff": 0.003503,
+      "tau_at_dti": 0.002729,
+      "marginal_rule_says_add": true,
+      "dti": 0.0136102
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 56.667,
+      "B": 119929.848,
+      "avg_eff": 0.000472,
+      "marg_eff": 0.000838,
+      "tau_at_dti": 0.000317,
+      "marginal_rule_says_add": true,
+      "dti": 0.0015869
+     },
+     "gain_vs_anchor": 0.012023,
+     "marginal_rule_stop_n": null,
+     "p99_eval": 0.2784068286418915
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 51.007,
+       "B": 9935.049,
+       "avg_eff": 0.005101,
+       "marg_eff": null,
+       "tau_at_dti": 0.000491,
+       "marginal_rule_says_add": null,
+       "dti": 0.0024547
+      },
+      {
+       "n": 25000,
+       "A": 87.839,
+       "B": 24830.174,
+       "avg_eff": 0.003514,
+       "marg_eff": 0.002455,
+       "tau_at_dti": 0.00074,
+       "marginal_rule_says_add": true,
+       "dti": 0.003696
+      },
+      {
+       "n": 50000,
+       "A": 146.572,
+       "B": 49714.644,
+       "avg_eff": 0.002931,
+       "marg_eff": 0.002349,
+       "tau_at_dti": 0.001021,
+       "marginal_rule_says_add": true,
+       "dti": 0.0050973
+      },
+      {
+       "n": 75000,
+       "A": 191.557,
+       "B": 74638.272,
+       "avg_eff": 0.002554,
+       "marg_eff": 0.001799,
+       "tau_at_dti": 0.001136,
+       "marginal_rule_says_add": true,
+       "dti": 0.005676
+      },
+      {
+       "n": 100000,
+       "A": 249.055,
+       "B": 99535.102,
+       "avg_eff": 0.002491,
+       "marg_eff": 0.0023,
+       "tau_at_dti": 0.001287,
+       "marginal_rule_says_add": true,
+       "dti": 0.006429
+      },
+      {
+       "n": 120000,
+       "A": 309.888,
+       "B": 119450.317,
+       "avg_eff": 0.002582,
+       "marg_eff": 0.003042,
+       "tau_at_dti": 0.001452,
+       "marginal_rule_says_add": true,
+       "dti": 0.0072515
+      },
+      {
+       "n": 150000,
+       "A": 415.074,
+       "B": 149290.758,
+       "avg_eff": 0.002767,
+       "marg_eff": 0.003506,
+       "tau_at_dti": 0.001707,
+       "marginal_rule_says_add": true,
+       "dti": 0.008519
+      },
+      {
+       "n": 200000,
+       "A": 623.642,
+       "B": 198918.64,
+       "avg_eff": 0.003118,
+       "marg_eff": 0.004171,
+       "tau_at_dti": 0.00213,
+       "marginal_rule_says_add": true,
+       "dti": 0.0106259
+      },
+      {
+       "n": 250000,
+       "A": 809.13,
+       "B": 248524.139,
+       "avg_eff": 0.003237,
+       "marg_eff": 0.00371,
+       "tau_at_dti": 0.002363,
+       "marginal_rule_says_add": true,
+       "dti": 0.0117865
+      },
+      {
+       "n": 300000,
+       "A": 961.633,
+       "B": 298135.197,
+       "avg_eff": 0.003205,
+       "marg_eff": 0.00305,
+       "tau_at_dti": 0.002453,
+       "marginal_rule_says_add": true,
+       "dti": 0.0122342
+      },
+      {
+       "n": 400000,
+       "A": 1303.513,
+       "B": 397202.503,
+       "avg_eff": 0.003259,
+       "marg_eff": 0.003419,
+       "tau_at_dti": 0.002654,
+       "marginal_rule_says_add": true,
+       "dti": 0.0132358
+      },
+      {
+       "n": 500000,
+       "A": 1548.795,
+       "B": 496396.557,
+       "avg_eff": 0.003098,
+       "marg_eff": 0.002453,
+       "tau_at_dti": 0.002624,
+       "marginal_rule_says_add": false,
+       "dti": 0.0130842
+      },
+      {
+       "n": 650000,
+       "A": 1970.197,
+       "B": 645239.214,
+       "avg_eff": 0.003031,
+       "marg_eff": 0.002809,
+       "tau_at_dti": 0.002665,
+       "marginal_rule_says_add": true,
+       "dti": 0.013292
+      },
+      {
+       "n": 800000,
+       "A": 2354.713,
+       "B": 793954.784,
+       "avg_eff": 0.002943,
+       "marg_eff": 0.002563,
+       "tau_at_dti": 0.002652,
+       "marginal_rule_says_add": false,
+       "dti": 0.0132254
+      },
+      {
+       "n": 1000000,
+       "A": 2934.999,
+       "B": 992172.842,
+       "avg_eff": 0.002935,
+       "marg_eff": 0.002901,
+       "tau_at_dti": 0.002702,
+       "marginal_rule_says_add": true,
+       "dti": 0.0134754
+      },
+      {
+       "n": 1250000,
+       "A": 3673.592,
+       "B": 1239763.852,
+       "avg_eff": 0.002939,
+       "marg_eff": 0.002954,
+       "tau_at_dti": 0.002754,
+       "marginal_rule_says_add": true,
+       "dti": 0.0137346
+      },
+      {
+       "n": 1500000,
+       "A": 4297.961,
+       "B": 1487639.482,
+       "avg_eff": 0.002865,
+       "marg_eff": 0.002497,
+       "tau_at_dti": 0.002718,
+       "marginal_rule_says_add": false,
+       "dti": 0.013551
+      },
+      {
+       "n": 2000000,
+       "A": 6120.199,
+       "B": 1982409.324,
+       "avg_eff": 0.00306,
+       "marg_eff": 0.003644,
+       "tau_at_dti": 0.002948,
+       "marginal_rule_says_add": true,
+       "dti": 0.0146948
+      },
+      {
+       "n": 2500000,
+       "A": 8691.81,
+       "B": 2474091.01,
+       "avg_eff": 0.003477,
+       "marg_eff": 0.005143,
+       "tau_at_dti": 0.003385,
+       "marginal_rule_says_add": true,
+       "dti": 0.0168662
+      },
+      {
+       "n": 3000000,
+       "A": 11438.99,
+       "B": 2964726.537,
+       "avg_eff": 0.003813,
+       "marg_eff": 0.005494,
+       "tau_at_dti": 0.00374,
+       "marginal_rule_says_add": true,
+       "dti": 0.0186298
+      },
+      {
+       "n": 4000000,
+       "A": 19005.511,
+       "B": 3941794.712,
+       "avg_eff": 0.004751,
+       "marg_eff": 0.007567,
+       "tau_at_dti": 0.004709,
+       "marginal_rule_says_add": true,
+       "dti": 0.0234363
+      }
+     ],
+     "best": {
+      "n": 4000000,
+      "A": 19005.511,
+      "B": 3941794.712,
+      "avg_eff": 0.004751,
+      "marg_eff": 0.007567,
+      "tau_at_dti": 0.004709,
+      "marginal_rule_says_add": true,
+      "dti": 0.0234363
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 309.888,
+      "B": 119450.317,
+      "avg_eff": 0.002582,
+      "marg_eff": 0.003042,
+      "tau_at_dti": 0.001452,
+      "marginal_rule_says_add": true,
+      "dti": 0.0072515
+     },
+     "gain_vs_anchor": 0.016185,
+     "marginal_rule_stop_n": 500000,
+     "p99_eval": 0.2784068286418915
+    }
+   },
+   "head_C": {
+    "vs_target_A": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 18.299,
+       "B": 9964.501,
+       "avg_eff": 0.00183,
+       "marg_eff": null,
+       "tau_at_dti": 0.000267,
+       "marginal_rule_says_add": null,
+       "dti": 0.001335
+      },
+      {
+       "n": 25000,
+       "A": 74.017,
+       "B": 24867.319,
+       "avg_eff": 0.002961,
+       "marg_eff": 0.003715,
+       "tau_at_dti": 0.000887,
+       "marginal_rule_says_add": true,
+       "dti": 0.0044323
+      },
+      {
+       "n": 50000,
+       "A": 135.722,
+       "B": 49733.218,
+       "avg_eff": 0.002714,
+       "marg_eff": 0.002468,
+       "tau_at_dti": 0.001253,
+       "marginal_rule_says_add": true,
+       "dti": 0.0062588
+      },
+      {
+       "n": 75000,
+       "A": 180.045,
+       "B": 74614.841,
+       "avg_eff": 0.002401,
+       "marg_eff": 0.001773,
+       "tau_at_dti": 0.001352,
+       "marginal_rule_says_add": true,
+       "dti": 0.0067508
+      },
+      {
+       "n": 100000,
+       "A": 220.105,
+       "B": 99517.249,
+       "avg_eff": 0.002201,
+       "marg_eff": 0.001602,
+       "tau_at_dti": 0.001392,
+       "marginal_rule_says_add": true,
+       "dti": 0.0069524
+      },
+      {
+       "n": 120000,
+       "A": 266.853,
+       "B": 119439.474,
+       "avg_eff": 0.002224,
+       "marg_eff": 0.002337,
+       "tau_at_dti": 0.001499,
+       "marginal_rule_says_add": true,
+       "dti": 0.0074848
+      },
+      {
+       "n": 150000,
+       "A": 341.065,
+       "B": 149295.859,
+       "avg_eff": 0.002274,
+       "marg_eff": 0.002474,
+       "tau_at_dti": 0.001641,
+       "marginal_rule_says_add": true,
+       "dti": 0.0081911
+      },
+      {
+       "n": 200000,
+       "A": 490.334,
+       "B": 198957.333,
+       "avg_eff": 0.002452,
+       "marg_eff": 0.002985,
+       "tau_at_dti": 0.001904,
+       "marginal_rule_says_add": true,
+       "dti": 0.0095025
+      },
+      {
+       "n": 250000,
+       "A": 609.074,
+       "B": 248635.038,
+       "avg_eff": 0.002436,
+       "marg_eff": 0.002375,
+       "tau_at_dti": 0.001983,
+       "marginal_rule_says_add": true,
+       "dti": 0.009894
+      },
+      {
+       "n": 300000,
+       "A": 742.157,
+       "B": 298303.073,
+       "avg_eff": 0.002474,
+       "marg_eff": 0.002662,
+       "tau_at_dti": 0.00208,
+       "marginal_rule_says_add": true,
+       "dti": 0.0103769
+      },
+      {
+       "n": 400000,
+       "A": 999.162,
+       "B": 397645.983,
+       "avg_eff": 0.002498,
+       "marg_eff": 0.00257,
+       "tau_at_dti": 0.00219,
+       "marginal_rule_says_add": true,
+       "dti": 0.0109269
+      },
+      {
+       "n": 500000,
+       "A": 1221.217,
+       "B": 496921.497,
+       "avg_eff": 0.002442,
+       "marg_eff": 0.002221,
+       "tau_at_dti": 0.002199,
+       "marginal_rule_says_add": true,
+       "dti": 0.0109684
+      },
+      {
+       "n": 650000,
+       "A": 1515.224,
+       "B": 646020.912,
+       "avg_eff": 0.002331,
+       "marg_eff": 0.00196,
+       "tau_at_dti": 0.002151,
+       "marginal_rule_says_add": false,
+       "dti": 0.0107296
+      },
+      {
+       "n": 800000,
+       "A": 1757.452,
+       "B": 795271.899,
+       "avg_eff": 0.002197,
+       "marg_eff": 0.001615,
+       "tau_at_dti": 0.002058,
+       "marginal_rule_says_add": false,
+       "dti": 0.0102705
+      },
+      {
+       "n": 1000000,
+       "A": 2159.702,
+       "B": 994154.711,
+       "avg_eff": 0.00216,
+       "marg_eff": 0.002011,
+       "tau_at_dti": 0.002052,
+       "marginal_rule_says_add": false,
+       "dti": 0.0102368
+      },
+      {
+       "n": 1250000,
+       "A": 2877.897,
+       "B": 1242285.164,
+       "avg_eff": 0.002302,
+       "marg_eff": 0.002873,
+       "tau_at_dti": 0.002212,
+       "marginal_rule_says_add": true,
+       "dti": 0.0110373
+      },
+      {
+       "n": 1500000,
+       "A": 3723.479,
+       "B": 1489711.699,
+       "avg_eff": 0.002482,
+       "marg_eff": 0.003382,
+       "tau_at_dti": 0.002405,
+       "marginal_rule_says_add": true,
+       "dti": 0.0119958
+      },
+      {
+       "n": 2000000,
+       "A": 6382.794,
+       "B": 1982363.481,
+       "avg_eff": 0.003191,
+       "marg_eff": 0.005319,
+       "tau_at_dti": 0.003127,
+       "marginal_rule_says_add": true,
+       "dti": 0.0155883
+      },
+      {
+       "n": 2500000,
+       "A": 8796.639,
+       "B": 2473214.879,
+       "avg_eff": 0.003519,
+       "marg_eff": 0.004828,
+       "tau_at_dti": 0.003475,
+       "marginal_rule_says_add": true,
+       "dti": 0.0173124
+      },
+      {
+       "n": 3000000,
+       "A": 10395.459,
+       "B": 2966466.379,
+       "avg_eff": 0.003465,
+       "marg_eff": 0.003198,
+       "tau_at_dti": 0.003436,
+       "marginal_rule_says_add": false,
+       "dti": 0.0171236
+      },
+      {
+       "n": 4000000,
+       "A": 12521.924,
+       "B": 3959013.41,
+       "avg_eff": 0.00313,
+       "marg_eff": 0.002126,
+       "tau_at_dti": 0.003117,
+       "marginal_rule_says_add": false,
+       "dti": 0.0155355
+      }
+     ],
+     "best": {
+      "n": 2500000,
+      "A": 8796.639,
+      "B": 2473214.879,
+      "avg_eff": 0.003519,
+      "marg_eff": 0.004828,
+      "tau_at_dti": 0.003475,
+      "marginal_rule_says_add": true,
+      "dti": 0.0173124
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 266.853,
+      "B": 119439.474,
+      "avg_eff": 0.002224,
+      "marg_eff": 0.002337,
+      "tau_at_dti": 0.001499,
+      "marginal_rule_says_add": true,
+      "dti": 0.0074848
+     },
+     "gain_vs_anchor": 0.009828,
+     "marginal_rule_stop_n": 650000,
+     "p99_eval": 0.8747437596321106
+    },
+    "vs_target_B": {
+     "sweep": [
+      {
+       "n": 10000,
+       "A": 131.938,
+       "B": 9634.117,
+       "avg_eff": 0.013194,
+       "marg_eff": null,
+       "tau_at_dti": 0.001274,
+       "marginal_rule_says_add": null,
+       "dti": 0.0063629
+      },
+      {
+       "n": 25000,
+       "A": 148.97,
+       "B": 24578.902,
+       "avg_eff": 0.005959,
+       "marg_eff": 0.001136,
+       "tau_at_dti": 0.001257,
+       "marginal_rule_says_add": false,
+       "dti": 0.0062783
+      },
+      {
+       "n": 50000,
+       "A": 187.356,
+       "B": 49502.552,
+       "avg_eff": 0.003747,
+       "marg_eff": 0.001535,
+       "tau_at_dti": 0.001306,
+       "marginal_rule_says_add": true,
+       "dti": 0.0065234
+      },
+      {
+       "n": 75000,
+       "A": 250.318,
+       "B": 74379.232,
+       "avg_eff": 0.003338,
+       "marg_eff": 0.002518,
+       "tau_at_dti": 0.001487,
+       "marginal_rule_says_add": true,
+       "dti": 0.007426
+      },
+      {
+       "n": 100000,
+       "A": 318.241,
+       "B": 99188.557,
+       "avg_eff": 0.003182,
+       "marg_eff": 0.002717,
+       "tau_at_dti": 0.001648,
+       "marginal_rule_says_add": true,
+       "dti": 0.0082267
+      },
+      {
+       "n": 120000,
+       "A": 372.573,
+       "B": 119033.663,
+       "avg_eff": 0.003105,
+       "marg_eff": 0.002717,
+       "tau_at_dti": 0.00175,
+       "marginal_rule_says_add": true,
+       "dti": 0.0087328
+      },
+      {
+       "n": 150000,
+       "A": 467.476,
+       "B": 148774.085,
+       "avg_eff": 0.003117,
+       "marg_eff": 0.003163,
+       "tau_at_dti": 0.001926,
+       "marginal_rule_says_add": true,
+       "dti": 0.0096128
+      },
+      {
+       "n": 200000,
+       "A": 625.69,
+       "B": 198409.196,
+       "avg_eff": 0.003128,
+       "marg_eff": 0.003164,
+       "tau_at_dti": 0.00214,
+       "marginal_rule_says_add": true,
+       "dti": 0.0106792
+      },
+      {
+       "n": 250000,
+       "A": 845.429,
+       "B": 247940.992,
+       "avg_eff": 0.003382,
+       "marg_eff": 0.004395,
+       "tau_at_dti": 0.002473,
+       "marginal_rule_says_add": true,
+       "dti": 0.0123349
+      },
+      {
+       "n": 300000,
+       "A": 1090.731,
+       "B": 297349.51,
+       "avg_eff": 0.003636,
+       "marg_eff": 0.004906,
+       "tau_at_dti": 0.002788,
+       "marginal_rule_says_add": true,
+       "dti": 0.0138999
+      },
+      {
+       "n": 400000,
+       "A": 1526.33,
+       "B": 396039.708,
+       "avg_eff": 0.003816,
+       "marg_eff": 0.004356,
+       "tau_at_dti": 0.003115,
+       "marginal_rule_says_add": true,
+       "dti": 0.015528
+      },
+      {
+       "n": 500000,
+       "A": 1884.367,
+       "B": 494777.243,
+       "avg_eff": 0.003769,
+       "marg_eff": 0.00358,
+       "tau_at_dti": 0.003201,
+       "marginal_rule_says_add": true,
+       "dti": 0.0159537
+      },
+      {
+       "n": 650000,
+       "A": 2272.6,
+       "B": 643418.479,
+       "avg_eff": 0.003496,
+       "marg_eff": 0.002588,
+       "tau_at_dti": 0.003082,
+       "marginal_rule_says_add": false,
+       "dti": 0.0153636
+      },
+      {
+       "n": 800000,
+       "A": 2654.928,
+       "B": 792216.167,
+       "avg_eff": 0.003319,
+       "marg_eff": 0.002549,
+       "tau_at_dti": 0.002996,
+       "marginal_rule_says_add": false,
+       "dti": 0.0149357
+      },
+      {
+       "n": 1000000,
+       "A": 3193.418,
+       "B": 990412.235,
+       "avg_eff": 0.003193,
+       "marg_eff": 0.002692,
+       "tau_at_dti": 0.002945,
+       "marginal_rule_says_add": false,
+       "dti": 0.0146821
+      },
+      {
+       "n": 1250000,
+       "A": 4142.625,
+       "B": 1237873.211,
+       "avg_eff": 0.003314,
+       "marg_eff": 0.003797,
+       "tau_at_dti": 0.003111,
+       "marginal_rule_says_add": true,
+       "dti": 0.0155047
+      },
+      {
+       "n": 1500000,
+       "A": 5811.131,
+       "B": 1483299.177,
+       "avg_eff": 0.003874,
+       "marg_eff": 0.006674,
+       "tau_at_dti": 0.003684,
+       "marginal_rule_says_add": true,
+       "dti": 0.0183545
+      },
+      {
+       "n": 2000000,
+       "A": 11210.355,
+       "B": 1968261.847,
+       "avg_eff": 0.005605,
+       "marg_eff": 0.010798,
+       "tau_at_dti": 0.005436,
+       "marginal_rule_says_add": true,
+       "dti": 0.027034
+      },
+      {
+       "n": 2500000,
+       "A": 14621.204,
+       "B": 2454973.822,
+       "avg_eff": 0.005848,
+       "marg_eff": 0.006822,
+       "tau_at_dti": 0.005736,
+       "marginal_rule_says_add": true,
+       "dti": 0.028518
+      },
+      {
+       "n": 3000000,
+       "A": 15760.743,
+       "B": 2949999.532,
+       "avg_eff": 0.005254,
+       "marg_eff": 0.002279,
+       "tau_at_dti": 0.005178,
+       "marginal_rule_says_add": false,
+       "dti": 0.0257556
+      },
+      {
+       "n": 4000000,
+       "A": 19590.847,
+       "B": 3937644.53,
+       "avg_eff": 0.004898,
+       "marg_eff": 0.00383,
+       "tau_at_dti": 0.004859,
+       "marginal_rule_says_add": false,
+       "dti": 0.0241794
+      }
+     ],
+     "best": {
+      "n": 2500000,
+      "A": 14621.204,
+      "B": 2454973.822,
+      "avg_eff": 0.005848,
+      "marg_eff": 0.006822,
+      "tau_at_dti": 0.005736,
+      "marginal_rule_says_add": true,
+      "dti": 0.028518
+     },
+     "at_anchor_budget": {
+      "n": 120000,
+      "A": 372.573,
+      "B": 119033.663,
+      "avg_eff": 0.003105,
+      "marg_eff": 0.002717,
+      "tau_at_dti": 0.00175,
+      "marginal_rule_says_add": true,
+      "dti": 0.0087328
+     },
+     "gain_vs_anchor": 0.019785,
+     "marginal_rule_stop_n": 25000,
+     "p99_eval": 0.8747437596321106
+    }
+   }
+  }
+ },
+ "seconds": 1322.1
+}

@@ -1,0 +1,171 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fault population as a spatial statistic</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap">
+<div class="kicker">DOE GEMS Prize Challenge &middot; DrivenData #306</div>
+<h1>Fault population as a spatial statistic</h1>
+<p style="color:var(--mut);margin:0">Fitted to the known INGENIOUS/USGS traces inside the GeoDAWN footprint <b>before</b> any model was trained</p>
+<nav class="toc">
+<a href="index.html">Overview &amp; downloads</a>
+<a href="executive_summary.html">How to submit</a>
+<a href="method.html">Metric &amp; method</a>
+<a href="clustering.html">Spatial statistics</a>
+<a href="hypotheses.html">Hypotheses</a>
+<a href="results.html">Results &amp; holdout</a>
+<a href="sources.html">Verified sources</a>
+<a href="irregularities.html">Flags</a>
+<a href="next_steps.html">Next steps</a>
+</nav></div></header><main class="wrap">
+<p><b>Bour, O., and P. Davy (1999)</b>, &ldquo;Clustering and size distributions of fault
+patterns: Theory and measurements&rdquo;, <i>Geophysical Research Letters</i> 26(13),
+2001&ndash;2004, <a href="https://doi.org/10.1029/1999GL900419">doi:10.1029/1999GL900419</a>. From the abstract:
+&ldquo;the fractal dimension <i>D</i> and the exponent <i>a</i> of the frequency length
+distribution of fault networks, are related through the relation
+<b>x = (a &minus; 1)/D</b>, where <i>x</i> is the exponent of a new scaling law involving
+the average distance from a fault to its nearest neighbor of larger length.&rdquo;</p>
+<p><b>Marrett, R., Gale, J.F.W., G&oacute;mez, L.A., and Laubach, S.E. (2018)</b>,
+&ldquo;Correlation analysis of fracture arrangement in space&rdquo;, <i>Journal of Structural
+Geology</i> 108, 16&ndash;33, <a href="https://doi.org/10.1016/j.jsg.2017.06.012">doi:10.1016/j.jsg.2017.06.012</a>; applied to
+faults in <b>Wang, Laubach, Gale &amp; Ramos (2019)</b>, <i>Petroleum Geoscience</i> 25,
+415&ndash;428, <a href="https://doi.org/10.1144/petgeo2018-146">doi:10.1144/petgeo2018-146</a>. NCC(r) &gt; 1 clustered,
+&asymp;1 indistinguishable from random, &lt;1 regularly spaced; the log-log slope equals
+(correlation dimension &minus; 1). Background review:
+<a href="https://doi.org/10.1029/1999RG000074">Bonnet et al. (2001), Rev. Geophys. 39, 347&ndash;383</a>.</p>
+
+<h3>A_labels_tif_raster_catalogue &mdash; 3,199 traces</h3>
+<p>Length (m): median <b>1,200</b>,
+p90 3,900, max 36,000,
+total 6,099 km.</p>
+<h4>Length-frequency  N(&ge;L) = C&middot;L<sup>&minus;a</sup></h4>
+<table><tr><th>fit above L_min</th><th class="num">a</th><th class="num">R&sup2;</th>
+<th class="num">C</th><th class="num">n traces</th></tr><tr><td><code>l_min_800</code></td><td class='num'>1.8277</td><td class='num'>0.9724</td><td class='num'>8.47e+08</td><td class='num'>2,297</td></tr><tr><td><code>l_min_1200</code></td><td class='num'>1.9479</td><td class='num'>0.9827</td><td class='num'>2.57e+09</td><td class='num'>1,662</td></tr><tr><td><code>l_min_1500</code></td><td class='num'>1.9981</td><td class='num'>0.9838</td><td class='num'>4.12e+09</td><td class='num'>1,328</td></tr><tr><td><code>l_min_1800</code></td><td class='num'>2.0891</td><td class='num'>0.9845</td><td class='num'>9.31e+09</td><td class='num'>1,050</td></tr><tr><td><code>l_min_2400</code></td><td class='num'>2.1610</td><td class='num'>0.9879</td><td class='num'>1.86e+10</td><td class='num'>727</td></tr></table>
+<h4>Bour &amp; Davy (1999) nearest-larger-neighbour  &lt;d(l)&gt; = A&middot;l<sup>x</sup></h4>
+<table><tr><th>quantity</th><th class="num">value</th><th class="num">R&sup2;</th></tr>
+<tr><td>x (measured)</td><td class="num">0.8223</td>
+<td class="num">0.9557</td></tr>
+<tr><td>A (metres)</td><td class="num">6.268</td><td class="num">&mdash;</td></tr>
+<tr><td>D correlation dimension</td><td class="num">2.2891</td>
+<td class="num">0.9416</td></tr>
+<tr><td>(a&minus;1)/D predicted</td><td class="num">0.5072</td>
+<td class="num">&mdash;</td></tr>
+<tr><td><b>x / ((a&minus;1)/D)</b></td><td class="num"><b>1.621</b></td>
+<td class="num">&mdash;</td></tr></table>
+<h4>Marrett et al. (2018) normalised correlation count, 2&ndash;40 px</h4>
+<p>Verdict: <b class="pass">clustered</b>
+&middot; mean NCC 5.719 &middot; range
+[1.832, 22.504] &middot;
+log-log slope -0.7487 &rarr; implied correlation
+dimension 0.251.</p>
+<table><tr><th class="num">lag (px)</th><th class="num">NCC</th><th>reading</th></tr><tr><td class='num'>1.0</td><td class='num'>25.945</td><td>clustered</td></tr><tr><td class='num'>5.0</td><td class='num'>15.520</td><td>clustered</td></tr><tr><td class='num'>9.0</td><td class='num'>6.915</td><td>clustered</td></tr><tr><td class='num'>13.0</td><td class='num'>6.834</td><td>clustered</td></tr><tr><td class='num'>17.0</td><td class='num'>3.209</td><td>clustered</td></tr><tr><td class='num'>21.0</td><td class='num'>4.002</td><td>clustered</td></tr><tr><td class='num'>25.0</td><td class='num'>3.332</td><td>clustered</td></tr><tr><td class='num'>29.0</td><td class='num'>2.951</td><td>clustered</td></tr><tr><td class='num'>33.0</td><td class='num'>1.832</td><td>clustered</td></tr><tr><td class='num'>37.0</td><td class='num'>2.387</td><td>clustered</td></tr><tr><td class='num'>41.0</td><td class='num'>4.367</td><td>clustered</td></tr><tr><td class='num'>45.0</td><td class='num'>3.149</td><td>clustered</td></tr><tr><td class='num'>49.0</td><td class='num'>3.643</td><td>clustered</td></tr><tr><td class='num'>53.0</td><td class='num'>3.514</td><td>clustered</td></tr><tr><td class='num'>57.0</td><td class='num'>1.582</td><td>clustered</td></tr><tr><td class='num'>61.0</td><td class='num'>2.225</td><td>clustered</td></tr><tr><td class='num'>65.0</td><td class='num'>1.726</td><td>clustered</td></tr><tr><td class='num'>69.0</td><td class='num'>2.585</td><td>clustered</td></tr><tr><td class='num'>73.0</td><td class='num'>2.529</td><td>clustered</td></tr><tr><td class='num'>77.0</td><td class='num'>2.124</td><td>clustered</td></tr></table>
+
+<h3>B_gdr1391_ingenious_vector_traces &mdash; 376 traces</h3>
+<p>Length (m): median <b>9,990</b>,
+p90 36,162, max 200,136,
+total 6,286 km.</p>
+<h4>Length-frequency  N(&ge;L) = C&middot;L<sup>&minus;a</sup></h4>
+<table><tr><th>fit above L_min</th><th class="num">a</th><th class="num">R&sup2;</th>
+<th class="num">C</th><th class="num">n traces</th></tr><tr><td><code>l_min_800</code></td><td class='num'>0.9081</td><td class='num'>0.8652</td><td class='num'>3.94e+05</td><td class='num'>359</td></tr><tr><td><code>l_min_1200</code></td><td class='num'>0.9954</td><td class='num'>0.8891</td><td class='num'>9.65e+05</td><td class='num'>341</td></tr><tr><td><code>l_min_1500</code></td><td class='num'>1.0633</td><td class='num'>0.8986</td><td class='num'>1.91e+06</td><td class='num'>327</td></tr><tr><td><code>l_min_1800</code></td><td class='num'>1.1192</td><td class='num'>0.9084</td><td class='num'>3.41e+06</td><td class='num'>317</td></tr><tr><td><code>l_min_2400</code></td><td class='num'>1.2002</td><td class='num'>0.9281</td><td class='num'>8.12e+06</td><td class='num'>303</td></tr></table>
+<h4>Bour &amp; Davy (1999) nearest-larger-neighbour  &lt;d(l)&gt; = A&middot;l<sup>x</sup></h4>
+<table><tr><th>quantity</th><th class="num">value</th><th class="num">R&sup2;</th></tr>
+<tr><td>x (measured)</td><td class="num">0.4367</td>
+<td class="num">0.8438</td></tr>
+<tr><td>A (metres)</td><td class="num">177.268</td><td class="num">&mdash;</td></tr>
+<tr><td>D correlation dimension</td><td class="num">1.471</td>
+<td class="num">0.9821</td></tr>
+<tr><td>(a&minus;1)/D predicted</td><td class="num">0.1361</td>
+<td class="num">&mdash;</td></tr>
+<tr><td><b>x / ((a&minus;1)/D)</b></td><td class="num"><b>3.208</b></td>
+<td class="num">&mdash;</td></tr></table>
+<h4>Marrett et al. (2018) normalised correlation count, 2&ndash;40 px</h4>
+<p>Verdict: <b class="warn">&mdash;</b>
+&middot; mean NCC 0 &middot; range
+[0, 0] &middot;
+log-log slope 0 &rarr; implied correlation
+dimension 0.</p>
+
+
+<h2>How it is used</h2>
+<h3>(a) As a geometric prior</h3>
+<p><code>bour_davy_prior_field()</code> inverts the fitted scaling into an expected
+unmapped length <code>l*(r) = (r/A)^(1/x)</code> at distance <code>r</code> from each
+of the 200 longest known traces, then weights a candidate pixel by how strongly
+<code>l*(r)</code> lands in the length band where the catalogue is demonstrably
+incomplete. The field uses <b>only trace geometry</b> — no feature band — so it is
+an independent re-ranking term. Two candidates with identical detector scores are
+separated by it: the one lying along the extrapolated clustering pattern of a
+known larger fault wins over the spatially isolated one. It is mixed into the
+final ranking with weight <code>--prior-w</code>.</p>
+<h3>(b) As a post-hoc audit</h3>
+<p><code>run_audit()</code> computes the same NCC on our own predicted raster and
+compares it with the catalogue&rsquo;s. A predicted population whose mean NCC is
+below 0.5&times; or above 2&times; the measured regional value, or whose
+clustered/random/regular verdict disagrees with the catalogue&rsquo;s, is flagged as a
+likely <b>detection artefact</b> — survey-line aliasing, acquisition-block edges —
+rather than genuine geology. Nothing in a per-pixel loss function checks whether
+the output looks like a real fault population. This does.</p>
+<div class="flagbox"><b>Flag F-07.</b> Population A returns
+D = 2.289 &gt; 2, which
+is not a valid fractal dimension for a point set in the plane. The correlation
+integral saturates once every box is occupied (Bour et al. 2002 note this
+explicitly), so a fit spanning 1&ndash;140 px is biased upward. Population B&rsquo;s
+D = 1.471
+is the usable estimate. Both are reported; neither is hidden.</div>
+<div class="flagbox"><b>Flag F-08.</b> The length-frequency exponent fitted here for
+population A (a = 1.83&ndash;2.16 depending on L_min) does not reproduce the
+a = 1.762 at L_min = 1,800 m reported by 19GEMSDOE. The difference is the length
+estimator: this repo measures skeleton length &times; 100 m on 8-connected components
+and fits log-binned cumulative counts; 19GEMSDOE reports a different binning.
+Both are internally consistent (R&sup2; &ge; 0.97). Recorded rather than reconciled.</div>
+</main><footer><div class="wrap">
+GEMSDOE22 &middot; generated by <code>scripts/06_build_site.py</code> from
+<code>evidence/*.json</code>. Every figure on these pages is read out of a
+measurement file at build time; nothing is hand-typed.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE22">Repository</a>
+</div></footer></body></html><script>
+function cp(btn){const t=btn.previousElementSibling.innerText.replace(/^[^:]*:\s*/,'');
+navigator.clipboard.writeText(t.trim()).then(()=>{btn.textContent='Copied';
+setTimeout(()=>btn.textContent='Copy',1400)});}
+</script>
+<script src="assets/tifcheck.js"></script>
+<script>
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+if(drop&&out){
+const drop=document.getElementById('drop'),pick=document.getElementById('pick'),
+      out=document.getElementById('out');
+async function run(file){
+  out.innerHTML='<p>Reading '+file.name+' ('+(file.size/1e6).toFixed(2)+' MB)&hellip;</p>';
+  try{
+    const buf=await file.arrayBuffer();
+    const t0=performance.now();
+    const r=await window.GEMS22TifCheck.check(buf);
+    const ms=((performance.now()-t0)/1000).toFixed(1);
+    let h='<h3>Hard requirements</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.hard.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004; pass</span>':'<span class=fail>&#10008; FAIL</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table><h3>Advisory</h3><table><tr><th>Check</th><th>Result</th><th>Detail</th></tr>';
+    r.advisory.forEach(c=>{h+='<tr><td>'+c.name+'</td><td>'+(c.pass?
+      '<span class=pass>&#10004;</span>':'<span class=warn>&#9888;</span>')+
+      '</td><td style="font-size:12px">'+c.detail+'</td></tr>'});
+    h+='</table>';
+    h+='<p>'+(r.ok?'<span class=pass style="font-size:18px">&#10004; SAFE TO SUBMIT</span>':
+      '<span class=fail style="font-size:18px">&#10008; DO NOT SUBMIT — a hard check failed</span>')+
+      ' <span style="color:var(--mut)">('+ms+' s, parsed '+(r.meta.total||0).toLocaleString()+' pixels)</span></p>';
+    if(r.meta&&r.meta.total){h+='<p class=badge>NaN '+r.meta.nan.toLocaleString()+
+      '</p><p class=badge>min '+r.meta.min+'</p><p class=badge>max '+r.meta.max+
+      '</p><p class=badge>&lt;0: '+r.meta.n_negative.toLocaleString()+
+      '</p><p class=badge>&gt;1: '+r.meta.n_above_1.toLocaleString()+
+      '</p><p class=badge>&gt;0: '+r.meta.n_positive.toLocaleString()+
+      '</p><p class=badge>EPSG '+r.meta.epsg+'</p>'}
+    out.innerHTML=h;
+  }catch(e){out.innerHTML='<p class=fail>Error: '+e.message+'</p>'}
+}
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{
+  e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>{if(e.dataTransfer.files[0])run(e.dataTransfer.files[0])});
+pick.addEventListener('change',e=>{if(e.target.files[0])run(e.target.files[0])});
+}
+</script>

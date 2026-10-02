@@ -1,0 +1,289 @@
+{
+ "generated_utc": "2026-10-02T02:13:33Z",
+ "script": "scripts/07_probe_network.py",
+ "timeout_seconds": 12,
+ "summary": {
+  "n_hosts_probed": 19,
+  "n_reachable": 5,
+  "n_blocked": 14,
+  "reachable": [
+   "github.com",
+   "api.github.com",
+   "codeload.github.com",
+   "pypi.org",
+   "files.pythonhosted.org"
+  ],
+  "blocked": [
+   "www.drivendata.org",
+   "community.drivendata.org",
+   "raw.githubusercontent.com",
+   "buffedlizard55-lab.github.io",
+   "www.usgs.gov",
+   "www.sciencebase.gov",
+   "doi.org",
+   "gdr.openei.org",
+   "mrdata.usgs.gov",
+   "tnmaccess.nationalmap.gov",
+   "opentopography.org",
+   "drivendata-public-assets.s3.amazonaws.com",
+   "www.dropbox.com",
+   "services.arcgisonline.com"
+  ]
+ },
+ "interpretation": "Two egress routes exist and they are NOT equivalent. (1) A direct socket from this sandbox -- what this script measures. (2) The agent's page-fetch/search tooling, which routes through a different network path and DID return the text of several hosts listed here as blocked, including the drivendata.org metric page, the forum threads, the live leaderboard and buffedlizard55-lab.github.io. Every quotation in this repository from a host that is blocked on route (1) was obtained on route (2) as TEXT ONLY; no binary could be transferred that way, which is why the competition rasters were instead reassembled from codeload.github.com and pinned by SHA-256. This asymmetry is recorded as irregularity flag F-11.",
+ "consequences": [
+  "The live leaderboard score of any file produced here cannot be observed from the sandbox, so no submission slot is spent on an idea that has not beaten the holdout best.",
+  "The two metric worked-example diagrams live on drivendata-public-assets.s3.amazonaws.com and could not be retrieved by either route; the worked example is therefore validated arithmetically only (flag F-02).",
+  "External layers already committed by predecessor sessions are reused and re-hashed rather than re-downloaded, and their provenance JSONs carry the original DOI / ScienceBase / GDR identifiers."
+ ],
+ "probes": [
+  {
+   "host": "www.drivendata.org",
+   "purpose": "competition pages, metric spec, leaderboard, forum",
+   "dns": [
+    "216.24.57.16",
+    "216.24.57.18"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.14
+  },
+  {
+   "host": "community.drivendata.org",
+   "purpose": "forum threads 11516 / 11527 (organiser clarifications)",
+   "dns": [
+    "216.66.8.75"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.2
+  },
+  {
+   "host": "github.com",
+   "purpose": "repository, releases",
+   "dns": [
+    "140.82.116.3"
+   ],
+   "https_status": 200,
+   "reachable": true,
+   "note": "HTTPS GET / succeeded",
+   "seconds": 0.29
+  },
+  {
+   "host": "api.github.com",
+   "purpose": "repo/org enumeration, metadata",
+   "dns": [
+    "140.82.116.6"
+   ],
+   "https_status": 200,
+   "reachable": true,
+   "note": "HTTPS GET / succeeded",
+   "seconds": 0.24
+  },
+  {
+   "host": "codeload.github.com",
+   "purpose": "tarball download of predecessor repos + official rasters",
+   "dns": [
+    "140.82.116.9"
+   ],
+   "https_status": 200,
+   "reachable": true,
+   "note": "HTTPS GET / succeeded",
+   "seconds": 0.43
+  },
+  {
+   "host": "raw.githubusercontent.com",
+   "purpose": "raw file fetch from a commit",
+   "dns": [
+    "185.199.108.133",
+    "185.199.109.133",
+    "185.199.110.133",
+    "185.199.111.133"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.04
+  },
+  {
+   "host": "buffedlizard55-lab.github.io",
+   "purpose": "predecessor sessions' published GitHub Pages sites",
+   "dns": [
+    "185.199.108.153",
+    "185.199.109.153",
+    "185.199.110.153",
+    "185.199.111.153"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.06
+  },
+  {
+   "host": "pypi.org",
+   "purpose": "python dependencies",
+   "dns": [
+    "151.101.0.223",
+    "151.101.128.223",
+    "151.101.192.223",
+    "151.101.64.223"
+   ],
+   "https_status": 200,
+   "reachable": true,
+   "note": "HTTPS GET / succeeded",
+   "seconds": 0.08
+  },
+  {
+   "host": "files.pythonhosted.org",
+   "purpose": "python dependency wheels",
+   "dns": [
+    "151.101.0.223",
+    "151.101.128.223",
+    "151.101.192.223",
+    "151.101.64.223"
+   ],
+   "https_status": 404,
+   "reachable": true,
+   "note": "host answered with HTTP 404; network path is open",
+   "seconds": 0.11
+  },
+  {
+   "host": "www.usgs.gov",
+   "purpose": "USGS 3DEP / general programme pages",
+   "dns": [
+    "52.85.129.107",
+    "52.85.129.117",
+    "52.85.129.71",
+    "52.85.129.96"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.12
+  },
+  {
+   "host": "www.sciencebase.gov",
+   "purpose": "GeoDAWN radiometrics item 657e1d85d34e23d3533209f7",
+   "dns": [
+    "172.65.90.24",
+    "172.65.90.25",
+    "172.65.90.26",
+    "172.65.90.27"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.11
+  },
+  {
+   "host": "doi.org",
+   "purpose": "DOIs for Bour & Davy 1999, Marrett et al. 2018, and the rest",
+   "dns": [
+    "104.26.4.132",
+    "104.26.5.132",
+    "172.67.69.3"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.06
+  },
+  {
+   "host": "gdr.openei.org",
+   "purpose": "Geothermal Data Repository submission 1391 (INGENIOUS)",
+   "dns": [
+    "184.33.136.162",
+    "35.160.113.161",
+    "44.240.130.38"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.13
+  },
+  {
+   "host": "mrdata.usgs.gov",
+   "purpose": "State Geologic Map Compilation shapefiles NV.zip / CA.zip",
+   "dns": [
+    "172.65.90.24",
+    "172.65.90.25",
+    "172.65.90.26",
+    "172.65.90.27"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.09
+  },
+  {
+   "host": "tnmaccess.nationalmap.gov",
+   "purpose": "3DEP 1 m tile inventory and download API",
+   "dns": [
+    "143.204.160.18",
+    "143.204.160.34",
+    "143.204.160.73",
+    "143.204.160.83"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.17
+  },
+  {
+   "host": "opentopography.org",
+   "purpose": "alternative DEM source",
+   "dns": [
+    "132.249.112.75"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.14
+  },
+  {
+   "host": "drivendata-public-assets.s3.amazonaws.com",
+   "purpose": "the two metric worked-example diagrams",
+   "dns": [
+    "16.15.228.185",
+    "16.15.236.99",
+    "16.15.237.183",
+    "16.15.237.30",
+    "16.15.245.116",
+    "16.15.255.123",
+    "52.216.40.178",
+    "52.216.53.26"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.09
+  },
+  {
+   "host": "www.dropbox.com",
+   "purpose": "some competition data mirrors",
+   "dns": [
+    "162.125.1.18"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.09
+  },
+  {
+   "host": "services.arcgisonline.com",
+   "purpose": "basemap tiles (context only)",
+   "dns": [
+    "108.138.94.120",
+    "108.138.94.41",
+    "108.138.94.56",
+    "108.138.94.60"
+   ],
+   "https_status": null,
+   "reachable": false,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "seconds": 0.12
+  }
+ ]
+}

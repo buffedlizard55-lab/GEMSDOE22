@@ -1,0 +1,57 @@
+[
+ {
+  "id": "H22-1",
+  "name": "Catalogue-gap supervised transfer",
+  "layers": "All 19 competition bands + GeoDAWN K/Th/U/TC + contractor Th/K, U/K, U/Th + TMI-up150 + 1 m LiDAR scarp descriptors + 1 m DEM openness/LRM",
+  "signature": "Gradient-boosted classifier whose TARGET is not 'is this a fault' but 'is this a fault the competition catalogue missed'. Transform: full multi-scale filter bank (Gaussian high-pass residual, gradient magnitude, Frangi Hessian linearity and ridge strength at sigma = 200 m and 400 m, local standard deviation) plus radiometric edge coherence across K/Th/U/TC.",
+  "why_unmapped": "The private test set is defined as faults absent from the USGS/INGENIOUS catalogue. Training on that definition directly is the only way to learn the catalogue's SELECTION FUNCTION \u2014 which structures it systematically omits \u2014 rather than the geology. SGMC-gap faults are real, publicly mapped, and 79,615 px of them are pixel-disjoint from the catalogue (only 3,978 of 60,988 catalogue pixels coincide with SGMC at all).",
+  "differs": "All 21 predecessor repos used SGMC-gap only as an offline VALIDATION proxy. None trained on it. This is a target change, not a feature change.",
+  "expected_gain": "+0.02 to +0.06 DTI",
+  "cost": "low (implemented)",
+  "status": "implemented"
+ },
+ {
+  "id": "H22-2",
+  "name": "Value-based emission via the exact DTI marginal rule",
+  "layers": "None \u2014 a decision layer on any score map",
+  "signature": "Emit ranked pixels while marginal efficiency exceeds tau = 0.2*DTI/(1 - 0.2*DTI); equivalently while the posterior exceeds tau/(1+tau) = 3.87% at DTI 0.1894. Exact DTI-versus-budget curve computed in one pass from the identity DTI = A/(0.2A + 0.2B + 0.8|G|).",
+  "why_unmapped": "Independent of geology: the catalogue is incomplete enough that the marginal candidate pixel still carries >4% posterior long after the 2.4% budget is exhausted. Measured on three independent evaluations (SGMC proxy, quadrant holdout, trace-cluster holdout) the DTI-optimal budget is 2.7x to 8x the budget every prior session used.",
+  "differs": "Every predecessor hard-coded a per-quadrant percentage budget (2.4-2.5%) derived from a power-law completeness argument. That is a quantity rule. This is the value rule the metric itself implies, and it is exact.",
+  "expected_gain": "+0.003 to +0.05 DTI (measured, fold-dependent)",
+  "cost": "very low (implemented)",
+  "status": "implemented"
+ },
+ {
+  "id": "H22-3",
+  "name": "Radiometric alteration-halo coincidence (K/Th edge co-linearity)",
+  "layers": "GeoDAWN K, Th, U, TC (external, doi:10.5066/P93LGLVQ) \u2014 a data family ENTIRELY ABSENT from the 19 competition bands",
+  "signature": "Per-channel gradient magnitude at 100 m and 300 m, then an edge-coherence statistic: the mean of each channel's normalised gradient divided by the cross-channel maximum. A fault cutting hydrothermally altered ground steps in K, Th, U and TC SIMULTANEOUSLY and co-linearly; a survey-line artefact or acquisition-block edge steps in one channel or steps in all of them along a flight-line azimuth.",
+  "why_unmapped": "Potassic alteration (K-feldspar adularia, sericite) and thorium depletion are the classic surface expression of a geothermal upflow zone along a permeable fault. A buried fault with an alteration halo has NO topographic expression, so it is invisible to every DEM-based detector the group has built \u2014 and it is exactly the class of structure an expert reviewing geophysics would add to the map.",
+  "differs": "7GEMSDOE tested radiometric lineaments once (H9b) against catalogue faults under geographic CV and did not promote it. This repo (a) adds the cross-channel COHERENCE statistic rather than per-channel gradients, and (b) evaluates against the catalogue-gap target under trace-cluster folds, which is the correct target for an unmapped-fault detector.",
+  "expected_gain": "+0.005 to +0.02 DTI",
+  "cost": "low (features built)",
+  "status": "features built"
+ },
+ {
+  "id": "H22-4",
+  "name": "Bour & Davy nearest-larger-neighbour geometric re-ranking",
+  "layers": "Fault trace geometry only \u2014 labels.tif connected components and the 1,125 GDR 1391 INGENIOUS vector traces. No feature band.",
+  "signature": "Fit <d(l)> = A*l^x (measured x = 0.822, A = 6.27 m on the raster catalogue; x = 0.437, A = 177 m on the vector traces). Invert to l*(r) = (r/A)^(1/x) and weight a candidate by how strongly l*(r) lands in the length band where the catalogue is demonstrably incomplete.",
+  "why_unmapped": "The scaling says where faults of a given size MUST sit relative to larger ones. A candidate that the detector scores equally but that violates the fitted clustering law is more likely to be an artefact; one that lies along the extrapolated pattern of a known larger fault is more likely to be a real unmapped splay, relay or tip fracture.",
+  "differs": "19GEMSDOE's H19-1 fitted a length-frequency power law and used it only to set a BUDGET (2.45%) and to define isotropic Gaussian tip/step-over lobes. It never fitted or used the Bour & Davy x exponent, and never used the scaling as a per-pixel re-ranking field.",
+  "expected_gain": "+0.002 to +0.01 DTI",
+  "cost": "low (implemented)",
+  "status": "implemented"
+ },
+ {
+  "id": "H22-5",
+  "name": "Marrett NCC artefact audit as a submission gate",
+  "layers": "The predicted raster itself",
+  "signature": "Normalised correlation count on 0/90-degree scanlines through the prediction, lag 200 m to 4 km, against a Monte-Carlo complete-spatial-randomness null; compared with the same statistic measured on the known catalogue (mean NCC 5.72, verdict CLUSTERED, slope -0.749).",
+  "why_unmapped": "It does not find faults \u2014 it vetoes false ones. A predicted population whose spatial arrangement diverges sharply from the population statistics actually measured in this region is a detection artefact (survey-line aliasing, acquisition-block edges) rather than geology, and no per-pixel loss function will ever say so.",
+  "differs": "No predecessor repo computed any normalised correlation count, on the catalogue or on a prediction. The group's only submission-level sanity checks were format checks and a Jaccard duplicate threshold.",
+  "expected_gain": "0 directly; protects against a wasted upload slot",
+  "cost": "low (implemented)",
+  "status": "implemented"
+ }
+]
