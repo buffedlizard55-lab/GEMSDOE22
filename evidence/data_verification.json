@@ -1,0 +1,295 @@
+{
+  "generated_utc": "2026-09-30T19:57:44+00:00",
+  "rasters": {
+    "training_features.tif": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844,
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "count": 19,
+      "dtype": "float32",
+      "descriptions": [
+        "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+        "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+        "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+        "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+        "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+        "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+        "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+        "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+        "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+        "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+        "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+        "det_elev - Detrended elevation - topography with regional trends removed",
+        "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+        "tmi - Total magnetic intensity - total strength of magnetic field",
+        "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+        "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+        "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+        "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+        "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending"
+      ],
+      "status": "VERIFIED"
+    },
+    "labels.tif": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "count": 1,
+      "dtype": "int8",
+      "descriptions": [
+        null
+      ],
+      "status": "VERIFIED"
+    },
+    "sample_submission.tif": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597,
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "count": 1,
+      "dtype": "float32",
+      "descriptions": [
+        null
+      ],
+      "status": "VERIFIED"
+    },
+    "external/lidar_scarp_features_u8.tif": {
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "bytes": 36943606,
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "count": 12,
+      "dtype": "uint8",
+      "descriptions": [
+        "ex_max",
+        "ex_mean",
+        "step_max",
+        "lapneg_max",
+        "lappos_max",
+        "downface_max",
+        "upface_max",
+        "cross_max",
+        "relief",
+        "coh100",
+        "strike",
+        "valid"
+      ],
+      "status": "VERIFIED"
+    },
+    "external/geodawn_rad_u8.tif": {
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "bytes": 26612970,
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "count": 4,
+      "dtype": "uint8",
+      "descriptions": [
+        "K",
+        "Th",
+        "U",
+        "TC"
+      ],
+      "status": "VERIFIED"
+    },
+    "external/geodawn_extensions_u8.tif": {
+      "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+      "bytes": 27132925,
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "count": 4,
+      "dtype": "uint8",
+      "descriptions": [
+        "ThK",
+        "UK",
+        "UTh",
+        "TMI_up150"
+      ],
+      "status": "VERIFIED"
+    }
+  },
+  "dem10_channels": {
+    "dem10_slope_max": {
+      "sha256": "fd46738e9a58a6f40c130c3c70f645525dbfc12d27b6ed149e596e6a379cbfaa",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_slope_mean": {
+      "sha256": "338b443c441db61120faf36437ec61dfcccaa569c41aa3099ed3accef5a35f95",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_slope_std": {
+      "sha256": "9c15e0e760d8255eb0473821a07cc09e4fe4b40746e6e37278e691f615c0f642",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_hgm20_max": {
+      "sha256": "f58df86b0be3b3dc54affc60dc7d77a95db3dafb9c1267eac4912c5d8e57526b",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_hgm50_max": {
+      "sha256": "1cca42538ec0c91951b578136893eb5d90cd1414c45257d2a72ebe80b29f0f40",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_hgm200_mean": {
+      "sha256": "9328f889f4d607f8530840da138741b7431da49d2432b0ab2da110a82984102b",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_steep_ratio_max": {
+      "sha256": "eaf3d5e24c6769ffb98665e75c9665dbaa16bdb79708900217dca955031e6828",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_resid_std": {
+      "sha256": "50db8caa815cb09cc695ec230f15f41e8e04cd9bef5fc09b07b06aeadd44a86e",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_resid_range": {
+      "sha256": "bbcf8a462ace31a80964ba8a7ab76fcbcb347deb4f4d2919166b3eda5c721b0c",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_curv_absmax": {
+      "sha256": "58e82f1301032b46b10344b9299b83e6ce5bed1ca83e320f078fa57321bff632",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_onesided": {
+      "sha256": "02d1d241de9534d307f314d0b2f8a857ceb1ce0d099fd7dee8872a83bd0271f8",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_onesided3": {
+      "sha256": "bca9faf8e0c572ecb1e77b6c94b0cb96c41e824873cb7747e0ece28b531598d2",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    },
+    "dem10_valid_frac": {
+      "sha256": "35d7ef0719bfed93f9aed927afd8c51882283fc7316cab0f8c219c9302b92122",
+      "shape": [
+        5167373
+      ],
+      "finite_fraction": 1.0
+    }
+  },
+  "irregularities_verified": [
+    {
+      "id": "FLAG-01",
+      "finding": "The locally bridged sample_submission.tif positive mask equals (labels.tif > 0) inside the 5,167,373-pixel footprint (60,988 positive pixels). This conflicts with the official problem page describing an all-absence sample. The private DrivenData download was not independently retrieved here, so provenance/cause remain unresolved.",
+      "measured": {
+        "sample_submission_positives": 60988,
+        "labels_positives": 60988,
+        "differing_pixels_in_footprint": 0
+      }
+    }
+  ],
+  "footprint_pixels": 5167373,
+  "outside_pixels": 7111787,
+  "catalogue_positive_pixels": 60988,
+  "sample_submission_equals_catalogue": true,
+  "lidar_1m_coverage": {
+    "covered_pixels": 3894460,
+    "covered_fraction": 0.753663,
+    "gap_pixels": 1272913,
+    "gap_fraction": 0.246337,
+    "catalogue_pixels_in_gap": 12523,
+    "catalogue_fraction_in_gap": 0.205335
+  },
+  "elapsed_seconds": 1.29
+}

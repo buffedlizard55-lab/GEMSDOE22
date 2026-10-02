@@ -1,0 +1,210 @@
+{
+  "generated_utc": "2026-09-30T20:55:21+00:00",
+  "status": "EXPLORATORY_HYPOTHESIS_GENERATION",
+  "n_files": 15,
+  "files": [
+    "16GEMSDOE",
+    "GEMSDOE2",
+    "7GEMSDOE",
+    "12GEMSDOE",
+    "GEMSDOE3-1",
+    "GEMSDOE3-3",
+    "GEMSDOE10-H20",
+    "GEMSDOE3-2",
+    "15GEMSDOE",
+    "GEMSDOE10-H16",
+    "GEMSDOE4",
+    "6GEMSDOE",
+    "11GEMSDOE",
+    "GEMSDOE9",
+    "14GEMSDOE"
+  ],
+  "n_comparisons": 51,
+  "bonferroni_p_threshold_0_05": 0.00098,
+  "expected_false_positives_at_p_0_05": 2.6,
+  "top_by_abs_rho": [
+    {
+      "feature": "worm_mag_1500m",
+      "spearman_rho": 0.582,
+      "p_uncorrected": 0.0228,
+      "enrichment_range": [
+        0.482,
+        0.573
+      ]
+    },
+    {
+      "feature": "dem10_onesided",
+      "spearman_rho": -0.564,
+      "p_uncorrected": 0.0284,
+      "enrichment_range": [
+        0.451,
+        0.542
+      ]
+    },
+    {
+      "feature": "dem10_onesided3",
+      "spearman_rho": -0.546,
+      "p_uncorrected": 0.0351,
+      "enrichment_range": [
+        0.456,
+        0.531
+      ]
+    },
+    {
+      "feature": "lid1m_antislope",
+      "spearman_rho": 0.521,
+      "p_uncorrected": 0.0462,
+      "enrichment_range": [
+        0.494,
+        0.739
+      ]
+    },
+    {
+      "feature": "det_elev_local15",
+      "spearman_rho": -0.482,
+      "p_uncorrected": 0.0687,
+      "enrichment_range": [
+        0.251,
+        0.49
+      ]
+    },
+    {
+      "feature": "lid1m_tect_vs_fluv",
+      "spearman_rho": 0.454,
+      "p_uncorrected": 0.0895,
+      "enrichment_range": [
+        0.493,
+        0.749
+      ]
+    },
+    {
+      "feature": "lid1m_piedmont_step",
+      "spearman_rho": 0.436,
+      "p_uncorrected": 0.1045,
+      "enrichment_range": [
+        0.499,
+        0.736
+      ]
+    },
+    {
+      "feature": "grav_local15",
+      "spearman_rho": 0.429,
+      "p_uncorrected": 0.111,
+      "enrichment_range": [
+        0.484,
+        0.603
+      ]
+    },
+    {
+      "feature": "depth_base_grad",
+      "spearman_rho": -0.418,
+      "p_uncorrected": 0.1212,
+      "enrichment_range": [
+        0.381,
+        0.571
+      ]
+    },
+    {
+      "feature": "lid1m_step_max",
+      "spearman_rho": 0.4,
+      "p_uncorrected": 0.1396,
+      "enrichment_range": [
+        0.495,
+        0.734
+      ]
+    },
+    {
+      "feature": "hydro_rad_edge",
+      "spearman_rho": 0.396,
+      "p_uncorrected": 0.1435,
+      "enrichment_range": [
+        0.508,
+        0.695
+      ]
+    },
+    {
+      "feature": "dem10_slope_std",
+      "spearman_rho": 0.396,
+      "p_uncorrected": 0.1435,
+      "enrichment_range": [
+        0.495,
+        0.748
+      ]
+    },
+    {
+      "feature": "tmi_hg",
+      "spearman_rho": 0.382,
+      "p_uncorrected": 0.1598,
+      "enrichment_range": [
+        0.416,
+        0.622
+      ]
+    },
+    {
+      "feature": "up150_deep_grad",
+      "spearman_rho": 0.382,
+      "p_uncorrected": 0.1598,
+      "enrichment_range": [
+        0.427,
+        0.608
+      ]
+    },
+    {
+      "feature": "grav_slope",
+      "spearman_rho": -0.375,
+      "p_uncorrected": 0.1684,
+      "enrichment_range": [
+        0.452,
+        0.587
+      ]
+    }
+  ],
+  "bottom_by_abs_rho": [
+    {
+      "feature": "strain_shear",
+      "spearman_rho": -0.079,
+      "p_uncorrected": 0.7808,
+      "enrichment_range": [
+        0.46,
+        0.664
+      ]
+    },
+    {
+      "feature": "lid1m_valid",
+      "spearman_rho": 0.061,
+      "p_uncorrected": 0.8298,
+      "enrichment_range": [
+        0.432,
+        0.623
+      ]
+    },
+    {
+      "feature": "hydro_uk_anom",
+      "spearman_rho": -0.046,
+      "p_uncorrected": 0.8695,
+      "enrichment_range": [
+        0.499,
+        0.657
+      ]
+    },
+    {
+      "feature": "strain_2ndinv",
+      "spearman_rho": -0.011,
+      "p_uncorrected": 0.9698,
+      "enrichment_range": [
+        0.458,
+        0.666
+      ]
+    },
+    {
+      "feature": "hydro_clay_conduit",
+      "spearman_rho": -0.007,
+      "p_uncorrected": 0.9798,
+      "enrichment_range": [
+        0.491,
+        0.571
+      ]
+    }
+  ],
+  "caveat": "n=15 files, many correlated channels; nothing here survives a multiple-comparison correction unless p < the Bonferroni threshold."
+}
