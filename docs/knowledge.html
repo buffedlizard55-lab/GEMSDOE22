@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Knowledge Base · 19GEMSDOE</title><meta name="description" content="Verified facts about the GEMS Prize, the data and Great Basin fault geology.">
+<link rel="stylesheet" href="assets/site.css"></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="in"><a class="brand" href="index.html">19GEMSDOE</a><nav class="main" aria-label="Main"><a href="index.html">Home & Downloads</a><a href="executive_summary.html">Executive Summary & Upload Guide</a><a href="research.html">Hypotheses & 4-Line Physics</a><a href="results.html">Leaderboard & Forensic Audit</a><a href="knowledge.html" aria-current="page">Knowledge Base</a><a href="audit.html">Source Verification & Flags</a><a href="https://github.com/buffedlizard55-lab/GEMSDOE22" rel="noopener">GitHub</a></nav></div></header>
+<div class="strip"><div class="in"><span>DOE GEMS Prize · DrivenData #306</span><span>Ends <strong>Dec 3, 2026 23:59 UTC</strong> · <strong id="countdown" data-end="2026-12-03T23:59:00Z"></strong></span><span>Limit: <strong>3 uploads / rolling 7 days</strong></span><span>Group Best: <strong>0.1855 (16GEMSDOE)</strong> · Leader: <strong>0.3168</strong></span><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" rel="noopener">Competition</a></div></div>
+<main id="main" class="wrap"><div class="md"><h1 id="knowledge-base-verified-facts-for-the-doe-gems-prize-2026-09-30">Knowledge base — verified facts for the DOE GEMS Prize (2026-09-30)</h1>
+<p>Every statement is tagged <strong>OBSERVED</strong> (read from the linked source), <strong>COMPUTED</strong> (calculated from files in this repo) or <strong>INFERENCE</strong> (reasoning). Unknowns are listed in Section 6. The full claim-by-claim audit table is on the <a href="audit.html">Audit page</a>. Reuse this page as the starting point for other fault-detection projects.</p>
+<h2 id="1-the-task-in-one-page">1. The task in one page</h2>
+<ul>
+<li><strong>OBSERVED.</strong> Predict faults in the GeoDAWN region (Nevada/California) as a probability raster; public known faults are incomplete; scoring uses new faults labelled by NLR/USGS experts. <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description</a>.</li>
+<li><strong>OBSERVED.</strong> Grid: EPSG:32611, 100 m, 3,292 × 3,730 pixels, origin (243350, 4508550); footprint = 5,167,373 pixels. Outside the footprint the file must be null/NaN.</li>
+<li><strong>OBSERVED.</strong> Metric: <code>DTI = TP_w / (TP_w + α·FP_w + β·FN_w + ε)</code>, α = 0.2, β = 0.8, triangular kernel, R = 300 m (3 px).</li>
+<li><strong>OBSERVED.</strong> Known-fault pixels are masked pixel-exactly and only new faults are scored (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">staff ruling</a>).</li>
+<li><strong>OBSERVED.</strong> Deadline <strong>Dec 3, 2026 23:59 UTC</strong>; up to three uploads per rolling week; one final submission per entity; Phase 1 $50,000, Phase 2 $250,000 (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">home</a>, <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules</a>).</li>
+</ul>
+<h3 id="what-drives-the-score-computed-from-the-published-formula">What drives the score (COMPUTED from the published formula)</h3>
+<p>Because <code>FN_w = G − TP_w</code> (G = number of scored ground-truth pixels) and α + β = 1:</p>
+<p><code>DTI = TP_w / (0.2·TP_w + 0.2·FP_w + 0.8·G)</code></p>
+<ol>
+<li>While false-positive mass is small next to G, DTI ≈ <code>TP_w / (0.8·G)</code>: <strong>the score is recall-dominated.</strong></li>
+<li>Adding a pixel raises DTI only if its expected TP gain per unit of FP mass exceeds <code>τ = α·DTI / (1 − α·DTI)</code>: τ = 0.0323 at DTI 0.1563 and τ = 0.0676 at 0.3168. <strong>INFERENCE:</strong> this is consistent with thick, low-precision blobs failing (GEMSDOE4's thick union blobs scored 0.0343) and with modest pixel budgets working better, but the score history alone does not prove it.</li>
+<li><strong>Exact lower bound.</strong> Even with zero false-positive mass, reaching a score <em>s</em> needs kernel-weighted recall <code>TP_w / G ≥ 0.8·s / (1 − 0.2·s)</code>: at least <strong>12.9 %</strong> of G for 0.1563 and <strong>27.1 %</strong> of G for the leader's 0.3168. False positives raise both requirements. Illustration, not a measurement: recall 0.35·G with FP mass 1.17·G gives 0.3168.</li>
+</ol>
+<h2 id="2-data-we-hold-and-where-each-piece-comes-from">2. Data we hold, and where each piece comes from</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+<th>Provenance status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>training_features.tif</code> (19 bands, float32, 418,912,844 B)</td>
+<td>GeoDAWN + INGENIOUS layers at 100 m</td>
+<td>Bridged from the team's public GitHub (SHA-256 pinned); DrivenData's own copy is login-gated, so <strong>not independently compared</strong></td>
+</tr>
+<tr>
+<td><code>labels.tif</code></td>
+<td>rasterised known faults (int8; 1 fault, 0 none, −1 outside)</td>
+<td><strong>Independently verified:</strong> 99.95 % of pixels reproduced from the official GDR INGENIOUS fault shapefiles (Audit flag F04)</td>
+</tr>
+<tr>
+<td><code>sample_submission.tif</code></td>
+<td>grid template; finite footprint 5,167,373 px</td>
+<td>Footprint verified (= labels footprint; area within 0.4 % of the USGS GeoDAWN area). <strong>Values are not all zero</strong> (flag F02)</td>
+</tr>
+<tr>
+<td>external stacks (lidar scarp, radiometric K/Th/U/TC, extensions, 13 DEM10 channels)</td>
+<td>derived by earlier group repos from USGS 3DEP and GeoDAWN</td>
+<td>hash-pinned bridge copies; upstream products are public domain (3DEP) / CC0 (GeoDAWN)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-19-feature-layers-computed-from-the-files-own-tags-and-footprint-statistics">The 19 feature layers (COMPUTED from the file's own tags and footprint statistics)</h3>
+<div class="tw"><table class=""><thead><tr><th>#</th><th>Name</th><th>Category (file tag)</th><th>File description</th><th>Footprint range</th><th>Invalid px inside</th></tr></thead><tbody><tr><td>1</td><td><code>mag_anom</code></td><td>magnetic_data</td><td>Magnetic anomaly - deviation from expected Earth&#x27;s magnetic field</td><td>-1052 … 2109</td><td>3,061</td></tr><tr><td>2</td><td><code>rtp</code></td><td>magnetic_data</td><td>Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects</td><td>-2786 … 4509</td><td>3,061</td></tr><tr><td>3</td><td><code>tmi_hg</code></td><td>magnetic_data</td><td>Total magnetic intensity horizontal gradient - rate of change in horizontal direction</td><td>0.00491 … 2200</td><td>3,061</td></tr><tr><td>4</td><td><code>geod_2ndinv</code></td><td>geodetic_strain</td><td>Geodetic second invariant - measure of strain rate tensor magnitude</td><td>1.2 … 87.45</td><td>3,061</td></tr><tr><td>5</td><td><code>iso_grav_anom_slope</code></td><td>gravity_data</td><td>Isostatic gravity anomaly slope - gradient of gravity after isostatic correction</td><td>0.001383 … 0.6517</td><td>3,061</td></tr><tr class="dup"><td>6</td><td><code>tc</code></td><td>magnetic_data</td><td>Tilt angle or total curvature - magnetic field derivative for edge detection</td><td>2.953 … 88.57</td><td>3,073</td></tr><tr><td>7</td><td><code>geod_shearrate</code></td><td>geodetic_strain</td><td>Geodetic shear rate - rate of angular deformation from GPS/InSAR</td><td>0 … 54.4</td><td>3,061</td></tr><tr><td>8</td><td><code>geod_dilaterate</code></td><td>geodetic_strain</td><td>Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)</td><td>-16.5 … 34.52</td><td>3,061</td></tr><tr><td>9</td><td><code>tmi_vg</code></td><td>magnetic_data</td><td>Total magnetic intensity vertical gradient - rate of change in vertical direction</td><td>-7.651 … 20.51</td><td>3,061</td></tr><tr><td>10</td><td><code>deq_n100a15</code></td><td>seismic</td><td>Distance to earthquake (n=100km radius, a=15° azimuth parameters)</td><td>0 … 4.963e+06</td><td>3,061</td></tr><tr><td>11</td><td><code>iso_grav_anom_vg</code></td><td>gravity_data</td><td>Isostatic gravity anomaly vertical gradient - vertical rate of change</td><td>-18.16 … 12.58</td><td>3,061</td></tr><tr><td>12</td><td><code>det_elev</code></td><td>topographic</td><td>Detrended elevation - topography with regional trends removed</td><td>-590 … 1470</td><td>3,061</td></tr><tr><td>13</td><td><code>iso_grav_anom</code></td><td>gravity_data</td><td>Isostatic gravity anomaly - gravity after compensating for topographic mass</td><td>-45.76 … 24.23</td><td>3,061</td></tr><tr><td>14</td><td><code>tmi</code></td><td>magnetic_data</td><td>Total magnetic intensity - total strength of magnetic field</td><td>-2178 … 4506</td><td>3,061</td></tr><tr><td>15</td><td><code>depth_to_base_surf</code></td><td>subsurface</td><td>Depth to basement surface - thickness of sedimentary cover</td><td>-14.84 … 7135</td><td>3,061</td></tr><tr><td>16</td><td><code>ieq_n100a15</code></td><td>seismic</td><td>Earthquake intensity or density (n=100km radius, a=15° parameters)</td><td>236.8 … 7870</td><td>3,061</td></tr><tr><td>17</td><td><code>cond_surf</code></td><td>subsurface</td><td>Conductivity surface - electrical conductivity of subsurface</td><td>0.1937 … 4.969</td><td>3,061</td></tr><tr><td>18</td><td><code>iso_grav_anom_hg</code></td><td>gravity_data</td><td>Isostatic gravity anomaly horizontal gradient - horizontal rate of change</td><td>-15.44 … 12.86</td><td>3,061</td></tr><tr><td>19</td><td><code>det_elev_slope</code></td><td>topographic</td><td>Detrended elevation slope - gradient of elevation after detrending</td><td>0.001103 … 62.65</td><td>3,061</td></tr></tbody></table></div>
+
+<p><strong>Flag F01:</strong> band 6 <code>tc</code> is labelled "tilt angle" in the file but behaves as radiometric <strong>total count</strong> (r = +0.997 with the USGS GeoDAWN TC channel; r = +0.013 with a computed magnetic tilt). <strong>Flag F05:</strong> every band has 3,061–3,073 invalid pixels <em>inside</em> the footprint.</p>
+<h2 id="3-geology-that-matters-for-fault-discovery-observed-unless-marked">3. Geology that matters for fault discovery (OBSERVED unless marked)</h2>
+<ul>
+<li>Most Great Basin hydrothermal systems are fault-controlled; faults can also be barriers (<a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf">Hermant et al. 2025</a>, the paper the DrivenData About page cites).</li>
+<li>Structural settings of 426 known systems (≥ 37 °C): step-overs/relay ramps ~32 %, normal-fault terminations ~25 %; ~39 % are blind; estimates suggest up to ~75 % of resources are blind (<a href="https://www.osti.gov/servlets/purl/1724082">Faulds &amp; Hinz 2015</a>). Step-overs, terminations, intersections and accommodation zones are long-term critically stressed areas where fluid pathways stay open (<a href="https://www.osti.gov/dataexplorer/biblio/dataset/1148722">OSTI dataset 1148722</a>).</li>
+<li>Fault intersections and terminations identify upflow locations along faults (<a href="https://pubs.usgs.gov/publication/70202167">Siler et al. 2019</a>).</li>
+<li>Most northern-Nevada hot springs lie on basin flanks along Basin and Range faults, some in inner basins (<a href="https://www.usgs.gov/publications/geothermal-systems-northern-nevada">Hose &amp; Taylor 1974</a>).</li>
+<li>A ~15 km left-step between range-front fault systems contains numerous ENE-striking intra-basin faults (<a href="https://www.usgs.gov/publications/geophysical-modeling-a-possible-blind-geothermal-system-near-battle-mountain-nv">USGS, Argenta Rise</a>).</li>
+<li>USGS Quaternary faults can sit up to ~400 m from lidar-based labels; database density varies with the source map (Hermant et al. 2025).</li>
+<li><strong>COMPUTED.</strong> Of 499 GDR spring features in the footprint, 45 % lie within 1 km of a catalogued fault (random footprint pixels: 25 %) and 35 % lie beyond 3 km.</li>
+<li><strong>GeoDAWN acquisition (OBSERVED).</strong> Area 2 (most of the extent) used 400 m east–west flight lines and 4,000 m north–south tie lines at 150–200 m terrain clearance (<a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS</a>). <strong>INFERENCE:</strong> cross-line resolution is coarse, so east–west lineaments in magnetic derivatives may be acquisition artefacts.</li>
+</ul>
+<h2 id="4-methods-knowledge">4. Methods knowledge</h2>
+<ul>
+<li><strong>OBSERVED.</strong> The organizers' reference solution is a U-Net with Tversky loss (α 0.2, β 0.8) on 128-pixel patches with Monte-Carlo splits; it zero-fills NaN features (<a href="https://github.com/drivendataorg/gems-prize-reference-solution">repo</a>).</li>
+<li><strong>OBSERVED.</strong> The group's best live score (0.1563) is a binary, thinned mask from an 11-model CNN ensemble (U-Net++, DeepLabV3+, U-Net, ResNet-34) — from the GEMSDOE site's own <code>submission_meta.json</code>.</li>
+<li><strong>COMPUTED.</strong> On the four-quadrant holdout: geophysics-only arms reach dense ≈ 0.16, while arms that add 1 m lidar / 10 m DEM scarp features reach ≈ 0.20; blending them gives H16-1 at 0.21272. Topography carries most of the recoverable signal for <em>known</em> faults.</li>
+<li><strong>COMPUTED.</strong> A plain fault-density prior recovers most of the lift of the endpoint/junction prior (<a href="research.html">register §4</a>).</li>
+</ul>
+<h2 id="5-compliance-checklist-observed">5. Compliance checklist (OBSERVED)</h2>
+<ul>
+<li>DrivenData Terms of Use forbid robots/spiders and say accounts are personal (<a href="https://www.drivendata.org/termsofuse/">ToU</a>) — therefore <strong>no automated leaderboard/forum scraping</strong> here.</li>
+<li>Rules require disclosure of generative-AI use and one final submission per entity (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules</a>).</li>
+<li>External data must be licensed for use and sharing with the sponsor (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#external-datasets">page 967</a>).</li>
+</ul>
+<h2 id="6-unknowns-do-not-treat-as-facts">6. Unknowns (do not treat as facts)</h2>
+<ul>
+<li>What data and fault types the new test faults come from (the organizers decline to say).</li>
+<li>How the public/private split is drawn (page 967 says the region is "chunked"; the rules say labels are divided). </li>
+<li>The exact server-side file checker behind "Predicted values must be in range [0, 1]" (not public).</li>
+<li>Whether the bridged <code>sample_submission.tif</code> equals the data-tab file (login-gated).</li>
+<li>Whether geologic-map, thermal-conduit or step-overs faults are present in the test labels.</li>
+</ul></div>
+<footer><p>Built 2026-10-02 02:06 UTC from commit <code>9c9e05689</code> on branch <code>arena/01a0f3d1-19gemsdoe</code>. Every claim and dataset is hash-verified against official public sources (<a href="audit.html">Source Audit</a>). Project brief &amp; Arena Core Values: <a href="https://github.com/buffedlizard55-lab/GEMSDOE22/blob/arena/01a0fa49-gemsdoe22/README.md">README.md</a>.</p></footer></main>
+<script src="js/site.js"></script></body></html>

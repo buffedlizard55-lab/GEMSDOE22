@@ -1,0 +1,349 @@
+[
+  {
+    "candidate": "Baseline_Bands19_DeReg",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 1,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": false,
+    "L3_Openness_LRM_Scarp": false,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L2_Backward_ThermalGeochem",
+      "L3_Openness_LRM_Scarp"
+    ],
+    "mean_dense_dti": 0.15887,
+    "delta_dense_vs_h16_1": -0.05385,
+    "dense_fold_wins": 0,
+    "mean_sparse_dti": 0.06274,
+    "delta_sparse_vs_h16_1": -0.02267,
+    "sparse_fold_wins": 0,
+    "gate_passed": false,
+    "disposition": "DISCARDED (Single-Layer Match: 19 competition GeoDAWN bands only)"
+  },
+  {
+    "candidate": "H16_5_Strain_Seismic_Completeness",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 1,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": false,
+    "L3_Openness_LRM_Scarp": false,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L2_Backward_ThermalGeochem",
+      "L3_Openness_LRM_Scarp"
+    ],
+    "mean_dense_dti": 0.14466,
+    "delta_dense_vs_h16_1": -0.06806,
+    "dense_fold_wins": 0,
+    "mean_sparse_dti": 0.05613,
+    "delta_sparse_vs_h16_1": -0.02928,
+    "sparse_fold_wins": 0,
+    "gate_passed": false,
+    "disposition": "DISCARDED (Single-Layer Match & Fails Holdout Gate)"
+  },
+  {
+    "candidate": "H16_4_Hydrothermal_Conduit",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 2,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": true,
+    "L3_Openness_LRM_Scarp": false,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L2_Backward_ThermalGeochem",
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L3_Openness_LRM_Scarp"
+    ],
+    "mean_dense_dti": 0.15996,
+    "delta_dense_vs_h16_1": -0.05276,
+    "dense_fold_wins": 0,
+    "mean_sparse_dti": 0.06299,
+    "delta_sparse_vs_h16_1": -0.02242,
+    "sparse_fold_wins": 0,
+    "gate_passed": false,
+    "disposition": "REJECTED (Superseded by H19-2 Backward Thermal/Geochemical Inversion)"
+  },
+  {
+    "candidate": "H16_2_Geopotential_Strike_Worm",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 1,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": false,
+    "L3_Openness_LRM_Scarp": false,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L2_Backward_ThermalGeochem",
+      "L3_Openness_LRM_Scarp"
+    ],
+    "mean_dense_dti": 0.16266,
+    "delta_dense_vs_h16_1": -0.05006,
+    "dense_fold_wins": 0,
+    "mean_sparse_dti": 0.06409,
+    "delta_sparse_vs_h16_1": -0.02132,
+    "sparse_fold_wins": 0,
+    "gate_passed": false,
+    "disposition": "DISCARDED Standalone (Single-Layer Match; retained only as Line 4 input to H19-4)"
+  },
+  {
+    "candidate": "H19_1_PowerLaw_TipStepover",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 2,
+    "L1_PopScaling_TipRelay": true,
+    "L2_Backward_ThermalGeochem": false,
+    "L3_Openness_LRM_Scarp": false,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [
+      "L2_Backward_ThermalGeochem",
+      "L3_Openness_LRM_Scarp"
+    ],
+    "mean_dense_dti": 0.1624,
+    "delta_dense_vs_h16_1": -0.05032,
+    "dense_fold_wins": 0,
+    "mean_sparse_dti": 0.06348,
+    "delta_sparse_vs_h16_1": -0.02193,
+    "sparse_fold_wins": 0,
+    "gate_passed": false,
+    "disposition": "COMPONENT ONLY (Line 1+4 expert; +0.00353 Dense over 19-band baseline, feeds H19-4)"
+  },
+  {
+    "candidate": "H19_2_Backward_ThermalGeochem",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 2,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": true,
+    "L3_Openness_LRM_Scarp": false,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L2_Backward_ThermalGeochem",
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L3_Openness_LRM_Scarp"
+    ],
+    "mean_dense_dti": 0.16201,
+    "delta_dense_vs_h16_1": -0.05071,
+    "dense_fold_wins": 0,
+    "mean_sparse_dti": 0.06387,
+    "delta_sparse_vs_h16_1": -0.02154,
+    "sparse_fold_wins": 0,
+    "gate_passed": false,
+    "disposition": "COMPONENT ONLY (Line 2+4 expert; beats H16-4 by +0.00205 Dense / +0.00088 Sparse DTI, feeds H19-4)"
+  },
+  {
+    "candidate": "H16_3_ScarpPure_1m_10m",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 1,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": false,
+    "L3_Openness_LRM_Scarp": true,
+    "L4_Geopotential_Basement": false,
+    "lines_satisfied": [
+      "L3_Openness_LRM_Scarp"
+    ],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L2_Backward_ThermalGeochem",
+      "L4_Geopotential_Basement"
+    ],
+    "mean_dense_dti": 0.20175,
+    "delta_dense_vs_h16_1": -0.01097,
+    "dense_fold_wins": 2,
+    "mean_sparse_dti": 0.08217,
+    "delta_sparse_vs_h16_1": -0.00324,
+    "sparse_fold_wins": 1,
+    "gate_passed": false,
+    "disposition": "DISCARDED Standalone (Single-Layer Topographic Match; superseded by H19-3)"
+  },
+  {
+    "candidate": "H19_3_Openness_LRM_Pure",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 1,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": false,
+    "L3_Openness_LRM_Scarp": true,
+    "L4_Geopotential_Basement": false,
+    "lines_satisfied": [
+      "L3_Openness_LRM_Scarp"
+    ],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L2_Backward_ThermalGeochem",
+      "L4_Geopotential_Basement"
+    ],
+    "mean_dense_dti": 0.2033,
+    "delta_dense_vs_h16_1": -0.00942,
+    "dense_fold_wins": 1,
+    "mean_sparse_dti": 0.08267,
+    "delta_sparse_vs_h16_1": -0.00274,
+    "sparse_fold_wins": 1,
+    "gate_passed": false,
+    "disposition": "DISCARDED Standalone (Single-Layer Topographic Match; beats H16-3 Pure by +0.00155 Dense, feeds H19-4)"
+  },
+  {
+    "candidate": "H16_3_Antislope_Piedmont_Scarp_1m_10m",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 2,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": false,
+    "L3_Openness_LRM_Scarp": true,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L3_Openness_LRM_Scarp",
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L2_Backward_ThermalGeochem"
+    ],
+    "mean_dense_dti": 0.20311,
+    "delta_dense_vs_h16_1": -0.00961,
+    "dense_fold_wins": 0,
+    "mean_sparse_dti": 0.07948,
+    "delta_sparse_vs_h16_1": -0.00593,
+    "sparse_fold_wins": 0,
+    "gate_passed": false,
+    "disposition": "REJECTED (2-Line expert superseded by H19-3 AntiPiedmont & H19-4)"
+  },
+  {
+    "candidate": "H19_3_Openness_LRM_AntiPiedmont",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 2,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": false,
+    "L3_Openness_LRM_Scarp": true,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L3_Openness_LRM_Scarp",
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L2_Backward_ThermalGeochem"
+    ],
+    "mean_dense_dti": 0.20551,
+    "delta_dense_vs_h16_1": -0.00721,
+    "dense_fold_wins": 1,
+    "mean_sparse_dti": 0.08211,
+    "delta_sparse_vs_h16_1": -0.0033,
+    "sparse_fold_wins": 1,
+    "gate_passed": false,
+    "disposition": "COMPONENT ONLY (2-Line expert; beats H16-3 AntiPiedmont by +0.00240 Dense / +0.00263 Sparse DTI, feeds H19-4)"
+  },
+  {
+    "candidate": "H19_SingleLayer_PatternMatch_Ablation",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 0,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": false,
+    "L3_Openness_LRM_Scarp": false,
+    "L4_Geopotential_Basement": false,
+    "lines_satisfied": [],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L2_Backward_ThermalGeochem",
+      "L3_Openness_LRM_Scarp",
+      "L4_Geopotential_Basement"
+    ],
+    "mean_dense_dti": 0.03034,
+    "delta_dense_vs_h16_1": -0.18238,
+    "dense_fold_wins": 0,
+    "mean_sparse_dti": 0.01207,
+    "delta_sparse_vs_h16_1": -0.07334,
+    "sparse_fold_wins": 0,
+    "gate_passed": false,
+    "disposition": "DISCARDED (Single-Layer Pattern Matches Only: Dense DTI = 0.03024, Sparse DTI = 0.01188)"
+  },
+  {
+    "candidate": "H16_1_SeamFree_MultiScale_Synthesis",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 3,
+    "L1_PopScaling_TipRelay": false,
+    "L2_Backward_ThermalGeochem": true,
+    "L3_Openness_LRM_Scarp": true,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L2_Backward_ThermalGeochem",
+      "L3_Openness_LRM_Scarp",
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [
+      "L1_PopScaling_TipRelay"
+    ],
+    "mean_dense_dti": 0.21272,
+    "delta_dense_vs_h16_1": 0.0,
+    "dense_fold_wins": 0,
+    "mean_sparse_dti": 0.08541,
+    "delta_sparse_vs_h16_1": 0.0,
+    "sparse_fold_wins": 0,
+    "gate_passed": false,
+    "disposition": "PRIOR LEADERBOARD BEST BASELINE (16GEMSDOE 0.1855 LB; lacks Line 1 Power-Law Scaling, 1m DEM Openness/LRM tiles, and GDR 1391 spring/well/probe inversion)"
+  },
+  {
+    "candidate": "H19_4_MultiLine_Corroborated_Synthesis",
+    "budget_fraction": 0.025,
+    "lines_satisfied_count": 4,
+    "L1_PopScaling_TipRelay": true,
+    "L2_Backward_ThermalGeochem": true,
+    "L3_Openness_LRM_Scarp": true,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L2_Backward_ThermalGeochem",
+      "L3_Openness_LRM_Scarp",
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [],
+    "mean_dense_dti": 0.21413,
+    "delta_dense_vs_h16_1": 0.00141,
+    "dense_fold_wins": 4,
+    "mean_sparse_dti": 0.08637,
+    "delta_sparse_vs_h16_1": 0.00096,
+    "sparse_fold_wins": 4,
+    "gate_passed": true,
+    "disposition": "PROMOTED PRIMARY (Satisfies all 4 physical lines, discards single-layer matches, beats H16-1 on 4/4 Dense & 4/4 Sparse folds at identical 2.50% budget)"
+  },
+  {
+    "candidate": "H19_5_PowerLaw_Budget_Corroborated",
+    "budget_fraction": 0.0245,
+    "lines_satisfied_count": 4,
+    "L1_PopScaling_TipRelay": true,
+    "L2_Backward_ThermalGeochem": true,
+    "L3_Openness_LRM_Scarp": true,
+    "L4_Geopotential_Basement": true,
+    "lines_satisfied": [
+      "L1_PopScaling_TipRelay",
+      "L2_Backward_ThermalGeochem",
+      "L3_Openness_LRM_Scarp",
+      "L4_Geopotential_Basement"
+    ],
+    "lines_not_satisfied": [],
+    "mean_dense_dti": 0.21341,
+    "delta_dense_vs_h16_1": 0.00069,
+    "dense_fold_wins": 1,
+    "mean_sparse_dti": 0.08667,
+    "delta_sparse_vs_h16_1": 0.00126,
+    "sparse_fold_wins": 4,
+    "gate_passed": true,
+    "disposition": "PROMOTED SECONDARY (Openness/Thermal-Dominant 4-line synthesis at 2.45% power-law midpoint budget; 4/4 Sparse fold wins, DISTINCT from H19-4 & H16-1)"
+  }
+]

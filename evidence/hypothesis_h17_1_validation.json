@@ -1,0 +1,158 @@
+{
+  "generated_utc": "2026-09-29T23:44:43+00:00",
+  "candidate_id": "H17-1",
+  "candidate_name": "Cross-sensor potential-field edge agreement",
+  "status": "FAIL_HOLDOUT_GATE",
+  "submission_slot_spent": false,
+  "submission_geotiff_created": false,
+  "gate": {
+    "mean_dense_and_sparse_must_exceed_H16_1": true,
+    "sparse_folds_must_win_at_least": 3,
+    "maximum_per_fold_dti_loss": 0.01,
+    "candidate_sparse_fold_wins": 0,
+    "candidate_dense_fold_wins": 0,
+    "all_dense_and_sparse_folds_within_0_01": false,
+    "passed": false
+  },
+  "method": {
+    "folds": [
+      "NW",
+      "NE",
+      "SW",
+      "SE"
+    ],
+    "partition": "four contiguous geographic quadrants from footprint row/column medians",
+    "spatial_buffer_pixels": 15,
+    "training_sampling": "up to 40,000 mapped positive pixels + 120,000 negatives outside 3-pixel catalogue collar per fold",
+    "classifier": "HistGradientBoostingClassifier(max_iter=150,max_leaf_nodes=31,min_samples_leaf=80,learning_rate=0.06,l2_regularization=2.0)",
+    "prediction_budget_per_fold": 0.025,
+    "ranking": "same 1-pixel ridge_nms boost and top-budget selection used by prior holdout",
+    "sparse_proxy": "deterministic random 20% of connected held-out catalogue components; remaining held-out components neutral in sparse false-positive calculation",
+    "candidate_features": [
+      "mag_gradient_s1",
+      "gravity_gradient_s1",
+      "parallel_edge_agreement_s1",
+      "cross_edge_interaction_s1",
+      "mag_gradient_s3",
+      "gravity_gradient_s3",
+      "parallel_edge_agreement_s3",
+      "cross_edge_interaction_s3"
+    ],
+    "candidate_feature_definition": "RTP magnetic and isostatic-gravity gradient magnitude at Gaussian sigma 1 and 3 pixels; robust 99th-percentile normalization; parallel-normal agreement and cross-sensor orientation interaction",
+    "random_seed": 20260929,
+    "scoring": "repository dti_score_fast; this is a known-catalogue spatial-transfer proxy, not hidden leaderboard evaluation"
+  },
+  "input_files": {
+    "training_features_tif_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "labels_tif_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "sample_submission_tif_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "training_features_recorded_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "feature_oof_cache_sha256": "17c3cd9c4d5ec882080289eaaff03c322adea1a8e77d75d5311e8ddccb372d79",
+    "H16_1_oof_cache_sha256": "e50080169ce3370c3946eae88707375309d51ba03c092f7d9e5feef0b8a3b016"
+  },
+  "results": {
+    "baseline": {
+      "folds": {
+        "NW": {
+          "dense_dti": 0.13725,
+          "sparse_dti": 0.06077,
+          "dense_coverage": 0.18721,
+          "sparse_coverage": 0.21106,
+          "emitted_px": 28868
+        },
+        "NE": {
+          "dense_dti": 0.17788,
+          "sparse_dti": 0.05823,
+          "dense_coverage": 0.24313,
+          "sparse_coverage": 0.21627,
+          "emitted_px": 35693
+        },
+        "SW": {
+          "dense_dti": 0.12947,
+          "sparse_dti": 0.0622,
+          "dense_coverage": 0.14856,
+          "sparse_coverage": 0.16864,
+          "emitted_px": 35716
+        },
+        "SE": {
+          "dense_dti": 0.19088,
+          "sparse_dti": 0.06975,
+          "dense_coverage": 0.21539,
+          "sparse_coverage": 0.17321,
+          "emitted_px": 28907
+        }
+      },
+      "mean_dense_dti": 0.15887,
+      "mean_sparse_dti": 0.06274
+    },
+    "H16_1_current_holdout_best": {
+      "folds": {
+        "NW": {
+          "dense_dti": 0.20774,
+          "sparse_dti": 0.089,
+          "dense_coverage": 0.28319,
+          "sparse_coverage": 0.30612,
+          "emitted_px": 28868
+        },
+        "NE": {
+          "dense_dti": 0.23898,
+          "sparse_dti": 0.07794,
+          "dense_coverage": 0.32612,
+          "sparse_coverage": 0.28729,
+          "emitted_px": 35693
+        },
+        "SW": {
+          "dense_dti": 0.15464,
+          "sparse_dti": 0.06622,
+          "dense_coverage": 0.1778,
+          "sparse_coverage": 0.17924,
+          "emitted_px": 35716
+        },
+        "SE": {
+          "dense_dti": 0.24951,
+          "sparse_dti": 0.10847,
+          "dense_coverage": 0.28115,
+          "sparse_coverage": 0.26708,
+          "emitted_px": 28907
+        }
+      },
+      "mean_dense_dti": 0.21272,
+      "mean_sparse_dti": 0.08541
+    },
+    "H17_1_candidate": {
+      "folds": {
+        "NW": {
+          "dense_dti": 0.13711,
+          "sparse_dti": 0.06308,
+          "dense_coverage": 0.18708,
+          "sparse_coverage": 0.21918,
+          "emitted_px": 28868
+        },
+        "NE": {
+          "dense_dti": 0.18126,
+          "sparse_dti": 0.05654,
+          "dense_coverage": 0.24754,
+          "sparse_coverage": 0.20942,
+          "emitted_px": 35693
+        },
+        "SW": {
+          "dense_dti": 0.1291,
+          "sparse_dti": 0.06499,
+          "dense_coverage": 0.14811,
+          "sparse_coverage": 0.17632,
+          "emitted_px": 35716
+        },
+        "SE": {
+          "dense_dti": 0.18291,
+          "sparse_dti": 0.06446,
+          "dense_coverage": 0.20612,
+          "sparse_coverage": 0.16018,
+          "emitted_px": 28907
+        }
+      },
+      "mean_dense_dti": 0.15759,
+      "mean_sparse_dti": 0.06227
+    }
+  },
+  "interpretation": "A holdout pass only warrants a separately reviewed experiment; it does not show the prediction is a fault, prove improvement on hidden labels, or guarantee an improved competition score."
+}

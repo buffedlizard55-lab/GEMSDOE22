@@ -1,0 +1,162 @@
+{
+  "generated_utc": "2026-09-30T19:57:44+00:00",
+  "source_repo": "buffedlizard55-lab/GEMSDOE10",
+  "source_tag": "ext/dem10-36343078537",
+  "source_tag_commit": "91d6566ecc86141eca9e81c259057678930e596f",
+  "upstream_product": "USGS 3DEP 1/3 arc-second seamless DEM (current), public domain",
+  "upstream_product_catalog": "https://www.sciencebase.gov/catalog/item/4f70aa9fe4b058caae3f8de5",
+  "upstream_tiles": {
+    "n38w118": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n38w118/USGS_13_n38w118.tif",
+      "sha256": "21e4616b410d787b6faee8f60fefbc7969fdb2d26a300ae0cce9703e40077192",
+      "bytes": 409708514
+    },
+    "n38w119": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n38w119/USGS_13_n38w119.tif",
+      "sha256": "d1a22cfe538179c65fa221f70c0cd7ba4403d087450dd3bb463ee50fb69fa97c",
+      "bytes": 416350584
+    },
+    "n39w118": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n39w118/USGS_13_n39w118.tif",
+      "sha256": "01a5b4bdc759d2fdb610cba1f4cd3db2482af13b29eaca186f7bb37862081b0f",
+      "bytes": 391985657
+    },
+    "n39w119": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n39w119/USGS_13_n39w119.tif",
+      "sha256": "b7fe301c8cdc70babbe84339afe09fef6247c6ac21b3315387d58955dba116bc",
+      "bytes": 401998969
+    },
+    "n40w118": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n40w118/USGS_13_n40w118.tif",
+      "sha256": "f2d1d2419b5a8ef7c43fcab6af5c67f1c2ae84259d0c7cf184f9f42f80d16d46",
+      "bytes": 397926937
+    },
+    "n40w119": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n40w119/USGS_13_n40w119.tif",
+      "sha256": "e3b69524af737688d74ca01f06fd3de994bf6d8d5b11fe599e211d5dfe4f91c1",
+      "bytes": 378567782
+    },
+    "n40w120": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n40w120/USGS_13_n40w120.tif",
+      "sha256": "59a6df67e342b5b0c7166ab5a07b8bed6f9774a868a14badacd2c3d7dc185b3a",
+      "bytes": 402039220
+    },
+    "n40w121": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n40w121/USGS_13_n40w121.tif",
+      "sha256": "1ef8c81e8528aacbbb7a3eb5733d225dad81422af04d1f330576e6d6ac9af957",
+      "bytes": 426141596
+    },
+    "n41w117": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n41w117/USGS_13_n41w117.tif",
+      "sha256": "7e2dcd6fb40f66bc166fea34724f5a7eb6071ea371b303448cdf5afc8fa2c067",
+      "bytes": 400243874
+    },
+    "n41w118": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n41w118/USGS_13_n41w118.tif",
+      "sha256": "2b503a935cf4016cb4b675b3e739bf9bd0df8d4fc5c49b6cf8d4381740523048",
+      "bytes": 393630308
+    },
+    "n41w119": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n41w119/USGS_13_n41w119.tif",
+      "sha256": "5029c65f574c5c5241f1862336e8911d39c8faab1e037b9ba0b4d2fafe0fce0c",
+      "bytes": 386798261
+    },
+    "n41w120": {
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n41w120/USGS_13_n41w120.tif",
+      "sha256": "f5bee4fbfe291b0eaf181d4b36aa32766b6ab62b9a0cb83420f22fea73580c41",
+      "bytes": 375913234
+    }
+  },
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "footprint_pixels": 5167373,
+  "vector_order": "np.nonzero(np.isfinite(sample_submission)) row-major",
+  "grid": {
+    "rows": 3730,
+    "cols": 3292,
+    "block_cells": 400,
+    "halo_cells": 12,
+    "dst_pixel_m": 10.0,
+    "resampling": "bilinear"
+  },
+  "channels": [
+    {
+      "channel": "dem10_slope_max",
+      "sha256": "fd46738e9a58a6f40c130c3c70f645525dbfc12d27b6ed149e596e6a379cbfaa",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_slope_mean",
+      "sha256": "338b443c441db61120faf36437ec61dfcccaa569c41aa3099ed3accef5a35f95",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_slope_std",
+      "sha256": "9c15e0e760d8255eb0473821a07cc09e4fe4b40746e6e37278e691f615c0f642",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_hgm20_max",
+      "sha256": "f58df86b0be3b3dc54affc60dc7d77a95db3dafb9c1267eac4912c5d8e57526b",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_hgm50_max",
+      "sha256": "1cca42538ec0c91951b578136893eb5d90cd1414c45257d2a72ebe80b29f0f40",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_hgm200_mean",
+      "sha256": "9328f889f4d607f8530840da138741b7431da49d2432b0ab2da110a82984102b",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_steep_ratio_max",
+      "sha256": "eaf3d5e24c6769ffb98665e75c9665dbaa16bdb79708900217dca955031e6828",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_resid_std",
+      "sha256": "50db8caa815cb09cc695ec230f15f41e8e04cd9bef5fc09b07b06aeadd44a86e",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_resid_range",
+      "sha256": "bbcf8a462ace31a80964ba8a7ab76fcbcb347deb4f4d2919166b3eda5c721b0c",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_curv_absmax",
+      "sha256": "58e82f1301032b46b10344b9299b83e6ce5bed1ca83e320f078fa57321bff632",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_onesided",
+      "sha256": "02d1d241de9534d307f314d0b2f8a857ceb1ce0d099fd7dee8872a83bd0271f8",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_onesided3",
+      "sha256": "bca9faf8e0c572ecb1e77b6c94b0cb96c41e824873cb7747e0ece28b531598d2",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    },
+    {
+      "channel": "dem10_valid_frac",
+      "sha256": "35d7ef0719bfed93f9aed927afd8c51882283fc7316cab0f8c219c9302b92122",
+      "bytes": 20669620,
+      "status": "fetched-verified"
+    }
+  ],
+  "labels_used": false
+}

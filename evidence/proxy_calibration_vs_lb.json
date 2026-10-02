@@ -1,0 +1,289 @@
+{
+  "generated_utc": "2026-09-30T21:40:22+00:00",
+  "status": "POST_HOC_CALIBRATION",
+  "truth_pixels": {
+    "sgmc_gap": 59389,
+    "sgmc_offcat": 76501,
+    "known_dense": 60988
+  },
+  "n_unique_scored_files": 15,
+  "correlation_with_public_score": {
+    "sgmc_gap": {
+      "spearman_rho": 0.518,
+      "spearman_p": 0.048,
+      "kendall_tau": 0.352,
+      "kendall_p": 0.0743,
+      "n": 15
+    },
+    "sgmc_offcat": {
+      "spearman_rho": 0.454,
+      "spearman_p": 0.0895,
+      "kendall_tau": 0.333,
+      "kendall_p": 0.0926,
+      "n": 15
+    },
+    "known_dense": {
+      "spearman_rho": 0.107,
+      "spearman_p": 0.7039,
+      "kendall_tau": 0.029,
+      "kendall_p": 0.9226,
+      "n": 15
+    }
+  },
+  "per_file": [
+    {
+      "id": "16GEMSDOE",
+      "lb_score": 0.1855,
+      "rep": "16GEMSDOE",
+      "n_pred_scored": 123939,
+      "sgmc_gap": 0.11056,
+      "sgmc_offcat": 0.1549,
+      "known_dense": 0.16689
+    },
+    {
+      "id": "GEMSDOE1",
+      "lb_score": 0.1563,
+      "rep": "17GEMSDOE",
+      "n_pred_scored": 166519,
+      "sgmc_gap": 0.1014,
+      "sgmc_offcat": 0.14565,
+      "known_dense": 0.2298
+    },
+    {
+      "id": "5GEMSDOE",
+      "lb_score": 0.1563,
+      "rep": "17GEMSDOE",
+      "n_pred_scored": 166519,
+      "sgmc_gap": 0.1014,
+      "sgmc_offcat": 0.14565,
+      "known_dense": 0.2298
+    },
+    {
+      "id": "8GEMSDOE",
+      "lb_score": 0.1563,
+      "rep": "17GEMSDOE",
+      "n_pred_scored": 166519,
+      "sgmc_gap": 0.1014,
+      "sgmc_offcat": 0.14565,
+      "known_dense": 0.66563
+    },
+    {
+      "id": "GEMSDOE2",
+      "lb_score": 0.156,
+      "rep": "GEMSDOE2",
+      "n_pred_scored": 175949,
+      "sgmc_gap": 0.10131,
+      "sgmc_offcat": 0.14926,
+      "known_dense": 0.23819
+    },
+    {
+      "id": "7GEMSDOE",
+      "lb_score": 0.1461,
+      "rep": "7GEMSDOE",
+      "n_pred_scored": 76859,
+      "sgmc_gap": 0.06446,
+      "sgmc_offcat": 0.10004,
+      "known_dense": 0.17508
+    },
+    {
+      "id": "12GEMSDOE",
+      "lb_score": 0.1294,
+      "rep": "12GEMSDOE",
+      "n_pred_scored": 103347,
+      "sgmc_gap": 0.14525,
+      "sgmc_offcat": 0.20859,
+      "known_dense": 0.32316
+    },
+    {
+      "id": "12GEMSDOE-allfinite",
+      "lb_score": 0.1294,
+      "rep": "12GEMSDOE",
+      "n_pred_scored": 103347,
+      "sgmc_gap": 0.14525,
+      "sgmc_offcat": 0.20859,
+      "known_dense": 0.32316
+    },
+    {
+      "id": "GEMSDOE3-1",
+      "lb_score": 0.1193,
+      "rep": "GEMSDOE3-1",
+      "n_pred_scored": 155021,
+      "sgmc_gap": 0.23166,
+      "sgmc_offcat": 0.25356,
+      "known_dense": 0.20678
+    },
+    {
+      "id": "GEMSDOE3-3",
+      "lb_score": 0.1152,
+      "rep": "GEMSDOE3-3",
+      "n_pred_scored": 155021,
+      "sgmc_gap": 0.29557,
+      "sgmc_offcat": 0.33439,
+      "known_dense": 0.19567
+    },
+    {
+      "id": "GEMSDOE10-H20",
+      "lb_score": 0.0921,
+      "rep": "GEMSDOE10-H20",
+      "n_pred_scored": 143657,
+      "sgmc_gap": 0.0728,
+      "sgmc_offcat": 0.14083,
+      "known_dense": 0.32411
+    },
+    {
+      "id": "GEMSDOE3-2",
+      "lb_score": 0.083,
+      "rep": "GEMSDOE3-2",
+      "n_pred_scored": 155021,
+      "sgmc_gap": 0.23617,
+      "sgmc_offcat": 0.24891,
+      "known_dense": 0.17781
+    },
+    {
+      "id": "15GEMSDOE",
+      "lb_score": 0.0782,
+      "rep": "15GEMSDOE",
+      "n_pred_scored": 98736,
+      "sgmc_gap": 0.17711,
+      "sgmc_offcat": 0.17981,
+      "known_dense": 0.1496
+    },
+    {
+      "id": "GEMSDOE10-H16",
+      "lb_score": 0.0461,
+      "rep": "GEMSDOE10-H16",
+      "n_pred_scored": 283532,
+      "sgmc_gap": 0.06177,
+      "sgmc_offcat": 0.14816,
+      "known_dense": 0.34697
+    },
+    {
+      "id": "GEMSDOE4",
+      "lb_score": 0.0343,
+      "rep": "GEMSDOE4",
+      "n_pred_scored": 258323,
+      "sgmc_gap": 0.21652,
+      "sgmc_offcat": 0.23464,
+      "known_dense": 0.11139
+    },
+    {
+      "id": "6GEMSDOE",
+      "lb_score": 0.0286,
+      "rep": "6GEMSDOE",
+      "n_pred_scored": 131416,
+      "sgmc_gap": 0.03571,
+      "sgmc_offcat": 0.13152,
+      "known_dense": 0.4272
+    },
+    {
+      "id": "11GEMSDOE",
+      "lb_score": 0.0202,
+      "rep": "11GEMSDOE",
+      "n_pred_scored": 282538,
+      "sgmc_gap": 0.05325,
+      "sgmc_offcat": 0.13294,
+      "known_dense": 0.5721
+    },
+    {
+      "id": "GEMSDOE9",
+      "lb_score": 0.0107,
+      "rep": "GEMSDOE9",
+      "n_pred_scored": 145610,
+      "sgmc_gap": 0.0334,
+      "sgmc_offcat": 0.03885,
+      "known_dense": 0.04613
+    },
+    {
+      "id": "14GEMSDOE",
+      "lb_score": 0.002,
+      "rep": "14GEMSDOE",
+      "n_pred_scored": 116219,
+      "sgmc_gap": 0.0364,
+      "sgmc_offcat": 0.08112,
+      "known_dense": 0.12769
+    },
+    {
+      "id": "13GEMSDOE",
+      "lb_score": null,
+      "rep": "13GEMSDOE",
+      "n_pred_scored": 319377,
+      "sgmc_gap": 0.19879,
+      "sgmc_offcat": 0.24298,
+      "known_dense": 0.50597
+    },
+    {
+      "id": "GEMSDOE10-H25",
+      "lb_score": null,
+      "rep": "GEMSDOE10-H25",
+      "n_pred_scored": 161366,
+      "sgmc_gap": 0.08423,
+      "sgmc_offcat": 0.15785,
+      "known_dense": 0.39872
+    },
+    {
+      "id": "GEMSDOE10-H28",
+      "lb_score": null,
+      "rep": "GEMSDOE10-H28",
+      "n_pred_scored": 65236,
+      "sgmc_gap": 0.09082,
+      "sgmc_offcat": 0.13973,
+      "known_dense": 0.37216
+    },
+    {
+      "id": "17GEMSDOE",
+      "lb_score": null,
+      "rep": "17GEMSDOE",
+      "n_pred_scored": 166519,
+      "sgmc_gap": 0.1014,
+      "sgmc_offcat": 0.14565,
+      "known_dense": 0.2298
+    }
+  ],
+  "candidates_on_the_same_scales": [
+    {
+      "key": "h19-4",
+      "content_id": "691e4dfa",
+      "n_pred_scored": 123779,
+      "sgmc_gap": 0.10453,
+      "sgmc_offcat": 0.15028,
+      "known_dense": 0.16749
+    },
+    {
+      "key": "h19-5",
+      "content_id": "e27054cf",
+      "n_pred_scored": 121131,
+      "sgmc_gap": 0.09862,
+      "sgmc_offcat": 0.14442,
+      "known_dense": 0.16635
+    },
+    {
+      "key": "h16-1",
+      "content_id": "df20f65e",
+      "n_pred_scored": 123939,
+      "sgmc_gap": 0.11056,
+      "sgmc_offcat": 0.1549,
+      "known_dense": 0.16689
+    },
+    {
+      "key": "h18-3a",
+      "content_id": "c502dfab",
+      "n_pred_scored": 122120,
+      "sgmc_gap": 0.09309,
+      "sgmc_offcat": 0.14939,
+      "known_dense": 0.2066
+    },
+    {
+      "key": "sgmc-gap",
+      "content_id": "563f11f7",
+      "n_pred_scored": 57783,
+      "sgmc_gap": 0.91789,
+      "sgmc_offcat": 0.76354,
+      "known_dense": 0.0
+    }
+  ],
+  "caveats": [
+    "Small n; public scores are rounded, time-stamped observations.",
+    "SGMC positions may be hundreds of metres off (nominal 1:1,000,000), which depresses absolute DTI for every file.",
+    "known_dense is contaminated for files trained on the catalogue; it is included only as a reference point."
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "generated_utc": "2026-09-30T01:23:59+00:00",
+  "preregistration": {
+    "file": "docs/research/preregistration_h18.md",
+    "git_commit_before_results": "6c5f74a"
+  },
+  "status": "PASS",
+  "submission_slot_spent": false,
+  "submission_geotiff_created": false,
+  "evaluation_scope": "Four-quadrant spatial holdout on the KNOWN catalogue plus the 20%-of-components sparse proxy. Not hidden-test performance; a pass is necessary, not sufficient, evidence.",
+  "implementation_details_not_in_preregistration": {
+    "oblique_prior_neutral_default": "boost = 1.0 where the smoothed structure-tensor trace of known faults is < 2% of its 99th percentile",
+    "h18_1_sum_not_mean": "log-odds are summed (literal PoE), then passed through a sigmoid"
+  },
+  "baseline": {
+    "name": "H16_1_SeamFree_MultiScale_Synthesis",
+    "reproduced_exactly": true,
+    "mean_dense_dti": 0.21272,
+    "mean_sparse_dti": 0.08541,
+    "fold_dense": [
+      0.20774,
+      0.23898,
+      0.15464,
+      0.24951
+    ],
+    "fold_sparse": [
+      0.089,
+      0.07794,
+      0.06622,
+      0.10847
+    ]
+  },
+  "arms": {
+    "H18_1_PoE_scarp_x_geophysics": {
+      "mean_dense_dti": 0.20389,
+      "mean_sparse_dti": 0.08062,
+      "fold_dense": [
+        0.19348,
+        0.22688,
+        0.15812,
+        0.23708
+      ],
+      "fold_sparse": [
+        0.07991,
+        0.07318,
+        0.07035,
+        0.09904
+      ],
+      "folds": {
+        "NW": {
+          "dense_dti": 0.19348,
+          "sparse_dti": 0.07991,
+          "dense_coverage": 0.2641,
+          "sparse_coverage": 0.2756,
+          "emitted_px": 28868
+        },
+        "NE_LidarGapHeavy": {
+          "dense_dti": 0.22688,
+          "sparse_dti": 0.07318,
+          "dense_coverage": 0.3099,
+          "sparse_coverage": 0.2705,
+          "emitted_px": 35693
+        },
+        "SW": {
+          "dense_dti": 0.15812,
+          "sparse_dti": 0.07035,
+          "dense_coverage": 0.1819,
+          "sparse_coverage": 0.1905,
+          "emitted_px": 35716
+        },
+        "SE": {
+          "dense_dti": 0.23708,
+          "sparse_dti": 0.09904,
+          "dense_coverage": 0.2675,
+          "sparse_coverage": 0.2449,
+          "emitted_px": 28907
+        }
+      }
+    },
+    "H18_3a_complexity_prior": {
+      "mean_dense_dti": 0.21319,
+      "mean_sparse_dti": 0.09401,
+      "fold_dense": [
+        0.20839,
+        0.23871,
+        0.15356,
+        0.25209
+      ],
+      "fold_sparse": [
+        0.10112,
+        0.08631,
+        0.07762,
+        0.11098
+      ]
+    },
+    "H18_3b_oblique_prior": {
+      "mean_dense_dti": 0.15681,
+      "mean_sparse_dti": 0.03694,
+      "fold_dense": [
+        0.10129,
+        0.21071,
+        0.11442,
+        0.20084
+      ],
+      "fold_sparse": [
+        0.0405,
+        0.02391,
+        0.03692,
+        0.04645
+      ]
+    },
+    "H18_3c_both": {
+      "mean_dense_dti": 0.15014,
+      "mean_sparse_dti": 0.04966,
+      "fold_dense": [
+        0.09365,
+        0.20736,
+        0.10507,
+        0.19448
+      ],
+      "fold_sparse": [
+        0.0501,
+        0.02594,
+        0.05075,
+        0.07185
+      ]
+    }
+  },
+  "gate": {
+    "H18_1_PoE_scarp_x_geophysics": {
+      "passed": false,
+      "rules": {
+        "mean_dense_improves": false,
+        "mean_sparse_improves": false,
+        "sparse_fold_wins_ge_3_of_4": false,
+        "no_fold_loses_more_than_0_01": false
+      },
+      "sparse_fold_wins": 1,
+      "dense_fold_wins": 1,
+      "worst_fold_delta_dense": -0.01426,
+      "worst_fold_delta_sparse": -0.00943,
+      "delta_mean_dense": -0.00883,
+      "delta_mean_sparse": -0.00479
+    },
+    "H18_3a_complexity_prior": {
+      "passed": true,
+      "rules": {
+        "mean_dense_improves": true,
+        "mean_sparse_improves": true,
+        "sparse_fold_wins_ge_3_of_4": true,
+        "no_fold_loses_more_than_0_01": true
+      },
+      "sparse_fold_wins": 4,
+      "dense_fold_wins": 2,
+      "worst_fold_delta_dense": -0.00108,
+      "worst_fold_delta_sparse": 0.00251,
+      "delta_mean_dense": 0.00047,
+      "delta_mean_sparse": 0.0086
+    },
+    "H18_3b_oblique_prior": {
+      "passed": false,
+      "rules": {
+        "mean_dense_improves": false,
+        "mean_sparse_improves": false,
+        "sparse_fold_wins_ge_3_of_4": false,
+        "no_fold_loses_more_than_0_01": false
+      },
+      "sparse_fold_wins": 0,
+      "dense_fold_wins": 0,
+      "worst_fold_delta_dense": -0.10645,
+      "worst_fold_delta_sparse": -0.06202,
+      "delta_mean_dense": -0.05591,
+      "delta_mean_sparse": -0.04847
+    },
+    "H18_3c_both": {
+      "passed": false,
+      "rules": {
+        "mean_dense_improves": false,
+        "mean_sparse_improves": false,
+        "sparse_fold_wins_ge_3_of_4": false,
+        "no_fold_loses_more_than_0_01": false
+      },
+      "sparse_fold_wins": 0,
+      "dense_fold_wins": 0,
+      "worst_fold_delta_dense": -0.11409,
+      "worst_fold_delta_sparse": -0.052,
+      "delta_mean_dense": -0.06258,
+      "delta_mean_sparse": -0.03575
+    }
+  },
+  "input_sha256": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "labels.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+  },
+  "elapsed_seconds": 277.5
+}

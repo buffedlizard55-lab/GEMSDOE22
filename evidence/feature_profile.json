@@ -1,0 +1,227 @@
+{
+  "generated_utc": "2026-09-30T20:51:22+00:00",
+  "nodata_sentinel": -3.4028234663852886e+38,
+  "footprint_pixels": 5167373,
+  "labels_footprint_equals_template_footprint": true,
+  "bands": [
+    {
+      "band": 1,
+      "name": "mag_anom",
+      "category": "magnetic_data",
+      "description": "Magnetic anomaly - deviation from expected Earth's magnetic field",
+      "footprint_min": -1052.0047607421875,
+      "footprint_max": 2109.447509765625,
+      "footprint_mean": -42.9945,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 2,
+      "name": "rtp",
+      "category": "magnetic_data",
+      "description": "Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+      "footprint_min": -2786.299560546875,
+      "footprint_max": 4508.76025390625,
+      "footprint_mean": -119.5289,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 3,
+      "name": "tmi_hg",
+      "category": "magnetic_data",
+      "description": "Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+      "footprint_min": 0.004909869749099016,
+      "footprint_max": 2200.4365234375,
+      "footprint_mean": 26.4901,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 4,
+      "name": "geod_2ndinv",
+      "category": "geodetic_strain",
+      "description": "Geodetic second invariant - measure of strain rate tensor magnitude",
+      "footprint_min": 1.2000000476837158,
+      "footprint_max": 87.45342254638672,
+      "footprint_mean": 21.2466,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 5,
+      "name": "iso_grav_anom_slope",
+      "category": "gravity_data",
+      "description": "Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+      "footprint_min": 0.0013825353235006332,
+      "footprint_max": 0.6517290472984314,
+      "footprint_mean": 0.1202,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 6,
+      "name": "tc",
+      "category": "magnetic_data",
+      "description": "Tilt angle or total curvature - magnetic field derivative for edge detection",
+      "footprint_min": 2.9534237384796143,
+      "footprint_max": 88.56654357910156,
+      "footprint_mean": 18.4633,
+      "invalid_inside_footprint": 3073,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 7,
+      "name": "geod_shearrate",
+      "category": "geodetic_strain",
+      "description": "Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+      "footprint_min": 0.0,
+      "footprint_max": 54.400001525878906,
+      "footprint_mean": 10.794,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 8,
+      "name": "geod_dilaterate",
+      "category": "geodetic_strain",
+      "description": "Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+      "footprint_min": -16.5,
+      "footprint_max": 34.52448272705078,
+      "footprint_mean": 6.3619,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 9,
+      "name": "tmi_vg",
+      "category": "magnetic_data",
+      "description": "Total magnetic intensity vertical gradient - rate of change in vertical direction",
+      "footprint_min": -7.650597095489502,
+      "footprint_max": 20.510923385620117,
+      "footprint_mean": 0.0012,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 10,
+      "name": "deq_n100a15",
+      "category": "seismic",
+      "description": "Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+      "footprint_min": 0.0,
+      "footprint_max": 4962515.0,
+      "footprint_mean": 9639.7695,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 11,
+      "name": "iso_grav_anom_vg",
+      "category": "gravity_data",
+      "description": "Isostatic gravity anomaly vertical gradient - vertical rate of change",
+      "footprint_min": -18.164581298828125,
+      "footprint_max": 12.578903198242188,
+      "footprint_mean": -0.0599,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 12,
+      "name": "det_elev",
+      "category": "topographic",
+      "description": "Detrended elevation - topography with regional trends removed",
+      "footprint_min": -589.9837036132812,
+      "footprint_max": 1469.9127197265625,
+      "footprint_mean": -17.2604,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 13,
+      "name": "iso_grav_anom",
+      "category": "gravity_data",
+      "description": "Isostatic gravity anomaly - gravity after compensating for topographic mass",
+      "footprint_min": -45.75756072998047,
+      "footprint_max": 24.232954025268555,
+      "footprint_mean": -8.2046,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 14,
+      "name": "tmi",
+      "category": "magnetic_data",
+      "description": "Total magnetic intensity - total strength of magnetic field",
+      "footprint_min": -2178.27783203125,
+      "footprint_max": 4506.14111328125,
+      "footprint_mean": -107.6263,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 15,
+      "name": "depth_to_base_surf",
+      "category": "subsurface",
+      "description": "Depth to basement surface - thickness of sedimentary cover",
+      "footprint_min": -14.837310791015625,
+      "footprint_max": 7135.306640625,
+      "footprint_mean": 532.2495,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 16,
+      "name": "ieq_n100a15",
+      "category": "seismic",
+      "description": "Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+      "footprint_min": 236.8000030517578,
+      "footprint_max": 7869.5,
+      "footprint_mean": 1118.2137,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 17,
+      "name": "cond_surf",
+      "category": "subsurface",
+      "description": "Conductivity surface - electrical conductivity of subsurface",
+      "footprint_min": 0.1937037855386734,
+      "footprint_max": 4.969292640686035,
+      "footprint_mean": 2.8548,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 18,
+      "name": "iso_grav_anom_hg",
+      "category": "gravity_data",
+      "description": "Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+      "footprint_min": -15.441243171691895,
+      "footprint_max": 12.856057167053223,
+      "footprint_mean": 0.0011,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    },
+    {
+      "band": 19,
+      "name": "det_elev_slope",
+      "category": "topographic",
+      "description": "Detrended elevation slope - gradient of elevation after detrending",
+      "footprint_min": 0.001103136339224875,
+      "footprint_max": 62.64591598510742,
+      "footprint_mean": 7.4108,
+      "invalid_inside_footprint": 3061,
+      "valid_outside_footprint": 1540
+    }
+  ],
+  "tc_identity_check": {
+    "corr_band6_vs_external_geodawn_TC": 0.9971,
+    "corr_band6_vs_computed_magnetic_tilt": 0.0128,
+    "band6_min": 2.9534237384796143,
+    "band6_negative_values": 0,
+    "computed_tilt_range_deg": [
+      -80.7,
+      79.2
+    ]
+  }
+}

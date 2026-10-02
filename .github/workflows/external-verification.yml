@@ -1,0 +1,44 @@
+name: external-verification
+# Verifies data provenance, extracts GDR 1391 thermal/geochemical & fault trace tables,
+# and computes 1 m USGS 3DEP DEM Openness & Local Relief Model on high-prior tiles.
+# Runs on GitHub-hosted runners and commits results back to the triggering branch.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['arena/**']
+    paths:
+      - 'scripts/ci_external_verify.py'
+      - '.github/workflows/external-verification.yml'
+permissions:
+  contents: write
+concurrency:
+  group: data-refresh
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install geospatial stack
+        run: pip install numpy scipy rasterio geopandas pyogrio shapely pyproj pandas
+      - name: Run verification & 1m DEM Openness/LRM extraction
+        run: python scripts/ci_external_verify.py
+      - name: Rebuild site if build_site.py exists
+        run: |
+          if [ -f scripts/build_site.py ]; then
+            pip install markdown || true
+            python scripts/build_site.py || true
+          fi
+      - name: Commit results back to this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence/ci/
+          if [ -d docs ]; then git add docs/ index.html || true; fi
+          git commit -m "ci: external verification, GDR tables & 1m DEM openness/LRM [skip ci]" || echo "nothing to commit"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}"

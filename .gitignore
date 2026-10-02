@@ -1,0 +1,10 @@
+# Large competition & external rasters (never committed to Git)
+/data
+/data/
+/.cache/
+*.pyc
+__pycache__/
+.pytest_cache/
+.venv/
+scratch/
+*.egg-info/

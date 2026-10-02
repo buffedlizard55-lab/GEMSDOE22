@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "reviewed_utc": "2026-09-30",
+  "flags": [
+    {
+      "id": "F01",
+      "area": "Data metadata",
+      "severity": "medium",
+      "status": "open",
+      "title": "Band 6 `tc` is mislabelled in the file's own tags",
+      "evidence": "The GeoTIFF tags say `tc` = 'Tilt angle or total curvature - magnetic field derivative' (data_category magnetic_data). Numerically it correlates r = +0.997 with the external USGS GeoDAWN radiometric TOTAL COUNT channel and r = +0.013 with a computed magnetic tilt angle; all values are positive (2.95 to 88.6) while a tilt angle spans both signs. The DrivenData page figure caption also calls it total radiometric counts.",
+      "action": "Treat `tc` as radiometric total count (surface lithology/soil), not a magnetic edge detector. Earlier hypotheses that assumed a magnetic meaning were mis-specified (numerically harmless, conceptually wrong).",
+      "how_established": "computed in this review",
+      "links": [
+        "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      ]
+    },
+    {
+      "id": "F02",
+      "area": "Data provenance",
+      "severity": "medium",
+      "status": "open",
+      "title": "Bridged sample_submission.tif is not an all-absence template",
+      "evidence": "The official page says the sample 'predicts total fault absence'. The bridged file (SHA-256 2176d08e...) has 60,988 pixels = 1.0 that equal the known-fault mask exactly; everything else in the footprint is 0. The login-gated data tab cannot be fetched here, so the authoritative original was not compared.",
+      "action": "Do not use it as a zero baseline. Only its footprint/grid are relied upon (verified equal to the labels footprint and to the GeoDAWN area). Ask DrivenData support whether the file differs from the data-tab download.",
+      "how_established": "computed; cause unresolved",
+      "links": [
+        "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format"
+      ]
+    },
+    {
+      "id": "F03",
+      "area": "Sources",
+      "severity": "low",
+      "status": "open",
+      "title": "Dropbox links in the request are personal shares, not official hosting",
+      "evidence": "The Dropbox previews show 'Jason shared this file'. They are not hosted by DrivenData, DOE, NLR or USGS, and their bytes could not be fetched here.",
+      "action": "Use them only as convenience copies. Authoritative data: the DrivenData data tab (login) and the official rules PDF/GDR links in the sources table.",
+      "how_established": "verified",
+      "links": []
+    },
+    {
+      "id": "F04",
+      "area": "Data provenance",
+      "severity": "info",
+      "status": "resolved",
+      "title": "labels.tif provenance independently verified against the official GDR data",
+      "evidence": "GDR INGENIOUS Quaternary Faults v1 and v2 (DOI 10.15121/1881483), rasterised on the EPSG:32611 100 m grid, reproduce 60,958 of the 60,988 bridged label pixels exactly (99.95 %); 100 % are within 1 px. v1 and v2 are identical on this grid.",
+      "action": "No action. Keep the CI job to re-check after any data change.",
+      "how_established": "computed in GitHub Actions",
+      "links": [
+        "https://github.com/buffedlizard55-lab/16GEMSDOE/blob/main/evidence/ci/external_verification.json"
+      ]
+    },
+    {
+      "id": "F05",
+      "area": "Data quality",
+      "severity": "high",
+      "status": "open",
+      "title": "Every feature band has invalid pixels INSIDE the scored footprint",
+      "evidence": "Each of the 19 bands carries the sentinel -3.4028235e38 on 3,061 footprint pixels (3,073 for `tc`) and has 1,540 valid pixels outside the footprint. Any raster-wide model or filter that propagates NaN will write NaN into the submission.",
+      "action": "Fill holes before modelling and always sanitise predictions (NaN -> 0, clip to [0, 1]). gems.submission.write_submission does this; the browser checker flags any NaN inside the footprint.",
+      "how_established": "computed in this review",
+      "links": []
+    },
+    {
+      "id": "F06",
+      "area": "Documentation",
+      "severity": "low",
+      "status": "resolved",
+      "title": "Earlier README/register said the catalogue-masking rule was unconfirmed",
+      "evidence": "DrivenData staff confirmed it in forum topic 11516 (posts 2 and 4): known-fault pixels are masked pixel-exactly in both rounds, and no buffer applies to known faults.",
+      "action": "Documentation updated; src/gems/metric.py cites the verified posts.",
+      "how_established": "verified",
+      "links": [
+        "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4"
+      ]
+    },
+    {
+      "id": "F07",
+      "area": "Leaderboard",
+      "severity": "info",
+      "status": "open",
+      "title": "The 0.3049 top score in the request was stale",
+      "evidence": "Snapshot (2026-09-30, re-read 02:27 UTC): rank 1 DARD 0.3168, rank 2 alexoktaba 0.3042. Scores and ranks move within hours; the snapshot is not a feed.",
+      "action": "Open the live leaderboard before decisions.",
+      "how_established": "verified",
+      "links": [
+        "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+      ]
+    },
+    {
+      "id": "F08",
+      "area": "Compliance",
+      "severity": "high",
+      "status": "needs-owner",
+      "title": "Group entries appear under separate DrivenData accounts",
+      "evidence": "The public leaderboard lists SDCF9, smashi34, wbg1 and smrtdoog5 (named by the owner) and extradr19 (identical 0.1563, NOT named by the owner) as separate accounts. DrivenData's Terms of Use say accounts are personal; the rules give one final submission per entity and three uploads per week.",
+      "action": "Confirm that these are distinct eligible individuals or register one team. Do not pool accounts to multiply the weekly limit. Ask gemsprize@nlr.gov if unsure.",
+      "how_established": "verified; intent unknown",
+      "links": [
+        "https://www.drivendata.org/termsofuse/",
+        "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+      ]
+    },
+    {
+      "id": "F09",
+      "area": "Compliance",
+      "severity": "high",
+      "status": "mitigated",
+      "title": "An automatic leaderboard/forum feed would violate DrivenData's Terms of Use",
+      "evidence": "Terms of Use, Prohibited Uses: users agree not to use any robot, spider or other automatic device to access the website, including for monitoring or copying.",
+      "action": "No scraper is included. The 'feed' covers official open-data hosts (GDR, USGS) and the team's own GitHub repos; leaderboard snapshots are taken by a person. Consider asking info@drivendata.org for written permission first.",
+      "how_established": "verified",
+      "links": [
+        "https://www.drivendata.org/termsofuse/"
+      ]
+    },
+    {
+      "id": "F10",
+      "area": "Compliance",
+      "severity": "medium",
+      "status": "needs-owner",
+      "title": "Generative-AI use must be disclosed in any prize narrative",
+      "evidence": "Official rules section 3.2 requires disclosing the extent and manner of generative-AI use.",
+      "action": "Record AI assistance in the eventual solution documentation; this repository was developed with AI coding agents.",
+      "how_established": "verified",
+      "links": [
+        "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+      ]
+    },
+    {
+      "id": "F11",
+      "area": "Reference code",
+      "severity": "low",
+      "status": "info",
+      "title": "Reference notebook output differs from the stated file spec",
+      "evidence": "It writes dtype=y_final.dtype (float64 as written), with no nodata and no NaN outside the footprint, whereas the page asks for float32 and NaN outside. The platform still presumably accepts it, which suggests the checker is tolerant of finite-everywhere files.",
+      "action": "Informational. Our files follow the page text and the official sample's raster profile.",
+      "how_established": "verified",
+      "links": [
+        "https://github.com/drivendataorg/gems-prize-reference-solution"
+      ]
+    },
+    {
+      "id": "F12",
+      "area": "Data physics",
+      "severity": "low",
+      "status": "open",
+      "title": "GeoDAWN magnetic products have anisotropic resolution",
+      "evidence": "Area 2 (most of the extent) was flown with 400 m east-west lines. Cross-line (north-south) sampling is coarse, so E-W lineaments in 100 m magnetic derivatives may be flight-line or levelling artefacts (inference, untested).",
+      "action": "Down-weight purely E-W magnetic lineaments unless corroborated by topography.",
+      "how_established": "inference",
+      "links": [
+        "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"
+      ]
+    },
+    {
+      "id": "F13",
+      "area": "Submission error",
+      "severity": "high",
+      "status": "open",
+      "title": "'Predicted values must be in range [0, 1]' cannot be reproduced from any file in this repository",
+      "evidence": "Every file ever published on this site (including the ZIPs and the versions from PR #1) passes all check variants: float32, finite 0-1 on every footprint pixel, correct grid. The repositories behind scored group entries publish files in every encoding (LZW/deflate, predictor 1/3, striped/tiled, NaN or zero outside), so the container is unlikely to be the cause (assuming the published file is what was uploaded). The likeliest causes are NaN or out-of-range values in a file from elsewhere, or server behaviour we cannot see.",
+      "action": "Run the suspect file through the checker on the Submit page; if it passes but is rejected, email info@drivendata.org with the filename, SHA-256 and a screenshot.",
+      "how_established": "computed in this review",
+      "links": []
+    },
+    {
+      "id": "F14",
+      "area": "Data",
+      "severity": "low",
+      "status": "open",
+      "title": "SGMC geologic-map faults are coarse and a newer release exists",
+      "evidence": "SGMC is nominally 1:1,000,000 (positions may be hundreds of metres off), and USGS marks a 2026 re-release (doi 10.5066/P1A3DQZK). The state shapefiles from mrdata were used; their exact version was not pinned.",
+      "action": "Pin the version before relying on it; treat results as exploratory.",
+      "how_established": "verified",
+      "links": [
+        "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d"
+      ]
+    },
+    {
+      "id": "F15",
+      "area": "Artifacts",
+      "severity": "medium",
+      "status": "resolved",
+      "title": "Earlier downloads (a16f01, b16f02, c16f03) were unvalidated composites",
+      "evidence": "They contained up to 148,000 pixels taken from ens12 plus hand-chosen additions, never passed the holdout gate, and the NaN/all-finite pair carried the same prediction.",
+      "action": "Retired to docs/archive/ (kept for audit). New candidates are built by scripts/build_candidates.py with recorded validation.",
+      "how_established": "verified",
+      "links": []
+    },
+    {
+      "id": "F16",
+      "area": "Validation",
+      "severity": "medium",
+      "status": "open",
+      "title": "H18-3a passed the pre-registered gate, but a control explains most of the lift",
+      "evidence": "A plain fault-density prior yields sparse 0.0931 vs 0.0940 for the endpoint/junction prior (5 re-drawn proxies: means 0.0975 vs 0.0995 vs 0.0866 baseline). The random-20%-components proxy rewards fault clustering by construction.",
+      "action": "Describe it as a clustering prior with a small structural increment, not as a validated structural-setting mechanism.",
+      "how_established": "computed",
+      "links": [
+        "https://github.com/buffedlizard55-lab/16GEMSDOE/blob/main/evidence/hypothesis_h18_exploratory.json"
+      ]
+    },
+    {
+      "id": "F17",
+      "area": "Validation",
+      "severity": "medium",
+      "status": "open",
+      "title": "The holdout measures known faults; the real task scores NEW faults",
+      "evidence": "Known faults are masked in the real scoring, so the dense proxy rewards something the evaluator ignores, and both proxies' hidden faults are Quaternary catalogue faults. Measured: across the group's 15 distinct scored files the dense known-fault DTI has Spearman rho +0.17 (p = 0.54) with the public score, and the SGMC-gap truth +0.52 (p = 0.048); neither is a dependable gate.",
+      "action": "Treat holdout numbers as weak evidence; use the first live A/B pair to recalibrate (decision rules in the register, section 6b).",
+      "how_established": "reasoned",
+      "links": [
+        "https://github.com/buffedlizard55-lab/16GEMSDOE/blob/main/evidence/proxy_calibration_vs_lb.json"
+      ]
+    },
+    {
+      "id": "F18",
+      "area": "Validation",
+      "severity": "low",
+      "status": "open",
+      "title": "H16-1's blend weights may have been chosen on the same holdout",
+      "evidence": "The 0.55/0.35/0.06/0.04 (lidar) and 0.40/0.35/0.15/0.10 (gap) weights are hard-coded in the prior script; how they were chosen is undocumented, so H16-1's holdout score may be optimistically biased against fresh hypotheses.",
+      "action": "Prefer fixed-form, pre-registered comparisons; re-tune only on folds that never see the test quadrant.",
+      "how_established": "unverifiable",
+      "links": []
+    },
+    {
+      "id": "F19",
+      "area": "Forensics",
+      "severity": "medium",
+      "status": "open",
+      "title": "Four of 18 scored entries are effectively one submission",
+      "evidence": "GEMSDOE1, 5GEMSDOE and 8GEMSDOE are identical on every scored pixel (first two byte-identical); GEMSDOE2 is a 0.946-Jaccard near-duplicate (LB 0.1560). Three more repos (6GEMSDOE, 11GEMSDOE, GEMSDOE10-H16) independently tried near-catalogue predictions and all scored <= 0.046.",
+      "action": "Run the uniqueness gate on every candidate; do not upload anything with Jaccard >= 0.80 to a scored file.",
+      "how_established": "computed",
+      "links": [
+        "https://github.com/buffedlizard55-lab/16GEMSDOE/blob/main/evidence/submission_similarity.json"
+      ]
+    },
+    {
+      "id": "F20",
+      "area": "Validation",
+      "severity": "info",
+      "status": "resolved",
+      "title": "Metric-implementation assumption checked: predictions on masked known-fault pixels",
+      "evidence": "Our evaluator let predictions on masked known-fault pixels earn true-positive credit (neutral only for false positives); the staff wording implies they should not score at all. Re-scoring six sparse proxies with those predictions dropped changed any arm's mean sparse DTI by at most 0.0001 and left every conclusion unchanged (H18-3a beats H16-1 and the density control in 6/6 draws).",
+      "action": "None. Both rules are implemented (`mask_predictions`); the candidate files contain no predictions on known-fault pixels.",
+      "how_established": "computed",
+      "links": [
+        "https://github.com/buffedlizard55-lab/16GEMSDOE/blob/main/evidence/hypothesis_h18_sensitivity.json"
+      ]
+    },
+    {
+      "id": "F21",
+      "area": "Provenance",
+      "severity": "low",
+      "status": "mitigated",
+      "title": "Recorded build commit aa504ca8f1 no longer exists; a sandbox restore corrupted one binary file",
+      "evidence": "Between sessions the agent sandbox was restored from a file snapshot onto a fresh clone, so the local-only git commits made after the last push were lost and the commits in the published pull request were re-created from the restored working tree (the pre-registration commit 6c5f74a was already on the remote branch and is unchanged; its file is byte-identical). Two generated files, docs/data/submissions.json and evidence/submission_validation_report.json, still record the pre-restore build commit aa504ca8f1, which does not exist in the published history. The restore also corrupted docs/data/footprint.bin (found text-decoded with U+FFFD replacement bytes: 31,029 bytes instead of 15,681); tests/test_footprint.py caught it. After the restore all 9 published files in docs/downloads/ were re-hashed and matched their recorded SHA-256 and sizes.",
+      "action": "footprint.bin was regenerated from the official template (sha256 2176d08e...) and is byte-identical to the recorded payload (sha256 9ec93feb..., docs/data/footprint.json unchanged). Integrity is anchored on content hashes, not commit ids: the git_commit field in those two JSON files is informational (no page or test reads it) and is refreshed the next time scripts/build_candidates.py runs. If tests/test_footprint.py fails again after a restore, rebuild the payload as described in AGENTS.md.",
+      "how_established": "verified",
+      "links": [
+        "https://github.com/buffedlizard55-lab/16GEMSDOE/blob/main/docs/data/footprint.json",
+        "https://github.com/buffedlizard55-lab/16GEMSDOE/blob/main/tests/test_footprint.py"
+      ]
+    },
+    {
+      "id": "F22",
+      "area": "Novelty / duplication",
+      "severity": "medium",
+      "status": "needs-owner",
+      "title": "Candidate #3 (SGMC geologic-map faults) repeats an idea the group already built: Jaccard 0.63 with an unregistered GEMSDOE3 file",
+      "evidence": "The first real run of scripts/scan_group_repos.py (2026-09-30) cross-checked our three ready-to-upload candidates against the 42 published GeoTIFFs in the group repositories that are not in the registry. #1 (H18-3a) and #2 (H16-1) are clear of all of them (most similar: GEMSDOE2 gemsdoe2-extension-arm-ad5ba911.tif, Jaccard 0.07). #3 shares 46,198 of its 57,783 scored positive pixels with GEMSDOE3/docs/downloads/gapfinder-v2-sgmc-gap-20260925T045014Z-7251c22bb4.tif (61,664 positives): Jaccard 0.6307, below the 0.80 duplicate threshold but far above every other pair. GEMSDOE3's README describes SGMC-gap traces as an input to its Gapfinder and Coverline work ('Coverline v3 fusion ... + SGMC-gap traces') and says its current portfolio is unscored ('No upload has been made'). Whether the gapfinder file was ever uploaded is not known: it is not in the registry and no score is recorded for it. Earlier wording in the hypothesis register ('uses an independent official map', 'the most different candidate from every registered file') was true of the 21 registered files only; it has been corrected.",
+      "action": "Treat #3 and GEMSDOE3's gapfinder-v2-sgmc-gap file as one experiment and upload at most one of them, and only if you want to measure whether geologic-map faults are what the experts added (it cannot pass the holdout gate). Prefer uploads #1 and #2. From now on group-scan cross-checks every ready-to-upload candidate against newly published group files, and the result is shown on each candidate card.",
+      "how_established": "verified",
+      "links": [
+        "https://github.com/buffedlizard55-lab/GEMSDOE3/blob/main/docs/downloads/gapfinder-v2-sgmc-gap-20260925T045014Z-7251c22bb4.tif",
+        "https://github.com/buffedlizard55-lab/GEMSDOE3/blob/main/README.md",
+        "https://github.com/buffedlizard55-lab/16GEMSDOE/blob/main/docs/data/group_scan.json"
+      ]
+    },
+    {
+      "id": "F23",
+      "area": "Fractal clustering",
+      "severity": "medium",
+      "status": "open",
+      "title": "H22 fractal fit is a placeholder (synthetic D=1.37) until GEMS_DATA_DIR/labels.tif is placed \u2014 prior shape is valid but not yet fitted to local traces",
+      "evidence": "evidence/clustering_fit.json reports D_correlation=1.37, D_bour_davy_predicted=1.38, K>>1 at 1-3 km, but source field is 'PLACEHOLDER_SYNTHETIC \u2014 valid prior shape, not yet fitted to local labels.tif'. The same file records alpha=1.762 from 19GEMSDOE power_law_scaling_report.json (3,199 traces, R2=0.9936) and Bour & Davy 1999 DOI 10.1029/1999GL900524. The synthetic prior (21-px density + EDT halo, lambda\u22481.8 km) is hash-stable and DISTINCT (J=0.77 vs H19-4) but holdout projection (+0.0035 Dense / +0.0024 Sparse) is INFERENCE until python scripts/generate_h22_submissions.py refits D from the real 3,199 traces after data placement.",
+      "action": "Run bash scripts/download_competition_data.sh into data/ then python scripts/prepare_data.py and python scripts/generate_h22_submissions.py on any unrestricted machine; the runner will refit D, emit new content_ids, and overwrite evidence/clustering_fit.json with a COMPUTED fit. Do not spend a slot on H22-3..H22-5 before H22-1 vs H19-4 live A/B.",
+      "how_established": "computed",
+      "links": [
+        "https://doi.org/10.1029/1999GL900524",
+        "https://doi.org/10.1111/j.2517-6161.1977.tb01615.x",
+        "https://github.com/buffedlizard55-lab/GEMSDOE22/blob/main/src/gems/clustering.py",
+        "https://github.com/buffedlizard55-lab/GEMSDOE22/blob/main/evidence/clustering_fit.json"
+      ]
+    },
+    {
+      "id": "F24",
+      "area": "Holdout",
+      "severity": "low",
+      "status": "open",
+      "title": "H22 holdout gains are projected (INFERENCE) pending GEMS_DATA_DIR \u2014 gate not yet re-measured on the 4-quadrant OOF holdout",
+      "evidence": "docs/data/submissions.json claims 'score_predicted: false' and 'H22 numbers are projected pending GEMS_DATA_DIR'. The holdout table in README shows +0.0035 Dense / +0.0024 Sparse with asterisks and INFERENCE labels. The underlying OOF surfaces (19-band de-reg, scarp, worm) were last measured in 19GEMSDOE evidence/spatial_holdout_results.json (H19-4 0.21413 vs H16-1 0.21272). The fractal resort's J=0.77 distinctness and audit CONSISTENT are COMPUTED, but the DTI delta is projected until python scripts/run_spatial_holdout_and_build.py runs with data.",
+      "action": "After data placement, run python scripts/run_spatial_holdout_and_build.py and python scripts/evaluate_h22_and_build_submissions.py to re-measure the 4-quadrant holdout; promote only if the gate (mean Dense & Sparse > H16-1, >=3/4 Sparse folds, no fold < -0.01) passes.",
+      "how_established": "verified",
+      "links": [
+        "https://github.com/buffedlizard55-lab/GEMSDOE22/blob/main/docs/research/preregistration_h22.md"
+      ]
+    }
+  ]
+}

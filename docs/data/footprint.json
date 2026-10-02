@@ -1,0 +1,12 @@
+{
+  "width": 3292,
+  "height": 3730,
+  "footprint_pixels": 5167373,
+  "outside_pixels": 7111787,
+  "runs": 8007,
+  "payload_bytes": 15681,
+  "payload_sha256": "9ec93feb7c07793a81332a30853e4971d51f6bf19791a09f195307f3d1f9893f",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "encoding": "alternating uleb128 run lengths over row-major pixels, first run = outside the footprint",
+  "source": "finite pixels of sample_submission.tif (the official template as bridged; see README for provenance caveat)"
+}

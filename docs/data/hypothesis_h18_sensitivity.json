@@ -1,0 +1,215 @@
+{
+  "generated_utc": "2026-09-30T02:08:22+00:00",
+  "status": "POST_HOC_SENSITIVITY",
+  "draws": {
+    "draw_0_registered_seeds": {
+      "H16_1_baseline": {
+        "registered_rule": 0.08541,
+        "strict_rule": 0.08528,
+        "fold_strict": [
+          0.08897,
+          0.07791,
+          0.06588,
+          0.10836
+        ]
+      },
+      "H18_3a_complexity_prior": {
+        "registered_rule": 0.09401,
+        "strict_rule": 0.09388,
+        "fold_strict": [
+          0.10111,
+          0.08627,
+          0.07719,
+          0.11095
+        ]
+      },
+      "E2_plain_density_prior": {
+        "registered_rule": 0.09306,
+        "strict_rule": 0.09294,
+        "fold_strict": [
+          0.1017,
+          0.08559,
+          0.07723,
+          0.10724
+        ]
+      }
+    },
+    "draw_1": {
+      "H16_1_baseline": {
+        "registered_rule": 0.09074,
+        "strict_rule": 0.09067,
+        "fold_strict": [
+          0.09366,
+          0.09825,
+          0.06206,
+          0.10873
+        ]
+      },
+      "H18_3a_complexity_prior": {
+        "registered_rule": 0.10409,
+        "strict_rule": 0.10405,
+        "fold_strict": [
+          0.09935,
+          0.10928,
+          0.07124,
+          0.13635
+        ]
+      },
+      "E2_plain_density_prior": {
+        "registered_rule": 0.10145,
+        "strict_rule": 0.10142,
+        "fold_strict": [
+          0.10007,
+          0.10888,
+          0.06994,
+          0.1268
+        ]
+      }
+    },
+    "draw_2": {
+      "H16_1_baseline": {
+        "registered_rule": 0.07929,
+        "strict_rule": 0.07921,
+        "fold_strict": [
+          0.06517,
+          0.09432,
+          0.0681,
+          0.08925
+        ]
+      },
+      "H18_3a_complexity_prior": {
+        "registered_rule": 0.09413,
+        "strict_rule": 0.09409,
+        "fold_strict": [
+          0.07876,
+          0.09648,
+          0.07832,
+          0.12281
+        ]
+      },
+      "E2_plain_density_prior": {
+        "registered_rule": 0.09047,
+        "strict_rule": 0.09042,
+        "fold_strict": [
+          0.07526,
+          0.09168,
+          0.07735,
+          0.1174
+        ]
+      }
+    },
+    "draw_3": {
+      "H16_1_baseline": {
+        "registered_rule": 0.08382,
+        "strict_rule": 0.0837,
+        "fold_strict": [
+          0.07573,
+          0.09104,
+          0.06879,
+          0.09924
+        ]
+      },
+      "H18_3a_complexity_prior": {
+        "registered_rule": 0.10042,
+        "strict_rule": 0.10029,
+        "fold_strict": [
+          0.08875,
+          0.09986,
+          0.08163,
+          0.13092
+        ]
+      },
+      "E2_plain_density_prior": {
+        "registered_rule": 0.09786,
+        "strict_rule": 0.09772,
+        "fold_strict": [
+          0.09343,
+          0.09291,
+          0.0809,
+          0.12364
+        ]
+      }
+    },
+    "draw_4": {
+      "H16_1_baseline": {
+        "registered_rule": 0.09126,
+        "strict_rule": 0.09122,
+        "fold_strict": [
+          0.07833,
+          0.12004,
+          0.06451,
+          0.10198
+        ]
+      },
+      "H18_3a_complexity_prior": {
+        "registered_rule": 0.09962,
+        "strict_rule": 0.0996,
+        "fold_strict": [
+          0.09042,
+          0.13095,
+          0.07043,
+          0.10658
+        ]
+      },
+      "E2_plain_density_prior": {
+        "registered_rule": 0.09936,
+        "strict_rule": 0.09932,
+        "fold_strict": [
+          0.09392,
+          0.13428,
+          0.07096,
+          0.09812
+        ]
+      }
+    },
+    "draw_5": {
+      "H16_1_baseline": {
+        "registered_rule": 0.0877,
+        "strict_rule": 0.08762,
+        "fold_strict": [
+          0.07735,
+          0.08575,
+          0.06492,
+          0.12245
+        ]
+      },
+      "H18_3a_complexity_prior": {
+        "registered_rule": 0.09915,
+        "strict_rule": 0.09909,
+        "fold_strict": [
+          0.0898,
+          0.09806,
+          0.08518,
+          0.12333
+        ]
+      },
+      "E2_plain_density_prior": {
+        "registered_rule": 0.09849,
+        "strict_rule": 0.09845,
+        "fold_strict": [
+          0.09097,
+          0.09701,
+          0.07991,
+          0.12591
+        ]
+      }
+    }
+  },
+  "mean_over_6_draws": {
+    "H16_1_baseline": {
+      "registered_rule": 0.08637,
+      "strict_rule": 0.08628
+    },
+    "H18_3a_complexity_prior": {
+      "registered_rule": 0.09857,
+      "strict_rule": 0.0985
+    },
+    "E2_plain_density_prior": {
+      "registered_rule": 0.09678,
+      "strict_rule": 0.09671
+    }
+  },
+  "draws_3a_beats_baseline_strict": 6,
+  "draws_3a_beats_density_strict": 6,
+  "elapsed_seconds": 315.7
+}
